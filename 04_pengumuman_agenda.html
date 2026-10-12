@@ -1,0 +1,534 @@
+<!-- =====================================================================
+  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 04: PENGUMUMAN & AGENDA KEGIATAN
+  Cara Penggunaan di WordPress (Elementor / Divi):
+  1. Buka widget "Text Editor" (pilih tab 'Text' / 'Code') ATAU widget "Custom HTML".
+  2. Copy semua isi file ini (Ctrl+A -> Ctrl+C), lalu paste (Ctrl+V).
+  3. Desain sudah mandiri (Self-Contained) lengkap dengan CSS, HTML, & JS Interaktif.
+====================================================================== -->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+  /* SCOPED WRAPPER */
+  #asc-agenda {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1e293b;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+    padding: 70px 20px 85px;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 24px;
+    margin: 20px 0;
+  }
+
+  #asc-agenda * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  #asc-agenda .asc-ag-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Header */
+  #asc-agenda .asc-ag-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 36px;
+  }
+  #asc-agenda .asc-ag-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: rgba(2, 132, 199, 0.08);
+    border: 1px solid rgba(2, 132, 199, 0.2);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0284c7;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+  }
+  #asc-agenda .asc-ag-title {
+    font-size: 40px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+  #asc-agenda .asc-ag-title span {
+    background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  #asc-agenda .asc-ag-subtitle {
+    font-size: 16px;
+    color: #64748b;
+    line-height: 1.6;
+  }
+
+  /* Filter Tabs */
+  #asc-agenda .asc-ag-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 45px;
+    flex-wrap: wrap;
+  }
+  #asc-agenda .asc-ag-tab-btn {
+    padding: 12px 26px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #475569;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  #asc-agenda .asc-ag-tab-btn:hover {
+    border-color: #0284c7;
+    color: #0284c7;
+  }
+  #asc-agenda .asc-ag-tab-btn.asc-active {
+    background: linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 8px 20px -4px rgba(2, 132, 199, 0.4);
+  }
+
+  /* =========================================================================
+     TAB 1: TIMELINE AGENDA KEGIATAN & PENGUMUMAN
+     ========================================================================= */
+  #asc-agenda .asc-event-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  #asc-agenda .asc-event-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+  }
+  #asc-agenda .asc-event-card:hover {
+    transform: translateY(-8px);
+    border-color: #38bdf8;
+    box-shadow: 0 20px 35px -5px rgba(2, 132, 199, 0.15);
+  }
+
+  /* Gambar Banner Event */
+  #asc-agenda .asc-event-img-wrap {
+    height: 180px;
+    position: relative;
+    background: #e2e8f0;
+    overflow: hidden;
+  }
+  #asc-agenda .asc-event-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  #asc-agenda .asc-event-card:hover .asc-event-img-wrap img {
+    transform: scale(1.08);
+  }
+  #asc-agenda .asc-event-status {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  #asc-agenda .asc-status-open {
+    background: #0284c7;
+  }
+  #asc-agenda .asc-status-soon {
+    background: #d97706;
+  }
+
+  #asc-agenda .asc-event-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+  #asc-agenda .asc-event-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 12px;
+  }
+  #asc-agenda .asc-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #asc-agenda .asc-event-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+  #asc-agenda .asc-event-desc {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  #asc-agenda .asc-event-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0284c7;
+    text-decoration: none;
+    transition: gap 0.2s ease;
+  }
+  #asc-agenda .asc-event-action:hover {
+    gap: 12px;
+  }
+
+  /* =========================================================================
+     TAB 2: DAFTAR 10 BIDANG PEMBINAAN RUTIN (DARI NOTULENSI ASC)
+     ========================================================================= */
+  #asc-agenda .asc-pembinaan-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  #asc-agenda .asc-pem-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 22px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    transition: all 0.3s ease;
+  }
+  #asc-agenda .asc-pem-item:hover {
+    background: #ffffff;
+    border-color: #38bdf8;
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px -4px rgba(2, 132, 199, 0.1);
+  }
+  #asc-agenda .asc-pem-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    color: #0284c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 18px;
+  }
+  #asc-agenda .asc-pem-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
+  }
+  #asc-agenda .asc-pem-desc {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 992px) {
+    #asc-agenda {
+      padding: 50px 16px 65px;
+    }
+    #asc-agenda .asc-event-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    #asc-agenda .asc-pembinaan-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    #asc-agenda {
+      border-radius: 16px;
+      padding: 40px 14px 50px;
+    }
+    #asc-agenda .asc-ag-title {
+      font-size: 28px;
+    }
+    #asc-agenda .asc-event-grid {
+      grid-template-columns: 1fr;
+    }
+    #asc-agenda .asc-pem-item {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+</style>
+
+<!-- =========================================================================
+     STRUKTUR HTML SECTION 04: PENGUMUMAN & AGENDA KEGIATAN
+     ========================================================================= -->
+<div id="asc-agenda">
+  <div class="asc-ag-container">
+    
+    <!-- Header -->
+    <div class="asc-ag-header">
+      <div class="asc-ag-tag">Aktivitas & Pembinaan</div>
+      <h2 class="asc-ag-title">Agenda & <span>Pengumuman Kegiatan</span></h2>
+      <p class="asc-ag-subtitle">
+        Ikuti rangkaian agenda kegiatan terbaru, peringatan hari besar Islam, serta jadwal program pembinaan rutin UKM ASC Universitas Negeri Malang.
+      </p>
+    </div>
+
+    <!-- Filter Tab -->
+    <div class="asc-ag-tabs">
+      <button class="asc-ag-tab-btn asc-active" onclick="ascSwitchAgenda('events')">
+        Agenda Kegiatan & Pengumuman
+      </button>
+      <button class="asc-ag-tab-btn" onclick="ascSwitchAgenda('pembinaan')">
+        10 Daftar Pembinaan Rutin
+      </button>
+    </div>
+
+    <!-- ================== VIEW 1: AGENDA KEGIATAN & PENGUMUMAN ================== -->
+    <div id="ascAgendaEvents" class="asc-event-grid">
+      
+      <!-- Event 1 -->
+      <div class="asc-event-card">
+        <div class="asc-event-img-wrap">
+          <span class="asc-event-status asc-status-open">Pendaftaran Buka</span>
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" alt="Open Recruitment Anggota UKM ASC">
+        </div>
+        <div class="asc-event-body">
+          <div>
+            <div class="asc-event-meta">
+              <span class="asc-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Oktober 2026
+              </span>
+              <span class="asc-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Gedung Ormawa UM
+              </span>
+            </div>
+            <h3 class="asc-event-title">Open Recruitment Anggota Baru UKM ASC UM</h3>
+            <p class="asc-event-desc">
+              Mari bergabung bersama keluarga besar pecinta Al-Qur'an di Universitas Negeri Malang. Terbuka untuk seluruh mahasiswa lintas fakultas.
+            </p>
+          </div>
+          <a href="#asc-kontak" class="asc-event-action">
+            <span>Daftar Sekarang</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Event 2 -->
+      <div class="asc-event-card">
+        <div class="asc-event-img-wrap">
+          <span class="asc-event-status asc-status-soon">Segera Hadir</span>
+          <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80" alt="Peringatan Maulid Nabi Muhammad SAW">
+        </div>
+        <div class="asc-event-body">
+          <div>
+            <div class="asc-event-meta">
+              <span class="asc-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Peringatan Tahunan
+              </span>
+              <span class="asc-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Masjid Al-Hikmah UM
+              </span>
+            </div>
+            <h3 class="asc-event-title">Peringatan Akbar Maulid Nabi Muhammad SAW</h3>
+            <p class="asc-event-desc">
+              Gema sholawat, tausiyah kebangsaan Qurani, serta refleksi akhlak Rasulullah SAW bersama seluruh civitas akademika Universitas Negeri Malang.
+            </p>
+          </div>
+          <a href="#asc-kontak" class="asc-event-action">
+            <span>Detail Acara</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="asc-event-card">
+        <div class="asc-event-img-wrap">
+          <span class="asc-event-status">Rutin Mingguan</span>
+          <img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=600&q=80" alt="Bimbingan Intensif Kafilah MTQ Mahasiswa UM">
+        </div>
+        <div class="asc-event-body">
+          <div>
+            <div class="asc-event-meta">
+              <span class="asc-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Jadwal Rutin
+              </span>
+              <span class="asc-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Ruang ASC / Hybrid
+              </span>
+            </div>
+            <h3 class="asc-event-title">Bimbingan Intensif Kafilah MTQ Mahasiswa</h3>
+            <p class="asc-event-desc">
+              Pelatihan intensif cabang Tilawah, Hifdzil, Syarhil, Fahmil, Kaligrafi, dan KTIA bersama ustadz pembina untuk persiapan kejuaraan nasional.
+            </p>
+          </div>
+          <a href="#asc-kontak" class="asc-event-action">
+            <span>Lihat Jadwal</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================== VIEW 2: DAFTAR 10 BIDANG PEMBINAAN RUTIN ================== -->
+    <div id="ascAgendaPembinaan" class="asc-pembinaan-grid" style="display: none;">
+      
+      <!-- 1. Tahsinul Qiro'ah -->
+      <div class="asc-pem-item">
+        <div class="asc-pem-icon">01</div>
+        <div>
+          <h4 class="asc-pem-title">Tahsinul Qiro’ah</h4>
+          <p class="asc-pem-desc">Penyempurnaan makharijul huruf, sifat huruf, dan kaidah tajwid dasar hingga mahir agar bacaan Al-Qur'an tepat dan fasih.</p>
+        </div>
+      </div>
+
+      <!-- 2. Tartilul Qur'an -->
+      <div class="asc-pem-item">
+        <div class="asc-pem-icon">02</div>
+        <div>
+          <h4 class="asc-pem-title">Tartilul Qur’an</h4>
+          <p class="asc-pem-desc">Pembinaan membaca Al-Qur'an secara perlahan, teratur, memperhatikan waqaf wal ibtida', serta penghayatan makna ayat.</p>
+        </div>
+      </div>
+
+      <!-- 3. Tilawatul Qur'an -->
+      <div class="asc-pem-item">
+        <div class="asc-pem-icon">03</div>
+        <div>
+          <h4 class="asc-pem-title">Tilawatul Qur’an</h4>
+          <p class="asc-pem-desc">Pelatihan seni baca Al-Qur'an dengan keindahan maqam lagu (Bayati, Shoba, Hijaz, Nahawand, Rast, Sika, Jiharkah).</p>
+        </div>
+      </div>
+
+      <!-- 4. Tahfidhul Qur'an -->
+      <div class="asc-pem-item">
+        <div class="asc-pem-icon">04</div>
+        <div>
+          <h4 class="asc-pem-title">Tahfidhul Qur’an</h4>
+          <p class="asc-pem-desc">Program bimbingan menghafal Al-Qur'an, setor hafalan (tasmi'), dan muraja'ah rutin untuk menjaga hafalan kalamullah.</p>
+        </div>
+      </div>
+
+      <!-- 5. Syarhul Qur'an -->
+      <div class="asc-pem-item">
+        <div class="asc-pem-icon">05</div>
+        <div>
+          <h4 class="asc-pem-title">Syarhul Qur’an</h4>
+          <p class="asc-pem-desc">Pembinaan seni orasi dan syiar Al-Qur'an dalam format tim (pensyarah, qari'/qari'ah, dan sari tilawah) mengangkat isu kontemporer.</p>
+        </div>
+      </div>
+
+      <!-- 6. Fahmul Qur'an -->
+      <div class="asc-pem-item">
+        <div class="asc-pem-icon">06</div>
+        <div>
+          <h4 class="asc-pem-title">Fahmul Qur’an</h4>
+          <p class="asc-pem-desc">Cerdas cermat ke-Al-Qur'an-an yang mendalami wawasan tafsir, ulumul Qur'an, hadis, fiqih, sirah nabawiyah, dan bahasa Arab.</p>
+        </div>
+      </div>
+
+      <!-- 7. Khaththul Qur'an -->
+      <div class="asc-pem-item">
+        <div class="asc-pem-icon">07</div>
+        <div>
+          <h4 class="asc-pem-title">Khaththul Qur’an (Kaligrafi)</h4>
+          <p class="asc-pem-desc">Pelatihan seni rupa kaligrafi Islam (Naskhi, Tsuluts, Riq'ah, Diwani, Kufi) dalam bidang naskah, hiasan mushaf, dan dekorasi.</p>
+        </div>
+      </div>
+
+      <!-- 8. Karya Tulis Ilmiah Al-Qur'an -->
+      <div class="asc-pem-item">
+        <div class="asc-pem-icon">08</div>
+        <div>
+          <h4 class="asc-pem-title">Karya Tulis Ilmiah Al-Qur'an (KTIA)</h4>
+          <p class="asc-pem-desc">Bimbingan penulisan karya ilmiah yang mengintegrasikan Al-Qur'an dengan solusi sains, teknologi, dan isu sosial kemasyarakatan.</p>
+        </div>
+      </div>
+
+      <!-- 9. Desain Aplikasi Al-Qur'an -->
+      <div class="asc-pem-item">
+        <div class="asc-pem-icon">09</div>
+        <div>
+          <h4 class="asc-pem-title">Desain Aplikasi Al-Qur'an</h4>
+          <p class="asc-pem-desc">Pengembangan kreativitas mahasiswa dalam merancang inovasi UI/UX, aplikasi edukasi, dan platform digital berbasis Al-Qur'an.</p>
+        </div>
+      </div>
+
+      <!-- 10. Maulid Nabi -->
+      <div class="asc-pem-item">
+        <div class="asc-pem-icon">10</div>
+        <div>
+          <h4 class="asc-pem-title">Maulid Nabi & Peringatan PHBI</h4>
+          <p class="asc-pem-desc">Pembinaan seni rebana/hadrah shalawat, kepanitiaan hari besar Islam, dan semarak syiar dakwah di kampus Universitas Negeri Malang.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- =========================================================================
+     JAVASCRIPT INTERAKTIF (SWITCH TABS)
+     ========================================================================= -->
+<script>
+  function ascSwitchAgenda(type) {
+    const buttons = document.querySelectorAll('#asc-agenda .asc-ag-tab-btn');
+    buttons.forEach(btn => btn.classList.remove('asc-active'));
+    event.currentTarget.classList.add('asc-active');
+
+    const viewEvents = document.getElementById('ascAgendaEvents');
+    const viewPembinaan = document.getElementById('ascAgendaPembinaan');
+
+    if (type === 'events') {
+      viewPembinaan.style.display = 'none';
+      viewEvents.style.display = 'grid';
+    } else {
+      viewEvents.style.display = 'none';
+      viewPembinaan.style.display = 'grid';
+    }
+  }
+</script>
