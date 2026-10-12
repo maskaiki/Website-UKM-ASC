@@ -1,0 +1,463 @@
+<!-- =====================================================================
+  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 03: STRUKTUR ORGANISASI
+  Cara Penggunaan di WordPress (Elementor / Divi):
+  1. Buka widget "Text Editor" (pilih tab 'Text' / 'Code') ATAU widget "Custom HTML".
+  2. Copy semua isi file ini (Ctrl+A -> Ctrl+C), lalu paste (Ctrl+V).
+  3. Desain sudah mandiri (Self-Contained) lengkap dengan CSS, HTML, & JS Interaktif.
+====================================================================== -->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+  /* SCOPED WRAPPER */
+  #asc-struktur {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1e293b;
+    background: radial-gradient(circle at 50% 0%, #f0fdf4 0%, #f8fafc 40%, #ffffff 80%);
+    position: relative;
+    overflow: hidden;
+    padding: 70px 20px 85px;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 24px;
+    margin: 20px 0;
+  }
+
+  #asc-struktur * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  #asc-struktur .asc-st-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Header Section */
+  #asc-struktur .asc-st-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 36px;
+  }
+  #asc-struktur .asc-st-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: rgba(2, 132, 199, 0.08);
+    border: 1px solid rgba(2, 132, 199, 0.2);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0284c7;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+  }
+  #asc-struktur .asc-st-title {
+    font-size: 40px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+  #asc-struktur .asc-st-title span {
+    background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  #asc-struktur .asc-st-subtitle {
+    font-size: 16px;
+    color: #64748b;
+    line-height: 1.6;
+  }
+
+  /* =========================================================================
+     TAB FILTER BUTTONS (INTERAKTIF JAVASCRIPT)
+     ========================================================================= */
+  #asc-struktur .asc-tab-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 45px;
+  }
+  #asc-struktur .asc-tab-btn {
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    outline: none;
+  }
+  #asc-struktur .asc-tab-btn:hover {
+    border-color: #0284c7;
+    color: #0284c7;
+  }
+  #asc-struktur .asc-tab-btn.asc-active {
+    background: linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 8px 20px -4px rgba(2, 132, 199, 0.4);
+  }
+
+  /* =========================================================================
+     HIERARKI & KARTU PENGURUS (3D HOVER EFFECT)
+     ========================================================================= */
+  #asc-struktur .asc-level-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0f172a;
+    text-align: center;
+    margin: 30px 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  #asc-struktur .asc-level-title::before,
+  #asc-struktur .asc-level-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #bae6fd);
+  }
+  #asc-struktur .asc-level-title::after {
+    background: linear-gradient(to left, transparent, #bae6fd);
+  }
+
+  #asc-struktur .asc-org-grid {
+    display: grid;
+    gap: 24px;
+    margin-bottom: 35px;
+  }
+  #asc-struktur .asc-grid-1 {
+    grid-template-columns: minmax(280px, 420px);
+    justify-content: center;
+  }
+  #asc-struktur .asc-grid-2 {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+  }
+  #asc-struktur .asc-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  #asc-struktur .asc-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Member Card */
+  #asc-struktur .asc-member-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+  }
+  #asc-struktur .asc-member-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: #38bdf8;
+    box-shadow: 0 20px 35px -5px rgba(2, 132, 199, 0.15);
+  }
+
+  /* Avatar */
+  #asc-struktur .asc-avatar-wrap {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+    box-shadow: 0 8px 18px -4px rgba(2, 132, 199, 0.3);
+    position: relative;
+  }
+  #asc-struktur .asc-avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #f1f5f9;
+  }
+
+  #asc-struktur .asc-member-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 4px;
+  }
+  #asc-struktur .asc-member-role {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0284c7;
+    margin-bottom: 8px;
+    display: inline-block;
+    padding: 3px 10px;
+    background: #f0f9ff;
+    border-radius: 999px;
+  }
+  #asc-struktur .asc-member-desc {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  /* Card Khusus Pembina & Ketum */
+  #asc-struktur .asc-member-card.asc-featured {
+    background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+    border: 2px solid #bae6fd;
+  }
+  #asc-struktur .asc-member-card.asc-featured .asc-avatar-wrap {
+    width: 105px;
+    height: 105px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 992px) {
+    #asc-struktur {
+      padding: 50px 16px 65px;
+    }
+    #asc-struktur .asc-grid-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    #asc-struktur .asc-grid-3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    #asc-struktur {
+      border-radius: 16px;
+      padding: 40px 14px 50px;
+    }
+    #asc-struktur .asc-st-title {
+      font-size: 28px;
+    }
+    #asc-struktur .asc-grid-2,
+    #asc-struktur .asc-grid-3,
+    #asc-struktur .asc-grid-4 {
+      grid-template-columns: 1fr;
+    }
+    #asc-struktur .asc-tab-bar {
+      gap: 6px;
+    }
+    #asc-struktur .asc-tab-btn {
+      padding: 8px 14px;
+      font-size: 12px;
+    }
+  }
+</style>
+
+<!-- =========================================================================
+     STRUKTUR HTML SECTION 03: STRUKTUR ORGANISASI UKM ASC
+     ========================================================================= -->
+<div id="asc-struktur">
+  <div class="asc-st-container">
+
+    <!-- Header Section -->
+    <div class="asc-st-header">
+      <div class="asc-st-tag">Susunan Kepengurusan</div>
+      <h2 class="asc-st-title">Struktur <span>Organisasi UKM ASC</span></h2>
+      <p class="asc-st-subtitle">
+        Sinergi pembina, badan pengurus harian (BPH), departemen kerja, serta lembaga semi otonom (LSO) dalam mengemban amanah syiar Al-Qur'an di Universitas Negeri Malang.
+      </p>
+    </div>
+
+    <!-- TAB INTERAKTIF -->
+    <div class="asc-tab-bar">
+      <button class="asc-tab-btn asc-active" onclick="ascSwitchTab('all')">Semua Bagan</button>
+      <button class="asc-tab-btn" onclick="ascSwitchTab('pembina')">Pendamping</button>
+      <button class="asc-tab-btn" onclick="ascSwitchTab('bph')">BPH Inti</button>
+      <button class="asc-tab-btn" onclick="ascSwitchTab('dept')">Departemen</button>
+      <button class="asc-tab-btn" onclick="ascSwitchTab('lso')">Lembaga Semi Otonom (LSO)</button>
+    </div>
+
+    <!-- ================== SECTION: PEMBINA & PENDAMPING ================== -->
+    <div class="asc-org-group" data-cat="pembina">
+      <div class="asc-level-title">Pendamping UKM ASC</div>
+      <div class="asc-org-grid asc-grid-1">
+        <div class="asc-member-card asc-featured">
+          <div class="asc-avatar-wrap">
+            <!-- Ganti URL gambar di bawah dengan foto pembina Anda -->
+            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Pendamping UKM ASC">
+          </div>
+          <h4 class="asc-member-name">Dosen Pendamping UKM ASC</h4>
+          <span class="asc-member-role">Pendamping & Pembina</span>
+          <p class="asc-member-desc">Membimbing arah strategis, penguatan keilmuan, dan legalitas pembinaan Al-Qur'an di kampus UM.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================== SECTION: BPH INTI ================== -->
+    <div class="asc-org-group" data-cat="bph">
+      <div class="asc-level-title">Badan Pengurus Harian (BPH)</div>
+      
+      <!-- Ketum & Waketum -->
+      <div class="asc-org-grid asc-grid-2">
+        <div class="asc-member-card asc-featured">
+          <div class="asc-avatar-wrap">
+            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Ketua Umum UKM ASC">
+          </div>
+          <h4 class="asc-member-name">Nama Ketua Umum</h4>
+          <span class="asc-member-role">Ketua Umum</span>
+          <p class="asc-member-desc">Pemegang komando tertinggi organisasi dan penanggung jawab seluruh arah kebijakan UKM ASC UM.</p>
+        </div>
+
+        <div class="asc-member-card asc-featured">
+          <div class="asc-avatar-wrap">
+            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="Wakil Ketua Umum UKM ASC">
+          </div>
+          <h4 class="asc-member-name">Nama Wakil Ketua Umum</h4>
+          <span class="asc-member-role">Wakil Ketua Umum</span>
+          <p class="asc-member-desc">Mendampingi kepemimpinan ketua umum dan mengoordinasikan keselarasan gerak antar departemen.</p>
+        </div>
+      </div>
+
+      <!-- Sekum & Bendum -->
+      <div class="asc-org-grid asc-grid-2">
+        <div class="asc-member-card">
+          <div class="asc-avatar-wrap">
+            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80" alt="Sekretaris Umum UKM ASC">
+          </div>
+          <h4 class="asc-member-name">Nama Sekretaris Umum</h4>
+          <span class="asc-member-role">Sekretaris Umum</span>
+          <p class="asc-member-desc">Mengelola administrasi persuratan, inventarisasi data organisasi, dan kesekretariatan UKM ASC.</p>
+        </div>
+
+        <div class="asc-member-card">
+          <div class="asc-avatar-wrap">
+            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Bendahara Umum UKM ASC">
+          </div>
+          <h4 class="asc-member-name">Nama Bendahara Umum</h4>
+          <span class="asc-member-role">Bendahara Umum</span>
+          <p class="asc-member-desc">Mengatur sirkulasi finansial, pembukuan anggaran kegiatan, dan akuntabilitas keuangan organisasi.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================== SECTION: DEPARTEMEN ================== -->
+    <div class="asc-org-group" data-cat="dept">
+      <div class="asc-level-title">Departemen Operasional</div>
+      <div class="asc-org-grid asc-grid-4">
+        
+        <!-- Departemen Kaderisasi -->
+        <div class="asc-member-card">
+          <div class="asc-avatar-wrap">
+            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80" alt="Kaderisasi ASC">
+          </div>
+          <h4 class="asc-member-name">Dept. Kaderisasi</h4>
+          <span class="asc-member-role">Pengembangan SDM</span>
+          <p class="asc-member-desc">Menyelenggarakan rekrutmen, penanaman komitmen, upgrading anggota, dan jenjang kaderisasi UKM ASC.</p>
+        </div>
+
+        <!-- Departemen Pembinaan -->
+        <div class="asc-member-card">
+          <div class="asc-avatar-wrap">
+            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80" alt="Pembinaan ASC">
+          </div>
+          <h4 class="asc-member-name">Dept. Pembinaan</h4>
+          <span class="asc-member-role">Kurikulum Qurani</span>
+          <p class="asc-member-desc">Mengawal jalannya kelas rutin Tahsin, Tartil, Tilawah, Tahfidh, Kaligrafi, hingga bimbingan MTQ.</p>
+        </div>
+
+        <!-- Departemen Kesejahteraan -->
+        <div class="asc-member-card">
+          <div class="asc-avatar-wrap">
+            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" alt="Kesejahteraan ASC">
+          </div>
+          <h4 class="asc-member-name">Dept. Kesejahteraan</h4>
+          <span class="asc-member-role">Solidaritas & Dana</span>
+          <p class="asc-member-desc">Membangun keharmonisan kekeluargaan kader, kepedulian sosial, serta kewirausahaan mandiri organisasi.</p>
+        </div>
+
+        <!-- Departemen Syiar -->
+        <div class="asc-member-card">
+          <div class="asc-avatar-wrap">
+            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80" alt="Syiar ASC">
+          </div>
+          <h4 class="asc-member-name">Dept. Syiar</h4>
+          <span class="asc-member-role">Media & Dakwah</span>
+          <p class="asc-member-desc">Menyebarkan inspirasi Qurani lewat media sosial, publikasi visual kreatif, dan event dakwah akbar kampus.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================== SECTION: LSO ================== -->
+    <div class="asc-org-group" data-cat="lso">
+      <div class="asc-level-title">Lembaga Semi Otonom (LSO)</div>
+      <div class="asc-org-grid asc-grid-3">
+        
+        <!-- LSO PP2 -->
+        <div class="asc-member-card">
+          <div class="asc-avatar-wrap">
+            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="LSO PP2">
+          </div>
+          <h4 class="asc-member-name">LSO PP2</h4>
+          <span class="asc-member-role">Lembaga Otonom</span>
+          <p class="asc-member-desc">Unit otonom pembinaan program khusus tahfidz dan pengkajian intensif generasi penerus Al-Qur'an.</p>
+        </div>
+
+        <!-- LSO PP3 -->
+        <div class="asc-member-card">
+          <div class="asc-avatar-wrap">
+            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="LSO PP3">
+          </div>
+          <h4 class="asc-member-name">LSO PP3</h4>
+          <span class="asc-member-role">Lembaga Otonom</span>
+          <p class="asc-member-desc">Unit otonom fokus pengembangan syiar komunitas dan pengabdian masyarakat berbasis nilai Qurani.</p>
+        </div>
+
+        <!-- LSO TDI -->
+        <div class="asc-member-card">
+          <div class="asc-avatar-wrap">
+            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="LSO TDI">
+          </div>
+          <h4 class="asc-member-name">LSO TDI</h4>
+          <span class="asc-member-role">Lembaga Otonom</span>
+          <p class="asc-member-desc">Unit riset, teknologi dakwah informasi, dan karya ilmiah ke-Al-Qur'an-an mahasiswa UM.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- =========================================================================
+     JAVASCRIPT INTERAKTIF (TAB SWITCHER FILTER)
+     ========================================================================= -->
+<script>
+  function ascSwitchTab(category) {
+    const buttons = document.querySelectorAll('#asc-struktur .asc-tab-btn');
+    buttons.forEach(btn => btn.classList.remove('asc-active'));
+    
+    // Active clicked button
+    event.currentTarget.classList.add('asc-active');
+
+    const groups = document.querySelectorAll('#asc-struktur .asc-org-group');
+    groups.forEach(group => {
+      if (category === 'all' || group.getAttribute('data-cat') === category) {
+        group.style.display = 'block';
+        group.style.opacity = '0';
+        setTimeout(() => {
+          group.style.transition = 'opacity 0.4s ease';
+          group.style.opacity = '1';
+        }, 30);
+      } else {
+        group.style.display = 'none';
+      }
+    });
+  }
+</script>
