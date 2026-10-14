@@ -1,390 +1,821 @@
 <!-- =====================================================================
-  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 07: KONTAK, MEDSOS, & FOOTER
-  Cara Penggunaan di WordPress (Elementor / Divi):
-  1. Buka widget "Text Editor" (pilih tab 'Text' / 'Code') ATAU widget "Custom HTML".
-  2. Copy semua isi file ini (Ctrl+A -> Ctrl+C), lalu paste (Ctrl+V).
-  3. Desain sudah mandiri (Self-Contained) lengkap dengan CSS, HTML, & JS Interaktif.
+  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 07: FOLLOW US & KONTAK FOOTER
+  UI/UX CONCEPT: Plarium-Style Sticky Scroll-Flow Experience
+  AESTHETICS: Celestial Deep Sapphire & Sky Blue Aura Glassmorphism (Gen Z Modern)
+  
+  Panduan Penggunaan di WordPress (Elementor / Divi):
+  1. Di Divi: Tambahkan module "Code" atau "Fullwidth Code".
+     Di Elementor: Tambahkan widget "HTML" atau "Text Editor" (tab Text/Code).
+  2. Salin seluruh isi file ini (Ctrl+A -> Ctrl+C), lalu paste (Ctrl+V).
+  3. Desain 100% Self-Contained lengkap dengan Scoped CSS, HTML, & JS Parallax.
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Amiri:wght@400;700&display=swap');
 
-  /* SCOPED WRAPPER */
+  /* =========================================================================
+     FIX OVERFLOW UNTUK DIVI & ELEMENTOR WORDPRESS
+     ========================================================================= */
+  .et_pb_section,
+  .et_pb_fullwidth_section,
+  .et_pb_row,
+  .et_pb_column,
+  .et_pb_module,
+  .et_pb_code,
+  .et_pb_fullwidth_code,
+  .et_pb_code_inner,
+  .elementor-section,
+  .elementor-column,
+  .elementor-widget-wrap,
+  .elementor-widget {
+    overflow: visible !important;
+  }
+
+  /* =========================================================================
+     1. SCOPED WRAPPER UTAMA
+     ========================================================================= */
   #asc-kontak {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #1e293b;
-    background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 50%, #e0f2fe 100%);
+    color: #f8fafc;
+    background: #061121;
     position: relative;
-    overflow: hidden;
-    padding: 70px 20px 40px;
-    box-sizing: border-box;
     width: 100%;
-    border-radius: 24px;
-    margin: 20px 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: visible;
   }
 
   #asc-kontak * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-font-smoothing: antialiased;
   }
 
-  #asc-kontak .asc-kt-container {
-    max-width: 1200px;
-    margin: 0 auto;
+  /* =========================================================================
+     2. PLARIUM SCROLL TRACK (STICKY EXPERIENCE)
+     Tinggi track 230vh untuk memberi jarak scroll yang nyaman dan mulus.
+     ========================================================================= */
+  #asc-kontak .asc-pl-track {
     position: relative;
+    width: 100%;
+    height: 230vh;
+    background: linear-gradient(180deg, #071527 0%, #081a33 35%, #061121 70%, #0a1b32 100%);
+  }
+
+  /* STICKY STAGE (100vh) */
+  #asc-kontak .asc-pl-sticky {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+    z-index: 10;
+  }
+
+  /* AMBIENT AURAS (CELLESTIAL SKY BLUE & CYAN) */
+  #asc-kontak .asc-pl-aura {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(90px);
+    z-index: 1;
+    opacity: 0.65;
+  }
+  #asc-kontak .asc-pl-aura-1 {
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.28) 0%, rgba(2, 132, 199, 0.08) 60%, transparent 80%);
+    top: -10%;
+    left: 15%;
+    animation: ascAuraFloat1 18s ease-in-out infinite alternate;
+  }
+  #asc-kontak .asc-pl-aura-2 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.24) 0%, rgba(14, 165, 233, 0.06) 60%, transparent 80%);
+    bottom: -15%;
+    right: 10%;
+    animation: ascAuraFloat2 22s ease-in-out infinite alternate;
+  }
+  #asc-kontak .asc-pl-aura-3 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 70%);
+    top: 40%;
+    right: 25%;
+  }
+
+  @keyframes ascAuraFloat1 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(40px, 50px) scale(1.15); }
+  }
+  @keyframes ascAuraFloat2 {
+    0% { transform: translate(0, 0) scale(1.1); }
+    100% { transform: translate(-50px, -40px) scale(0.95); }
+  }
+
+  /* PARTICLES CANVAS */
+  #asc-kontak #asc-pl-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
     z-index: 2;
   }
 
-  /* Header */
-  #asc-kontak .asc-kt-header {
-    text-align: center;
-    max-width: 760px;
-    margin: 0 auto 45px;
+  /* ISLAMIC GEOMETRIC WATERMARK */
+  #asc-kontak .asc-pl-geom {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(56, 189, 248, 0.12) 1.5px, transparent 1.5px);
+    background-size: 32px 32px;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 2;
   }
-  #asc-kontak .asc-kt-tag {
+
+  /* =========================================================================
+     3. STAGE TITLE: "Follow us on social media"
+     Tampil megah di tengah saat pertama masuk, lalu kartu naik menutupi/bertemu
+     ========================================================================= */
+  #asc-kontak .asc-pl-headline {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 90%;
+    max-width: 1100px;
+    z-index: 3;
+    pointer-events: none;
+    transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+  }
+  #asc-kontak .asc-pl-tag {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 16px;
-    background: rgba(2, 132, 199, 0.08);
-    border: 1px solid rgba(2, 132, 199, 0.2);
+    padding: 6px 18px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.28);
     border-radius: 999px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
-    color: #0284c7;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 16px;
+    color: #38bdf8;
+    margin-bottom: 22px;
+    backdrop-filter: blur(10px);
   }
-  #asc-kontak .asc-kt-title {
-    font-size: 40px;
+  #asc-kontak .asc-pl-title {
+    font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(44px, 7.5vw, 92px);
     font-weight: 800;
-    color: #0f172a;
-    line-height: 1.2;
-    margin-bottom: 14px;
+    color: #ffffff;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin-bottom: 18px;
+    text-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
   }
-  #asc-kontak .asc-kt-title span {
-    background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+  #asc-kontak .asc-pl-title span {
+    background: linear-gradient(135deg, #ffffff 30%, #7dd3fc 80%, #38bdf8 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  #asc-kontak .asc-kt-subtitle {
-    font-size: 16px;
-    color: #64748b;
+  #asc-kontak .asc-pl-sub {
+    font-size: clamp(14px, 1.3vw, 18px);
+    color: #94a3b8;
+    max-width: 620px;
+    margin: 0 auto;
     line-height: 1.6;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  }
+
+  /* HINT SCROLL DOWN INDICATOR */
+  #asc-kontak .asc-pl-scrolldown {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: #64748b;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    pointer-events: none;
+    z-index: 4;
+    transition: opacity 0.3s ease;
+  }
+  #asc-kontak .asc-pl-scrolldown svg {
+    animation: ascScrollBounce 2s infinite;
+  }
+  @keyframes ascScrollBounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(6px); }
+    60% { transform: translateY(3px); }
   }
 
   /* =========================================================================
-     BENTO GRID KONTAK, SOSIAL MEDIA & VIDEO
+     4. TALL PILL CARDS CONTAINER (PLARIUM 4 PILL LAYOUT)
+     Kartu melayang & bergerak naik dari bawah (scroll-driven parallax)
      ========================================================================= */
-  #asc-kontak .asc-kt-bento {
+  #asc-kontak .asc-pl-cards-wrap {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(12px, 2.2vw, 28px);
+    width: 100%;
+    max-width: 1240px;
+    padding: 0 20px;
+    pointer-events: auto;
+  }
+
+  /* INDIVIDUAL PILL CARD */
+  #asc-kontak .asc-pill-card {
+    position: relative;
+    border-radius: 46px;
+    background: rgba(15, 23, 42, 0.78);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 16px 26px;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+    will-change: transform;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease, 
+                background 0.4s ease;
+  }
+
+  /* Staggered Heights & Margins (Persis seperti Screenshot Referensi Plarium) */
+  #asc-kontak .asc-pill-card.card-ig {
+    width: clamp(140px, 18vw, 210px);
+    height: clamp(440px, 58vh, 520px);
+    margin-top: 15px;
+    --brand-color: #e1306c;
+    --brand-glow: rgba(225, 48, 108, 0.7);
+    --border-hover: rgba(244, 114, 182, 0.6);
+  }
+  #asc-kontak .asc-pill-card.card-yt {
+    width: clamp(140px, 18vw, 210px);
+    height: clamp(410px, 54vh, 480px);
+    margin-top: 60px;
+    --brand-color: #ff0000;
+    --brand-glow: rgba(255, 0, 0, 0.75);
+    --border-hover: rgba(239, 68, 68, 0.6);
+  }
+  #asc-kontak .asc-pill-card.card-tk {
+    width: clamp(140px, 18vw, 210px);
+    height: clamp(470px, 62vh, 550px);
+    margin-top: -15px;
+    --brand-color: #06b6d4;
+    --brand-glow: rgba(6, 182, 212, 0.75);
+    --border-hover: rgba(56, 189, 248, 0.6);
+  }
+  #asc-kontak .asc-pill-card.card-wa {
+    width: clamp(140px, 18vw, 210px);
+    height: clamp(420px, 55vh, 490px);
+    margin-top: 45px;
+    --brand-color: #10b981;
+    --brand-glow: rgba(16, 185, 129, 0.75);
+    --border-hover: rgba(52, 211, 153, 0.6);
+  }
+
+  /* CARD HOVER PHYSICS */
+  #asc-kontak .asc-pill-card:hover {
+    transform: translateY(-16px) scale(1.035) !important;
+    border-color: var(--border-hover);
+    box-shadow: 0 35px 65px -15px rgba(0, 0, 0, 0.8), 0 0 35px var(--brand-glow);
+    background: rgba(15, 23, 42, 0.92);
+  }
+
+  /* CARD INNER SHEEN */
+  #asc-kontak .asc-pill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 100%);
+    border-radius: 46px 46px 0 0;
+    pointer-events: none;
+  }
+
+  /* CIRCULAR ICON BADGE (TOP) */
+  #asc-kontak .asc-pill-icon-badge {
+    width: clamp(62px, 6vw, 78px);
+    height: clamp(62px, 6vw, 78px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    box-shadow: 0 0 32px var(--brand-glow);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    flex-shrink: 0;
+    z-index: 2;
+  }
+  #asc-kontak .asc-pill-card:hover .asc-pill-icon-badge {
+    transform: scale(1.12) rotate(4deg);
+    box-shadow: 0 0 45px var(--brand-glow), 0 0 15px #fff;
+  }
+
+  /* BRAND SPECIFIC ICON GRADIENTS */
+  #asc-kontak .card-ig .asc-pill-icon-badge {
+    background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  }
+  #asc-kontak .card-yt .asc-pill-icon-badge {
+    background: linear-gradient(135deg, #ff1a1a 0%, #cc0000 100%);
+  }
+  #asc-kontak .card-tk .asc-pill-icon-badge {
+    background: linear-gradient(135deg, #06b6d4 0%, #000000 50%, #f43f5e 100%);
+  }
+  #asc-kontak .card-wa .asc-pill-icon-badge {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  }
+
+  /* VERTICAL TEXT IN CARD (MIDDLE) */
+  #asc-kontak .asc-pill-vtext {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-orientation: mixed;
+    font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(22px, 2.3vw, 32px);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    margin: 18px 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+    user-select: none;
+    z-index: 2;
+  }
+  #asc-kontak .asc-pill-card:hover .asc-pill-vtext {
+    color: #38bdf8;
+    letter-spacing: 0.08em;
+  }
+
+  /* BOTTOM HANDLE / PILL BUTTON */
+  #asc-kontak .asc-pill-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    font-size: 11px;
+    font-weight: 700;
+    color: #cbd5e1;
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    z-index: 2;
+  }
+  #asc-kontak .asc-pill-card:hover .asc-pill-action {
+    background: #ffffff;
+    color: #0f172a;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.35);
+    border-color: #ffffff;
+  }
+
+  /* =========================================================================
+     5. HUB NARAHUBUNG, SEKRETARIAT & FOOTER SECTION (TRANSISI BERIKUTNYA)
+     Muncul setelah animasi sticky cards selesai saat pengunjung scroll terus
+     ========================================================================= */
+  #asc-kontak .asc-hub-section {
+    position: relative;
+    z-index: 20;
+    background: linear-gradient(180deg, #061121 0%, #0a1b32 40%, #071527 100%);
+    padding: 80px 20px 40px;
+    border-top: 1px solid rgba(56, 189, 248, 0.15);
+  }
+
+  #asc-kontak .asc-hub-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  #asc-kontak .asc-hub-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 50px;
+  }
+  #asc-kontak .asc-hub-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: rgba(2, 132, 199, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #38bdf8;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  #asc-kontak .asc-hub-title {
+    font-size: clamp(28px, 3.4vw, 42px);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  #asc-kontak .asc-hub-title span {
+    background: linear-gradient(135deg, #38bdf8 0%, #2563eb 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  #asc-kontak .asc-hub-sub {
+    font-size: 15px;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+
+  /* BENTO GRID HUB */
+  #asc-kontak .asc-hub-bento {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 24px;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
   }
 
-  /* KARTU WHATSAPP CP (SPAN 6) */
-  #asc-kontak .asc-cp-card {
+  /* KARTU CONTACT PERSON (SPAN 6) */
+  #asc-kontak .asc-cp-box {
     grid-column: span 6;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 22px;
-    padding: 30px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
-    transition: all 0.35s ease;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 24px;
+    padding: 32px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: transform 0.3s ease, border-color 0.3s ease;
   }
-  #asc-kontak .asc-cp-card:hover {
-    transform: translateY(-6px);
+  #asc-kontak .asc-cp-box:hover {
+    transform: translateY(-5px);
     border-color: #38bdf8;
-    box-shadow: 0 20px 35px -5px rgba(2, 132, 199, 0.15);
   }
-  #asc-kontak .asc-card-header-icon {
+
+  #asc-kontak .asc-box-header {
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
-  #asc-kontak .asc-icon-badge {
+  #asc-kontak .asc-box-icon {
     width: 48px;
     height: 48px;
     border-radius: 14px;
-    background: #ecfdf5;
-    color: #059669;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #10b981;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  #asc-kontak .asc-card-htitle {
+  #asc-kontak .asc-box-title {
     font-size: 20px;
     font-weight: 800;
-    color: #0f172a;
+    color: #ffffff;
   }
-  #asc-kontak .asc-card-hsub {
+  #asc-kontak .asc-box-desc {
     font-size: 13px;
-    color: #64748b;
+    color: #94a3b8;
   }
 
-  /* Contact Person List */
-  #asc-kontak .asc-cp-list {
+  #asc-kontak .asc-cp-items {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    margin-bottom: 24px;
   }
-  #asc-kontak .asc-cp-item {
+  #asc-kontak .asc-cp-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background: rgba(2, 6, 23, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
     padding: 16px 20px;
     transition: all 0.25s ease;
   }
-  #asc-kontak .asc-cp-item:hover {
-    background: #f0fdf4;
-    border-color: #86efac;
+  #asc-kontak .asc-cp-row:hover {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.4);
     transform: translateX(4px);
   }
-  #asc-kontak .asc-cp-name {
+  #asc-kontak .asc-cp-info-name {
     font-size: 15px;
     font-weight: 700;
-    color: #0f172a;
+    color: #ffffff;
   }
-  #asc-kontak .asc-cp-phone {
+  #asc-kontak .asc-cp-info-phone {
     font-size: 13px;
-    color: #64748b;
+    color: #38bdf8;
+    margin-top: 2px;
   }
-  #asc-kontak .asc-wa-btn {
+  #asc-kontak .asc-cp-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 16px;
+    padding: 9px 18px;
     background: #10b981;
     color: #ffffff;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 13px;
     font-weight: 700;
     text-decoration: none;
     transition: all 0.2s ease;
   }
-  #asc-kontak .asc-wa-btn:hover {
+  #asc-kontak .asc-cp-btn:hover {
     background: #059669;
-    transform: scale(1.04);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
   }
 
-  /* KARTU INSTAGRAM RESMI (SPAN 6) */
-  #asc-kontak .asc-ig-card {
+  /* KARTU INSTAGRAM PEMBINAAN & RESMI (SPAN 6) */
+  #asc-kontak .asc-ig-box {
     grid-column: span 6;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 22px;
-    padding: 30px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
-    transition: all 0.35s ease;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(236, 72, 153, 0.2);
+    border-radius: 24px;
+    padding: 32px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: transform 0.3s ease, border-color 0.3s ease;
   }
-  #asc-kontak .asc-ig-card:hover {
-    transform: translateY(-6px);
-    border-color: #f472b6;
-    box-shadow: 0 20px 35px -5px rgba(236, 72, 153, 0.15);
+  #asc-kontak .asc-ig-box:hover {
+    transform: translateY(-5px);
+    border-color: #ec4899;
   }
-  #asc-kontak .asc-ig-list {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-bottom: 24px;
-  }
-  #asc-kontak .asc-ig-item {
+  #asc-kontak .asc-ig-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background: rgba(2, 6, 23, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
     padding: 16px 20px;
     transition: all 0.25s ease;
   }
-  #asc-kontak .asc-ig-item:hover {
-    background: #fdf2f8;
-    border-color: #fbcfe8;
+  #asc-kontak .asc-ig-row:hover {
+    background: rgba(236, 72, 153, 0.1);
+    border-color: rgba(236, 72, 153, 0.4);
     transform: translateX(4px);
   }
   #asc-kontak .asc-ig-handle {
     font-size: 15px;
     font-weight: 700;
-    color: #0f172a;
+    color: #ffffff;
   }
   #asc-kontak .asc-ig-type {
     font-size: 13px;
-    color: #64748b;
+    color: #f472b6;
+    margin-top: 2px;
   }
-  #asc-kontak .asc-ig-follow-btn {
+  #asc-kontak .asc-ig-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 18px;
+    padding: 9px 18px;
     background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
     color: #ffffff;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 13px;
     font-weight: 700;
     text-decoration: none;
     transition: all 0.2s ease;
   }
-  #asc-kontak .asc-ig-follow-btn:hover {
-    opacity: 0.92;
-    transform: scale(1.04);
+  #asc-kontak .asc-ig-btn:hover {
+    opacity: 0.95;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
   }
 
-  /* KARTU VIDEO YOUTUBE & SEKRETARIAT (SPAN 12) */
-  #asc-kontak .asc-media-card {
+  /* KARTU SEKRETARIAT & VIDEO PROFIL (SPAN 12) */
+  #asc-kontak .asc-media-box {
     grid-column: span 12;
-    background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #0f172a 100%);
-    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(2, 132, 199, 0.25) 0%, rgba(3, 105, 161, 0.15) 50%, rgba(15, 23, 42, 0.8) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 26px;
     padding: 36px;
-    color: #ffffff;
+    backdrop-filter: blur(24px);
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 30px;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 32px;
     align-items: center;
-    box-shadow: 0 20px 40px -10px rgba(2, 132, 199, 0.35);
+    box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.5);
   }
-  #asc-kontak .asc-video-preview {
+  #asc-kontak .asc-media-info h3 {
+    font-size: clamp(22px, 2.5vw, 30px);
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 12px;
+  }
+  #asc-kontak .asc-media-info p {
+    font-size: 14px;
+    color: #bae6fd;
+    line-height: 1.7;
+    margin-bottom: 22px;
+  }
+  #asc-kontak .asc-media-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  #asc-kontak .asc-media-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    border-radius: 999px;
+    font-size: 13px;
+    color: #ffffff;
+  }
+
+  /* VIDEO PREVIEW CARD */
+  #asc-kontak .asc-vid-card {
     position: relative;
-    border-radius: 18px;
+    border-radius: 20px;
     overflow: hidden;
     height: 240px;
-    background: #0f172a;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    background: #020617;
+    border: 2px solid rgba(56, 189, 248, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
   }
-  #asc-kontak .asc-video-img {
+  #asc-kontak .asc-vid-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     opacity: 0.75;
     transition: transform 0.5s ease;
   }
-  #asc-kontak .asc-video-preview:hover .asc-video-img {
-    transform: scale(1.05);
+  #asc-kontak .asc-vid-card:hover .asc-vid-img {
+    transform: scale(1.06);
   }
-  #asc-kontak .asc-play-btn {
+  #asc-kontak .asc-vid-play {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 64px;
-    height: 64px;
-    background: rgba(239, 68, 68, 0.95);
+    width: 66px;
+    height: 66px;
+    background: #ef4444;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #ffffff;
-    box-shadow: 0 0 30px rgba(239, 68, 68, 0.8);
-    transition: transform 0.3s ease;
+    box-shadow: 0 0 35px rgba(239, 68, 68, 0.85);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     text-decoration: none;
   }
-  #asc-kontak .asc-play-btn:hover {
-    transform: translate(-50%, -50%) scale(1.12);
+  #asc-kontak .asc-vid-play:hover {
+    transform: translate(-50%, -50%) scale(1.15);
+    box-shadow: 0 0 50px rgba(239, 68, 68, 1);
   }
 
-  #asc-kontak .asc-secretariat-info h3 {
-    font-size: 24px;
-    font-weight: 800;
-    margin-bottom: 12px;
-  }
-  #asc-kontak .asc-secretariat-info p {
-    font-size: 14px;
-    color: #e0f2fe;
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-  #asc-kontak .asc-info-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  #asc-kontak .asc-info-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 14px;
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(6px);
-    border-radius: 999px;
-    font-size: 12px;
-    color: #ffffff;
-  }
-
-  /* FOOTER COPYRIGHT BAR */
-  #asc-kontak .asc-footer-bar {
-    border-top: 1px solid rgba(226, 232, 240, 0.8);
-    padding-top: 24px;
+  /* =========================================================================
+     6. FOOTER COPYRIGHT & QUICK LINKS
+     ========================================================================= */
+  #asc-kontak .asc-footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 18px;
     font-size: 13px;
-    color: #64748b;
+    color: #94a3b8;
   }
   #asc-kontak .asc-footer-brand {
     font-weight: 700;
-    color: #0f172a;
+    color: #ffffff;
   }
   #asc-kontak .asc-footer-links {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
   }
   #asc-kontak .asc-footer-links a {
-    color: #64748b;
+    color: #94a3b8;
     text-decoration: none;
     transition: color 0.2s ease;
   }
   #asc-kontak .asc-footer-links a:hover {
-    color: #0284c7;
+    color: #38bdf8;
   }
 
-  /* RESPONSIVE */
+  /* =========================================================================
+     7. RESPONSIVE BREAKPOINTS (DESKTOP, TABLET, MOBILE)
+     ========================================================================= */
   @media (max-width: 992px) {
-    #asc-kontak {
-      padding: 50px 16px 35px;
-    }
-    #asc-kontak .asc-cp-card,
-    #asc-kontak .asc-ig-card {
+    #asc-kontak .asc-cp-box,
+    #asc-kontak .asc-ig-box {
       grid-column: span 12;
     }
-    #asc-kontak .asc-media-card {
+    #asc-kontak .asc-media-box {
       grid-template-columns: 1fr;
+    }
+    #asc-kontak .asc-pl-cards-wrap {
+      gap: 14px;
     }
   }
 
   @media (max-width: 640px) {
-    #asc-kontak {
-      border-radius: 16px;
-      padding: 40px 14px 30px;
+    #asc-kontak .asc-pl-track {
+      height: 190vh;
     }
-    #asc-kontak .asc-kt-title {
-      font-size: 28px;
+    #asc-kontak .asc-pl-title {
+      font-size: 34px;
     }
-    #asc-kontak .asc-cp-item,
-    #asc-kontak .asc-ig-item {
+    #asc-kontak .asc-pl-cards-wrap {
+      gap: 8px;
+      padding: 0 10px;
+    }
+    #asc-kontak .asc-pill-card {
+      width: 23%;
+      padding: 20px 8px 16px;
+      border-radius: 28px;
+    }
+    #asc-kontak .asc-pill-card.card-ig {
+      height: 380px;
+      margin-top: 10px;
+    }
+    #asc-kontak .asc-pill-card.card-yt {
+      height: 350px;
+      margin-top: 40px;
+    }
+    #asc-kontak .asc-pill-card.card-tk {
+      height: 400px;
+      margin-top: -10px;
+    }
+    #asc-kontak .asc-pill-card.card-wa {
+      height: 360px;
+      margin-top: 30px;
+    }
+    #asc-kontak .asc-pill-icon-badge {
+      width: 48px;
+      height: 48px;
+    }
+    #asc-kontak .asc-pill-icon-badge svg {
+      width: 22px;
+      height: 22px;
+    }
+    #asc-kontak .asc-pill-vtext {
+      font-size: 16px;
+      letter-spacing: 0.02em;
+    }
+    #asc-kontak .asc-pill-action {
+      display: none; /* Hide small text badge on tiny screens to avoid overflow */
+    }
+    #asc-kontak .asc-cp-row,
+    #asc-kontak .asc-ig-row {
       flex-direction: column;
       align-items: flex-start;
       gap: 12px;
     }
-    #asc-kontak .asc-footer-bar {
+    #asc-kontak .asc-footer-bottom {
       flex-direction: column;
       text-align: center;
     }
@@ -392,153 +823,419 @@
 </style>
 
 <!-- =========================================================================
-     STRUKTUR HTML SECTION 07: KONTAK, SOSIAL MEDIA & FOOTER
+     STRUKTUR HTML SECTION 07: FOLLOW US & KONTAK FOOTER
      ========================================================================= -->
 <div id="asc-kontak">
-  <div class="asc-kt-container">
-    
-    <!-- Header -->
-    <div class="asc-kt-header">
-      <div class="asc-kt-tag">Hubungi Kami & Bersinergi</div>
-      <h2 class="asc-kt-title">Terhubung Bersama <span>UKM ASC UM</span></h2>
-      <p class="asc-kt-subtitle">
-        Jangan ragu untuk menghubungi Contact Person resmi kami atau ikuti media sosial untuk mendapatkan informasi kegiatan dan pendaftaran terkini.
-      </p>
-    </div>
 
-    <!-- BENTO GRID -->
-    <div class="asc-kt-bento">
+  <!-- =====================================================================
+       BAGIAN 1: PLARIUM STICKY SCROLL EXPERIENCE (FOLLOW US ON SOCIAL MEDIA)
+       ===================================================================== -->
+  <div class="asc-pl-track" id="asc-soc-track">
+    <div class="asc-pl-sticky" id="asc-soc-sticky">
       
-      <!-- KARTU 1: CONTACT PERSON RESMI (WHATSAPP) -->
-      <div class="asc-cp-card">
-        <div>
-          <div class="asc-card-header-icon">
-            <div class="asc-icon-badge">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
-            <div>
-              <h3 class="asc-card-htitle">Narahubung (CP)</h3>
-              <p class="asc-card-hsub">Respons Cepat via WhatsApp</p>
-            </div>
-          </div>
+      <!-- AURA ORBS BACKGROUND -->
+      <div class="asc-pl-aura asc-pl-aura-1"></div>
+      <div class="asc-pl-aura asc-pl-aura-2"></div>
+      <div class="asc-pl-aura asc-pl-aura-3"></div>
+      <div class="asc-pl-geom"></div>
 
-          <!-- List CP (Dari Notulensi ASC) -->
-          <div class="asc-cp-list">
-            <!-- CP 1: Kak Rifqi -->
-            <div class="asc-cp-item">
-              <div>
-                <div class="asc-cp-name">Kak Rifqi</div>
-                <div class="asc-cp-phone">0812-8412-9092</div>
-              </div>
-              <a href="https://wa.me/6281284129092?text=Assalamu%27alaikum%2C%20halo%20Kak%20Rifqi%2C%20saya%20ingin%20bertanya%20mengenai%20UKM%20ASC%20UM" target="_blank" rel="noopener noreferrer" class="asc-wa-btn">
-                <span>Chat WA</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-            </div>
+      <!-- PARTICLES CANVAS (STARDUST / FIREFLIES) -->
+      <canvas id="asc-pl-canvas"></canvas>
 
-            <!-- CP 2: Kak Aura -->
-            <div class="asc-cp-item">
-              <div>
-                <div class="asc-cp-name">Kak Aura</div>
-                <div class="asc-cp-phone">0813-1596-2811</div>
-              </div>
-              <a href="https://wa.me/6281315962811?text=Assalamu%27alaikum%2C%20halo%20Kak%20Aura%2C%20saya%20ingin%20bertanya%20mengenai%20UKM%20ASC%20UM" target="_blank" rel="noopener noreferrer" class="asc-wa-btn">
-                <span>Chat WA</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-          </div>
+      <!-- HEADLINE CENTER: "Follow us on social media" -->
+      <div class="asc-pl-headline" id="asc-soc-title-box">
+        <div class="asc-pl-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          Sinergi Digital & Syi'ar Qur'ani
         </div>
+        <h2 class="asc-pl-title">
+          Follow us<br>
+          <span>on social media</span>
+        </h2>
+        <p class="asc-pl-sub">
+          Jelajahi karya, syi'ar Qur'ani, prestasi, dan inspirasi kami di setiap kanal media sosial resmi UKM Al-Qur'an Study Club Universitas Negeri Malang.
+        </p>
       </div>
 
-      <!-- KARTU 2: INSTAGRAM RESMI -->
-      <div class="asc-ig-card">
-        <div>
-          <div class="asc-card-header-icon">
-            <div class="asc-icon-badge" style="background:#fdf2f8; color:#ec4899;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </div>
-            <div>
-              <h3 class="asc-card-htitle">Instagram Resmi</h3>
-              <p class="asc-card-hsub">Update Informasi & Dokumentasi</p>
-            </div>
-          </div>
-
-          <!-- List Akun Instagram (Dari Notulensi ASC) -->
-          <div class="asc-ig-list">
-            <!-- Akun 1: Official UKM ASC -->
-            <div class="asc-ig-item">
-              <div>
-                <div class="asc-ig-handle">@ukm_asc_um</div>
-                <div class="asc-ig-type">Akun Utama Organisasi UKM ASC</div>
-              </div>
-              <a href="https://instagram.com/ukm_asc_um" target="_blank" rel="noopener noreferrer" class="asc-ig-follow-btn">
-                <span>Follow</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-            </div>
-
-            <!-- Akun 2: Pembinaan UKM ASC -->
-            <div class="asc-ig-item">
-              <div>
-                <div class="asc-ig-handle">@pembinaan_ukmascum</div>
-                <div class="asc-ig-type">Khusus Informasi Kelas Pembinaan</div>
-              </div>
-              <a href="https://instagram.com/pembinaan_ukmascum" target="_blank" rel="noopener noreferrer" class="asc-ig-follow-btn">
-                <span>Follow</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-            </div>
-          </div>
-        </div>
+      <!-- HINT SCROLL DOWN -->
+      <div class="asc-pl-scrolldown" id="asc-soc-hint">
+        <span>Scroll Down</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
       </div>
 
-      <!-- KARTU 3: VIDEO PROFIL YOUTUBE & SEKRETARIAT KAMPUS -->
-      <div class="asc-media-card">
-        <div class="asc-secretariat-info">
-          <h3>Sekretariat UKM ASC UM</h3>
-          <p>
-            Gedung Ormawa (Unit Kegiatan Mahasiswa), Universitas Negeri Malang.<br>
-            Jl. Semarang No. 5, Sumbersari, Kec. Lowokwaru, Kota Malang, Jawa Timur 65145.
-          </p>
-          <div class="asc-info-pills">
-            <span class="asc-info-pill">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
-              Senin - Sabtu (08.00 - 17.00 WIB)
-            </span>
-            <span class="asc-info-pill">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              asc.um.official@gmail.com
-            </span>
+      <!-- 4 TALL PILL CARDS (SLIDE UP FROM BOTTOM ON SCROLL) -->
+      <div class="asc-pl-cards-wrap" id="asc-soc-cards">
+        
+        <!-- CARD 1: INSTAGRAM -->
+        <a href="https://instagram.com/ukm_asc_um" target="_blank" rel="noopener noreferrer" class="asc-pill-card card-ig" data-card-idx="0">
+          <div class="asc-pill-icon-badge">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </div>
-        </div>
+          <div class="asc-pill-vtext">Instagram</div>
+          <div class="asc-pill-action">
+            <span>@ukm_asc_um</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </div>
+        </a>
 
-        <!-- Video Teaser Card (YouTube Placeholder) -->
-        <div class="asc-video-preview">
-          <!-- Ganti thumbnail di bawah dengan gambar teaser video Anda -->
-          <img class="asc-video-img" src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80" alt="Video Profil UKM ASC UM">
-          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="asc-play-btn" title="Tonton Video Profil">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          </a>
-        </div>
+        <!-- CARD 2: YOUTUBE -->
+        <a href="https://www.youtube.com/@ukmascum" target="_blank" rel="noopener noreferrer" class="asc-pill-card card-yt" data-card-idx="1">
+          <div class="asc-pill-icon-badge">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#ffffff"/></svg>
+          </div>
+          <div class="asc-pill-vtext">YouTube</div>
+          <div class="asc-pill-action">
+            <span>UKM ASC UM</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </div>
+        </a>
+
+        <!-- CARD 3: TIKTOK -->
+        <a href="https://www.tiktok.com/@asc_um" target="_blank" rel="noopener noreferrer" class="asc-pill-card card-tk" data-card-idx="2">
+          <div class="asc-pill-icon-badge">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.35 0 .69.07 1 .19V9.07a6.29 6.29 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.33 6.34 6.34 0 0 0 9.34 21.67 6.34 6.34 0 0 0 15.68 15.33V8.89a8.18 8.18 0 0 0 4.81 1.55V7a4.86 4.86 0 0 1-.9-.31z"/></svg>
+          </div>
+          <div class="asc-pill-vtext">TikTok</div>
+          <div class="asc-pill-action">
+            <span>@asc_um</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </div>
+        </a>
+
+        <!-- CARD 4: WHATSAPP CP -->
+        <a href="https://wa.me/6281284129092?text=Assalamu%27alaikum%2C%20halo%20Kak%20Rifqi%2C%20saya%20ingin%20bertanya%20mengenai%20UKM%20ASC%20UM" target="_blank" rel="noopener noreferrer" class="asc-pill-card card-wa" data-card-idx="3">
+          <div class="asc-pill-icon-badge">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="asc-pill-vtext">WhatsApp</div>
+          <div class="asc-pill-action">
+            <span>Chat Langsung</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </div>
+        </a>
+
       </div>
 
     </div>
-
-    <!-- FOOTER COPYRIGHT & QUICK LINKS -->
-    <div class="asc-footer-bar">
-      <div>
-        <span class="asc-footer-brand">UKM ASC UM</span> &copy; 2026 Al-Qur'an Study Club • Universitas Negeri Malang. All Rights Reserved.
-      </div>
-      <div class="asc-footer-links">
-        <a href="#asc-hero-profil">Profil</a>
-        <a href="#asc-visi-misi">Visi Misi</a>
-        <a href="#asc-struktur">Struktur</a>
-        <a href="#asc-agenda">Agenda</a>
-        <a href="#asc-galeri">Galeri</a>
-        <a href="#asc-prestasi">Prestasi</a>
-      </div>
-    </div>
-
   </div>
+
+  <!-- =====================================================================
+       BAGIAN 2: HUB NARAHUBUNG, PEMBINAAN, SEKRETARIAT & FOOTER
+       ===================================================================== -->
+  <div class="asc-hub-section" id="asc-kontak-hub">
+    <div class="asc-hub-container">
+      
+      <!-- HEADER HUB -->
+      <div class="asc-hub-header">
+        <div class="asc-hub-tag">Hubungi Kami & Bersinergi</div>
+        <h2 class="asc-hub-title">Terhubung Bersama <span>Pengurus ASC UM</span></h2>
+        <p class="asc-hub-sub">
+          Perlu informasi kemitraan, pendaftaran anggota, atau konsultasi kelas pembinaan MTQ? Tim Narahubung resmi kami siap melayani Anda.
+        </p>
+      </div>
+
+      <!-- BENTO GRID HUB -->
+      <div class="asc-hub-bento">
+        
+        <!-- KARTU 1: CONTACT PERSON (WHATSAPP) -->
+        <div class="asc-cp-box">
+          <div>
+            <div class="asc-box-header">
+              <div class="asc-box-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <h3 class="asc-box-title">Narahubung Resmi</h3>
+                <p class="asc-box-desc">Respons Cepat via WhatsApp</p>
+              </div>
+            </div>
+
+            <div class="asc-cp-items">
+              <!-- Kak Rifqi -->
+              <div class="asc-cp-row">
+                <div>
+                  <div class="asc-cp-info-name">Kak Rifqi</div>
+                  <div class="asc-cp-info-phone">0812-8412-9092</div>
+                </div>
+                <a href="https://wa.me/6281284129092?text=Assalamu%27alaikum%2C%20halo%20Kak%20Rifqi%2C%20saya%20ingin%20bertanya%20mengenai%20UKM%20ASC%20UM" target="_blank" rel="noopener noreferrer" class="asc-cp-btn">
+                  <span>Chat WA</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+
+              <!-- Kak Aura -->
+              <div class="asc-cp-row">
+                <div>
+                  <div class="asc-cp-info-name">Kak Aura</div>
+                  <div class="asc-cp-info-phone">0813-1596-2811</div>
+                </div>
+                <a href="https://wa.me/6281315962811?text=Assalamu%27alaikum%2C%20halo%20Kak%20Aura%2C%20saya%20ingin%20bertanya%20mengenai%20UKM%20ASC%20UM" target="_blank" rel="noopener noreferrer" class="asc-cp-btn">
+                  <span>Chat WA</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KARTU 2: INSTAGRAM & KANAL PEMBINAAN -->
+        <div class="asc-ig-box">
+          <div>
+            <div class="asc-box-header">
+              <div class="asc-box-icon" style="background: rgba(236, 72, 153, 0.15); border-color: rgba(236, 72, 153, 0.3); color: #ec4899;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </div>
+              <div>
+                <h3 class="asc-box-title">Instagram & Pembinaan</h3>
+                <p class="asc-box-desc">Informasi Kelas & Berita Terkini</p>
+              </div>
+            </div>
+
+            <div class="asc-cp-items">
+              <!-- Akun Utama -->
+              <div class="asc-ig-row">
+                <div>
+                  <div class="asc-ig-handle">@ukm_asc_um</div>
+                  <div class="asc-ig-type">Akun Utama Organisasi UKM ASC</div>
+                </div>
+                <a href="https://instagram.com/ukm_asc_um" target="_blank" rel="noopener noreferrer" class="asc-ig-btn">
+                  <span>Follow</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+
+              <!-- Akun Pembinaan -->
+              <div class="asc-ig-row">
+                <div>
+                  <div class="asc-ig-handle">@pembinaan_ukmascum</div>
+                  <div class="asc-ig-type">Khusus Kelas Pembinaan & MTQ</div>
+                </div>
+                <a href="https://instagram.com/pembinaan_ukmascum" target="_blank" rel="noopener noreferrer" class="asc-ig-btn">
+                  <span>Follow</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KARTU 3: SEKRETARIAT & VIDEO PROFIL TEASER -->
+        <div class="asc-media-box">
+          <div class="asc-media-info">
+            <h3>Sekretariat UKM ASC UM</h3>
+            <p>
+              Gedung Ormawa (Unit Kegiatan Mahasiswa), Universitas Negeri Malang.<br>
+              Jl. Semarang No. 5, Sumbersari, Kec. Lowokwaru, Kota Malang, Jawa Timur 65145.
+            </p>
+            <div class="asc-media-pills">
+              <span class="asc-media-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+                Senin - Sabtu (08.00 - 17.00 WIB)
+              </span>
+              <span class="asc-media-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                asc.um.official@gmail.com
+              </span>
+            </div>
+          </div>
+
+          <!-- Video Teaser Card -->
+          <div class="asc-vid-card">
+            <img class="asc-vid-img" src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80" alt="Video Profil UKM ASC UM">
+            <a href="https://www.youtube.com/@ukmascum" target="_blank" rel="noopener noreferrer" class="asc-vid-play" title="Tonton Video Profil">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FOOTER COPYRIGHT & QUICK LINKS -->
+      <div class="asc-footer-bottom">
+        <div>
+          <span class="asc-footer-brand">UKM ASC UM</span> &copy; 2026 Al-Qur'an Study Club • Universitas Negeri Malang. All Rights Reserved.
+        </div>
+        <div class="asc-footer-links">
+          <a href="#asc-hero-profil">Profil</a>
+          <a href="#asc-visi-misi">Visi Misi</a>
+          <a href="#asc-sejarah">Sejarah</a>
+          <a href="#asc-struktur">Struktur</a>
+          <a href="#asc-agenda">Agenda</a>
+          <a href="#asc-galeri">Galeri</a>
+          <a href="#asc-prestasi">Prestasi</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
+
+<!-- =========================================================================
+     JAVASCRIPT: SCROLL-DRIVEN PARALLAX (PLARIUM MOTION) & PARTICLES ENGINE
+     ========================================================================= -->
+<script>
+(function() {
+  // 1. PARTICLES ENGINE (Stardust & Floating Qur'anic Sparkles)
+  const canvas = document.getElementById('asc-pl-canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = canvas.offsetWidth;
+    let height = canvas.height = canvas.offsetHeight;
+    
+    window.addEventListener('resize', () => {
+      if (canvas && canvas.offsetWidth > 0) {
+        width = canvas.width = canvas.offsetWidth;
+        height = canvas.height = canvas.offsetHeight;
+      }
+    });
+
+    const particles = [];
+    const count = 42;
+    const colors = [
+      'rgba(56, 189, 248, ',  // Sky Blue
+      'rgba(14, 165, 233, ',  // Ocean Cyan
+      'rgba(245, 158, 11, ',  // Amber Gold
+      'rgba(255, 255, 255, '   // Pure Star White
+    ];
+
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 2.2 + 0.8,
+        colorPrefix: colors[Math.floor(Math.random() * colors.length)],
+        baseAlpha: Math.random() * 0.5 + 0.2,
+        speedX: (Math.random() - 0.5) * 0.45,
+        speedY: -(Math.random() * 0.55 + 0.2), // gentle upwards drift
+        pulseSpeed: Math.random() * 0.02 + 0.01,
+        pulseOffset: Math.random() * Math.PI * 2
+      });
+    }
+
+    let pTime = 0;
+    function renderParticles() {
+      ctx.clearRect(0, 0, width, height);
+      pTime += 0.02;
+
+      for (let i = 0; i < count; i++) {
+        const p = particles[i];
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        // Wrap around bounds
+        if (p.y < 0) { p.y = height; p.x = Math.random() * width; }
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+
+        const currentAlpha = p.baseAlpha + Math.sin(pTime + p.pulseOffset) * 0.2;
+        const safeAlpha = Math.max(0.05, Math.min(0.9, currentAlpha));
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.colorPrefix + safeAlpha + ')';
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = p.colorPrefix + '0.8)';
+        ctx.fill();
+      }
+      requestAnimationFrame(renderParticles);
+    }
+    renderParticles();
+  }
+
+  // 2. PLARIUM SCROLL-DRIVEN MOTION
+  const track = document.getElementById('asc-soc-track');
+  const titleBox = document.getElementById('asc-soc-title-box');
+  const cardsWrap = document.getElementById('asc-soc-cards');
+  const hint = document.getElementById('asc-soc-hint');
+  const cards = cardsWrap ? cardsWrap.querySelectorAll('.asc-pill-card') : [];
+
+  // Individual staggered entry parameters (Persis alur Plarium: Card 1 masuk duluan, disusul kartu lainnya)
+  const cardConfigs = [
+    { startP: 0.05, endP: 0.70, startY: 105 },  // Instagram
+    { startP: 0.12, endP: 0.76, startY: 125 },  // YouTube
+    { startP: 0.08, endP: 0.72, startY: 115 },  // TikTok
+    { startP: 0.15, endP: 0.80, startY: 130 }   // WhatsApp
+  ];
+
+  function updatePlariumScroll() {
+    if (!track) return;
+    const rect = track.getBoundingClientRect();
+    const trackH = track.offsetHeight;
+    const winH = window.innerHeight;
+    const totalDist = trackH - winH;
+
+    if (totalDist <= 0) return;
+
+    // Progress 0.0 (puncak section) -> 1.0 (kartu berhenti di tengah)
+    let progress = -rect.top / totalDist;
+    progress = Math.max(0, Math.min(1, progress));
+
+    // A. TITLE BOX MOTION:
+    // Saat kartu naik, title sedikit terdorong ke atas dan memudar secara anggun
+    if (titleBox) {
+      const titleY = progress * -65;
+      const titleScale = 1 - progress * 0.08;
+      const titleOpacity = 1 - Math.max(0, (progress - 0.40) * 2.2);
+      titleBox.style.transform = `translate(-50%, calc(-50% + ${titleY}px)) scale(${titleScale})`;
+      titleBox.style.opacity = Math.max(0.08, titleOpacity);
+    }
+
+    // B. SCROLL HINT
+    if (hint) {
+      hint.style.opacity = Math.max(0, 1 - progress * 4);
+    }
+
+    // C. PILL CARDS RISE FROM BOTTOM (STAGGERED)
+    cards.forEach((card, i) => {
+      const cfg = cardConfigs[i] || { startP: 0.1, endP: 0.75, startY: 110 };
+      
+      // Hitung progress lokal untuk kartu ini
+      let localP = (progress - cfg.startP) / (cfg.endP - cfg.startP);
+      localP = Math.max(0, Math.min(1, localP));
+
+      // EaseOutCubic interpolation
+      const eased = 1 - Math.pow(1 - localP, 3);
+      const currentY = (1 - eased) * cfg.startY; // in vh
+
+      // Terapkan transform Y
+      card.style.transform = `translateY(${currentY}vh)`;
+      card.style.opacity = Math.min(1, 0.15 + eased * 0.85);
+    });
+  }
+
+  // Bind scroll with passive listener
+  window.addEventListener('scroll', () => {
+    requestAnimationFrame(updatePlariumScroll);
+  }, { passive: true });
+
+  // Initial call
+  updatePlariumScroll();
+
+  // 3. 3D TILT PHYSICS ON MOUSE HOVER (KARTU MENGIKUTI KURSOR)
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rotX = -(y / rect.height) * 14;
+      const rotY = (x / rect.width) * 14;
+
+      // Ambil transform translateY saat ini
+      const transformMatrix = window.getComputedStyle(card).transform;
+      let curY = 0;
+      if (transformMatrix && transformMatrix !== 'none') {
+        const values = transformMatrix.split('(')[1].split(')')[0].split(',');
+        curY = parseFloat(values[5]) || 0;
+      }
+
+      card.style.transform = `translateY(${curY}px) perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.04)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      updatePlariumScroll();
+    });
+  });
+
+})();
+</script>

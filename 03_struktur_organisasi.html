@@ -1,464 +1,227 @@
 <!-- =====================================================================
-  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 03: STRUKTUR ORGANISASI
-  Cara Penggunaan di WordPress (Elementor / Divi):
-  1. Buka widget "Text Editor" (pilih tab 'Text' / 'Code') ATAU widget "Custom HTML".
-  2. Copy semua isi file ini (Ctrl+A -> Ctrl+C), lalu paste (Ctrl+V).
-  3. Desain sudah mandiri (Self-Contained) lengkap dengan CSS, HTML, & JS Interaktif.
+  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 03: STRUKTUR ORGANISASI (SCROLL STORY)
+  Cara pakai di WordPress (Elementor / Divi):
+  1. Widget "Custom HTML" di container FULL WIDTH, paste seluruh file ini.
+  2. Elementor: Container > Advanced > Overflow = Default (agar efek "menempel" jalan).
+  3. Ganti isi: cari "DATA STRUKTUR" di bagian script (nama bidang, program, deskripsi).
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-  /* SCOPED WRAPPER */
-  #asc-struktur {
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #1e293b;
-    background: radial-gradient(circle at 50% 0%, #f0fdf4 0%, #f8fafc 40%, #ffffff 80%);
-    position: relative;
-    overflow: hidden;
-    padding: 70px 20px 85px;
-    box-sizing: border-box;
-    width: 100%;
-    border-radius: 24px;
-    margin: 20px 0;
-  }
+  #asc-struktur{ position:relative; width:100%; height:720vh; background:#0f172a; color:#fff; --ice:#e0f2fe; --sky:#38bdf8;
+    font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif; }
+  #asc-struktur *{ box-sizing:border-box; margin:0; padding:0; }
+  #asc-struktur .st-pin{ position:sticky; top:0; height:100vh; height:100svh; overflow:clip; display:flex; flex-direction:column; padding:3.5vh 4vw 3vh;
+    background:radial-gradient(ellipse at 12% 0%,rgba(2,132,199,.3),transparent 55%); }
 
-  #asc-struktur * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  /* Kepala + penunjuk alur */
+  #asc-struktur .st-top{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex:none; }
+  #asc-struktur .st-tag{ display:inline-block; padding:5px 13px; border:1px solid rgba(186,230,253,.35); border-radius:999px; background:rgba(2,132,199,.14);
+    font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#bae6fd; margin-bottom:8px; }
+  #asc-struktur h2{ font-size:clamp(24px,3vw,46px); font-weight:600; letter-spacing:-.035em; line-height:1; color:var(--ice); }
+  #asc-struktur .st-steps{ position:relative; display:grid; grid-template-columns:repeat(6,1fr); width:min(680px,52vw); padding-bottom:14px; }
+  #asc-struktur .st-steps::before{ content:""; position:absolute; left:0; right:0; bottom:0; height:2px; background:rgba(186,230,253,.16); }
+  #asc-struktur .st-fill{ position:absolute; left:0; bottom:0; height:2px; width:8%; background:linear-gradient(90deg,#0284c7,#38bdf8); }
+  #asc-struktur .st-s{ all:unset; cursor:pointer; position:relative; text-align:center; font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#64748b; padding:0 2px 12px; transition:color .3s; }
+  #asc-struktur .st-s::after{ content:""; position:absolute; left:50%; bottom:-4px; width:9px; height:9px; margin-left:-4.5px; border-radius:50%; background:#0f172a; border:2px solid #475569; transition:.3s; }
+  #asc-struktur .st-s.on{ color:var(--ice); } #asc-struktur .st-s.on::after,#asc-struktur .st-s.done::after{ background:var(--sky); border-color:var(--sky); }
+  #asc-struktur .st-s:focus-visible{ outline:2px solid var(--sky); outline-offset:2px; }
 
-  #asc-struktur .asc-st-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-  }
+  #asc-struktur .st-main{ position:relative; flex:1; min-height:0; margin-top:3vh; }
 
-  /* Header Section */
-  #asc-struktur .asc-st-header {
-    text-align: center;
-    max-width: 760px;
-    margin: 0 auto 36px;
-  }
-  #asc-struktur .asc-st-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 16px;
-    background: rgba(2, 132, 199, 0.08);
-    border: 1px solid rgba(2, 132, 199, 0.2);
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 700;
-    color: #0284c7;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 16px;
-  }
-  #asc-struktur .asc-st-title {
-    font-size: 40px;
-    font-weight: 800;
-    color: #0f172a;
-    line-height: 1.2;
-    margin-bottom: 14px;
-  }
-  #asc-struktur .asc-st-title span {
-    background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  #asc-struktur .asc-st-subtitle {
-    font-size: 16px;
-    color: #64748b;
-    line-height: 1.6;
+  /* Bagan */
+  #asc-struktur .st-cl{ position:absolute; inset:0; will-change:transform,opacity; }
+  #asc-struktur .st-chart{ position:absolute; left:50%; top:46%; transform:translate(-50%,-50%); width:min(100%,1400px,calc((100svh - 26vh)*1000/385)); aspect-ratio:1000/385; container-type:inline-size; }
+  #asc-struktur .st-n{ position:absolute; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; line-height:1.15;
+    font-size:clamp(11px,1.45cqw,17px); font-weight:700; border-radius:9px; padding:0 6px; will-change:transform,opacity; }
+  #asc-struktur .st-n small{ font-size:.78em; font-weight:500; opacity:.85; margin-top:2px; }
+  #asc-struktur .n-pb{ background:var(--sky); color:#0f172a; } #asc-struktur .n-core{ background:#0284c7; }
+  #asc-struktur .n-mk{ border:1.5px dashed #bae6fd; color:#bae6fd; background:rgba(186,230,253,.06); }
+  #asc-struktur .n-dept{ background:#0369a1; border:1.5px solid var(--sky); } #asc-struktur .n-lso{ background:#475569; border:1.5px solid #94a3b8; }
+  #asc-struktur .st-ln{ position:absolute; background:var(--sky); opacity:.85; will-change:transform; }
+  #asc-struktur .st-ln.dd{ background:repeating-linear-gradient(90deg,#bae6fd 0 6px,transparent 6px 11px); }
+  #asc-struktur .st-leg{ position:absolute; left:0; right:0; bottom:0; display:flex; flex-wrap:wrap; gap:6px 22px; justify-content:center; font-size:11.5px; color:#94a3b8; }
+  #asc-struktur .st-leg i{ display:inline-block; width:22px; height:0; border-top:2px solid var(--sky); vertical-align:middle; margin-right:7px; }
+  #asc-struktur .st-leg i.d{ border-top-style:dashed; border-color:#bae6fd; }
+
+  /* Rincian departemen */
+  #asc-struktur .st-sc{ position:absolute; inset:0; display:grid; grid-template-columns:5fr 7fr; gap:4vw; align-content:center; align-items:center; opacity:0; visibility:hidden; }
+  #asc-struktur .st-ix{ display:inline-block; font-size:12px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--sky); margin-bottom:10px; }
+  #asc-struktur .st-nm{ font-size:clamp(40px,7.4vw,124px); font-weight:500; letter-spacing:-.05em; line-height:.95; color:var(--ice); }
+  #asc-struktur .st-ds{ margin-top:2.4vh; max-width:430px; font-size:clamp(13px,1.05vw,16px); line-height:1.7; color:#cbd5e1; }
+  #asc-struktur .st-lb{ display:block; font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--sky); margin:0 0 10px; }
+  #asc-struktur .st-grid{ display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-bottom:3vh; }
+  #asc-struktur .st-chip{ padding:10px 14px; border-radius:10px; background:rgba(224,242,254,.07); border:1px solid rgba(186,230,253,.18); font-size:clamp(12.5px,1vw,15px); font-weight:700; line-height:1.3; }
+  #asc-struktur .st-chip small{ display:block; margin-top:2px; font-size:.82em; font-weight:500; color:#94a3b8; }
+  #asc-struktur .st-pills{ display:flex; flex-wrap:wrap; gap:8px; }
+  #asc-struktur .st-pill{ padding:7px 13px; border-radius:999px; background:#0284c7; font-size:clamp(11.5px,.92vw,14px); font-weight:600; }
+
+  @media (max-width:700px){
+    #asc-struktur{ height:760vh; }
+    #asc-struktur .st-pin{ padding:3vh 5vw 2vh; }
+    #asc-struktur .st-top{ flex-direction:column; align-items:stretch; gap:14px; }
+    #asc-struktur .st-steps{ width:100%; } #asc-struktur .st-s{ font-size:0; padding-bottom:8px; } #asc-struktur .st-s.on{ font-size:10px; }
+    #asc-struktur .st-chart{ width:100%; top:0; transform:translateX(-50%); aspect-ratio:360/372; } #asc-struktur .st-n{ font-size:clamp(9.5px,2.9cqw,12px); padding:0 3px; }
+    #asc-struktur .st-leg{ font-size:10.5px; }
+    #asc-struktur .st-sc{ grid-template-columns:1fr; gap:2.2vh; align-content:start; }
+    #asc-struktur .st-nm{ font-size:clamp(36px,13vw,60px); } #asc-struktur .st-ds{ font-size:12.5px; margin-top:1.2vh; line-height:1.55; }
+    #asc-struktur .st-grid{ gap:6px; margin-bottom:1.8vh; } #asc-struktur .st-chip{ padding:7px 10px; font-size:12px; }
+    #asc-struktur .st-pills{ gap:6px; } #asc-struktur .st-pill{ padding:5px 10px; font-size:11px; }
   }
 
-  /* =========================================================================
-     TAB FILTER BUTTONS (INTERAKTIF JAVASCRIPT)
-     ========================================================================= */
-  #asc-struktur .asc-tab-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 45px;
-  }
-  #asc-struktur .asc-tab-btn {
-    padding: 10px 22px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #475569;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    outline: none;
-  }
-  #asc-struktur .asc-tab-btn:hover {
-    border-color: #0284c7;
-    color: #0284c7;
-  }
-  #asc-struktur .asc-tab-btn.asc-active {
-    background: linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%);
-    color: #ffffff;
-    border-color: transparent;
-    box-shadow: 0 8px 20px -4px rgba(2, 132, 199, 0.4);
-  }
-
-  /* =========================================================================
-     HIERARKI & KARTU PENGURUS (3D HOVER EFFECT)
-     ========================================================================= */
-  #asc-struktur .asc-level-title {
-    font-size: 20px;
-    font-weight: 800;
-    color: #0f172a;
-    text-align: center;
-    margin: 30px 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-  }
-  #asc-struktur .asc-level-title::before,
-  #asc-struktur .asc-level-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(to right, transparent, #bae6fd);
-  }
-  #asc-struktur .asc-level-title::after {
-    background: linear-gradient(to left, transparent, #bae6fd);
-  }
-
-  #asc-struktur .asc-org-grid {
-    display: grid;
-    gap: 24px;
-    margin-bottom: 35px;
-  }
-  #asc-struktur .asc-grid-1 {
-    grid-template-columns: minmax(280px, 420px);
-    justify-content: center;
-  }
-  #asc-struktur .asc-grid-2 {
-    grid-template-columns: repeat(2, minmax(280px, 1fr));
-  }
-  #asc-struktur .asc-grid-4 {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  #asc-struktur .asc-grid-3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  /* Member Card */
-  #asc-struktur .asc-member-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 20px;
-    padding: 24px 20px;
-    text-align: center;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
-    position: relative;
-    overflow: hidden;
-  }
-  #asc-struktur .asc-member-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    border-color: #38bdf8;
-    box-shadow: 0 20px 35px -5px rgba(2, 132, 199, 0.15);
-  }
-
-  /* Avatar */
-  #asc-struktur .asc-avatar-wrap {
-    width: 90px;
-    height: 90px;
-    margin: 0 auto 16px;
-    border-radius: 50%;
-    padding: 4px;
-    background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
-    box-shadow: 0 8px 18px -4px rgba(2, 132, 199, 0.3);
-    position: relative;
-  }
-  #asc-struktur .asc-avatar-img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    background: #f1f5f9;
-  }
-
-  #asc-struktur .asc-member-name {
-    font-size: 16px;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 4px;
-  }
-  #asc-struktur .asc-member-role {
-    font-size: 13px;
-    font-weight: 600;
-    color: #0284c7;
-    margin-bottom: 8px;
-    display: inline-block;
-    padding: 3px 10px;
-    background: #f0f9ff;
-    border-radius: 999px;
-  }
-  #asc-struktur .asc-member-desc {
-    font-size: 12px;
-    color: #64748b;
-    line-height: 1.5;
-  }
-
-  /* Card Khusus Pembina & Ketum */
-  #asc-struktur .asc-member-card.asc-featured {
-    background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
-    border: 2px solid #bae6fd;
-  }
-  #asc-struktur .asc-member-card.asc-featured .asc-avatar-wrap {
-    width: 105px;
-    height: 105px;
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 992px) {
-    #asc-struktur {
-      padding: 50px 16px 65px;
-    }
-    #asc-struktur .asc-grid-4 {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    #asc-struktur .asc-grid-3 {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 640px) {
-    #asc-struktur {
-      border-radius: 16px;
-      padding: 40px 14px 50px;
-    }
-    #asc-struktur .asc-st-title {
-      font-size: 28px;
-    }
-    #asc-struktur .asc-grid-2,
-    #asc-struktur .asc-grid-3,
-    #asc-struktur .asc-grid-4 {
-      grid-template-columns: 1fr;
-    }
-    #asc-struktur .asc-tab-bar {
-      gap: 6px;
-    }
-    #asc-struktur .asc-tab-btn {
-      padding: 8px 14px;
-      font-size: 12px;
-    }
-  }
+  /* Gerak dikurangi: tampil statis */
+  #asc-struktur.st-static{ height:auto; } #asc-struktur.st-static .st-pin{ position:relative; height:auto; overflow:visible; padding:48px 4vw; }
+  #asc-struktur.st-static .st-steps{ display:none; } #asc-struktur.st-static .st-main{ margin-top:24px; }
+  #asc-struktur.st-static .st-cl,#asc-struktur.st-static .st-sc{ position:relative; inset:auto; opacity:1; visibility:visible; margin-bottom:56px; }
+  #asc-struktur.st-static .st-cl{ height:auto; padding-bottom:40px; } #asc-struktur.st-static .st-chart{ position:relative; left:auto; top:auto; transform:none; margin:0 auto; }
+  #asc-struktur.st-static .st-leg{ position:relative; margin-top:16px; }
 </style>
 
-<!-- =========================================================================
-     STRUKTUR HTML SECTION 03: STRUKTUR ORGANISASI UKM ASC
-     ========================================================================= -->
-<div id="asc-struktur">
-  <div class="asc-st-container">
-
-    <!-- Header Section -->
-    <div class="asc-st-header">
-      <div class="asc-st-tag">Susunan Kepengurusan</div>
-      <h2 class="asc-st-title">Struktur <span>Organisasi UKM ASC</span></h2>
-      <p class="asc-st-subtitle">
-        Sinergi pembina, badan pengurus harian (BPH), departemen kerja, serta lembaga semi otonom (LSO) dalam mengemban amanah syiar Al-Qur'an di Universitas Negeri Malang.
-      </p>
+<section id="asc-struktur" aria-label="Struktur Organisasi UKM ASC">
+  <div class="st-pin">
+    <div class="st-top">
+      <div><span class="st-tag">Kabinet Al-Fatih &middot; UKM ASC UM</span><h2>Struktur Organisasi</h2></div>
+      <nav class="st-steps" id="stSteps" aria-label="Alur struktur"><i class="st-fill" id="stFill"></i></nav>
     </div>
-
-    <!-- TAB INTERAKTIF -->
-    <div class="asc-tab-bar">
-      <button class="asc-tab-btn asc-active" onclick="ascSwitchTab('all')">Semua Bagan</button>
-      <button class="asc-tab-btn" onclick="ascSwitchTab('pembina')">Pendamping</button>
-      <button class="asc-tab-btn" onclick="ascSwitchTab('bph')">BPH Inti</button>
-      <button class="asc-tab-btn" onclick="ascSwitchTab('dept')">Departemen</button>
-      <button class="asc-tab-btn" onclick="ascSwitchTab('lso')">Lembaga Semi Otonom (LSO)</button>
-    </div>
-
-    <!-- ================== SECTION: PEMBINA & PENDAMPING ================== -->
-    <div class="asc-org-group" data-cat="pembina">
-      <div class="asc-level-title">Pendamping UKM ASC</div>
-      <div class="asc-org-grid asc-grid-1">
-        <div class="asc-member-card asc-featured">
-          <div class="asc-avatar-wrap">
-            <!-- Ganti URL gambar di bawah dengan foto pembina Anda -->
-            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Pendamping UKM ASC">
-          </div>
-          <h4 class="asc-member-name">Dosen Pendamping UKM ASC</h4>
-          <span class="asc-member-role">Pendamping & Pembina</span>
-          <p class="asc-member-desc">Membimbing arah strategis, penguatan keilmuan, dan legalitas pembinaan Al-Qur'an di kampus UM.</p>
-        </div>
+    <div class="st-main">
+      <div class="st-cl" id="stCl">
+        <div class="st-chart" id="stChart"></div>
+        <div class="st-leg"><span><i></i>Garis instruktif</span><span><i class="d"></i>Garis koordinatif</span><span>Gulir untuk menelusuri tiap departemen &darr;</span></div>
       </div>
+      <div id="stScenes"></div>
     </div>
-
-    <!-- ================== SECTION: BPH INTI ================== -->
-    <div class="asc-org-group" data-cat="bph">
-      <div class="asc-level-title">Badan Pengurus Harian (BPH)</div>
-      
-      <!-- Ketum & Waketum -->
-      <div class="asc-org-grid asc-grid-2">
-        <div class="asc-member-card asc-featured">
-          <div class="asc-avatar-wrap">
-            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Ketua Umum UKM ASC">
-          </div>
-          <h4 class="asc-member-name">Nama Ketua Umum</h4>
-          <span class="asc-member-role">Ketua Umum</span>
-          <p class="asc-member-desc">Pemegang komando tertinggi organisasi dan penanggung jawab seluruh arah kebijakan UKM ASC UM.</p>
-        </div>
-
-        <div class="asc-member-card asc-featured">
-          <div class="asc-avatar-wrap">
-            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="Wakil Ketua Umum UKM ASC">
-          </div>
-          <h4 class="asc-member-name">Nama Wakil Ketua Umum</h4>
-          <span class="asc-member-role">Wakil Ketua Umum</span>
-          <p class="asc-member-desc">Mendampingi kepemimpinan ketua umum dan mengoordinasikan keselarasan gerak antar departemen.</p>
-        </div>
-      </div>
-
-      <!-- Sekum & Bendum -->
-      <div class="asc-org-grid asc-grid-2">
-        <div class="asc-member-card">
-          <div class="asc-avatar-wrap">
-            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80" alt="Sekretaris Umum UKM ASC">
-          </div>
-          <h4 class="asc-member-name">Nama Sekretaris Umum</h4>
-          <span class="asc-member-role">Sekretaris Umum</span>
-          <p class="asc-member-desc">Mengelola administrasi persuratan, inventarisasi data organisasi, dan kesekretariatan UKM ASC.</p>
-        </div>
-
-        <div class="asc-member-card">
-          <div class="asc-avatar-wrap">
-            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Bendahara Umum UKM ASC">
-          </div>
-          <h4 class="asc-member-name">Nama Bendahara Umum</h4>
-          <span class="asc-member-role">Bendahara Umum</span>
-          <p class="asc-member-desc">Mengatur sirkulasi finansial, pembukuan anggaran kegiatan, dan akuntabilitas keuangan organisasi.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================== SECTION: DEPARTEMEN ================== -->
-    <div class="asc-org-group" data-cat="dept">
-      <div class="asc-level-title">Departemen Operasional</div>
-      <div class="asc-org-grid asc-grid-4">
-        
-        <!-- Departemen Kaderisasi -->
-        <div class="asc-member-card">
-          <div class="asc-avatar-wrap">
-            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80" alt="Kaderisasi ASC">
-          </div>
-          <h4 class="asc-member-name">Dept. Kaderisasi</h4>
-          <span class="asc-member-role">Pengembangan SDM</span>
-          <p class="asc-member-desc">Menyelenggarakan rekrutmen, penanaman komitmen, upgrading anggota, dan jenjang kaderisasi UKM ASC.</p>
-        </div>
-
-        <!-- Departemen Pembinaan -->
-        <div class="asc-member-card">
-          <div class="asc-avatar-wrap">
-            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80" alt="Pembinaan ASC">
-          </div>
-          <h4 class="asc-member-name">Dept. Pembinaan</h4>
-          <span class="asc-member-role">Kurikulum Qurani</span>
-          <p class="asc-member-desc">Mengawal jalannya kelas rutin Tahsin, Tartil, Tilawah, Tahfidh, Kaligrafi, hingga bimbingan MTQ.</p>
-        </div>
-
-        <!-- Departemen Kesejahteraan -->
-        <div class="asc-member-card">
-          <div class="asc-avatar-wrap">
-            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" alt="Kesejahteraan ASC">
-          </div>
-          <h4 class="asc-member-name">Dept. Kesejahteraan</h4>
-          <span class="asc-member-role">Solidaritas & Dana</span>
-          <p class="asc-member-desc">Membangun keharmonisan kekeluargaan kader, kepedulian sosial, serta kewirausahaan mandiri organisasi.</p>
-        </div>
-
-        <!-- Departemen Syiar -->
-        <div class="asc-member-card">
-          <div class="asc-avatar-wrap">
-            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80" alt="Syiar ASC">
-          </div>
-          <h4 class="asc-member-name">Dept. Syiar</h4>
-          <span class="asc-member-role">Media & Dakwah</span>
-          <p class="asc-member-desc">Menyebarkan inspirasi Qurani lewat media sosial, publikasi visual kreatif, dan event dakwah akbar kampus.</p>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ================== SECTION: LSO ================== -->
-    <div class="asc-org-group" data-cat="lso">
-      <div class="asc-level-title">Lembaga Semi Otonom (LSO)</div>
-      <div class="asc-org-grid asc-grid-3">
-        
-        <!-- LSO PP2 -->
-        <div class="asc-member-card">
-          <div class="asc-avatar-wrap">
-            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="LSO PP2">
-          </div>
-          <h4 class="asc-member-name">LSO PP2</h4>
-          <span class="asc-member-role">Lembaga Otonom</span>
-          <p class="asc-member-desc">Unit otonom pembinaan program khusus tahfidz dan pengkajian intensif generasi penerus Al-Qur'an.</p>
-        </div>
-
-        <!-- LSO PP3 -->
-        <div class="asc-member-card">
-          <div class="asc-avatar-wrap">
-            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="LSO PP3">
-          </div>
-          <h4 class="asc-member-name">LSO PP3</h4>
-          <span class="asc-member-role">Lembaga Otonom</span>
-          <p class="asc-member-desc">Unit otonom fokus pengembangan syiar komunitas dan pengabdian masyarakat berbasis nilai Qurani.</p>
-        </div>
-
-        <!-- LSO TDI -->
-        <div class="asc-member-card">
-          <div class="asc-avatar-wrap">
-            <img class="asc-avatar-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="LSO TDI">
-          </div>
-          <h4 class="asc-member-name">LSO TDI</h4>
-          <span class="asc-member-role">Lembaga Otonom</span>
-          <p class="asc-member-desc">Unit riset, teknologi dakwah informasi, dan karya ilmiah ke-Al-Qur'an-an mahasiswa UM.</p>
-        </div>
-
-      </div>
-    </div>
-
   </div>
-</div>
+</section>
 
-<!-- =========================================================================
-     JAVASCRIPT INTERAKTIF (TAB SWITCHER FILTER)
-     ========================================================================= -->
 <script>
-  function ascSwitchTab(category) {
-    const buttons = document.querySelectorAll('#asc-struktur .asc-tab-btn');
-    buttons.forEach(btn => btn.classList.remove('asc-active'));
-    
-    // Active clicked button
-    event.currentTarget.classList.add('asc-active');
+(function(){
+  /* ============ DATA STRUKTUR (bidang = kotak, e = program & event) ============ */
+  var D = [
+    {k:'Kaderisasi', ds:'Menyiapkan dan mengembangkan kader serta pengurus ASC lewat pelatihan dan kegiatan kaderisasi.',
+     b:[['HRD','Human Resource Development'],['EO','Event Organizer']],
+     e:['Ta’aruf Qur’ani (TAQUR)','LPQMO-TM UKM ASC','LKMO ASC','Tanmiyah Kafa’ah Khudama’ (TKK)']},
+    {k:'Pembinaan', ds:'Pusat pembinaan Al-Qur’an: dari bacaan, hafalan, dan seni, hingga karya ilmiah serta inovasi digital.',
+     b:[['Tahsinil Qiro’ah'],['Tartilil Qur’an'],['Tilawatil Qur’an'],['Tahfidhil Qur’an'],['Khaththil Qur’an'],['Syarhil Qur’an'],['Fahmil Qur’an'],['Karya Tulis Ilmiah Al-Qur’an','KTIA'],['Desain Aplikasi Al-Qur’an','DAQ']],
+     e:['Grand Opening','Lailatul Qiro’ah','Semaan Akbar Se-Malang Raya','MTQ-IP']},
+    {k:'Kesejahteraan', ds:'Mengurus kebutuhan internal, seni religi, keuangan, dan program layanan seperti BTQ dan ASPP.',
+     b:[['Rumah Tangga','RT'],['Ketakmiran dan Seni Religi','KSR'],['Maliyah'],['ASC Kaligrafi','ASCKal'],['After School Program Plus','ASPP'],['Bimbingan Baca Tulis Al-Qur’an','BTQ']],
+     e:['Milad UKM ASC','Pondok Kilat','Seminar Kewirausahaan','Pembinaan Banjari Ulul Musthofa','Pembinaan Voice of ASC (VoA)']},
+    {k:'Syiar', ds:'Menyebarkan dakwah dan informasi ASC lewat media dan publikasi, serta menjalin silaturahmi internal dan eksternal.',
+     b:[['Publikasi'],['Dakwah'],['Humas Internal'],['Humas Eksternal']],
+     e:['ASC Info','ASC Stream','YouTube · Instagram Reels · TikTok','Mading ASC','ASC Quotes','Ngobrol Dekat (Ngode) Bareng ASC','ASC Buletin','ASC Komik','SIASAT (Silaturahmi ASC Pusat)','SAMAWA (Sambang ORMAWA)','Milad Card','SILUK Eksternal (Silaturahmi UKM)','SULAM Eksternal (Silaturahmi Lembaga)']},
+    {k:'LSO', ix:'Lembaga Semi Otonom', ds:'Lembaga semi otonom yang menjalankan program khusus di bawah naungan departemen-departemen ASC.',
+     b:[['LSO PP 2','Naungan: Kaderisasi · Pembinaan · Syiar · Kesejahteraan'],['LSO PP 3','Naungan: Kaderisasi · Pembinaan · Syiar'],['LSO TDI','Tafaqquh fii Diinil Islam · Bidang Kurikulum, Humas, IT, Admin + Kesejahteraan']],
+     e:['Yaumul Qir’an Junior (YQJ)','Open House PP2','Pekan Dakwah Milenial (PDM)','Bakti Sosial','Grand Opening TDI','Diklat Mentor','SARTAS TDI']}
+  ];
+  /* ================================================================================ */
 
-    const groups = document.querySelectorAll('#asc-struktur .asc-org-group');
-    groups.forEach(group => {
-      if (category === 'all' || group.getAttribute('data-cat') === category) {
-        group.style.display = 'block';
-        group.style.opacity = '0';
-        setTimeout(() => {
-          group.style.transition = 'opacity 0.4s ease';
-          group.style.opacity = '1';
-        }, 30);
-      } else {
-        group.style.display = 'none';
-      }
-    });
+  var root=document.getElementById('asc-struktur'); if(!root) return;
+  var chart=document.getElementById('stChart'), cl=document.getElementById('stCl'), steps=document.getElementById('stSteps'), fill=document.getElementById('stFill'), scWrap=document.getElementById('stScenes');
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+
+  /* --- node bagan: id, label, sub, kelas, waktu muncul (0-1 dari fase bangun) --- */
+  var NODES=[['pb','Pembina','','n-pb',0,.08],['kt','Ketua Umum','','n-core',.16,.22],['mk','Majelis Kehormatan','','n-mk',.26,.32],['wk','Wakil Ketua Umum','','n-core',.28,.34],
+    ['bn','Bendahara Umum','','n-core',.42,.48],['sk','Sekretaris Umum','','n-core',.42,.48]]
+    .concat(D.map(function(d,i){ var sub=i<4?d.b.length+' bidang':'Lembaga Semi Otonom'; return ['d'+i,d.k==='LSO'?'LSO':d.k,sub,i<4?'n-dept':'n-lso',.70+i*.04,.78+i*.04]; }));
+  var el={}; NODES.forEach(function(n){ var d=document.createElement('div'); d.className='st-n '+n[3]; d.innerHTML=esc(n[1])+(n[2]?'<small>'+esc(n[2])+'</small>':''); chart.appendChild(d); el[n[0]]=d; });
+
+  /* --- dua tata letak: desktop & HP ([x, y, lebar, tinggi]) --- */
+  var LAY={
+    d:{W:1000,H:385,bus:250,pb:[500,34,170,40],kt:[500,106,190,40],mk:[830,106,190,40],wk:[500,178,190,40],bn:[220,178,180,40],sk:[780,178,180,40],
+       d0:[100,320,170,70],d1:[300,320,170,70],d2:[500,320,170,70],d3:[700,320,170,70],d4:[900,320,170,70]},
+    m:{W:360,H:372,bus:196,pb:[180,24,150,36],kt:[180,80,140,36],mk:[305,80,88,36],wk:[180,138,116,36],bn:[62,138,108,36],sk:[298,138,108,36],
+       d0:[62,238,108,46],d1:[180,238,108,46],d2:[298,238,108,46],d3:[120,318,108,46],d4:[240,318,108,46]}
+  };
+  var lines=[], mode='';
+  function layout(){
+    var m=window.innerWidth<=700?'m':'d'; if(m===mode) return; mode=m;
+    var L=LAY[m], W=L.W, H=L.H;
+    chart.style.aspectRatio=W+'/'+H;
+    NODES.forEach(function(n){ var g=L[n[0]], e=el[n[0]];
+      e.style.left=g[0]/W*100+'%'; e.style.top=g[1]/H*100+'%'; e.style.width=g[2]/W*100+'%'; e.style.height=g[3]/H*100+'%'; });
+    lines.forEach(function(l){ l.e.remove(); }); lines=[];
+    function T(n){return L[n][1]-L[n][3]/2;} function B(n){return L[n][1]+L[n][3]/2;} function Lf(n){return L[n][0]-L[n][2]/2;} function R(n){return L[n][0]+L[n][2]/2;}
+    function V(x,y1,y2,a,b){ add('v',x,y1,y2,a,b,0); }
+    function Hh(y,x1,x2,a,b,dash,rev){ add('h',y,x1,x2,a,b,dash,rev); }
+    function add(t,p,s,e,a,b,dash,rev){ var d=document.createElement('i'); d.className='st-ln'+(dash?' dd':'');
+      if(t==='v'){ d.style.cssText='left:calc('+p/W*100+'% - 1px);top:'+s/H*100+'%;height:'+(e-s)/H*100+'%;width:2px;transform-origin:50% 0'; }
+      else { d.style.cssText='top:calc('+p/H*100+'% - 1px);left:'+Math.min(s,e)/W*100+'%;width:'+Math.abs(e-s)/W*100+'%;height:2px;transform-origin:'+(rev?'100%':'0')+' 50%'; }
+      chart.appendChild(d); lines.push({e:d,t:t,a:a,b:b}); }
+    V(L.pb[0],B('pb'),T('kt'),.08,.16);
+    Hh(L.kt[1],R('kt'),Lf('mk'),.22,.30,1);
+    V(L.kt[0],B('kt'),T('wk'),.22,.28);
+    Hh(L.wk[1],R('bn'),Lf('wk'),.34,.42,0,1);
+    Hh(L.wk[1],R('wk'),Lf('sk'),.34,.42);
+    V(L.wk[0],B('wk'),L.bus,.48,.54);
+    var xs=[0,1,2,3,4].map(function(i){return L['d'+i][0];}), cx=L.wk[0];
+    Hh(L.bus,Math.min.apply(0,xs),cx,.54,.64,0,1); Hh(L.bus,cx,Math.max.apply(0,xs),.54,.64);
+    for(var i=0;i<5;i++) V(xs[i],L.bus,T('d'+i),.64,.72);
+    if(root._c!==undefined) draw(root._c);
   }
+
+  /* --- stepper + rincian departemen --- */
+  var LB=['Struktur','Kaderisasi','Pembinaan','Kesejahteraan','Syiar','LSO'], sbtn=[];
+  LB.forEach(function(t,i){ var b=document.createElement('button'); b.type='button'; b.className='st-s'; b.textContent=t; b.setAttribute('aria-label','Menuju '+t); steps.appendChild(b); sbtn.push(b); });
+  var scs=[];
+  D.forEach(function(d,i){
+    var s=document.createElement('div'); s.className='st-sc';
+    var ix=d.ix||('Departemen 0'+(i+1)+' / 04');
+    s.innerHTML='<div><span class="st-ix st-it">'+esc(ix)+'</span><h3 class="st-nm st-it">'+esc(d.k)+'</h3><p class="st-ds st-it">'+esc(d.ds)+'</p></div>'+
+      '<div><span class="st-lb st-it">'+(i<4?'Bidang':'Lembaga')+'</span><div class="st-grid">'+
+      d.b.map(function(b){return '<div class="st-chip st-it">'+esc(b[0])+(b[1]?'<small>'+esc(b[1])+'</small>':'')+'</div>';}).join('')+
+      '</div><span class="st-lb st-it">Program &amp; event</span><div class="st-pills">'+d.e.map(function(x){return '<span class="st-pill st-it">'+esc(x)+'</span>';}).join('')+'</div></div>';
+    scWrap.appendChild(s); scs.push({el:s,it:[].slice.call(s.querySelectorAll('.st-it'))});
+  });
+
+  layout();
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ root.classList.add('st-static'); window.addEventListener('resize',layout); return; }
+
+  /* Pastikan parent WordPress tidak memblokir position: sticky */
+  var q=root.parentElement, n=0;
+  while(q && q!==document.documentElement && n++<20){ var cs=getComputedStyle(q);
+    if(/hidden|auto|scroll/.test(cs.overflow+cs.overflowX+cs.overflowY)) q.style.setProperty('overflow','visible','important'); q=q.parentElement; }
+
+  var HOLD=.28, SP=(1-HOLD)/5, CH=.2;
+  function clamp(x){return Math.max(0,Math.min(1,x));}
+  function ease(t){return 1-Math.pow(1-t,3);}
+  function draw(c){
+    NODES.forEach(function(nd){ var v=ease(clamp((c-nd[4])/(nd[5]-nd[4]))), e=el[nd[0]];
+      e.style.opacity=v.toFixed(3); e.style.transform='translate(-50%,-50%) scale('+(.85+.15*v).toFixed(3)+')'; });
+    lines.forEach(function(l){ var v=clamp((c-l.a)/(l.b-l.a)); l.e.style.transform=l.t==='v'?'scaleY('+v+')':'scaleX('+v+')'; });
+  }
+  var ticking=false;
+  function render(){
+    ticking=false;
+    var r=root.getBoundingClientRect(), d=r.height-window.innerHeight, p=d>0?clamp(-r.top/d):0;
+    root._c=clamp(p/CH); draw(root._c);
+
+    var co=1-clamp((p-(HOLD-.05))/.05);
+    cl.style.opacity=co.toFixed(3); cl.style.transform='scale('+(1-(1-co)*.05).toFixed(3)+')'; cl.style.visibility=co<=0?'hidden':'visible';
+
+    scs.forEach(function(s,i){
+      var lp=(p-(HOLD+i*SP))/SP, vis=lp>-.02&&(i===4||lp<1.02);
+      s.el.style.visibility=vis?'visible':'hidden';
+      if(!vis) return;
+      var o=clamp(lp/.07)*(i===4?1:1-clamp((lp-.92)/.08));
+      s.el.style.opacity=o.toFixed(3);
+      s.it.forEach(function(it,k){ var v=clamp((lp-.02-k*.017)/.09); it.style.opacity=v.toFixed(3); it.style.transform='translate3d(0,'+((1-v)*18).toFixed(1)+'px,0)'; });
+    });
+
+    var idx=p<HOLD?0:Math.min(5,1+Math.floor((p-HOLD)/SP)), pos=p<HOLD?clamp(p/HOLD)*.6:Math.min(5,idx+clamp((p-HOLD-(idx-1)*SP)/SP));
+    sbtn.forEach(function(b,i){ b.classList.toggle('on',i===idx); b.classList.toggle('done',i<idx); });
+    fill.style.width=((Math.min(pos,5)+.5)/6*100).toFixed(2)+'%';
+  }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(render); } }
+
+  /* Klik langkah = lompat ke bagian itu */
+  sbtn.forEach(function(b,i){ b.addEventListener('click',function(){
+    var r=root.getBoundingClientRect(), top=window.pageYOffset+r.top, d=r.height-window.innerHeight;
+    var p=i===0?.17:HOLD+(i-1)*SP+SP*.45; window.scrollTo({top:top+p*d,behavior:'smooth'}); }); });
+
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',function(){ layout(); onScroll(); },{passive:true});
+  window.addEventListener('load',render);
+  render();
+})();
 </script>
