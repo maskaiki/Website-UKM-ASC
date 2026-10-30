@@ -9,110 +9,648 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-  #asc-struktur{ position:relative; width:100%; height:1000vh; background:#0f172a; color:#fff; --ice:#e0f2fe; --sky:#38bdf8;
-    font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif; }
-  #asc-struktur *{ box-sizing:border-box; margin:0; padding:0; }
-  #asc-struktur .st-pin{ position:sticky; top:0; height:100vh; height:100svh; overflow:clip; display:flex; flex-direction:column; padding:3.5vh 4vw 3vh;
-    background:radial-gradient(ellipse at 12% 0%,rgba(2,132,199,.3),transparent 55%); }
+  #asc-struktur {
+    position: relative;
+    width: 100%;
+    height: 1000vh;
+    background: #0f172a;
+    color: #fff;
+    --ice: #e0f2fe;
+    --sky: #38bdf8;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  #asc-struktur * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  #asc-struktur .st-pin {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+    overflow: clip;
+    display: flex;
+    flex-direction: column;
+    padding: 3.5vh 4vw 3vh;
+    background: radial-gradient(ellipse at 12% 0%, rgba(2, 132, 199, .3), transparent 55%);
+  }
 
   /* Kepala + penunjuk alur */
-  #asc-struktur .st-top{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex:none; }
-  #asc-struktur .st-tag{ display:inline-block; padding:5px 13px; border:1px solid rgba(186,230,253,.35); border-radius:999px; background:rgba(2,132,199,.14);
-    font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#bae6fd; margin-bottom:8px; }
-  #asc-struktur h2{ font-size:clamp(24px,3vw,46px); font-weight:600; letter-spacing:-.035em; line-height:1; color:var(--ice); }
-  #asc-struktur .st-steps{ position:relative; display:grid; grid-template-columns:repeat(6,1fr); width:min(680px,52vw); padding-bottom:14px; }
-  #asc-struktur .st-steps::before{ content:""; position:absolute; left:0; right:0; bottom:0; height:2px; background:rgba(186,230,253,.16); }
-  #asc-struktur .st-fill{ position:absolute; left:0; bottom:0; height:2px; width:8%; background:linear-gradient(90deg,#0284c7,#38bdf8); }
-  #asc-struktur .st-s{ all:unset; cursor:pointer; position:relative; text-align:center; font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#64748b; padding:0 2px 12px; transition:color .3s; }
-  #asc-struktur .st-s::after{ content:""; position:absolute; left:50%; bottom:-4px; width:9px; height:9px; margin-left:-4.5px; border-radius:50%; background:#0f172a; border:2px solid #475569; transition:.3s; }
-  #asc-struktur .st-s.on{ color:var(--ice); } #asc-struktur .st-s.on::after,#asc-struktur .st-s.done::after{ background:var(--sky); border-color:var(--sky); }
-  #asc-struktur .st-s:focus-visible{ outline:2px solid var(--sky); outline-offset:2px; }
+  #asc-struktur .st-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    flex: none;
+  }
 
-  #asc-struktur .st-main{ position:relative; flex:1; min-height:0; margin-top:3vh; }
+  #asc-struktur .st-tag {
+    display: inline-block;
+    padding: 5px 13px;
+    border: 1px solid rgba(186, 230, 253, .35);
+    border-radius: 999px;
+    background: rgba(2, 132, 199, .14);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #bae6fd;
+    margin-bottom: 8px;
+  }
+
+  #asc-struktur h2 {
+    font-size: clamp(24px, 3vw, 46px);
+    font-weight: 600;
+    letter-spacing: -.035em;
+    line-height: 1;
+    color: var(--ice);
+  }
+
+  #asc-struktur .st-steps {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    width: min(680px, 52vw);
+    padding-bottom: 14px;
+  }
+
+  #asc-struktur .st-steps::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: rgba(186, 230, 253, .16);
+  }
+
+  #asc-struktur .st-fill {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 8%;
+    background: linear-gradient(90deg, #0284c7, #38bdf8);
+  }
+
+  #asc-struktur .st-s {
+    all: unset;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #64748b;
+    padding: 0 2px 12px;
+    transition: color .3s;
+  }
+
+  #asc-struktur .st-s::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    width: 9px;
+    height: 9px;
+    margin-left: -4.5px;
+    border-radius: 50%;
+    background: #0f172a;
+    border: 2px solid #475569;
+    transition: .3s;
+  }
+
+  #asc-struktur .st-s.on {
+    color: var(--ice);
+  }
+
+  #asc-struktur .st-s.on::after,
+  #asc-struktur .st-s.done::after {
+    background: var(--sky);
+    border-color: var(--sky);
+  }
+
+  #asc-struktur .st-s:focus-visible {
+    outline: 2px solid var(--sky);
+    outline-offset: 2px;
+  }
+
+  #asc-struktur .st-main {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    margin-top: 3vh;
+  }
 
   /* Bagan */
-  #asc-struktur .st-cl{ position:absolute; inset:0; will-change:transform,opacity; }
-  #asc-struktur .st-chart{ position:absolute; left:50%; top:46%; transform:translate(-50%,-50%); width:min(100%,1400px,calc((100svh - 26vh)*1000/385)); aspect-ratio:1000/385; container-type:inline-size; }
-  #asc-struktur .st-n{ position:absolute; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; line-height:1.15;
-    font-size:clamp(11px,1.45cqw,17px); font-weight:700; border-radius:9px; padding:0 6px; will-change:transform,opacity; }
-  #asc-struktur .st-n small{ font-size:.78em; font-weight:500; opacity:.85; margin-top:2px; }
-  #asc-struktur .n-pb{ background:var(--sky); color:#0f172a; } #asc-struktur .n-core{ background:#0284c7; }
-  #asc-struktur .n-mk{ border:1.5px dashed #bae6fd; color:#bae6fd; background:rgba(186,230,253,.06); }
-  #asc-struktur .n-dept{ background:#0369a1; border:1.5px solid var(--sky); } #asc-struktur .n-lso{ background:#475569; border:1.5px solid #94a3b8; }
-  #asc-struktur .st-ln{ position:absolute; background:var(--sky); opacity:.85; will-change:transform; }
-  #asc-struktur .st-ln.dd{ background:repeating-linear-gradient(90deg,#bae6fd 0 6px,transparent 6px 11px); }
-  #asc-struktur .st-leg{ position:absolute; left:0; right:0; bottom:0; display:flex; flex-wrap:wrap; gap:6px 22px; justify-content:center; font-size:11.5px; color:#94a3b8; }
-  #asc-struktur .st-leg i{ display:inline-block; width:22px; height:0; border-top:2px solid var(--sky); vertical-align:middle; margin-right:7px; }
-  #asc-struktur .st-leg i.d{ border-top-style:dashed; border-color:#bae6fd; }
+  #asc-struktur .st-cl {
+    position: absolute;
+    inset: 0;
+    will-change: transform, opacity;
+  }
+
+  #asc-struktur .st-chart {
+    position: absolute;
+    left: 50%;
+    top: 46%;
+    transform: translate(-50%, -50%);
+    width: min(100%, 1400px, calc((100svh - 26vh)*1000/385));
+    aspect-ratio: 1000/385;
+    container-type: inline-size;
+  }
+
+  #asc-struktur .st-n {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.15;
+    font-size: clamp(11px, 1.45cqw, 17px);
+    font-weight: 700;
+    border-radius: 9px;
+    padding: 0 6px;
+    will-change: transform, opacity;
+  }
+
+  #asc-struktur .st-n small {
+    font-size: .78em;
+    font-weight: 500;
+    opacity: .85;
+    margin-top: 2px;
+  }
+
+  #asc-struktur .n-pb {
+    background: var(--sky);
+    color: #0f172a;
+  }
+
+  #asc-struktur .n-core {
+    background: #0284c7;
+  }
+
+  #asc-struktur .n-mk {
+    border: 1.5px dashed #bae6fd;
+    color: #bae6fd;
+    background: rgba(186, 230, 253, .06);
+  }
+
+  #asc-struktur .n-dept {
+    background: #0369a1;
+    border: 1.5px solid var(--sky);
+  }
+
+  #asc-struktur .n-lso {
+    background: #475569;
+    border: 1.5px solid #94a3b8;
+  }
+
+  #asc-struktur .st-ln {
+    position: absolute;
+    background: var(--sky);
+    opacity: .85;
+    will-change: transform;
+  }
+
+  #asc-struktur .st-ln.dd {
+    background: repeating-linear-gradient(90deg, #bae6fd 0 6px, transparent 6px 11px);
+  }
+
+  #asc-struktur .st-leg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    justify-content: center;
+    font-size: 11.5px;
+    color: #94a3b8;
+  }
+
+  #asc-struktur .st-leg i {
+    display: inline-block;
+    width: 22px;
+    height: 0;
+    border-top: 2px solid var(--sky);
+    vertical-align: middle;
+    margin-right: 7px;
+  }
+
+  #asc-struktur .st-leg i.d {
+    border-top-style: dashed;
+    border-color: #bae6fd;
+  }
 
   /* Rincian departemen */
-  #asc-struktur .st-sc{ position:absolute; inset:0; display:grid; grid-template-columns:5fr 7fr; gap:4vw; align-content:center; align-items:center; opacity:0; visibility:hidden; }
-  #asc-struktur .st-ix{ display:inline-block; font-size:12px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--sky); margin-bottom:10px; }
-  #asc-struktur .st-nm{ font-size:clamp(40px,7.4vw,124px); font-weight:500; letter-spacing:-.05em; line-height:.95; color:var(--ice); }
-  #asc-struktur .st-ds{ margin-top:2.4vh; max-width:430px; font-size:clamp(13px,1.05vw,16px); line-height:1.7; color:#cbd5e1; }
-  #asc-struktur .st-lb{ display:block; font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--sky); margin:0 0 10px; }
-  #asc-struktur .st-grid{ display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-bottom:3vh; }
-  #asc-struktur .st-chip{ padding:10px 14px; border-radius:10px; background:rgba(224,242,254,.07); border:1px solid rgba(186,230,253,.18); font-size:clamp(12.5px,1vw,15px); font-weight:700; line-height:1.3; }
-  #asc-struktur .st-chip small{ display:block; margin-top:2px; font-size:.82em; font-weight:500; color:#94a3b8; }
-  #asc-struktur .st-pills{ display:flex; flex-wrap:wrap; gap:8px; }
-  #asc-struktur .st-pill{ padding:7px 13px; border-radius:999px; background:#0284c7; font-size:clamp(11.5px,.92vw,14px); font-weight:600; }
-
-  #asc-struktur .st-ln.dv{ background:repeating-linear-gradient(180deg,#bae6fd 0 6px,transparent 6px 11px); }
-  #asc-struktur .st-nm.long{ font-size:clamp(32px,4.8vw,80px); }
-  #asc-struktur .st-chip{ padding:7px 12px; cursor:pointer; transition:background .35s,border-color .35s,transform .35s; }
-  #asc-struktur .st-chip.act{ background:linear-gradient(135deg,#0284c7,#0369a1); border-color:#38bdf8; transform:translateX(5px)!important; }
-  #asc-struktur .st-chip.act small{ color:#e0f2fe; }
-  #asc-struktur .st-grid{ gap:7px; margin-bottom:2vh; }
-  #asc-struktur .st-pill{ cursor:pointer; background:rgba(2,132,199,.38); transition:background .35s,color .35s; }
-  #asc-struktur .st-pill.act{ background:#38bdf8; color:#0f172a; }
-  #asc-struktur .st-cd{ display:none; }
-  #asc-struktur .st-dt{ position:relative; padding:16px 18px; border-radius:14px; background:rgba(224,242,254,.08); border:1px solid rgba(186,230,253,.24); min-height:150px; margin-bottom:2vh; will-change:transform,opacity; }
-  #asc-struktur .st-dk{ display:flex; justify-content:space-between; font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--sky); margin-bottom:6px; font-variant-numeric:tabular-nums; }
-  #asc-struktur .st-dt h4{ font-size:clamp(17px,1.5vw,24px); font-weight:700; letter-spacing:-.02em; line-height:1.2; margin-bottom:7px; color:#fff; }
-  #asc-struktur .st-dt p{ font-size:clamp(12.5px,.98vw,15px); line-height:1.65; color:#cbd5e1; }
-  #asc-struktur .st-tg{ display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
-  #asc-struktur .st-tg span{ padding:4px 10px; border-radius:999px; border:1px solid rgba(56,189,248,.55); font-size:11.5px; font-weight:600; color:#bae6fd; }
-  #asc-struktur .st-ph{ float:right; width:84px; aspect-ratio:4/5; border-radius:8px; margin:0 0 8px 14px; background:center/cover no-repeat; }
-
-  @media (max-width:700px){
-    #asc-struktur .st-ds{ display:none; } #asc-struktur .st-nm.long{ font-size:clamp(30px,10.5vw,52px); }
-    #asc-struktur .st-dt{ padding:12px 14px; min-height:132px; margin-bottom:1.4vh; } #asc-struktur .st-dt p{ font-size:12px; line-height:1.5; }
-    #asc-struktur .st-chip{ padding:5px 9px; font-size:11.5px; } #asc-struktur .st-chip small{ display:none; }
-    #asc-struktur .st-grid{ gap:5px; margin-bottom:1.2vh; } #asc-struktur .st-tg span{ font-size:10.5px; padding:3px 8px; } #asc-struktur .st-ph{ width:58px; }
+  #asc-struktur .st-sc {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 4vw;
+    align-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
   }
-  @media (max-width:700px){
-    #asc-struktur{ height:1000vh; }
-    #asc-struktur .st-pin{ padding:3vh 5vw 2vh; }
-    #asc-struktur .st-top{ flex-direction:column; align-items:stretch; gap:14px; }
-    #asc-struktur .st-steps{ width:100%; } #asc-struktur .st-s{ font-size:0; padding-bottom:8px; } #asc-struktur .st-s.on{ font-size:10px; }
-    #asc-struktur .st-chart{ width:100%; top:0; transform:translateX(-50%); aspect-ratio:360/372; } #asc-struktur .st-n{ font-size:clamp(9.5px,2.9cqw,12px); padding:0 3px; }
-    #asc-struktur .st-leg{ font-size:10.5px; }
-    #asc-struktur .st-sc{ grid-template-columns:1fr; gap:2.2vh; align-content:start; }
-    #asc-struktur .st-nm{ font-size:clamp(36px,13vw,60px); } #asc-struktur .st-ds{ font-size:12.5px; margin-top:1.2vh; line-height:1.55; }
-    #asc-struktur .st-grid{ gap:6px; margin-bottom:1.8vh; } #asc-struktur .st-chip{ padding:7px 10px; font-size:12px; }
-    #asc-struktur .st-pills{ gap:6px; } #asc-struktur .st-pill{ padding:5px 10px; font-size:11px; }
+
+  #asc-struktur .st-ix {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 10px;
+  }
+
+  #asc-struktur .st-nm {
+    font-size: clamp(40px, 7.4vw, 124px);
+    font-weight: 500;
+    letter-spacing: -.05em;
+    line-height: .95;
+    color: var(--ice);
+  }
+
+  #asc-struktur .st-ds {
+    margin-top: 2.4vh;
+    max-width: 430px;
+    font-size: clamp(13px, 1.05vw, 16px);
+    line-height: 1.7;
+    color: #cbd5e1;
+  }
+
+  #asc-struktur .st-lb {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin: 0 0 10px;
+  }
+
+  #asc-struktur .st-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    margin-bottom: 3vh;
+  }
+
+  #asc-struktur .st-chip {
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: rgba(224, 242, 254, .07);
+    border: 1px solid rgba(186, 230, 253, .18);
+    font-size: clamp(12.5px, 1vw, 15px);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  #asc-struktur .st-chip small {
+    display: block;
+    margin-top: 2px;
+    font-size: .82em;
+    font-weight: 500;
+    color: #94a3b8;
+  }
+
+  #asc-struktur .st-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  #asc-struktur .st-pill {
+    padding: 7px 13px;
+    border-radius: 999px;
+    background: #0284c7;
+    font-size: clamp(11.5px, .92vw, 14px);
+    font-weight: 600;
+  }
+
+  #asc-struktur .st-ln.dv {
+    background: repeating-linear-gradient(180deg, #bae6fd 0 6px, transparent 6px 11px);
+  }
+
+  #asc-struktur .st-nm.long {
+    font-size: clamp(32px, 4.8vw, 80px);
+  }
+
+  #asc-struktur .st-chip {
+    padding: 7px 12px;
+    cursor: pointer;
+    transition: background .35s, border-color .35s, transform .35s;
+  }
+
+  #asc-struktur .st-chip.act {
+    background: linear-gradient(135deg, #0284c7, #0369a1);
+    border-color: #38bdf8;
+    transform: translateX(5px) !important;
+  }
+
+  #asc-struktur .st-chip.act small {
+    color: #e0f2fe;
+  }
+
+  #asc-struktur .st-grid {
+    gap: 7px;
+    margin-bottom: 2vh;
+  }
+
+  #asc-struktur .st-pill {
+    cursor: pointer;
+    background: rgba(2, 132, 199, .38);
+    transition: background .35s, color .35s;
+  }
+
+  #asc-struktur .st-pill.act {
+    background: #38bdf8;
+    color: #0f172a;
+  }
+
+  #asc-struktur .st-cd {
+    display: none;
+  }
+
+  #asc-struktur .st-dt {
+    position: relative;
+    padding: 16px 18px;
+    border-radius: 14px;
+    background: rgba(224, 242, 254, .08);
+    border: 1px solid rgba(186, 230, 253, .24);
+    min-height: 150px;
+    margin-bottom: 2vh;
+    will-change: transform, opacity;
+  }
+
+  #asc-struktur .st-dk {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #asc-struktur .st-dt h4 {
+    font-size: clamp(17px, 1.5vw, 24px);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.2;
+    margin-bottom: 7px;
+    color: #fff;
+  }
+
+  #asc-struktur .st-dt p {
+    font-size: clamp(12.5px, .98vw, 15px);
+    line-height: 1.65;
+    color: #cbd5e1;
+  }
+
+  #asc-struktur .st-tg {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  #asc-struktur .st-tg span {
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(56, 189, 248, .55);
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #bae6fd;
+  }
+
+  #asc-struktur .st-ph {
+    float: right;
+    width: 84px;
+    aspect-ratio: 4/5;
+    border-radius: 8px;
+    margin: 0 0 8px 14px;
+    background: center/cover no-repeat;
+  }
+
+  @media (max-width:700px) {
+    #asc-struktur .st-ds {
+      display: none;
+    }
+
+    #asc-struktur .st-nm.long {
+      font-size: clamp(30px, 10.5vw, 52px);
+    }
+
+    #asc-struktur .st-dt {
+      padding: 12px 14px;
+      min-height: 132px;
+      margin-bottom: 1.4vh;
+    }
+
+    #asc-struktur .st-dt p {
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    #asc-struktur .st-chip {
+      padding: 5px 9px;
+      font-size: 11.5px;
+    }
+
+    #asc-struktur .st-chip small {
+      display: none;
+    }
+
+    #asc-struktur .st-grid {
+      gap: 5px;
+      margin-bottom: 1.2vh;
+    }
+
+    #asc-struktur .st-tg span {
+      font-size: 10.5px;
+      padding: 3px 8px;
+    }
+
+    #asc-struktur .st-ph {
+      width: 58px;
+    }
+  }
+
+  @media (max-width:700px) {
+    #asc-struktur {
+      height: 1000vh;
+    }
+
+    #asc-struktur .st-pin {
+      padding: 3vh 5vw 2vh;
+    }
+
+    #asc-struktur .st-top {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 14px;
+    }
+
+    #asc-struktur .st-steps {
+      width: 100%;
+    }
+
+    #asc-struktur .st-s {
+      font-size: 0;
+      padding-bottom: 8px;
+    }
+
+    #asc-struktur .st-s.on {
+      font-size: 10px;
+    }
+
+    #asc-struktur .st-chart {
+      width: 100%;
+      top: 0;
+      transform: translateX(-50%);
+      aspect-ratio: 360/372;
+    }
+
+    #asc-struktur .st-n {
+      font-size: clamp(9.5px, 2.9cqw, 12px);
+      padding: 0 3px;
+    }
+
+    #asc-struktur .st-leg {
+      font-size: 10.5px;
+    }
+
+    #asc-struktur .st-sc {
+      grid-template-columns: 1fr;
+      gap: 2.2vh;
+      align-content: start;
+    }
+
+    #asc-struktur .st-nm {
+      font-size: clamp(36px, 13vw, 60px);
+    }
+
+    #asc-struktur .st-ds {
+      font-size: 12.5px;
+      margin-top: 1.2vh;
+      line-height: 1.55;
+    }
+
+    #asc-struktur .st-grid {
+      gap: 6px;
+      margin-bottom: 1.8vh;
+    }
+
+    #asc-struktur .st-chip {
+      padding: 7px 10px;
+      font-size: 12px;
+    }
+
+    #asc-struktur .st-pills {
+      gap: 6px;
+    }
+
+    #asc-struktur .st-pill {
+      padding: 5px 10px;
+      font-size: 11px;
+    }
   }
 
   /* Gerak dikurangi: tampil statis */
-  #asc-struktur.st-static{ height:auto; } #asc-struktur.st-static .st-pin{ position:relative; height:auto; overflow:visible; padding:48px 4vw; }
-  #asc-struktur.st-static .st-steps{ display:none; } #asc-struktur.st-static .st-main{ margin-top:24px; }
-  #asc-struktur.st-static .st-cl,#asc-struktur.st-static .st-sc{ position:relative; inset:auto; opacity:1; visibility:visible; margin-bottom:56px; }
-  #asc-struktur.st-static .st-cl{ height:auto; padding-bottom:40px; } #asc-struktur.st-static .st-chart{ position:relative; left:auto; top:auto; transform:none; margin:0 auto; }
-  #asc-struktur.st-static .st-leg{ position:relative; margin-top:16px; }
-  #asc-struktur.st-static .st-dt{ display:none; } #asc-struktur.st-static .st-cd{ display:block; margin-top:6px; font-size:12px; font-weight:400; color:#cbd5e1; line-height:1.55; }
-  #asc-struktur.st-static .st-chip{ cursor:default; transform:none!important; } #asc-struktur.st-static .st-grid{ grid-template-columns:1fr; }
+  #asc-struktur.st-static {
+    height: auto;
+  }
+
+  #asc-struktur.st-static .st-pin {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    padding: 48px 4vw;
+  }
+
+  #asc-struktur.st-static .st-steps {
+    display: none;
+  }
+
+  #asc-struktur.st-static .st-main {
+    margin-top: 24px;
+  }
+
+  #asc-struktur.st-static .st-cl,
+  #asc-struktur.st-static .st-sc {
+    position: relative;
+    inset: auto;
+    opacity: 1;
+    visibility: visible;
+    margin-bottom: 56px;
+  }
+
+  #asc-struktur.st-static .st-cl {
+    height: auto;
+    padding-bottom: 40px;
+  }
+
+  #asc-struktur.st-static .st-chart {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin: 0 auto;
+  }
+
+  #asc-struktur.st-static .st-leg {
+    position: relative;
+    margin-top: 16px;
+  }
+
+  #asc-struktur.st-static .st-dt {
+    display: none;
+  }
+
+  #asc-struktur.st-static .st-cd {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #cbd5e1;
+    line-height: 1.55;
+  }
+
+  #asc-struktur.st-static .st-chip {
+    cursor: default;
+    transform: none !important;
+  }
+
+  #asc-struktur.st-static .st-grid {
+    grid-template-columns: 1fr;
+  }
 </style>
 
 <section id="asc-struktur" aria-label="Struktur Organisasi UKM ASC">
   <div class="st-pin">
     <div class="st-top">
-      <div><span class="st-tag">Kabinet Asy-Syauqi &middot; UKM ASC UM</span><h2>Struktur Organisasi</h2></div>
+      <div><span class="st-tag">Kabinet Asy-Syauqi · UKM ASC UM</span>
+        <h2>Struktur Organisasi</h2>
+      </div>
       <nav class="st-steps" id="stSteps" aria-label="Alur struktur"><i class="st-fill" id="stFill"></i></nav>
     </div>
     <div class="st-main">
       <div class="st-cl" id="stCl">
         <div class="st-chart" id="stChart"></div>
-        <div class="st-leg"><span><i></i>Garis instruktif</span><span><i class="d"></i>Garis koordinatif</span><span>Gulir untuk menelusuri tiap departemen &darr;</span></div>
+        <div class="st-leg"><span><i></i>Garis instruktif</span><span><i class="d"></i>Garis
+            koordinatif</span><span>Gulir untuk menelusuri tiap departemen ↓</span></div>
       </div>
       <div id="stScenes"></div>
     </div>
@@ -120,183 +658,208 @@
 </section>
 
 <script>
-(function(){
-  /* ============ DATA STRUKTUR (sumber: PPT UKM ASC, Kabinet Asy-Syauqi) ============
-     b = bidang/lembaga {n:nama, s:singkatan, d:deskripsi, p:[program], img:URL foto opsional}
-     e = event          {n:nama, d:deskripsi, img:URL foto opsional}                        */
-  var D = [
-    {k:'Kaderisasi', ds:'Menyiapkan dan mengembangkan kader ASC lewat pembinaan, pendataan, penempatan, dan kegiatan kaderisasi.',
-     b:[{n:'HRD',s:'Human Resource Development',d:'Berfokus pada pembinaan kader melalui berbagai program seperti pelatihan, monitoring, dan evaluasi kader, terutama Khudama’ dan Khudama’ Muda. HRD juga berperan dalam pendataan dan penempatan kader sesuai potensi dan kebutuhan organisasi, serta menyediakan wadah diskusi dan solusi terhadap berbagai permasalahan.'},
-        {n:'EO',s:'Event Organizer',d:'Berperan dalam memetakan potensi dan minat kepanitiaan para Khudama’ dan Khudama’ Muda, serta memastikan keterlibatan mereka dalam struktur kepanitiaan yang sesuai dengan kemampuan dan kebutuhan organisasi. Selain itu, EO juga melakukan monitoring terhadap jalannya setiap event, memberikan arahan, serta melakukan evaluasi.'}],
-     e:[{n:'Ta’aruf Qur’ani (TAQUR)',d:'Memperkenalkan organisasi, nilai spiritual keislaman, serta mempererat ukhuwah antar anggota.'},
-        {n:'LPQMO-TM',d:'Latihan Pendidikan Al-Qur’an & Manajemen Organisasi Tingkat Menengah: pelatihan lanjutan untuk membekali anggota dengan kemampuan kepemimpinan (qudwah) dan manajerial organisasi.'},
-        {n:'LKMO',d:'Latihan Kepemimpinan & Manajemen Organisasi: kegiatan intensif yang mencakup simulasi kepengurusan, studi kasus, dan pembekalan teknis.'}]},
-    {k:'Pembinaan', ds:'Pusat pembinaan Al-Qur’an dengan sepuluh bidang: dari bacaan, hafalan, dan seni, hingga karya ilmiah, shalawat, dan inovasi digital.',
-     b:[{n:'Tahsinil Qiro’ah',d:'Pembinaan yang berfokus pada kualitas bacaan Al-Qur’an sesuai tajwid dan makhraj. Program ini meliputi praktik intensif, bimbingan mentor berpengalaman, dan menanamkan kecintaan pada Al-Qur’an.'},
-        {n:'Tartilil Qur’an',d:'Program yang memberikan pelatihan dalam penguasaan makhraj huruf, disertai pemahaman dan praktik irama murattal. Peserta belajar mengatur tempo dan intonasi untuk bacaan yang merdu.'},
-        {n:'Tilawatil Qur’an',d:'Pembinaan dalam penguasaan irama maqamat Al-Qur’an, pembenahan kualitas suara dan intonasi untuk bacaan merdu dan menyentuh hati.'},
-        {n:'Tahfidhil Qur’an',d:'Wadah mahasiswa penghafal Al-Qur’an dengan metode yang efektif untuk ziyadah & murajaah (setoran harian), halaqah atau semaan setiap pekan, ujian, dan wisuda tahfidh.'},
-        {n:'Fahmil Qur’an',d:'Berfokus pada penguasaan isi kandungan Al-Qur’an secara mendalam, termasuk tafsir, hadis, dan sejarah Islam.'},
-        {n:'Syarhil Qur’an',d:'Berfokus pada kemampuan mahasiswa menyampaikan pesan Al-Qur’an secara kreatif dan inspiratif, meliputi pendalaman tafsir, kerja sama tim, dan integrasi seni tilawah serta dakwah.'},
-        {n:'Khaththil Qur’an',d:'Seni menulis Al-Qur’an dengan indah, yang mengedepankan kebenaran isi dan keindahan tulisan melalui kaligrafi serta estetika dan makna setiap ayat, sebagai media menyebarkan pesan-pesan Al-Qur’an.'},
-        {n:'Karya Tulis Ilmiah Al-Qur’an',s:'KTIA',d:'Karya ilmiah yang dikaitkan dengan kandungan ayat-ayat Al-Qur’an dan merujuk pada pemahaman ilmiah di dalamnya. Digunakan untuk mendalami kepenulisan ilmiah seperti KTI, esai, dan sebagainya.'},
-        {n:'Maulidin Nabi',d:'Upaya membumikan sholawat di Universitas Negeri Malang, sekaligus wadah mengembangkan bakat dan minat di bidang banjari dan juga vokal.'},
-        {n:'Desain Aplikasi Al-Qur’an',s:'DAQ',d:'Pembinaan untuk pembuatan desain, pengembangan website, dan aplikasi guna menciptakan platform yang memudahkan akses dalam pemahaman terhadap berbagai hal tentang Islam.'}],
-     e:[{n:'Grand Opening',d:'Kegiatan untuk memperkenalkan sepuluh bidang pembinaan yang dapat diikuti oleh mahasiswa dan masyarakat umum.'},
-        {n:'Wisuda Tahfidh',d:'Apresiasi untuk mahasiswa setelah menyelesaikan target hafalan Al-Qur’an, ujian tahfidh oleh tim penguji bersanad, penyetoran hafalan mutqin, evaluasi adab dan konsistensi proses menghafal.'},
-        {n:'MTQ Internal Pembinaan',d:'Perlombaan internal semua bidang yang diadakan oleh departemen pembinaan UKM ASC dan diikuti oleh seluruh peserta pembinaan.'}]},
-    {k:'Kesejahteraan', ds:'Mengurus kebutuhan internal dan usaha ASC: dari jadwal dan inventaris, penjualan produk, hingga kaligrafi dan bimbel.',
-     b:[{n:'Rumah Tangga',s:'RT',d:'Bertugas membuat jadwal piket sekretariat, khataman, dan peminjaman inventaris. Bidang RT juga bertugas menyiapkan perlengkapan pembinaan UKM ASC.'},
-        {n:'Maliyah',d:'Menangani penjualan produk-produk guna memperoleh profit untuk keperluan UKM ASC ke depannya.'},
-        {n:'ASC Kaligrafi',s:'ASC-Kal',d:'Melayani pre order cinderamata kaligrafi dalam berbagai macam kata, hiasan, dan tema hiasan sesuai dengan kaidah kebahasaan dalam seni kaligrafi.'},
-        {n:'After School Program Plus',s:'ASPP',d:'Jasa kursus bimbel sekolah SD–SMA sesuai yang diperlukan oleh para siswa yang memerlukan kursus di bidang akademik.'}],
-     e:[{n:'Milad UKM ASC',d:'Acara tahunan dalam rangka memperingati Milad UKM ASC dan mengingat kembali terbentuknya UKM ASC, diisi kegiatan lomba-lomba, santunan anak yatim, dan buka bersama.'}]},
-    {k:'Syiar', ds:'Menyebarkan dakwah dan informasi ASC lewat media dan publikasi, serta menjalin silaturahmi internal dan eksternal.',
-     b:[{n:'Publikasi',p:['ASC Info','ASC Stream','ASC Web'],d:'Wadah informasi dan kabar terbaru seputar UKM ASC, mencakup kegiatan, program, perkembangan, serta konten edukatif yang disebarluaskan melalui YouTube, Instagram, dan TikTok. Juga menghadirkan siaran langsung event besar dan dokumentasi digital yang dapat diakses kapan saja.'},
-        {n:'Dakwah',p:['Microblog','Quotes','Podcast','Reminder','Komik','TELUSUR: Telaah Ulumul Qur’an'],d:'Sarana dakwah digital yang menyampaikan informasi, motivasi, dan wawasan islami secara menarik dan mudah dipahami, dengan pendekatan kreatif untuk meningkatkan kesadaran dan konsistensi mengamalkan ajaran Islam serta memperkuat hubungan dengan Al-Qur’an dan sunnah.'},
-        {n:'Humas Internal',p:['SAMAWA','Milad Card','SIASAT'],d:'SAMAWA (Sambang Ormawa) menciptakan kebersamaan dalam satu naungan kampus. Milad Card adalah kartu ucapan ulang tahun dari seluruh keluarga ASC. SIASAT (Silaturahmi ASC Pusat) mempererat silaturahmi dengan jajaran petinggi kampus, takmir Masjid Al-Hikmah, dan seluruh masyarakat UKM ASC.'},
-        {n:'Humas Eksternal',p:['SiDiah','SULAM','SILUK'],d:'SiDiah (Sinergi Media Dakwah) meningkatkan wawasan desain grafis dan videografi lewat studi banding. SULAM (Sambang Lembaga) membangun hubungan dengan komunitas dan lembaga eksternal UM. SILUK (Silaturahmi UKM) membuka peluang kolaborasi berkelanjutan dengan UKM yang relevan.'}],
-     e:[]},
-    {k:'LSO', ds:'Lembaga semi otonom yang menjalankan program khusus di bawah naungan ASC.',
-     b:[{n:'TDI',s:'Tafaqquh fii Diinil Islam',d:'Mata kuliah 1 SKS bagi mahasiswa baru di Masjid Al-Hikmah UM. Selain kuliah umum, mahasiswa mengikuti Bimbingan Baca Al-Qur’an dan Bina Ibadah dengan mentor mahasiswa yang berkompetensi di bidang fiqih dan Al-Qur’an. Bidang TDI: Kurikulum, Humas, IT, Administrasi, dan Kesejahteraan.'},
-        {n:'LSO Kampus 2',s:'PP2',d:'Memperkenalkan UKM ASC kepada mahasiswa Kampus 2 UM, meliputi pembinaan tahfidh dan tahsin untuk mahasiswa umum.'},
-        {n:'LSO Kampus 3',s:'PP3',d:'Memperkenalkan UKM ASC kepada mahasiswa Kampus 3 UM, meliputi pembinaan Khaththil, Fahmil, Hadrah, dan Tahsinil Qiro’ah.'}],
-     e:[{n:'Festival Qur’ani Nasional',d:'Event perlombaan bagi siswa SD/MI untuk menjaring anak-anak yang berkompeten di bidang Dai, Ghina, dan Tartil.'},
-        {n:'Gathering ASC PP3',d:'Kegiatan perkenalan UKM ASC kepada mahasiswa Kampus 3 UM.'},
-        {n:'Open House PP2',d:'Kegiatan perkenalan UKM ASC kepada mahasiswa Kampus 2 UM.'},
-        {n:'Grand Opening TDI',d:'Pembukaan program Tafaqquh fii Diinil Islam bagi mahasiswa baru.'},
-        {n:'Pelatihan Pengajar Mentor TDI',d:'Pelatihan pengajar guna mempersiapkan para mentor pada kegiatan mentoring.'},
-        {n:'Refleksi dan Evaluasi TDI',d:'Dilakukan pada akhir periode mentoring sebagai evaluasi para mentor selama satu semester mentoring mahasiswa.'}]}
-  ];
-  /* =============================================================================== */
+  (function () {
+    /* ============ DATA STRUKTUR (sumber: PPT UKM ASC, Kabinet Asy-Syauqi) ============
+       b = bidang/lembaga {n:nama, s:singkatan, d:deskripsi, p:[program], img:URL foto opsional}
+       e = event          {n:nama, d:deskripsi, img:URL foto opsional}                        */
+    var D = [
+      {
+        k: 'Kaderisasi', ds: 'Menyiapkan dan mengembangkan kader ASC lewat pembinaan, pendataan, penempatan, dan kegiatan kaderisasi.',
+        b: [{ n: 'HRD', s: 'Human Resource Development', d: 'Berfokus pada pembinaan kader melalui berbagai program seperti pelatihan, monitoring, dan evaluasi kader, terutama Khudama’ dan Khudama’ Muda. HRD juga berperan dalam pendataan dan penempatan kader sesuai potensi dan kebutuhan organisasi, serta menyediakan wadah diskusi dan solusi terhadap berbagai permasalahan.' },
+        { n: 'EO', s: 'Event Organizer', d: 'Berperan dalam memetakan potensi dan minat kepanitiaan para Khudama’ dan Khudama’ Muda, serta memastikan keterlibatan mereka dalam struktur kepanitiaan yang sesuai dengan kemampuan dan kebutuhan organisasi. Selain itu, EO juga melakukan monitoring terhadap jalannya setiap event, memberikan arahan, serta melakukan evaluasi.' }],
+        e: [{ n: 'Ta’aruf Qur’ani (TAQUR)', d: 'Memperkenalkan organisasi, nilai spiritual keislaman, serta mempererat ukhuwah antar anggota.' },
+        { n: 'LPQMO-TM', d: 'Latihan Pendidikan Al-Qur’an & Manajemen Organisasi Tingkat Menengah: pelatihan lanjutan untuk membekali anggota dengan kemampuan kepemimpinan (qudwah) dan manajerial organisasi.' },
+        { n: 'LKMO', d: 'Latihan Kepemimpinan & Manajemen Organisasi: kegiatan intensif yang mencakup simulasi kepengurusan, studi kasus, dan pembekalan teknis.' }]
+      },
+      {
+        k: 'Pembinaan', ds: 'Pusat pembinaan Al-Qur’an dengan sepuluh bidang: dari bacaan, hafalan, dan seni, hingga karya ilmiah, shalawat, dan inovasi digital.',
+        b: [{ n: 'Tahsinil Qiro’ah', d: 'Pembinaan yang berfokus pada kualitas bacaan Al-Qur’an sesuai tajwid dan makhraj. Program ini meliputi praktik intensif, bimbingan mentor berpengalaman, dan menanamkan kecintaan pada Al-Qur’an.' },
+        { n: 'Tartilil Qur’an', d: 'Program yang memberikan pelatihan dalam penguasaan makhraj huruf, disertai pemahaman dan praktik irama murattal. Peserta belajar mengatur tempo dan intonasi untuk bacaan yang merdu.' },
+        { n: 'Tilawatil Qur’an', d: 'Pembinaan dalam penguasaan irama maqamat Al-Qur’an, pembenahan kualitas suara dan intonasi untuk bacaan merdu dan menyentuh hati.' },
+        { n: 'Tahfidhil Qur’an', d: 'Wadah mahasiswa penghafal Al-Qur’an dengan metode yang efektif untuk ziyadah & murajaah (setoran harian), halaqah atau semaan setiap pekan, ujian, dan wisuda tahfidh.' },
+        { n: 'Fahmil Qur’an', d: 'Berfokus pada penguasaan isi kandungan Al-Qur’an secara mendalam, termasuk tafsir, hadis, dan sejarah Islam.' },
+        { n: 'Syarhil Qur’an', d: 'Berfokus pada kemampuan mahasiswa menyampaikan pesan Al-Qur’an secara kreatif dan inspiratif, meliputi pendalaman tafsir, kerja sama tim, dan integrasi seni tilawah serta dakwah.' },
+        { n: 'Khaththil Qur’an', d: 'Seni menulis Al-Qur’an dengan indah, yang mengedepankan kebenaran isi dan keindahan tulisan melalui kaligrafi serta estetika dan makna setiap ayat, sebagai media menyebarkan pesan-pesan Al-Qur’an.' },
+        { n: 'Karya Tulis Ilmiah Al-Qur’an', s: 'KTIA', d: 'Karya ilmiah yang dikaitkan dengan kandungan ayat-ayat Al-Qur’an dan merujuk pada pemahaman ilmiah di dalamnya. Digunakan untuk mendalami kepenulisan ilmiah seperti KTI, esai, dan sebagainya.' },
+        { n: 'Maulidin Nabi', d: 'Upaya membumikan sholawat di Universitas Negeri Malang, sekaligus wadah mengembangkan bakat dan minat di bidang banjari dan juga vokal.' },
+        { n: 'Desain Aplikasi Al-Qur’an', s: 'DAQ', d: 'Pembinaan untuk pembuatan desain, pengembangan website, dan aplikasi guna menciptakan platform yang memudahkan akses dalam pemahaman terhadap berbagai hal tentang Islam.' }],
+        e: [{ n: 'Grand Opening', d: 'Kegiatan untuk memperkenalkan sepuluh bidang pembinaan yang dapat diikuti oleh mahasiswa dan masyarakat umum.' },
+        { n: 'Wisuda Tahfidh', d: 'Apresiasi untuk mahasiswa setelah menyelesaikan target hafalan Al-Qur’an, ujian tahfidh oleh tim penguji bersanad, penyetoran hafalan mutqin, evaluasi adab dan konsistensi proses menghafal.' },
+        { n: 'MTQ Internal Pembinaan', d: 'Perlombaan internal semua bidang yang diadakan oleh departemen pembinaan UKM ASC dan diikuti oleh seluruh peserta pembinaan.' }]
+      },
+      {
+        k: 'Kesejahteraan', ds: 'Mengurus kebutuhan internal dan usaha ASC: dari jadwal dan inventaris, penjualan produk, hingga kaligrafi dan bimbel.',
+        b: [{ n: 'Rumah Tangga', s: 'RT', d: 'Bertugas membuat jadwal piket sekretariat, khataman, dan peminjaman inventaris. Bidang RT juga bertugas menyiapkan perlengkapan pembinaan UKM ASC.' },
+        { n: 'Maliyah', d: 'Menangani penjualan produk-produk guna memperoleh profit untuk keperluan UKM ASC ke depannya.' },
+        { n: 'ASC Kaligrafi', s: 'ASC-Kal', d: 'Melayani pre order cinderamata kaligrafi dalam berbagai macam kata, hiasan, dan tema hiasan sesuai dengan kaidah kebahasaan dalam seni kaligrafi.' },
+        { n: 'After School Program Plus', s: 'ASPP', d: 'Jasa kursus bimbel sekolah SD–SMA sesuai yang diperlukan oleh para siswa yang memerlukan kursus di bidang akademik.' }],
+        e: [{ n: 'Milad UKM ASC', d: 'Acara tahunan dalam rangka memperingati Milad UKM ASC dan mengingat kembali terbentuknya UKM ASC, diisi kegiatan lomba-lomba, santunan anak yatim, dan buka bersama.' }]
+      },
+      {
+        k: 'Syiar', ds: 'Menyebarkan dakwah dan informasi ASC lewat media dan publikasi, serta menjalin silaturahmi internal dan eksternal.',
+        b: [{ n: 'Publikasi', p: ['ASC Info', 'ASC Stream', 'ASC Web'], d: 'Wadah informasi dan kabar terbaru seputar UKM ASC, mencakup kegiatan, program, perkembangan, serta konten edukatif yang disebarluaskan melalui YouTube, Instagram, dan TikTok. Juga menghadirkan siaran langsung event besar dan dokumentasi digital yang dapat diakses kapan saja.' },
+        { n: 'Dakwah', p: ['Microblog', 'Quotes', 'Podcast', 'Reminder', 'Komik', 'TELUSUR: Telaah Ulumul Qur’an'], d: 'Sarana dakwah digital yang menyampaikan informasi, motivasi, dan wawasan islami secara menarik dan mudah dipahami, dengan pendekatan kreatif untuk meningkatkan kesadaran dan konsistensi mengamalkan ajaran Islam serta memperkuat hubungan dengan Al-Qur’an dan sunnah.' },
+        { n: 'Humas Internal', p: ['SAMAWA', 'Milad Card', 'SIASAT'], d: 'SAMAWA (Sambang Ormawa) menciptakan kebersamaan dalam satu naungan kampus. Milad Card adalah kartu ucapan ulang tahun dari seluruh keluarga ASC. SIASAT (Silaturahmi ASC Pusat) mempererat silaturahmi dengan jajaran petinggi kampus, takmir Masjid Al-Hikmah, dan seluruh masyarakat UKM ASC.' },
+        { n: 'Humas Eksternal', p: ['SiDiah', 'SULAM', 'SILUK'], d: 'SiDiah (Sinergi Media Dakwah) meningkatkan wawasan desain grafis dan videografi lewat studi banding. SULAM (Sambang Lembaga) membangun hubungan dengan komunitas dan lembaga eksternal UM. SILUK (Silaturahmi UKM) membuka peluang kolaborasi berkelanjutan dengan UKM yang relevan.' }],
+        e: []
+      },
+      {
+        k: 'LSO', ds: 'Lembaga semi otonom yang menjalankan program khusus di bawah naungan ASC.',
+        b: [{ n: 'TDI', s: 'Tafaqquh fii Diinil Islam', d: 'Mata kuliah 1 SKS bagi mahasiswa baru di Masjid Al-Hikmah UM. Selain kuliah umum, mahasiswa mengikuti Bimbingan Baca Al-Qur’an dan Bina Ibadah dengan mentor mahasiswa yang berkompetensi di bidang fiqih dan Al-Qur’an. Bidang TDI: Kurikulum, Humas, IT, Administrasi, dan Kesejahteraan.' },
+        { n: 'LSO Kampus 2', s: 'PP2', d: 'Memperkenalkan UKM ASC kepada mahasiswa Kampus 2 UM, meliputi pembinaan tahfidh dan tahsin untuk mahasiswa umum.' },
+        { n: 'LSO Kampus 3', s: 'PP3', d: 'Memperkenalkan UKM ASC kepada mahasiswa Kampus 3 UM, meliputi pembinaan Khaththil, Fahmil, Hadrah, dan Tahsinil Qiro’ah.' }],
+        e: [{ n: 'Festival Qur’ani Nasional', d: 'Event perlombaan bagi siswa SD/MI untuk menjaring anak-anak yang berkompeten di bidang Dai, Ghina, dan Tartil.' },
+        { n: 'Gathering ASC PP3', d: 'Kegiatan perkenalan UKM ASC kepada mahasiswa Kampus 3 UM.' },
+        { n: 'Open House PP2', d: 'Kegiatan perkenalan UKM ASC kepada mahasiswa Kampus 2 UM.' },
+        { n: 'Grand Opening TDI', d: 'Pembukaan program Tafaqquh fii Diinil Islam bagi mahasiswa baru.' },
+        { n: 'Pelatihan Pengajar Mentor TDI', d: 'Pelatihan pengajar guna mempersiapkan para mentor pada kegiatan mentoring.' },
+        { n: 'Refleksi dan Evaluasi TDI', d: 'Dilakukan pada akhir periode mentoring sebagai evaluasi para mentor selama satu semester mentoring mahasiswa.' }]
+      }
+    ];
+    /* =============================================================================== */
 
-  var root=document.getElementById('asc-struktur'); if(!root) return;
-  var chart=document.getElementById('stChart'), cl=document.getElementById('stCl'), steps=document.getElementById('stSteps'), fill=document.getElementById('stFill'), scWrap=document.getElementById('stScenes');
-  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
-  function pad(n){return ('0'+n).slice(-2);}
-  function clamp(x){return Math.max(0,Math.min(1,x));}
-  function ease(t){return 1-Math.pow(1-t,3);}
+    var root = document.getElementById('asc-struktur'); if (!root) return;
+    var chart = document.getElementById('stChart'), cl = document.getElementById('stCl'), steps = document.getElementById('stSteps'), fill = document.getElementById('stFill'), scWrap = document.getElementById('stScenes');
+    function esc(s) { return String(s).replace(/&/g, '&').replace(/</g, '<'); }
+    function pad(n) { return ('0' + n).slice(-2); }
+    function clamp(x) { return Math.max(0, Math.min(1, x)); }
+    function ease(t) { return 1 - Math.pow(1 - t, 3); }
 
-  /* --- node bagan: id, label, sub, kelas, waktu muncul (0-1 fase bangun) --- */
-  var NODES=[['pb','Pembina UKM ASC','','n-pb',0,.08],['kt','Ketua Umum','','n-core',.16,.22],['ses','Sesepuh','','n-mk',.30,.36],['mk','Majelis Kehormatan','','n-mk',.32,.38],
-    ['wk','Wakil Ketua Umum','','n-core',.28,.34],['bn','Bendahara Umum','','n-core',.42,.48],['sk','Sekretaris Umum','','n-core',.42,.48]]
-    .concat(D.map(function(d,i){ return ['d'+i,d.k,i<4?d.b.length+' bidang':'Lembaga Semi Otonom',i<4?'n-dept':'n-lso',.70+i*.04,.78+i*.04]; }));
-  var el={}; NODES.forEach(function(n){ var d=document.createElement('div'); d.className='st-n '+n[3]; d.innerHTML=esc(n[1])+(n[2]?'<small>'+esc(n[2])+'</small>':''); chart.appendChild(d); el[n[0]]=d; });
+    /* --- node bagan: id, label, sub, kelas, waktu muncul (0-1 fase bangun) --- */
+    var NODES = [['pb', 'Pembina UKM ASC', '', 'n-pb', 0, .08], ['kt', 'Ketua Umum', '', 'n-core', .16, .22], ['ses', 'Sesepuh', '', 'n-mk', .30, .36], ['mk', 'Majelis Kehormatan', '', 'n-mk', .32, .38],
+    ['wk', 'Wakil Ketua Umum', '', 'n-core', .28, .34], ['bn', 'Bendahara Umum', '', 'n-core', .42, .48], ['sk', 'Sekretaris Umum', '', 'n-core', .42, .48]]
+      .concat(D.map(function (d, i) { return ['d' + i, d.k, i < 4 ? d.b.length + ' bidang' : 'Lembaga Semi Otonom', i < 4 ? 'n-dept' : 'n-lso', .70 + i * .04, .78 + i * .04]; }));
+    var el = {}; NODES.forEach(function (n) { var d = document.createElement('div'); d.className = 'st-n ' + n[3]; d.innerHTML = esc(n[1]) + (n[2] ? '<small>' + esc(n[2]) + '</small>' : ''); chart.appendChild(d); el[n[0]] = d; });
 
-  var LAY={
-    d:{W:1000,H:385,bus:250,pb:[500,34,180,40],kt:[500,106,190,40],ses:[835,72,170,34],mk:[835,128,170,34],wk:[500,178,190,40],bn:[220,178,180,40],sk:[780,178,180,40],
-       d0:[100,320,170,70],d1:[300,320,170,70],d2:[500,320,170,70],d3:[700,320,170,70],d4:[900,320,170,70]},
-    m:{W:360,H:372,bus:196,pb:[180,24,150,36],kt:[180,80,130,36],ses:[310,58,84,32],mk:[310,94,84,32],wk:[180,138,116,36],bn:[62,138,108,36],sk:[298,138,108,36],
-       d0:[62,238,108,46],d1:[180,238,108,46],d2:[298,238,108,46],d3:[120,318,108,46],d4:[240,318,108,46]}
-  };
-  var lines=[], mode='';
-  function layout(){
-    var m=window.innerWidth<=700?'m':'d'; if(m===mode) return; mode=m;
-    var L=LAY[m], W=L.W, H=L.H;
-    chart.style.aspectRatio=W+'/'+H;
-    NODES.forEach(function(n){ var g=L[n[0]], e=el[n[0]];
-      e.style.left=g[0]/W*100+'%'; e.style.top=g[1]/H*100+'%'; e.style.width=g[2]/W*100+'%'; e.style.height=g[3]/H*100+'%'; });
-    lines.forEach(function(l){ l.e.remove(); }); lines=[];
-    function T(n){return L[n][1]-L[n][3]/2;} function B(n){return L[n][1]+L[n][3]/2;} function Lf(n){return L[n][0]-L[n][2]/2;} function R(n){return L[n][0]+L[n][2]/2;}
-    function V(x,y1,y2,a,b,dash){ add('v',x,y1,y2,a,b,dash); }
-    function Hh(y,x1,x2,a,b,dash,rev){ add('h',y,x1,x2,a,b,dash,rev); }
-    function add(t,p,s,e,a,b,dash,rev){ var d=document.createElement('i'); d.className='st-ln'+(dash?(t==='v'?' dv':' dd'):'');
-      if(t==='v'){ d.style.cssText='left:calc('+p/W*100+'% - 1px);top:'+Math.min(s,e)/H*100+'%;height:'+Math.abs(e-s)/H*100+'%;width:2px;transform-origin:50% 0'; }
-      else { d.style.cssText='top:calc('+p/H*100+'% - 1px);left:'+Math.min(s,e)/W*100+'%;width:'+Math.abs(e-s)/W*100+'%;height:2px;transform-origin:'+(rev?'100%':'0')+' 50%'; }
-      chart.appendChild(d); lines.push({e:d,t:t,a:a,b:b}); }
-    V(L.pb[0],B('pb'),T('kt'),.08,.16);
-    var mx=(R('kt')+Lf('ses'))/2;                                   /* garis koordinatif ke Sesepuh & Majelis */
-    Hh(L.kt[1],R('kt'),mx,.22,.28,1); V(mx,L.ses[1],L.mk[1],.26,.32,1); Hh(L.ses[1],mx,Lf('ses'),.30,.34,1); Hh(L.mk[1],mx,Lf('mk'),.30,.34,1);
-    V(L.kt[0],B('kt'),T('wk'),.22,.28);
-    Hh(L.wk[1],R('bn'),Lf('wk'),.34,.42,0,1); Hh(L.wk[1],R('wk'),Lf('sk'),.34,.42);
-    V(L.wk[0],B('wk'),L.bus,.48,.54);
-    var xs=[0,1,2,3,4].map(function(i){return L['d'+i][0];}), cx=L.wk[0];
-    Hh(L.bus,Math.min.apply(0,xs),cx,.54,.64,0,1); Hh(L.bus,cx,Math.max.apply(0,xs),.54,.64);
-    for(var i=0;i<5;i++) V(xs[i],L.bus,T('d'+i),.64,.72);
-    if(root._c!==undefined) draw(root._c);
-  }
-  function draw(c){
-    NODES.forEach(function(nd){ var v=ease(clamp((c-nd[4])/(nd[5]-nd[4]))), e=el[nd[0]];
-      e.style.opacity=v.toFixed(3); e.style.transform='translate(-50%,-50%) scale('+(.85+.15*v).toFixed(3)+')'; });
-    lines.forEach(function(l){ var v=clamp((c-l.a)/(l.b-l.a)); l.e.style.transform=l.t==='v'?'scaleY('+v+')':'scaleX('+v+')'; });
-  }
+    var LAY = {
+      d: {
+        W: 1000, H: 385, bus: 250, pb: [500, 34, 180, 40], kt: [500, 106, 190, 40], ses: [835, 72, 170, 34], mk: [835, 128, 170, 34], wk: [500, 178, 190, 40], bn: [220, 178, 180, 40], sk: [780, 178, 180, 40],
+        d0: [100, 320, 170, 70], d1: [300, 320, 170, 70], d2: [500, 320, 170, 70], d3: [700, 320, 170, 70], d4: [900, 320, 170, 70]
+      },
+      m: {
+        W: 360, H: 372, bus: 196, pb: [180, 24, 150, 36], kt: [180, 80, 130, 36], ses: [310, 58, 84, 32], mk: [310, 94, 84, 32], wk: [180, 138, 116, 36], bn: [62, 138, 108, 36], sk: [298, 138, 108, 36],
+        d0: [62, 238, 108, 46], d1: [180, 238, 108, 46], d2: [298, 238, 108, 46], d3: [120, 318, 108, 46], d4: [240, 318, 108, 46]
+      }
+    };
+    var lines = [], mode = '';
+    function layout() {
+      var m = window.innerWidth <= 700 ? 'm' : 'd'; if (m === mode) return; mode = m;
+      var L = LAY[m], W = L.W, H = L.H;
+      chart.style.aspectRatio = W + '/' + H;
+      NODES.forEach(function (n) {
+        var g = L[n[0]], e = el[n[0]];
+        e.style.left = g[0] / W * 100 + '%'; e.style.top = g[1] / H * 100 + '%'; e.style.width = g[2] / W * 100 + '%'; e.style.height = g[3] / H * 100 + '%';
+      });
+      lines.forEach(function (l) { l.e.remove(); }); lines = [];
+      function T(n) { return L[n][1] - L[n][3] / 2; } function B(n) { return L[n][1] + L[n][3] / 2; } function Lf(n) { return L[n][0] - L[n][2] / 2; } function R(n) { return L[n][0] + L[n][2] / 2; }
+      function V(x, y1, y2, a, b, dash) { add('v', x, y1, y2, a, b, dash); }
+      function Hh(y, x1, x2, a, b, dash, rev) { add('h', y, x1, x2, a, b, dash, rev); }
+      function add(t, p, s, e, a, b, dash, rev) {
+        var d = document.createElement('i'); d.className = 'st-ln' + (dash ? (t === 'v' ? ' dv' : ' dd') : '');
+        if (t === 'v') { d.style.cssText = 'left:calc(' + p / W * 100 + '% - 1px);top:' + Math.min(s, e) / H * 100 + '%;height:' + Math.abs(e - s) / H * 100 + '%;width:2px;transform-origin:50% 0'; }
+        else { d.style.cssText = 'top:calc(' + p / H * 100 + '% - 1px);left:' + Math.min(s, e) / W * 100 + '%;width:' + Math.abs(e - s) / W * 100 + '%;height:2px;transform-origin:' + (rev ? '100%' : '0') + ' 50%'; }
+        chart.appendChild(d); lines.push({ e: d, t: t, a: a, b: b });
+      }
+      V(L.pb[0], B('pb'), T('kt'), .08, .16);
+      var mx = (R('kt') + Lf('ses')) / 2;                                   /* garis koordinatif ke Sesepuh & Majelis */
+      Hh(L.kt[1], R('kt'), mx, .22, .28, 1); V(mx, L.ses[1], L.mk[1], .26, .32, 1); Hh(L.ses[1], mx, Lf('ses'), .30, .34, 1); Hh(L.mk[1], mx, Lf('mk'), .30, .34, 1);
+      V(L.kt[0], B('kt'), T('wk'), .22, .28);
+      Hh(L.wk[1], R('bn'), Lf('wk'), .34, .42, 0, 1); Hh(L.wk[1], R('wk'), Lf('sk'), .34, .42);
+      V(L.wk[0], B('wk'), L.bus, .48, .54);
+      var xs = [0, 1, 2, 3, 4].map(function (i) { return L['d' + i][0]; }), cx = L.wk[0];
+      Hh(L.bus, Math.min.apply(0, xs), cx, .54, .64, 0, 1); Hh(L.bus, cx, Math.max.apply(0, xs), .54, .64);
+      for (var i = 0; i < 5; i++) V(xs[i], L.bus, T('d' + i), .64, .72);
+      if (root._c !== undefined) draw(root._c);
+    }
+    function draw(c) {
+      NODES.forEach(function (nd) {
+        var v = ease(clamp((c - nd[4]) / (nd[5] - nd[4]))), e = el[nd[0]];
+        e.style.opacity = v.toFixed(3); e.style.transform = 'translate(-50%,-50%) scale(' + (.85 + .15 * v).toFixed(3) + ')';
+      });
+      lines.forEach(function (l) { var v = clamp((c - l.a) / (l.b - l.a)); l.e.style.transform = l.t === 'v' ? 'scaleY(' + v + ')' : 'scaleX(' + v + ')'; });
+    }
 
-  /* --- stepper + rincian departemen --- */
-  var LB=['Struktur','Kaderisasi','Pembinaan','Kesejahteraan','Syiar','LSO'], sbtn=[];
-  LB.forEach(function(t,i){ var b=document.createElement('button'); b.type='button'; b.className='st-s'; b.textContent=t; b.setAttribute('aria-label','Menuju '+t); steps.appendChild(b); sbtn.push(b); });
-  var scs=[];
-  D.forEach(function(d,i){
-    var items=d.b.map(function(x){return x;}).concat(d.e.map(function(x){ x.ev=1; return x; }));
-    var s=document.createElement('div'); s.className='st-sc';
-    var ix=i<4?'Departemen 0'+(i+1)+' / 04':'Lembaga Semi Otonom';
-    s.innerHTML='<div><span class="st-ix st-it">'+esc(ix)+'</span><h3 class="st-nm st-it'+(d.k.length>9?' long':'')+'">'+esc(d.k)+'</h3><p class="st-ds st-it">'+esc(d.ds)+'</p></div>'+
-      '<div><span class="st-lb st-it">'+(i<4?'Bidang':'Lembaga')+'</span><div class="st-grid">'+
-      d.b.map(function(b){return '<div class="st-chip st-it" tabindex="0">'+esc(b.n)+(b.s?'<small>'+esc(b.s)+'</small>':'')+'<p class="st-cd">'+esc(b.d||'')+'</p></div>';}).join('')+'</div>'+
-      '<div class="st-dt"></div>'+
-      (d.e.length?'<span class="st-lb st-it">Event</span><div class="st-pills">'+d.e.map(function(x){return '<span class="st-pill st-it" tabindex="0">'+esc(x.n)+'</span>';}).join('')+'</div>':'')+'</div>';
-    scWrap.appendChild(s);
-    var chips=[].slice.call(s.querySelectorAll('.st-chip')), pills=[].slice.call(s.querySelectorAll('.st-pill'));
-    scs.push({el:s,i:i,it:[].slice.call(s.querySelectorAll('.st-it')),dt:s.querySelector('.st-dt'),items:items,nb:d.b.length,n:items.length,chips:chips,all:chips.concat(pills),cur:-1,act:-2,lb:i<4?'Bidang':'Lembaga'});
-  });
-
-  layout();
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ root.classList.add('st-static'); window.addEventListener('resize',layout); return; }
-
-  /* Pastikan parent WordPress tidak memblokir position: sticky */
-  var q=root.parentElement, n=0;
-  while(q && q!==document.documentElement && n++<20){ var cs=getComputedStyle(q);
-    if(/hidden|auto|scroll/.test(cs.overflow+cs.overflowX+cs.overflowY)) q.style.setProperty('overflow','visible','important'); q=q.parentElement; }
-
-  /* Garis waktu scroll (satuan U = 1vh): bagan 170, tiap departemen = 20 masuk + 24 per butir + 12 keluar */
-  var U=0, CL=0, total=0;
-  function geom(){
-    U=window.innerHeight/100; CL=170*U; var c=CL;
-    scs.forEach(function(s){ s.start=c; s.ent=20*U; s.step=24*U; s.len=(20+24*s.n+12)*U; c+=s.len; });
-    total=c; root.style.height=(window.innerHeight+total)+'px';
-  }
-  function card(s,a){
-    var it=s.items[a];
-    s.dt.innerHTML='<div class="st-dk"><span>'+(it.ev?'Event':s.lb)+'</span><span>'+pad(a+1)+' / '+pad(s.n)+'</span></div>'+
-      (it.img?'<div class="st-ph" style="background-image:url(\''+it.img+'\')"></div>':'')+'<h4>'+esc(it.n)+(it.s?' · '+esc(it.s):'')+'</h4>'+(it.d?'<p>'+esc(it.d)+'</p>':'')+
-      (it.p?'<div class="st-tg">'+it.p.map(function(x){return '<span>'+esc(x)+'</span>';}).join('')+'</div>':'');
-  }
-  var ticking=false;
-  function render(){
-    ticking=false;
-    var r=root.getBoundingClientRect(), y=Math.max(0,Math.min(total,-r.top));
-    root._c=clamp(y/(110*U)); draw(root._c);
-    var co=1-clamp((y-(CL-10*U))/(10*U));
-    cl.style.opacity=co.toFixed(3); cl.style.transform='scale('+(1-(1-co)*.05).toFixed(3)+')'; cl.style.visibility=co<=0?'hidden':'visible';
-
-    var idx=y<CL?0:5, pos=y<CL?clamp(y/CL)*.6:5;
-    scs.forEach(function(s,i){
-      var lp=y-s.start, last=i===scs.length-1, vis=lp>-2*U&&(last||lp<s.len+2*U);
-      if(lp>=0&&(last||lp<s.len)){ idx=i+1; pos=i+1+clamp(lp/s.len); }
-      s.el.style.visibility=vis?'visible':'hidden'; if(!vis) return;
-      s.el.style.opacity=(clamp(lp/(6*U))*(last?1:1-clamp((lp-(s.len-8*U))/(8*U)))).toFixed(3);
-      s.it.forEach(function(it,k){ var v=clamp((lp-.8*U*k)/(7*U)); it.style.opacity=v.toFixed(3); it.style.transform='translate3d(0,'+((1-v)*16).toFixed(1)+'px,0)'; });
-      var f=(lp-s.ent)/s.step, a=Math.max(0,Math.min(s.n-1,Math.floor(f))), t=f<0?0:Math.min(1,f-a);
-      if(f>=s.n){ a=s.n-1; t=1; }
-      var o=f<0?0:clamp(t/.2)*((last&&a===s.n-1)?1:1-clamp((t-.8)/.2));
-      if(s.cur!==a){ s.cur=a; card(s,a); }
-      s.dt.style.opacity=o.toFixed(3); s.dt.style.transform='translate3d(0,'+((1-clamp(t/.2))*14).toFixed(1)+'px,0)';
-      var act=f<0?-1:a; if(s.act!==act){ s.act=act; s.all.forEach(function(c,k){ c.classList.toggle('act',k===act); }); }
+    /* --- stepper + rincian departemen --- */
+    var LB = ['Struktur', 'Kaderisasi', 'Pembinaan', 'Kesejahteraan', 'Syiar', 'LSO'], sbtn = [];
+    LB.forEach(function (t, i) { var b = document.createElement('button'); b.type = 'button'; b.className = 'st-s'; b.textContent = t; b.setAttribute('aria-label', 'Menuju ' + t); steps.appendChild(b); sbtn.push(b); });
+    var scs = [];
+    D.forEach(function (d, i) {
+      var items = d.b.map(function (x) { return x; }).concat(d.e.map(function (x) { x.ev = 1; return x; }));
+      var s = document.createElement('div'); s.className = 'st-sc';
+      var ix = i < 4 ? 'Departemen 0' + (i + 1) + ' / 04' : 'Lembaga Semi Otonom';
+      s.innerHTML = '<div><span class="st-ix st-it">' + esc(ix) + '</span><h3 class="st-nm st-it' + (d.k.length > 9 ? ' long' : '') + '">' + esc(d.k) + '</h3><p class="st-ds st-it">' + esc(d.ds) + '</p></div>' +
+        '<div><span class="st-lb st-it">' + (i < 4 ? 'Bidang' : 'Lembaga') + '</span><div class="st-grid">' +
+        d.b.map(function (b) { return '<div class="st-chip st-it" tabindex="0">' + esc(b.n) + (b.s ? '<small>' + esc(b.s) + '</small>' : '') + '<p class="st-cd">' + esc(b.d || '') + '</p></div>'; }).join('') + '</div>' +
+        '<div class="st-dt"></div>' +
+        (d.e.length ? '<span class="st-lb st-it">Event</span><div class="st-pills">' + d.e.map(function (x) { return '<span class="st-pill st-it" tabindex="0">' + esc(x.n) + '</span>'; }).join('') + '</div>' : '') + '</div>';
+      scWrap.appendChild(s);
+      var chips = [].slice.call(s.querySelectorAll('.st-chip')), pills = [].slice.call(s.querySelectorAll('.st-pill'));
+      scs.push({ el: s, i: i, it: [].slice.call(s.querySelectorAll('.st-it')), dt: s.querySelector('.st-dt'), items: items, nb: d.b.length, n: items.length, chips: chips, all: chips.concat(pills), cur: -1, act: -2, lb: i < 4 ? 'Bidang' : 'Lembaga' });
     });
-    sbtn.forEach(function(b,k){ b.classList.toggle('on',k===idx); b.classList.toggle('done',k<idx); });
-    fill.style.width=((Math.min(pos,5)+.5)/6*100).toFixed(2)+'%';
-  }
-  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(render); } }
-  function go(yy){ var r=root.getBoundingClientRect(); window.scrollTo({top:window.pageYOffset+r.top+yy,behavior:'smooth'}); }
 
-  /* Klik langkah / bidang / event = lompat ke bagian itu */
-  sbtn.forEach(function(b,i){ b.addEventListener('click',function(){ go(i===0?125*U:scs[i-1].start+scs[i-1].ent+.3*scs[i-1].step); }); });
-  scs.forEach(function(s){ s.all.forEach(function(c,k){
-    function jump(){ go(s.start+s.ent+k*s.step+.4*s.step); }
-    c.addEventListener('click',jump); c.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); jump(); } }); }); });
+    layout();
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { root.classList.add('st-static'); window.addEventListener('resize', layout); return; }
 
-  window.addEventListener('scroll',onScroll,{passive:true});
-  window.addEventListener('resize',function(){ layout(); geom(); onScroll(); },{passive:true});
-  window.addEventListener('load',function(){ geom(); render(); });
-  geom(); render();
-})();
+    /* Pastikan parent WordPress tidak memblokir position: sticky */
+    var q = root.parentElement, n = 0;
+    while (q && q !== document.documentElement && n++ < 20) {
+      var cs = getComputedStyle(q);
+      if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) q.style.setProperty('overflow', 'visible', 'important'); q = q.parentElement;
+    }
+
+    /* Garis waktu scroll (satuan U = 1vh): bagan 170, tiap departemen = 20 masuk + 24 per butir + 12 keluar */
+    var U = 0, CL = 0, total = 0;
+    function geom() {
+      U = window.innerHeight / 100; CL = 170 * U; var c = CL;
+      scs.forEach(function (s) { s.start = c; s.ent = 20 * U; s.step = 24 * U; s.len = (20 + 24 * s.n + 12) * U; c += s.len; });
+      total = c; root.style.height = (window.innerHeight + total) + 'px';
+    }
+    function card(s, a) {
+      var it = s.items[a];
+      s.dt.innerHTML = '<div class="st-dk"><span>' + (it.ev ? 'Event' : s.lb) + '</span><span>' + pad(a + 1) + ' / ' + pad(s.n) + '</span></div>' +
+        (it.img ? '<div class="st-ph" style="background-image:url(\'' + it.img + '\')"></div>' : '') + '<h4>' + esc(it.n) + (it.s ? ' · ' + esc(it.s) : '') + '</h4>' + (it.d ? '<p>' + esc(it.d) + '</p>' : '') +
+        (it.p ? '<div class="st-tg">' + it.p.map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('') + '</div>' : '');
+    }
+    var ticking = false;
+    function render() {
+      ticking = false;
+      var r = root.getBoundingClientRect(), y = Math.max(0, Math.min(total, -r.top));
+      root._c = clamp(y / (110 * U)); draw(root._c);
+      var co = 1 - clamp((y - (CL - 10 * U)) / (10 * U));
+      cl.style.opacity = co.toFixed(3); cl.style.transform = 'scale(' + (1 - (1 - co) * .05).toFixed(3) + ')'; cl.style.visibility = co <= 0 ? 'hidden' : 'visible';
+
+      var idx = y < CL ? 0 : 5, pos = y < CL ? clamp(y / CL) * .6 : 5;
+      scs.forEach(function (s, i) {
+        var lp = y - s.start, last = i === scs.length - 1, vis = lp > -2 * U && (last || lp < s.len + 2 * U);
+        if (lp >= 0 && (last || lp < s.len)) { idx = i + 1; pos = i + 1 + clamp(lp / s.len); }
+        s.el.style.visibility = vis ? 'visible' : 'hidden'; if (!vis) return;
+        s.el.style.opacity = (clamp(lp / (6 * U)) * (last ? 1 : 1 - clamp((lp - (s.len - 8 * U)) / (8 * U)))).toFixed(3);
+        s.it.forEach(function (it, k) { var v = clamp((lp - .8 * U * k) / (7 * U)); it.style.opacity = v.toFixed(3); it.style.transform = 'translate3d(0,' + ((1 - v) * 16).toFixed(1) + 'px,0)'; });
+        var f = (lp - s.ent) / s.step, a = Math.max(0, Math.min(s.n - 1, Math.floor(f))), t = f < 0 ? 0 : Math.min(1, f - a);
+        if (f >= s.n) { a = s.n - 1; t = 1; }
+        var o = f < 0 ? 0 : clamp(t / .2) * ((last && a === s.n - 1) ? 1 : 1 - clamp((t - .8) / .2));
+        if (s.cur !== a) { s.cur = a; card(s, a); }
+        s.dt.style.opacity = o.toFixed(3); s.dt.style.transform = 'translate3d(0,' + ((1 - clamp(t / .2)) * 14).toFixed(1) + 'px,0)';
+        var act = f < 0 ? -1 : a; if (s.act !== act) { s.act = act; s.all.forEach(function (c, k) { c.classList.toggle('act', k === act); }); }
+      });
+      sbtn.forEach(function (b, k) { b.classList.toggle('on', k === idx); b.classList.toggle('done', k < idx); });
+      fill.style.width = ((Math.min(pos, 5) + .5) / 6 * 100).toFixed(2) + '%';
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(render); } }
+    function go(yy) { var r = root.getBoundingClientRect(); window.scrollTo({ top: window.pageYOffset + r.top + yy, behavior: 'smooth' }); }
+
+    /* Klik langkah / bidang / event = lompat ke bagian itu */
+    sbtn.forEach(function (b, i) { b.addEventListener('click', function () { go(i === 0 ? 125 * U : scs[i - 1].start + scs[i - 1].ent + .3 * scs[i - 1].step); }); });
+    scs.forEach(function (s) {
+      s.all.forEach(function (c, k) {
+        function jump() { go(s.start + s.ent + k * s.step + .4 * s.step); }
+        c.addEventListener('click', jump); c.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); jump(); } });
+      });
+    });
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function () { layout(); geom(); onScroll(); }, { passive: true });
+    window.addEventListener('load', function () { geom(); render(); });
+    geom(); render();
+  })();
 </script>

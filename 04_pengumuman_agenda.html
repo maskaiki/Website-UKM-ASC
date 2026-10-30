@@ -1,11 +1,11 @@
 <!-- =====================================================================
-  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 05: 10 PEMBINAAN (SCROLL STORY)
-  Cara pakai di WordPress (Elementor / Divi):
-  1. Taruh widget "Custom HTML" di container FULL WIDTH.
-  2. Paste seluruh isi file ini.
-  3. Ganti gambar: cari "DAFTAR PEMBINAAN" di bawah, isi bagian img:'' dengan URL gambar.
-  CATATAN: efek "menempel saat scroll" (sticky) tidak jalan jika ada parent
-  dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
+UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 05: 10 PEMBINAAN (SCROLL STORY)
+Cara pakai di WordPress (Elementor / Divi):
+1. Taruh widget "Custom HTML" di container FULL WIDTH.
+2. Paste seluruh isi file ini.
+3. Ganti gambar: cari "DAFTAR PEMBINAAN" di bawah, isi bagian img:'' dengan URL gambar.
+CATATAN: efek "menempel saat scroll" (sticky) tidak jalan jika ada parent
+dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
 ====================================================================== -->
 
 <style>
@@ -298,8 +298,6 @@
 </style>
 
 <section id="asc-pb" aria-label="10 Bidang Pembinaan UKM ASC">
-  <span id="asc-pembinaan" style="position:relative;top:-90px;display:block;visibility:hidden;height:0;width:0;"></span>
-  <span id="asc-agenda" style="position:relative;top:-90px;display:block;visibility:hidden;height:0;width:0;"></span>
   <div class="pb-stage">
     <div class="pb-wash"></div>
     <div class="pb-head">
@@ -342,7 +340,7 @@
     DATA.forEach(function (x, i) {
       var n = ('0' + (i + 1)).slice(-2), bg = x.img ? ' style="background-image:url(\'' + x.img + '\')"' : '', ph = x.img ? '' : ' pb-ph';
       h += '<article class="pb-card"><div class="pb-img' + ph + '" data-n="' + n + '" role="img" aria-label="' + x.t + '"' + bg + '><span class="pb-badge">Pembinaan rutin</span></div>' +
-        '<h3>' + x.t + '</h3><p>' + x.d + '</p><div class="pb-row"><a class="pb-btn" href="' + x.link + '">Selengkapnya</a><a class="pb-go" href="' + x.link + '" aria-label="Buka ' + x.t + '">&rarr;</a></div></article>';
+        '<h3>' + x.t + '</h3><p>' + x.d + '</p><div class="pb-row"><a class="pb-btn" href="' + x.link + '">Selengkapnya</a><a class="pb-go" href="' + x.link + '" aria-label="Buka ' + x.t + '">→</a></div></article>';
     });
     track.innerHTML = h;
     var cards = [].slice.call(track.children), vw, vh, trackW, startX, endX, ticking = false;
