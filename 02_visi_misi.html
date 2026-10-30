@@ -1,471 +1,995 @@
 <!-- =====================================================================
-  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 02: VISI & MISI
-  Cara Penggunaan di WordPress (Elementor / Divi):
-  1. Buka widget "Text Editor" (pilih tab 'Text' / 'Code') ATAU widget "Custom HTML".
-  2. Copy semua isi file ini (Ctrl+A -> Ctrl+C), lalu paste (Ctrl+V).
-  3. Desain sudah mandiri (Self-Contained) lengkap dengan CSS, HTML, & JS 3D.
+UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 02: VISI & MISI (KINETIC SCROLL)
+Cara pakai di WordPress (Elementor / Divi):
+1. Widget "Custom HTML" di container FULL WIDTH, paste seluruh file ini.
+2. Elementor: Container > Advanced > Overflow = Default (agar efek "menempel" jalan).
+3. Ganti teks: cari tag <h3 class="vm-h"> dan <p class="vm-p"> di bagian HTML.
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
-  /* SCOPED WRAPPER */
-  #asc-visi-misi {
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #1e293b;
-    background: #f8fafc;
+  #asc-vm {
     position: relative;
-    overflow: hidden;
-    padding: 70px 20px 80px;
-    box-sizing: border-box;
+    height: 1300vh;
     width: 100%;
-    border-radius: 24px;
-    margin: 20px 0;
+    background: linear-gradient(180deg, #e0f2fe, #f0f9ff 60%, #e0f2fe);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --p: 0;
   }
 
-  #asc-visi-misi * {
+  #asc-vm * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
 
-  #asc-visi-misi .asc-vm-container {
-    max-width: 1200px;
-    margin: 0 auto;
+  #asc-vm .vm-pin {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+    display: grid;
+    place-items: center;
+    overflow: clip;
+  }
+
+  /* Frame 16:9 ala video, skala semua isi pakai satuan cqw */
+  #asc-vm .vm-frame {
     position: relative;
+    width: min(94vw, 1360px, calc((100svh - 40px)*16/9));
+    aspect-ratio: 16/9;
+    container-type: size;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #0f172a;
+    box-shadow: 0 30px 70px -20px rgba(3, 105, 161, .45);
+    --hl: #e0f2fe;
+    --cb: transparent;
+    --cf: #e0f2fe;
+  }
+
+  #asc-vm .vm-frame[data-theme="light"] {
+    --hl: #0f172a;
+    --cb: #0f172a;
+    --cf: #f0f9ff;
+  }
+
+  #asc-vm .vm-frame[data-theme="blue"],
+  #asc-vm .vm-frame[data-theme="sky"] {
+    --hl: #0f172a;
+    --cb: #0f172a;
+    --cf: #f0f9ff;
+  }
+
+  /* Scene */
+  #asc-vm .vm-s {
+    position: absolute;
+    inset: 0;
+    container-type: size;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--fg);
+    --lp: 0;
+    --sp: 40%;
+    will-change: clip-path;
+  }
+
+  #asc-vm .vm-s[data-theme="dark"] {
+    --bg: #0f172a;
+    --fg: #f0f9ff;
+    --ac: #38bdf8;
+    --gh: rgba(255, 255, 255, .06);
+    background-image: radial-gradient(ellipse at 20% 10%, rgba(2, 132, 199, .22), transparent 60%);
+  }
+
+  #asc-vm .vm-s[data-theme="light"] {
+    --bg: #f0f9ff;
+    --fg: #0f172a;
+    --ac: #0284c7;
+    --gh: rgba(2, 132, 199, .10);
+    background-image: linear-gradient(rgba(2, 132, 199, .06) 1px, transparent 1px), linear-gradient(90deg, rgba(2, 132, 199, .06) 1px, transparent 1px);
+    background-size: 12.5cqw 12.5cqw;
+  }
+
+  #asc-vm .vm-s[data-theme="blue"] {
+    --bg: #0369a1;
+    --fg: #fff;
+    --ac: #bae6fd;
+    --gh: rgba(15, 23, 42, .2);
+    background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, .07) 0 .6cqw, transparent .6cqw 1.2cqw);
+  }
+
+  #asc-vm .vm-s[data-theme="sky"] {
+    --bg: #0284c7;
+    --fg: #fff;
+    --ac: #0f172a;
+    --gh: rgba(15, 23, 42, .2);
+    background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, .08) 0 .6cqw, transparent .6cqw 1.2cqw);
+  }
+
+  #asc-vm .vm-s.split {
+    background: linear-gradient(90deg, transparent var(--sp), #0f172a var(--sp)), repeating-linear-gradient(135deg, rgba(255, 255, 255, .08) 0 .6cqw, transparent .6cqw 1.2cqw), #0284c7;
+  }
+
+  /* Teks */
+  #asc-vm .vm-txt {
+    position: absolute;
+    left: 8cqw;
+    right: 8cqw;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+  }
+
+  #asc-vm .vm-txt.ctr {
+    text-align: center;
+  }
+
+  #asc-vm .vm-h {
+    font-family: 'Bebas Neue', 'Oswald', 'Arial Narrow', Impact, sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 11cqw;
+    line-height: .92;
+    letter-spacing: .01em;
+  }
+
+  #asc-vm .vm-h.sm {
+    font-size: 8.4cqw;
+  }
+
+  #asc-vm .vm-h.o {
+    color: transparent;
+    -webkit-text-stroke: .16cqw var(--fg);
+  }
+
+  #asc-vm .w {
+    display: inline-block;
+    margin-right: .2em;
+    position: relative;
+    z-index: 1;
+    will-change: transform, opacity;
+  }
+
+  #asc-vm .vm-h .w:last-child {
+    margin-right: 0;
+  }
+
+  #asc-vm .k {
+    display: inline-block;
+    font-size: 1.25cqw;
+    font-weight: 800;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    margin-bottom: 2cqw;
+    padding: .5cqw 1.1cqw;
+    background: var(--fg);
+    color: var(--bg);
+  }
+
+  #asc-vm .vm-p {
+    margin-top: 2.6cqw;
+    max-width: 52cqw;
+    font-size: 2.15cqw;
+    line-height: 1.62;
+    font-weight: 500;
+  }
+
+  /* Hantu angka / kata */
+  #asc-vm .gh {
+    position: absolute;
+    right: -1cqw;
+    top: 50%;
+    z-index: 1;
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: 62cqh;
+    line-height: .8;
+    color: var(--gh);
+    transform: translate3d(calc((1 - var(--lp))*8cqw), -50%, 0);
+  }
+
+  #asc-vm .gh.l {
+    right: auto;
+    left: 3cqw;
+  }
+
+  #asc-vm .band {
+    position: absolute;
+    left: -1.2cqw;
+    right: -1.2cqw;
+    top: 44%;
+    height: .3em;
+    background: var(--ac);
+    z-index: 0;
+    transform-origin: 0 50%;
+    transform: scaleX(clamp(0, calc((var(--lp) - .22)*8), 1));
+  }
+
+  #asc-vm .ln {
+    position: relative;
+    display: inline-block;
+  }
+
+  #asc-vm .dg {
+    position: absolute;
+    left: 50%;
+    top: -20%;
+    width: 1px;
+    height: 150%;
+    background: var(--ac);
+    opacity: .55;
+    z-index: 2;
+    transform: rotate(38deg) translate3d(calc((var(--lp) - .5)*90cqw), 0, 0);
+  }
+
+  /* Crosshair */
+  #asc-vm .cx {
+    position: absolute;
+    left: 60cqw;
+    top: 50%;
+    width: 30cqw;
+    height: 30cqw;
+    margin: -15cqw 0 0 -15cqw;
+    z-index: 1;
+    transform: scale(calc(.55 + var(--lp)*.45)) rotate(calc(var(--lp)*40deg));
+  }
+
+  #asc-vm .cx i {
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--ac);
+    border-radius: 50%;
+  }
+
+  #asc-vm .cx i:nth-child(2) {
+    inset: 8cqw;
+  }
+
+  #asc-vm .cx i:nth-child(3) {
+    inset: 13.4cqw;
+    border-radius: 0;
+    border-width: 0;
+    border-top: 1px solid var(--ac);
+  }
+
+  #asc-vm .cx::before,
+  #asc-vm .cx::after {
+    content: "";
+    position: absolute;
+    background: var(--ac);
+  }
+
+  #asc-vm .cx::before {
+    left: -4cqw;
+    right: -4cqw;
+    top: 50%;
+    height: 1px;
+  }
+
+  #asc-vm .cx::after {
+    top: -4cqw;
+    bottom: -4cqw;
+    left: 50%;
+    width: 1px;
+  }
+
+  #asc-vm .tag {
+    position: absolute;
+    left: 67cqw;
+    top: 30%;
+    font-size: .95cqw;
+    font-weight: 800;
+    letter-spacing: .22em;
+    color: var(--ac);
+    text-transform: uppercase;
     z-index: 2;
   }
 
-  /* Section Header */
-  #asc-visi-misi .asc-vm-header {
-    text-align: center;
-    max-width: 760px;
-    margin: 0 auto 50px;
-  }
-  #asc-visi-misi .asc-vm-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 16px;
-    background: rgba(2, 132, 199, 0.08);
-    border: 1px solid rgba(2, 132, 199, 0.2);
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 700;
-    color: #0284c7;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 16px;
-  }
-  #asc-visi-misi .asc-vm-title {
-    font-size: 40px;
-    font-weight: 800;
-    color: #0f172a;
-    line-height: 1.2;
-    margin-bottom: 16px;
-  }
-  #asc-visi-misi .asc-vm-title span {
-    background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  #asc-visi-misi .asc-vm-subtitle {
-    font-size: 16px;
-    color: #64748b;
-    line-height: 1.6;
-  }
-
-  /* =========================================================================
-     VISI CARD (HERO HIGHLIGHT DENGAN 3D GLOW)
-     ========================================================================= */
-  #asc-visi-misi .asc-visi-hero {
-    background: linear-gradient(135deg, #0284c7 0%, #0369a1 40%, #0f172a 100%);
-    border-radius: 24px;
-    padding: 44px;
-    color: #ffffff;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 25px 50px -12px rgba(2, 132, 199, 0.35);
-    margin-bottom: 40px;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-  }
-  #asc-visi-misi .asc-visi-hero:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 30px 60px -10px rgba(2, 132, 199, 0.45);
-  }
-
-  /* Background Glow Orbs */
-  #asc-visi-misi .asc-visi-hero::before {
-    content: '';
+  #asc-vm .hint {
     position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 450px;
-    height: 450px;
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.4) 0%, rgba(56, 189, 248, 0) 70%);
+    left: 50%;
+    bottom: 8cqh;
+    transform: translateX(-50%);
+    z-index: 4;
+    font-size: 1.1cqw;
+    font-weight: 800;
+    letter-spacing: .25em;
+    color: var(--fg);
+    opacity: calc(1 - var(--lp)*5);
+  }
+
+  /* Bacaan: cincin Iman-Islam-Ihsan, alur Membaca-Memahami-Mengamalkan, penanda misi */
+  #asc-vm .vm-txt.w50 {
+    right: 50cqw;
+  }
+
+  #asc-vm .rg {
+    position: absolute;
+    left: 75cqw;
+    top: 50%;
+    width: 38cqw;
+    height: 38cqw;
+    margin: -19cqw 0 0 -19cqw;
+    z-index: 2;
+  }
+
+  #asc-vm .rg::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1.3cqw;
+    height: 1.3cqw;
+    margin: -.65cqw 0 0 -.65cqw;
     border-radius: 50%;
-    pointer-events: none;
+    background: var(--ac);
   }
-  #asc-visi-misi .asc-visi-hero::after {
-    content: 'القرآن';
+
+  #asc-vm .rg i {
+    --o: clamp(0, calc((var(--lp) - var(--t))*9), 1);
     position: absolute;
-    right: 25px;
-    bottom: -30px;
-    font-family: 'Amiri', serif;
-    font-size: 180px;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.04);
-    line-height: 1;
-    pointer-events: none;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    border: .2cqw solid var(--ac);
+    opacity: var(--o);
+    background: radial-gradient(closest-side, transparent 70%, rgba(56, 189, 248, .1));
+    transform: translate(-50%, -50%) scale(calc(.6 + var(--o)*.4));
   }
 
-  #asc-visi-misi .asc-visi-label {
-    display: inline-block;
-    padding: 6px 14px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(8px);
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
+  #asc-vm .rg em {
+    position: absolute;
+    left: 50%;
+    top: -.8cqw;
+    transform: translate(-50%, -50%);
+    padding: .3cqw 1cqw;
+    background: var(--bg);
+    font-style: normal;
+    font-size: 1.25cqw;
+    font-weight: 800;
+    letter-spacing: .22em;
     text-transform: uppercase;
-    color: #7dd3fc;
-    margin-bottom: 20px;
-  }
-  #asc-visi-misi .asc-visi-quote {
-    font-size: 32px;
-    font-weight: 800;
-    line-height: 1.3;
-    max-width: 820px;
-    margin-bottom: 20px;
-    letter-spacing: -0.01em;
-  }
-  #asc-visi-misi .asc-visi-desc {
-    font-size: 16px;
-    color: #e0f2fe;
-    max-width: 750px;
-    line-height: 1.6;
+    color: var(--ac);
   }
 
-  /* =========================================================================
-     MISI GRID (KARTU-KARTU 3D BENTO DENGAN ANIMASI HOVER)
-     ========================================================================= */
-  #asc-visi-misi .asc-misi-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+  #asc-vm .nt {
+    margin-top: 2.2cqw;
+    max-width: 52cqw;
+    padding-left: 1.6cqw;
+    border-left: .3cqw solid var(--ac);
+    font-size: 1.9cqw;
+    line-height: 1.55;
+    font-style: italic;
   }
-  #asc-visi-misi .asc-misi-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 20px;
-    padding: 30px 24px;
-    position: relative;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -2px rgba(0, 0, 0, 0.02);
+
+  #asc-vm .fl {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  #asc-visi-misi .asc-misi-card:hover {
-    transform: translateY(-8px);
-    border-color: #38bdf8;
-    box-shadow: 0 20px 35px -5px rgba(2, 132, 199, 0.12);
-  }
-
-  /* Nomor Urut Misi */
-  #asc-visi-misi .asc-misi-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  #asc-visi-misi .asc-misi-num {
-    width: 44px;
-    height: 44px;
-    border-radius: 14px;
-    background: #f0f9ff;
-    color: #0284c7;
-    font-size: 18px;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #bae6fd;
-    transition: all 0.3s ease;
-  }
-  #asc-visi-misi .asc-misi-card:hover .asc-misi-num {
-    background: #0284c7;
-    color: #ffffff;
-    transform: scale(1.08) rotate(4deg);
-  }
-
-  #asc-visi-misi .asc-misi-icon {
-    color: #94a3b8;
-    transition: color 0.3s ease;
-  }
-  #asc-visi-misi .asc-misi-card:hover .asc-misi-icon {
-    color: #0284c7;
-  }
-
-  #asc-visi-misi .asc-misi-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #0f172a;
-    line-height: 1.4;
-    margin-bottom: 12px;
-  }
-  #asc-visi-misi .asc-misi-body {
-    font-size: 14px;
-    color: #64748b;
-    line-height: 1.6;
-  }
-
-  /* Card span khusus untuk penataan rapi 5 poin */
-  #asc-visi-misi .asc-misi-card.asc-span-2 {
-    grid-column: span 1;
-  }
-
-  /* CORE VALUES BAR */
-  #asc-visi-misi .asc-values-bar {
-    margin-top: 40px;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 18px;
-    padding: 24px 30px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
     flex-wrap: wrap;
-    gap: 20px;
-  }
-  #asc-visi-misi .asc-value-item {
-    display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 1.1cqw;
+    margin-top: 3cqw;
   }
-  #asc-visi-misi .asc-val-dot {
-    width: 10px;
-    height: 10px;
+
+  #asc-vm .ch {
+    padding: .9cqw 1.9cqw;
+    border-radius: 999px;
+    border: .2cqw solid var(--ac);
+    background: rgba(2, 132, 199, .1);
+    font-size: 1.5cqw;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  #asc-vm .ar {
+    font-size: 1.8cqw;
+    font-weight: 800;
+    color: var(--ac);
+  }
+
+  #asc-vm .pg {
+    display: flex;
+    gap: .7cqw;
+    margin-top: 2.8cqw;
+  }
+
+  #asc-vm .pg i {
+    width: 5cqw;
+    height: .45cqw;
+    border-radius: 1cqw;
+    background: var(--fg);
+    opacity: .28;
+  }
+
+  #asc-vm .pg i.on {
+    background: var(--ac);
+    opacity: 1;
+  }
+
+  /* Waveform */
+  #asc-vm .wv {
+    position: absolute;
+    left: 8cqw;
+    right: 8cqw;
+    top: 68%;
+    height: 14cqh;
+    z-index: 2;
+  }
+
+  #asc-vm .wv::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    background: var(--fg);
+    opacity: .5;
+  }
+
+  #asc-vm .wv b {
+    position: absolute;
+    top: 50%;
+    width: 1px;
+    background: var(--ac);
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+
+  #asc-vm .wv u {
+    position: absolute;
+    top: -10%;
+    height: 120%;
+    width: 1px;
+    background: var(--ac);
+  }
+
+  /* HUD */
+  #asc-vm .vm-hud {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    color: var(--hl);
+    transition: color .3s;
+  }
+
+  #asc-vm .c {
+    position: absolute;
+    width: 2.4cqw;
+    height: 2.4cqw;
+    border: 0 solid var(--hl);
+    transition: border-color .3s;
+  }
+
+  #asc-vm .c.tl {
+    left: 1.8cqw;
+    top: 3.2cqw;
+    border-width: 1px 0 0 1px;
+  }
+
+  #asc-vm .c.tr {
+    right: 1.8cqw;
+    top: 3.2cqw;
+    border-width: 1px 1px 0 0;
+  }
+
+  #asc-vm .c.bl {
+    left: 1.8cqw;
+    bottom: 3.2cqw;
+    border-width: 0 0 1px 1px;
+  }
+
+  #asc-vm .c.br {
+    right: 1.8cqw;
+    bottom: 3.2cqw;
+    border-width: 0 1px 1px 0;
+  }
+
+  #asc-vm .chip {
+    position: absolute;
+    padding: .35cqw .8cqw;
+    font-size: .85cqw;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    background: var(--cb);
+    color: var(--cf);
+    transition: background .3s, color .3s;
+  }
+
+  #asc-vm .chip.tl {
+    left: 3.4cqw;
+    top: 4cqw;
+  }
+
+  #asc-vm .chip.tr {
+    right: 3.4cqw;
+    top: 4cqw;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #asc-vm .chip.bl {
+    left: 3.4cqw;
+    bottom: 4cqw;
+  }
+
+  #asc-vm .dots {
+    position: absolute;
+    right: 3.6cqw;
+    bottom: 4.1cqw;
+    display: flex;
+    gap: .5cqw;
+  }
+
+  #asc-vm .dots b {
+    width: .7cqw;
+    height: .7cqw;
     border-radius: 50%;
-    background: #0284c7;
-    box-shadow: 0 0 10px rgba(2, 132, 199, 0.5);
-  }
-  #asc-visi-misi .asc-val-text {
-    font-size: 15px;
-    font-weight: 700;
-    color: #334155;
+    border: 1px solid var(--hl);
   }
 
-  /* RESPONSIVE (Mobile & Tablet) */
-  @media (max-width: 992px) {
-    #asc-visi-misi {
-      padding: 50px 16px 60px;
+  #asc-vm .dots b.on {
+    background: var(--hl);
+  }
+
+  /* Mobile: frame potret */
+  @media (max-width:700px) {
+    #asc-vm .vm-frame {
+      aspect-ratio: 4/5;
+      width: min(94vw, calc((100svh - 40px)*.8));
+      border-radius: 14px;
     }
-    #asc-visi-misi .asc-visi-quote {
-      font-size: 26px;
+
+    #asc-vm .vm-txt {
+      left: 7cqw;
+      right: 7cqw;
     }
-    #asc-visi-misi .asc-misi-grid {
-      grid-template-columns: repeat(2, 1fr);
+
+    #asc-vm .vm-h {
+      font-size: 15cqw;
+    }
+
+    #asc-vm .vm-h.sm {
+      font-size: 12cqw;
+    }
+
+    #asc-vm .vm-p {
+      font-size: 4.2cqw;
+      max-width: none;
+      margin-top: 4cqw;
+    }
+
+    #asc-vm .k {
+      font-size: 2.6cqw;
+      margin-bottom: 4cqw;
+      padding: 1cqw 2.2cqw;
+    }
+
+    #asc-vm .gh {
+      font-size: 50cqh;
+    }
+
+    #asc-vm .cx {
+      left: 50%;
+      top: 30%;
+      width: 60cqw;
+      height: 60cqw;
+      margin: -30cqw 0 0 -30cqw;
+      opacity: .6;
+    }
+
+    #asc-vm .cx i:nth-child(2) {
+      inset: 16cqw;
+    }
+
+    #asc-vm .tag {
+      display: none;
+    }
+
+    #asc-vm .hint {
+      font-size: 2.6cqw;
+    }
+
+    #asc-vm .chip {
+      font-size: 2cqw;
+      padding: .8cqw 1.8cqw;
+    }
+
+    #asc-vm .chip.tl {
+      left: 6cqw;
+      top: 7.5cqw;
+    }
+
+    #asc-vm .chip.tr {
+      right: 6cqw;
+      top: 7.5cqw;
+    }
+
+    #asc-vm .chip.bl {
+      left: 6cqw;
+      bottom: 7.5cqw;
+    }
+
+    #asc-vm .dots {
+      right: 6cqw;
+      bottom: 8cqw;
+      gap: 1.2cqw;
+    }
+
+    #asc-vm .dots b {
+      width: 1.8cqw;
+      height: 1.8cqw;
+    }
+
+    #asc-vm .c {
+      width: 6cqw;
+      height: 6cqw;
+    }
+
+    #asc-vm .c.tl,
+    #asc-vm .c.tr {
+      top: 4.5cqw;
+    }
+
+    #asc-vm .c.bl,
+    #asc-vm .c.br {
+      bottom: 4.5cqw;
+    }
+
+    #asc-vm .c.tl,
+    #asc-vm .c.bl {
+      left: 3.5cqw;
+    }
+
+    #asc-vm .c.tr,
+    #asc-vm .c.br {
+      right: 3.5cqw;
+    }
+
+    #asc-vm .wv {
+      left: 7cqw;
+      right: 7cqw;
+      top: 72%;
     }
   }
 
-  @media (max-width: 640px) {
-    #asc-visi-misi {
-      border-radius: 16px;
-      padding: 40px 14px 50px;
+  @media (max-width:700px) {
+    #asc-vm .vm-txt.low {
+      top: auto;
+      bottom: 13cqw;
+      transform: none;
     }
-    #asc-visi-misi .asc-vm-title {
-      font-size: 28px;
+
+    #asc-vm .vm-txt.w50 {
+      right: 7cqw;
     }
-    #asc-visi-misi .asc-visi-hero {
-      padding: 30px 20px;
+
+    #asc-vm .rg {
+      left: 50%;
+      top: 30%;
+      width: 44cqw;
+      height: 44cqw;
+      margin: -22cqw 0 0 -22cqw;
     }
-    #asc-visi-misi .asc-visi-quote {
-      font-size: 22px;
+
+    #asc-vm .rg em {
+      font-size: 2.6cqw;
+      top: -1.4cqw;
     }
-    #asc-visi-misi .asc-misi-grid {
-      grid-template-columns: 1fr;
+
+    #asc-vm .nt {
+      font-size: 3.6cqw;
+      margin-top: 2.6cqw;
+      padding-left: 2.6cqw;
+      max-width: none;
+      border-left-width: .6cqw;
     }
-    #asc-visi-misi .asc-values-bar {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 20px;
+
+    #asc-vm .fl {
+      gap: 1.6cqw;
+      margin-top: 4cqw;
+    }
+
+    #asc-vm .ch {
+      font-size: 2.7cqw;
+      padding: 1.4cqw 2.6cqw;
+    }
+
+    #asc-vm .ar {
+      font-size: 3.2cqw;
+    }
+
+    #asc-vm .pg {
+      gap: 1.4cqw;
+      margin-top: 4cqw;
+    }
+
+    #asc-vm .pg i {
+      width: 9cqw;
+      height: .9cqw;
+    }
+
+    #asc-vm .vm-h.sm {
+      font-size: 11.5cqw;
+    }
+  }
+
+  /* Gerak dikurangi: tampil sebagai kartu bertumpuk biasa */
+  #asc-vm.vm-static {
+    height: auto;
+    padding: 48px 0;
+  }
+
+  #asc-vm.vm-static .vm-pin {
+    position: relative;
+    height: auto;
+    display: block;
+  }
+
+  #asc-vm.vm-static .vm-frame {
+    width: min(94vw, 1100px);
+    aspect-ratio: auto;
+    margin: 0 auto;
+    background: none;
+    box-shadow: none;
+    overflow: visible;
+    container-type: normal;
+  }
+
+  #asc-vm.vm-static .rg {
+    opacity: 1;
+  }
+
+  #asc-vm.vm-static .rg i {
+    --o: 1;
+  }
+
+  #asc-vm.vm-static .vm-s {
+    position: relative;
+    aspect-ratio: 16/9;
+    margin-bottom: 16px;
+    border-radius: 16px;
+    clip-path: none !important;
+    visibility: visible !important;
+  }
+
+  #asc-vm.vm-static .vm-hud,
+  #asc-vm.vm-static .hint {
+    display: none;
+  }
+
+  @media (max-width:700px) {
+    #asc-vm.vm-static .vm-s {
+      aspect-ratio: 4/5;
     }
   }
 </style>
 
-<!-- =========================================================================
-     STRUKTUR HTML SECTION 02: VISI & MISI
-     ========================================================================= -->
-<div id="asc-visi-misi">
-  <div class="asc-vm-container">
-    
-    <!-- Section Title -->
-    <div class="asc-vm-header">
-      <div class="asc-vm-tag">Arah & Komitmen</div>
-      <h2 class="asc-vm-title">Visi & <span>Misi Organisasi</span></h2>
-      <p class="asc-vm-subtitle">
-        Pedoman gerak dan cita-cita luhur Unit Kegiatan Mahasiswa Al-Qur'an Study Club Universitas Negeri Malang dalam membentuk generasi unggul qurani.
-      </p>
-    </div>
+<section id="asc-vm" aria-label="Visi dan Misi UKM ASC">
+  <span id="asc-visi-misi" style="position:relative;top:-90px;display:block;visibility:hidden;height:0;width:0;"></span>
+  <div class="vm-pin">
+    <div class="vm-frame" data-theme="dark">
 
-    <!-- VISI HERO CARD (3D ELEGAN) -->
-    <div class="asc-visi-hero" id="ascVisiCard">
-      <span class="asc-visi-label">Visi Utama UKM ASC</span>
-      <h3 class="asc-visi-quote">
-        “Mencetak Generasi Rabbani Berjiwa Qurani.”
-      </h3>
-      <p class="asc-visi-desc">
-        Menjadi episentrum pergerakan mahasiswa yang meneladani nilai luhur Al-Qur'an, unggul dalam penguasaan ilmu agama dan teknologi, serta berdedikasi bagi kemajuan sivitas akademika dan masyarakat luas.
-      </p>
-    </div>
+      <!-- 0 · pembuka -->
+      <div class="vm-s" data-theme="dark" data-w="70">
+        <div class="cx"><i></i><i></i><i></i></div><span class="tag">Arah // Tujuan</span>
+        <div class="vm-txt">
+          <h3 class="vm-h">Ke mana kita melangkah?</h3>
+        </div>
+        <span class="hint">SCROLL ↓</span>
+      </div>
 
-    <!-- 5 PILAR MISI (BENTO CARDS) -->
-    <div class="asc-misi-grid">
-      
-      <!-- Misi 1 -->
-      <div class="asc-misi-card" data-tilt-misi>
-        <div>
-          <div class="asc-misi-top">
-            <div class="asc-misi-num">01</div>
-            <div class="asc-misi-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            </div>
-          </div>
-          <h4 class="asc-misi-title">Pengajaran Profesional Berbasis Mahasiswa</h4>
-          <p class="asc-misi-body">
-            Mewujudkan lembaga profesional dalam pengajaran dan penanaman nilai-nilai Al-Qur'an berbasis mahasiswa secara terstruktur, komprehensif, dan berkelanjutan.
-          </p>
+      <!-- 1 · visi (split) -->
+      <div class="vm-s split" data-theme="sky" data-w="85">
+        <div class="gh l">01</div>
+        <div class="vm-txt"><span class="k">Visi</span>
+          <h3 class="vm-h">Mencetak generasi rabbani</h3>
         </div>
       </div>
 
-      <!-- Misi 2 -->
-      <div class="asc-misi-card" data-tilt-misi>
-        <div>
-          <div class="asc-misi-top">
-            <div class="asc-misi-num">02</div>
-            <div class="asc-misi-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            </div>
+      <!-- 2 · visi lanjutan -->
+      <div class="vm-s" data-theme="light" data-w="85">
+        <div class="dg"></div>
+        <div class="vm-txt ctr">
+          <h3 class="vm-h o">Berjiwa</h3>
+          <div class="ln"><span class="band"></span>
+            <h3 class="vm-h">Qur’ani</h3>
           </div>
-          <h4 class="asc-misi-title">Wadah Minat & Bakat Ke-Al-Qur'an-an</h4>
-          <p class="asc-misi-body">
-            Menjadi lembaga yang mewadahi dan memfasilitasi bakat dan minat mahasiswa dalam hal ke-Al-Qur'an-an seperti tilawah, tahfidh, tartil, karya tulis, dan kaligrafi.
-          </p>
         </div>
       </div>
 
-      <!-- Misi 3 -->
-      <div class="asc-misi-card" data-tilt-misi>
-        <div>
-          <div class="asc-misi-top">
-            <div class="asc-misi-num">03</div>
-            <div class="asc-misi-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-          </div>
-          <h4 class="asc-misi-title">Perekat Umat Semua Golongan</h4>
-          <p class="asc-misi-body">
-            Menjadi perekat umat yang berdiri di atas dan untuk semua golongan, menjunjung tinggi ukhuwah islamiyah dan moderasi beragama di lingkungan kampus.
-          </p>
+      <!-- 3 · makna generasi rabbani -->
+      <div class="vm-s" data-theme="dark" data-w="140">
+        <div class="rg"><i style="--t:.16;width:100%;height:100%"><em>Iman</em></i><i
+            style="--t:.28;width:66%;height:66%"><em>Islam</em></i><i
+            style="--t:.40;width:32%;height:32%"><em>Ihsan</em></i></div>
+        <div class="vm-txt w50 low"><span class="k">Makna visi</span>
+          <h3 class="vm-h sm">Generasi Rabbani</h3>
+          <p class="vm-p">Generasi yang menjunjung tinggi nilai-nilai ketuhanan, mencakup iman, Islam, dan ihsan.</p>
         </div>
       </div>
 
-      <!-- Misi 4 -->
-      <div class="asc-misi-card" data-tilt-misi>
-        <div>
-          <div class="asc-misi-top">
-            <div class="asc-misi-num">04</div>
-            <div class="asc-misi-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            </div>
-          </div>
-          <h4 class="asc-misi-title">Kemitraan & Perluasan Jaringan</h4>
-          <p class="asc-misi-body">
-            Menjalin kerja sama sinergis dengan berbagai organisasi dan institusi dalam rangka memperluas jejaring serta memaksimalkan kebermanfaatan program kerja.
-          </p>
+      <!-- 4 · makna berjiwa qur'ani -->
+      <div class="vm-s" data-theme="light" data-w="150">
+        <div class="dg"></div>
+        <div class="vm-txt"><span class="k">Makna visi</span>
+          <h3 class="vm-h sm">Berjiwa Qur’ani</h3>
+          <p class="vm-p">Menjadikan al-Qur’an sebagai pedoman dalam setiap tindakan, meliputi kegiatan membaca,
+            memahami, dan mengamalkan nilai-nilai al-Qur’an.</p>
+          <div class="fl"><span class="ch">Membaca</span><span class="ar">→</span><span class="ch">Memahami</span><span
+              class="ar">→</span><span class="ch">Mengamalkan</span></div>
+          <p class="nt">Berjiwa Qur’ani merupakan esensi dari generasi Rabbani, bukan istilah yang bertentangan.</p>
         </div>
       </div>
 
-      <!-- Misi 5 -->
-      <div class="asc-misi-card" data-tilt-misi>
-        <div>
-          <div class="asc-misi-top">
-            <div class="asc-misi-num">05</div>
-            <div class="asc-misi-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </div>
-          </div>
-          <h4 class="asc-misi-title">Inovasi Syiar & Digitalisasi</h4>
-          <p class="asc-misi-body">
-            Mengembangkan dakwah ke-Al-Qur'an-an yang adaptif terhadap era digital melalui pemanfaatan media kreatif, aplikasi Al-Qur'an, dan teknologi terkini.
-          </p>
+      <!-- 5 · pengantar misi -->
+      <div class="vm-s" data-theme="sky" data-w="70">
+        <div class="gh">02</div>
+        <div class="vm-txt ctr">
+          <h3 class="vm-h">Empat langkah</h3>
+          <h3 class="vm-h o">misi kami</h3>
         </div>
       </div>
 
-      <!-- Kartu Komitmen Nilai -->
-      <div class="asc-misi-card" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-color: #7dd3fc;" data-tilt-misi>
-        <div>
-          <div class="asc-misi-top">
-            <div class="asc-misi-num" style="background:#0284c7; color:#fff;">ASC</div>
-            <div class="asc-misi-icon" style="color:#0284c7;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-          </div>
-          <h4 class="asc-misi-title" style="color:#0369a1;">Komitmen Berkelanjutan</h4>
-          <p class="asc-misi-body" style="color:#334155;">
-            Bertekad melahirkan sarjana-sarjana muslim UM yang tidak hanya cerdas intelektual, namun juga berakar kuat pada nilai-nilai suci Al-Qur'anul Karim.
-          </p>
+      <!-- 6-9 · misi -->
+      <div class="vm-s" data-theme="blue" data-w="120">
+        <div class="gh">01</div>
+        <div class="vm-txt"><span class="k">Misi 01 / 04</span>
+          <h3 class="vm-h sm">Lembaga profesional</h3>
+          <p class="vm-p">Mewujudkan lembaga profesional dalam pengajaran dan penanaman nilai-nilai Al-Qur’an berbasis
+            mahasiswa.</p>
+          <div class="pg"><i class="on"></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="vm-s" data-theme="light" data-w="120">
+        <div class="gh">02</div>
+        <div class="dg"></div>
+        <div class="vm-txt"><span class="k">Misi 02 / 04</span>
+          <h3 class="vm-h sm">Wadah bakat & minat</h3>
+          <p class="vm-p">Menjadi lembaga yang mewadahi dan memfasilitasi bakat dan minat mahasiswa dalam hal
+            ke-Al-Qur’an-an.</p>
+          <div class="pg"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="vm-s" data-theme="dark" data-w="120">
+        <div class="gh">03</div>
+        <div class="vm-txt"><span class="k">Misi 03 / 04</span>
+          <h3 class="vm-h sm">Perekat umat</h3>
+          <p class="vm-p">Menjadi perekat umat yang berdiri di atas dan untuk semua golongan.</p>
+          <div class="pg"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+        </div>
+      </div>
+      <div class="vm-s" data-theme="blue" data-w="120">
+        <div class="gh">04</div>
+        <div class="vm-txt"><span class="k">Misi 04 / 04</span>
+          <h3 class="vm-h sm">Jalin kerja sama</h3>
+          <p class="vm-p">Menjalin kerja sama dengan organisasi lain dalam rangka memperluas jaringan dan memaksimalkan
+            program kerja.</p>
+          <div class="pg"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
         </div>
       </div>
 
-    </div>
+      <!-- 10 · penutup -->
+      <div class="vm-s" data-theme="dark" data-w="100">
+        <div class="vm-txt" style="top:36%">
+          <h3 class="vm-h sm">Generasi rabbani</h3>
+          <h3 class="vm-h sm o">berjiwa qur’ani</h3>
+        </div>
+        <div class="wv"></div>
+      </div>
 
-    <!-- CORE VALUES ROW -->
-    <div class="asc-values-bar">
-      <div class="asc-value-item">
-        <span class="asc-val-dot"></span>
-        <span class="asc-val-text">Rabbani & Berintegritas</span>
-      </div>
-      <div class="asc-value-item">
-        <span class="asc-val-dot"></span>
-        <span class="asc-val-text">Profesional & Terstruktur</span>
-      </div>
-      <div class="asc-value-item">
-        <span class="asc-val-dot"></span>
-        <span class="asc-val-text">Inklusif & Moderat</span>
-      </div>
-      <div class="asc-value-item">
-        <span class="asc-val-dot"></span>
-        <span class="asc-val-text">Sinergis & Kolaboratif</span>
+      <!-- HUD -->
+      <div class="vm-hud" aria-hidden="true">
+        <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+        <span class="chip tl">Visi & Misi // UKM ASC UM</span>
+        <span class="chip tr" id="vmTime">00:00.00</span>
+        <span class="chip bl" id="vmBar">Bar 01 - Beat 1</span>
+        <span class="dots"><b></b><b></b><b></b><b></b></span>
       </div>
     </div>
-
   </div>
-</div>
+</section>
 
-<!-- =========================================================================
-     JAVASCRIPT INTERAKTIF (3D CARD TILT FOR MISI CARDS)
-     ========================================================================= -->
 <script>
-  (function() {
-    const cards = document.querySelectorAll('#asc-visi-misi [data-tilt-misi]');
-    cards.forEach(card => {
-      card.addEventListener('mousemove', function(e) {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -8;
-        const rotateY = ((x - centerX) / centerX) * 8;
-        
-        card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+  (function () {
+    var root = document.getElementById('asc-vm'); if (!root) return;
+    var frame = root.querySelector('.vm-frame'), scenes = [].slice.call(root.querySelectorAll('.vm-s')), N = scenes.length;
+    var tEl = document.getElementById('vmTime'), bEl = document.getElementById('vmBar'), dots = [].slice.call(root.querySelectorAll('.dots b'));
+
+    /* Kumpulkan unit animasi tiap adegan (urut sesuai dokumen): label, kata judul, paragraf, penanda */
+    scenes.forEach(function (s) {
+      var u = [];
+      [].forEach.call(s.querySelectorAll('.k,.vm-h,.vm-p,.nt,.ch,.ar,.pg'), function (e) {
+        if (e.classList.contains('vm-h')) {
+          e.innerHTML = e.textContent.trim().split(/\s+/).map(function (w) { return '<span class="w">' + w.replace(/&/g, '&') + '</span>'; }).join(' ');
+          u = u.concat([].slice.call(e.children));
+        } else u.push(e);
       });
-      card.addEventListener('mouseleave', function() {
-        card.style.transform = '';
-      });
+      s._u = u; s._w = +s.dataset.w;
     });
+
+    /* Waveform penutup */
+    var wv = root.querySelector('.wv'), ticks = [], head;
+    for (var i = 0; i < 30; i++) { var b = document.createElement('b'); b.style.left = (i / 29 * 100) + '%'; b.style.height = (18 + ((i * 37) % 7) * 13) + '%'; wv.appendChild(b); ticks.push(b); }
+    head = document.createElement('u'); wv.appendChild(head);
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      root.classList.add('vm-static'); ticks.forEach(function (t) { t.style.opacity = 1; }); head.style.display = 'none'; return;
+    }
+
+    /* Pastikan parent WordPress tidak memblokir position: sticky */
+    var p = root.parentElement, n = 0;
+    while (p && p !== document.documentElement && n++ < 20) {
+      var cs = getComputedStyle(p);
+      if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) p.style.setProperty('overflow', 'visible', 'important');
+      p = p.parentElement;
+    }
+
+    function clamp(x) { return Math.max(0, Math.min(1, x)); }
+    function ease(t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+    function pad(n, l) { n = '' + n; while (n.length < (l || 2)) n = '0' + n; return n; }
+    function wipe(i, r) {
+      var v = ((1 - r) * 100).toFixed(2) + '%';
+      return ['inset(0 0 ' + v + ' 0)', 'inset(0 0 0 ' + v + ')', 'inset(' + v + ' 0 0 0)', 'inset(0 ' + v + ' 0 0)'][i % 4];
+    }
+
+    /* Garis waktu: tiap adegan punya panjang scroll sendiri (data-w, satuan vh).
+    Adegan yang banyak teksnya dibuat lebih panjang agar nyaman dibaca. */
+    var U = 0, total = 0;
+    function geom() {
+      U = window.innerHeight / 100; var c = 0;
+      scenes.forEach(function (s) { s._st = c; s._ln = s._w * U; c += s._ln; });
+      total = c; root.style.height = (window.innerHeight + total) + 'px';
+    }
+    var target = 0, cur = 0, raf = 0, last = 0, lastTheme = '';
+    function read() { var r = root.getBoundingClientRect(); return Math.max(0, Math.min(total, -r.top)); }
+
+    function render(y) {
+      var theme = 'dark';
+      scenes.forEach(function (s, i) {
+        var lp = y - s._st, clip = 'none', vis = true;
+        if (i > 0) { var r = ease(clamp(lp / (22 * U))); clip = r >= 1 ? 'none' : wipe(i, r); vis = lp > 0; }
+        if (y > s._st + s._ln + 22 * U) vis = false; /* tertutup adegan berikutnya */
+        s.style.visibility = vis ? 'visible' : 'hidden'; if (!vis) return;
+        s.style.clipPath = clip;
+        var L = clamp(lp / s._ln); s.style.setProperty('--lp', L.toFixed(4));
+        if (lp > 10 * U) theme = s.dataset.theme;
+        if (s.classList.contains('split')) s.style.setProperty('--sp', (36 + ease(clamp((lp - 8 * U) / (60 * U))) * 30).toFixed(2) + '%');
+
+        /* unit muncul berurutan, lalu bertahan agar sempat dibaca */
+        var u = s._u, m = u.length, base = i ? 12 * U : 2 * U;
+        for (var k = 0; k < m; k++) {
+          var v = clamp((lp - (base + k * 2.4 * U)) / (7 * U)), el = u[k];
+          el.style.opacity = v.toFixed(3);
+          el.style.transform = 'translate3d(0,' + ((1 - v) * 26).toFixed(1) + 'px,0)';
+        }
+        if (s.contains(wv)) {
+          ticks.forEach(function (t, k) { t.style.opacity = clamp((L - (.2 + .5 * k / 30)) / .04); });
+          head.style.left = (clamp((L - .2) / .55) * 100) + '%';
+        }
+      });
+      if (theme !== lastTheme) { lastTheme = theme; frame.setAttribute('data-theme', theme); }
+      var pr = total ? y / total : 0, sec = pr * 202, mm = Math.floor(sec / 60), ss = Math.floor(sec % 60), cc = Math.floor((sec % 1) * 100);
+      tEl.textContent = pad(mm) + ':' + pad(ss) + '.' + pad(cc);
+      var bt = Math.floor(pr * 64);
+      bEl.textContent = 'Bar ' + pad(Math.floor(bt / 4) + 1) + ' - Beat ' + (bt % 4 + 1);
+      dots.forEach(function (d, k) { d.classList.toggle('on', k === bt % 4); });
+    }
+
+    function frameLoop(now) {
+      var dt = Math.min(.05, (now - last) / 1000 || .016); last = now;
+      cur += (target - cur) * (1 - Math.exp(-dt * 8));
+      if (Math.abs(target - cur) < .4) cur = target;
+      render(cur);
+      raf = cur === target ? 0 : requestAnimationFrame(frameLoop);
+    }
+    function onScroll() { target = read(); if (!raf) { last = performance.now(); raf = requestAnimationFrame(frameLoop); } }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function () { geom(); target = cur = read(); render(cur); }, { passive: true });
+    window.addEventListener('load', function () { geom(); target = cur = read(); render(cur); });
+    geom(); target = cur = read(); render(cur);
   })();
 </script>

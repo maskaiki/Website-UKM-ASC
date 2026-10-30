@@ -1,0 +1,237 @@
+<!-- =====================================================================
+  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 03: SEJARAH ASC  (VERSI 2: PERJALANAN)
+  Konsep: sebuah titik menyusuri jalur sejarah ASC. Jalur naik-turun menggambarkan perjalanannya
+  (naik saat tumbuh, turun saat vakum 2012, lalu melesat ke 2013). Kamera mengikuti titik.
+  Cara pakai di WordPress (Elementor / Divi):
+  1. Widget "Custom HTML" di container FULL WIDTH, paste seluruh file ini.
+  2. Elementor: Container > Advanced > Overflow = Default (agar efek "menempel" jalan).
+  3. Ganti teks / foto: cari "DAFTAR BAB SEJARAH" di bagian script.
+====================================================================== -->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+  #asc-sj{ --ice:#e0f2fe; --sky:#38bdf8; --m:.3; position:relative; width:100%; height:780vh; background:#0b1220; color:#fff;
+    font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif; }
+  #asc-sj *{ box-sizing:border-box; margin:0; padding:0; }
+  #asc-sj .sj-st{ position:sticky; top:0; height:100vh; height:100svh; overflow:clip; }
+  /* cahaya latar: makin terang saat ASC makin berkembang */
+  #asc-sj .sj-glow{ position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(ellipse 70% 60% at 38% 32%,rgba(56,189,248,calc(.06 + var(--m)*.34)),transparent 70%),
+               linear-gradient(180deg,rgba(2,132,199,calc(var(--m)*.22)),transparent 55%); }
+
+  /* Kepala + penunjuk alur */
+  #asc-sj .sj-top{ position:absolute; left:4vw; right:4vw; top:3.5vh; z-index:6; display:flex; justify-content:space-between; align-items:flex-end; gap:24px; }
+  #asc-sj .sj-tag{ display:inline-block; padding:5px 13px; border:1px solid rgba(186,230,253,.35); border-radius:999px; background:rgba(2,132,199,.14);
+    font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#bae6fd; margin-bottom:8px; }
+  #asc-sj h2{ font-size:clamp(22px,2.6vw,40px); font-weight:600; letter-spacing:-.035em; line-height:1; color:var(--ice); }
+  #asc-sj .sj-ruler{ position:relative; display:grid; grid-template-columns:repeat(6,1fr); width:min(620px,50vw); padding-bottom:14px; }
+  #asc-sj .sj-ruler::before{ content:""; position:absolute; left:0; right:0; bottom:0; height:2px; background:rgba(186,230,253,.16); }
+  #asc-sj .sj-fill{ position:absolute; left:0; bottom:0; height:2px; width:8%; background:linear-gradient(90deg,#0284c7,#38bdf8); }
+  #asc-sj .sj-rb{ all:unset; cursor:pointer; position:relative; text-align:center; font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#64748b; padding:0 2px 12px; transition:color .3s; }
+  #asc-sj .sj-rb::after{ content:""; position:absolute; left:50%; bottom:-4px; width:9px; height:9px; margin-left:-4.5px; border-radius:50%; background:#0b1220; border:2px solid #475569; transition:.3s; }
+  #asc-sj .sj-rb.on{ color:var(--ice); } #asc-sj .sj-rb.on::after,#asc-sj .sj-rb.done::after{ background:var(--sky); border-color:var(--sky); }
+  #asc-sj .sj-rb:focus-visible{ outline:2px solid var(--sky); outline-offset:2px; }
+
+  /* Dunia: jalur + penanda */
+  #asc-sj .sj-world{ position:absolute; left:0; right:0; top:15%; height:46%; }
+  #asc-sj .sj-far,#asc-sj .sj-near{ position:absolute; left:0; top:0; height:100%; will-change:transform; }
+  #asc-sj .sj-far span{ position:absolute; top:50%; transform:translate(-50%,-50%); white-space:nowrap; font-weight:500; letter-spacing:-.05em; line-height:1; color:rgba(224,242,254,.055); }
+  #asc-sj .sj-near svg{ position:absolute; left:0; top:0; overflow:visible; }
+  #asc-sj .sj-base{ fill:none; stroke:rgba(186,230,253,.16); stroke-width:3; stroke-linecap:round; stroke-dasharray:2 9; }
+  #asc-sj .sj-prog{ fill:none; stroke:url(#sjG); stroke-width:4; stroke-linecap:round; }
+  #asc-sj .sj-dot{ fill:#0b1220; stroke:#475569; stroke-width:3; transition:stroke .3s,fill .3s; } #asc-sj .sj-dot.on{ fill:#38bdf8; stroke:#e0f2fe; }
+  #asc-sj .sj-ring{ fill:rgba(56,189,248,.18); stroke:#e0f2fe; stroke-width:2; } #asc-sj .sj-core{ fill:#e0f2fe; }
+  #asc-sj .sj-chip{ position:absolute; transform:translate(-50%,-100%); text-align:center; white-space:nowrap; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#64748b; transition:color .3s; }
+  #asc-sj .sj-chip b{ display:block; font-size:18px; letter-spacing:-.02em; margin-bottom:2px; } #asc-sj .sj-chip.on{ color:var(--ice); }
+
+  /* Panel cerita */
+  #asc-sj .sj-panel{ position:absolute; left:4vw; right:4vw; bottom:5vh; height:34%; z-index:5; }
+  #asc-sj .sj-p{ position:absolute; inset:0; display:grid; grid-template-columns:5fr 7fr; gap:4vw; align-items:center; opacity:0; visibility:hidden; will-change:transform,opacity; }
+  #asc-sj .sj-big{ font-size:clamp(64px,11.5vw,190px); font-weight:500; letter-spacing:-.05em; line-height:.9; color:var(--ice); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  #asc-sj .sj-ix{ display:block; font-size:12px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--sky); margin-bottom:8px; }
+  #asc-sj .sj-info{ display:flex; gap:20px; align-items:flex-start; }
+  #asc-sj .sj-ph{ flex:none; width:clamp(90px,9vw,150px); aspect-ratio:4/5; border-radius:8px; background:center/cover no-repeat; box-shadow:0 14px 30px -10px rgba(0,0,0,.6); }
+  #asc-sj .sj-info h3{ font-size:clamp(20px,2.2vw,34px); font-weight:700; letter-spacing:-.02em; line-height:1.15; margin-bottom:10px; color:#fff; }
+  #asc-sj .sj-info p{ font-size:clamp(13px,1.1vw,17px); line-height:1.7; color:#cbd5e1; max-width:640px; }
+
+  /* Pembuka & penutup */
+  #asc-sj .sj-ov{ position:absolute; inset:0; z-index:7; display:flex; flex-direction:column; justify-content:center; padding:0 4vw; pointer-events:none; }
+  #asc-sj .sj-ov.in{ background:linear-gradient(90deg,rgba(11,18,32,.92),rgba(11,18,32,.5) 60%,transparent); }
+  #asc-sj .sj-ov.out{ align-items:center; text-align:center; background:radial-gradient(ellipse at 50% 50%,rgba(11,18,32,.9),rgba(11,18,32,.6) 70%,transparent); opacity:0; }
+  #asc-sj .sj-ov h3{ font-size:min(15vw,32vh); font-weight:500; letter-spacing:-.045em; line-height:.92; color:var(--ice); } #asc-sj .sj-ov h3 i{ font-style:normal; color:var(--sky); }
+  #asc-sj .sj-ov.out h3{ font-size:min(10vw,24vh); }
+  #asc-sj .sj-ov p{ max-width:520px; margin-top:4vh; font-size:16px; line-height:1.7; color:#cbd5e1; }
+  #asc-sj .sj-ov small{ margin-top:5vh; font-size:12px; font-weight:700; letter-spacing:.22em; color:#bae6fd; text-transform:uppercase; }
+  #asc-sj .sj-ov.out small{ letter-spacing:.06em; color:#94a3b8; text-transform:none; font-weight:500; }
+
+  @media (max-width:700px){
+    #asc-sj{ height:820vh; }
+    #asc-sj .sj-top{ flex-direction:column; align-items:stretch; gap:12px; top:2.5vh; }
+    #asc-sj .sj-ruler{ width:100%; } #asc-sj .sj-rb{ font-size:0; padding-bottom:8px; } #asc-sj .sj-rb.on{ font-size:10px; }
+    #asc-sj .sj-world{ top:19%; height:34%; }
+    #asc-sj .sj-panel{ height:41%; bottom:3vh; }
+    #asc-sj .sj-p{ grid-template-columns:1fr; gap:6px; align-content:center; } #asc-sj .sj-big{ font-size:clamp(52px,17vw,80px); }
+    #asc-sj .sj-ph{ display:none; } #asc-sj .sj-info p{ font-size:13px; line-height:1.55; } #asc-sj .sj-info h3{ font-size:19px; margin-bottom:6px; }
+    #asc-sj .sj-chip{ font-size:9.5px; } #asc-sj .sj-chip b{ font-size:15px; } #asc-sj .sj-ov p{ font-size:14px; }
+  }
+
+  /* Gerak dikurangi: daftar bab biasa */
+  #asc-sj.sj-static{ height:auto; } #asc-sj.sj-static .sj-st{ position:relative; height:auto; overflow:visible; padding:56px 4vw; }
+  #asc-sj.sj-static .sj-top{ position:relative; left:auto; right:auto; top:auto; margin-bottom:32px; } #asc-sj.sj-static .sj-ruler,#asc-sj.sj-static .sj-world,#asc-sj.sj-static .sj-glow{ display:none; }
+  #asc-sj.sj-static .sj-panel{ position:relative; inset:auto; height:auto; } #asc-sj.sj-static .sj-p{ position:relative; opacity:1; visibility:visible; margin-bottom:44px; }
+  #asc-sj.sj-static .sj-ov{ display:none; } #asc-sj.sj-static .sj-ph{ display:block; }
+  @media (max-width:700px){ #asc-sj.sj-static .sj-p{ grid-template-columns:1fr; } }
+</style>
+
+<section id="asc-sj" aria-label="Sejarah UKM ASC">
+  <span id="asc-sejarah" style="position:relative;top:-90px;display:block;visibility:hidden;height:0;width:0;"></span>
+  <div class="sj-st">
+    <div class="sj-glow"></div>
+    <div class="sj-top">
+      <div><span class="sj-tag">Al-Quran Study Club &middot; UM</span><h2>Sejarah ASC</h2></div>
+      <nav class="sj-ruler" id="sjRuler" aria-label="Alur sejarah"><i class="sj-fill" id="sjFill"></i></nav>
+    </div>
+
+    <div class="sj-world">
+      <div class="sj-far" id="sjFar"></div>
+      <div class="sj-near" id="sjNear">
+        <svg id="sjSvg" aria-hidden="true">
+          <defs><linearGradient id="sjG" x1="0" x2="1"><stop offset="0" stop-color="#0284c7"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+          <path class="sj-base" id="sjBase"/><path class="sj-prog" id="sjProg"/>
+          <g id="sjDots"></g><g id="sjMk"><circle class="sj-ring" r="16"/><circle class="sj-core" r="6"/></g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sj-panel" id="sjPanel"></div>
+
+    <div class="sj-ov in" id="sjIn">
+      <h3>Sejarah<br><i>ASC</i></h3>
+      <p>Dari ruang rapat LEPPA hingga resmi menjadi Unit Kegiatan Mahasiswa Universitas Negeri Malang: sebuah perjalanan yang dibangun dengan khidmah.</p>
+      <small>Gulir untuk menyusuri jalurnya &darr;</small>
+    </div>
+    <div class="sj-ov out" id="sjOut">
+      <h3>Mengabdi,<br><i>bukan bekerja.</i></h3>
+      <p>Ruh dan nilai berkhidmah kepada Al-Qur’an sejak masa ASC LEPPA hingga menjadi UKM tidak berkurang sedikit pun.</p>
+      <small>Disarikan dari tulisan Ahmad Faisal Ali, Al Khoirot, 10-12-2015.</small>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  /* ============ DAFTAR BAB SEJARAH ============
+     k: jenis angka besar ('y' tahun, 'n' angka berakhiran +, 't' teks) | v: nilai
+     y: tinggi jalur (0 = puncak, 1 = dasar) | m: "cahaya" suasana (0 gelap - 1 terang) | img: URL foto (opsional) */
+  var DATA = [
+    {k:'y',v:2010, c:'MTQ ITS',       h:'Gagasan dari MTQ ITS', y:.62, m:.35, img:'',
+     t:'MTQ regional Jawa Timur 2010 di ITS mempertemukan para pecinta Qur’an Universitas Negeri Malang. Dua minggu pembinaan belum membuahkan hasil berarti, sehingga kafilah dan para pembina sepakat: harus ada wadah pembinaan Al-Qur’an yang intensif.'},
+    {k:'t',v:'MMQ',  c:'Nama pertama',  h:'Berawal di ruang rapat LEPPA', y:.5, m:.5, img:'',
+     t:'Para kafilah berkumpul di LEPPA UM dan menamai wadah ini Multaqo Muhibbil Qur’an (MMQ): terbuka bagi seluruh mahasiswa, netral dari golongan, dengan moto menjadi perekat umat yang berdiri di atas dan untuk semua golongan. Namanya lalu menjadi Al-Quran Study Club (ASC), diketuai Aris Liswanto.'},
+    {k:'n',v:150,   c:'Open house',    h:'Dimulai dari kesederhanaan', y:.36, m:.65, img:'',
+     t:'Pembinaan berjalan tanpa fasilitas dan dana, lalu ASC dilegalkan di bawah LEPPA. Open house pertama dihadiri lebih dari 150 peserta, dibiayai iuran pengurus dengan semangat: harus bisa menghidupkan ASC, jangan mencari hidup di ASC.'},
+    {k:'y',v:2012, c:'Masa vakum',    h:'Bertahan di masa sulit', y:.84, m:.05, img:'',
+     t:'LEPPA dibubarkan dan ketua pertama lulus, sehingga ASC vakum. Hanya pembinaan kaligrafi yang bertahan di Laboratorium Bahasa Arab. Ahmad Syahrul Munir dan Ahmad Faisol bertekad menghidupkannya kembali bersama Alm. Dr. Syafaat.'},
+    {k:'n',v:700,   c:'ASC Al-Hikmah', h:'Bernaung di Masjid Al-Hikmah', y:.5, m:.7, img:'',
+     t:'Dengan restu yayasan, ASC bernaung di Masjid Al-Hikmah dan berganti nama menjadi ASC Al-Hikmah. Open house berikutnya diikuti lebih dari 700 pendaftar, dan ASC dipercaya dosen PAI menjadi pelaksana Bimbingan Baca Al-Qur’an (BBQ).'},
+    {k:'y',v:2013, c:'Resmi UKM',     h:'Diresmikan menjadi UKM', y:.12, m:1, img:'',
+     t:'Kafilah MTQ UM, yang 99% adalah pengurus dan anggota ASC, meraih Juara Umum MTQ Mahasiswa Nasional di Padang. Pada 18 Ramadhan 2013, Rektor UM meresmikan ASC sebagai Unit Kegiatan Mahasiswa: UKM Al-Quran Study Club.'}
+  ];
+  /* ============================================ */
+
+  var root=document.getElementById('asc-sj'); if(!root) return;
+  var N=DATA.length, NS='http://www.w3.org/2000/svg';
+  function $(id){return document.getElementById(id);}
+  function pad(n){return ('0'+n).slice(-2);}
+  function lab(d){ return d.k==='n'?d.v+'+':String(d.v); }
+
+  /* Panel cerita + penanda alur */
+  var panel=$('sjPanel'), ruler=$('sjRuler'), rb=[], ps=[];
+  DATA.forEach(function(d,i){
+    var a=document.createElement('article'); a.className='sj-p';
+    a.innerHTML='<div class="sj-big" aria-label="'+lab(d)+'">'+lab(d)+'</div><div class="sj-info">'+(d.img?'<div class="sj-ph" style="background-image:url(\''+d.img+'\')"></div>':'')+
+      '<div><span class="sj-ix">'+pad(i+1)+' / '+pad(N)+' &middot; '+d.c+'</span><h3>'+d.h+'</h3><p>'+d.t+'</p></div></div>';
+    panel.appendChild(a); ps.push({el:a,big:a.querySelector('.sj-big')});
+    var b=document.createElement('button'); b.type='button'; b.className='sj-rb'; b.textContent=lab(d); b.setAttribute('aria-label','Menuju '+d.h); ruler.appendChild(b); rb.push(b);
+  });
+
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ root.classList.add('sj-static'); return; }
+
+  /* Pastikan parent WordPress tidak memblokir position: sticky */
+  var q=root.parentElement, w=0;
+  while(q && q!==document.documentElement && w++<20){ var cs=getComputedStyle(q);
+    if(/hidden|auto|scroll/.test(cs.overflow+cs.overflowX+cs.overflowY)) q.style.setProperty('overflow','visible','important'); q=q.parentElement; }
+
+  var far=$('sjFar'), near=$('sjNear'), svg=$('sjSvg'), base=$('sjBase'), prog=$('sjProg'), dots=$('sjDots'), mk=$('sjMk'), fill=$('sjFill'), inEl=$('sjIn'), outEl=$('sjOut'), world=root.querySelector('.sj-world');
+  var chips=[], dotEls=[], farEls=[], nodeLen=[], total=1, worldW=0, vw=0, ZH=0, X=[];
+  function clamp(x){return Math.max(0,Math.min(1,x));}
+  function lerp(a,b,t){return a+(b-a)*t;}
+  function hold(u){ var t=clamp((u-.14)/.72); return t*t*(3-2*t); }     /* berhenti sejenak di tiap tonggak */
+
+  /* Bangun jalur (kurva halus melewati semua tonggak) */
+  function build(){
+    vw=window.innerWidth; ZH=world.clientHeight;
+    var dx=Math.max(300,Math.min(640,vw*.5)), x0=vw*.2, pts=[[x0-dx*.9,ZH*.8]];
+    X=[]; DATA.forEach(function(d,i){ X.push(x0+i*dx); pts.push([X[i],ZH*d.y]); });
+    pts.push([X[N-1]+dx*.9,ZH*.08]); worldW=X[N-1]+dx*.9+vw*.3;
+    function seg(k){ var p0=pts[Math.max(0,k-1)],p1=pts[k],p2=pts[k+1],p3=pts[Math.min(pts.length-1,k+2)];
+      return 'C'+(p1[0]+(p2[0]-p0[0])/6)+' '+(p1[1]+(p2[1]-p0[1])/6)+','+(p2[0]-(p3[0]-p1[0])/6)+' '+(p2[1]-(p3[1]-p1[1])/6)+','+p2[0]+' '+p2[1]; }
+    var d='M'+pts[0][0]+' '+pts[0][1], ds=[d];
+    for(var k=0;k<pts.length-1;k++){ d+=seg(k); ds.push(d); }
+    svg.setAttribute('width',worldW); svg.setAttribute('height',ZH); near.style.width=worldW+'px'; far.style.width=worldW+'px';
+    base.setAttribute('d',d); prog.setAttribute('d',d);
+    nodeLen=[]; for(k=1;k<=N;k++){ prog.setAttribute('d',ds[k]); nodeLen.push(prog.getTotalLength()); }
+    prog.setAttribute('d',d); total=prog.getTotalLength(); prog.style.strokeDasharray=total;
+    /* titik tonggak, label, angka latar */
+    dots.innerHTML=''; chips.forEach(function(c){c.remove();}); farEls.forEach(function(c){c.remove();}); chips=[]; dotEls=[]; farEls=[];
+    DATA.forEach(function(dd,i){
+      var c=document.createElementNS(NS,'circle'); c.setAttribute('class','sj-dot'); c.setAttribute('r',8); c.setAttribute('cx',X[i]); c.setAttribute('cy',ZH*dd.y); dots.appendChild(c); dotEls.push(c);
+      var ch=document.createElement('div'); ch.className='sj-chip'; ch.style.left=X[i]+'px'; ch.style.top=(ZH*dd.y-22)+'px'; ch.innerHTML='<b>'+lab(dd)+'</b>'+dd.c; near.appendChild(ch); chips.push(ch);
+      var f=document.createElement('span'); f.textContent=lab(dd); f.style.fontSize=Math.min(ZH*.95,vw*.4)+'px'; f.style.left=(X[i]*.55+vw*.36*.45)+'px'; far.appendChild(f); farEls.push(f);
+    });
+  }
+
+  var ticking=false;
+  function render(){
+    ticking=false;
+    var r=root.getBoundingClientRect(), dd=r.height-window.innerHeight, s=dd>0?clamp(-r.top/dd):0;
+    var j=clamp((s-.06)/.88), raw=j*(N-1), i=Math.min(N-2,Math.floor(raw)), u=raw-i, uu=hold(u), f=i+uu, len;
+    if(s<.06) len=nodeLen[0]*clamp(s/.06);
+    else if(s>.94) len=lerp(nodeLen[N-1],total,clamp((s-.94)/.06));
+    else len=lerp(nodeLen[i],nodeLen[i+1],uu);
+    if(s<.06) f=0; if(s>.94) f=N-1;
+
+    var pt=prog.getPointAtLength(len);
+    prog.style.strokeDashoffset=total-len; mk.setAttribute('transform','translate('+pt.x+','+pt.y+')');
+    var cam=Math.max(0,Math.min(worldW-vw,pt.x-vw*.36));
+    near.style.transform='translate3d('+(-cam)+'px,0,0)'; far.style.transform='translate3d('+(-cam*.55)+'px,0,0)';
+
+    var m=lerp(DATA[Math.floor(f)].m,DATA[Math.min(N-1,Math.floor(f)+1)].m,f-Math.floor(f)); root.style.setProperty('--m',m.toFixed(3));
+    chips.forEach(function(c,k){ var on=f>=k-.05; c.classList.toggle('on',on); dotEls[k].classList.toggle('on',on); });
+
+    var vis=clamp((s-.03)/.04)*(1-clamp((s-.93)/.04));
+    ps.forEach(function(p,k){
+      var d=f-k, o=clamp(1-Math.abs(d)*2.2)*vis;
+      p.el.style.visibility=o>0?'visible':'hidden'; if(o<=0) return;
+      p.el.style.opacity=o.toFixed(3); p.el.style.transform='translate3d(0,'+(-d*34).toFixed(1)+'px,0)';
+      var D=DATA[k], t=clamp((f-(k-.55))/.5);                       /* hitung naik saat tiba di tonggak */
+      p.big.textContent = D.k==='n'?Math.round(D.v*t)+'+' : D.k==='y'?Math.round(D.v-9+9*t) : D.v.slice(0,Math.max(1,Math.ceil(D.v.length*clamp(t*1.3))));
+    });
+    inEl.style.opacity=(1-clamp(s/.05)).toFixed(3); outEl.style.opacity=clamp((s-.94)/.05).toFixed(3);
+    rb.forEach(function(b,k){ var a=Math.round(f)===k; b.classList.toggle('on',a); b.classList.toggle('done',k<Math.round(f)); });
+    fill.style.width=((f+.5)/N*100).toFixed(2)+'%';
+  }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(render); } }
+
+  /* Klik penanda = lompat ke tonggak itu */
+  rb.forEach(function(b,k){ b.addEventListener('click',function(){
+    var r=root.getBoundingClientRect(), top=window.pageYOffset+r.top, dd=r.height-window.innerHeight;
+    window.scrollTo({top:top+(.06+.88*k/(N-1))*dd+(k===N-1?-2:0),behavior:'smooth'}); }); });
+
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',function(){ build(); onScroll(); },{passive:true});
+  window.addEventListener('load',function(){ build(); render(); });
+  build(); render();
+})();
+</script>

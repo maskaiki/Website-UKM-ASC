@@ -1,412 +1,772 @@
 <!-- =====================================================================
-  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 00: HEADER & NAVBAR MODERN
-  Cara Penggunaan di WordPress (Elementor / Divi):
-  1. Buka widget "Text Editor" (pilih tab 'Text' / 'Code') ATAU widget "Custom HTML".
-  2. Copy semua isi file ini (Ctrl+A -> Ctrl+C), lalu paste (Ctrl+V).
-  3. Desain sudah mandiri (Self-Contained) lengkap dengan CSS, HTML, & JS Mobile Menu.
+  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 00: HEADER & FLOATING NAVBAR
+  UI/UX CONCEPT: Ultra-Clean Floating Capsule with Dynamic Scroll Spy
+  AESTHETICS: Sky Blue & Celestial White Glass (Aeline Gen Z Modern)
+  
+  Panduan Penggunaan di WordPress (Elementor / Divi):
+  1. Di Divi: Gunakan module "Code" atau "Fullwidth Code".
+     Di Elementor: Gunakan widget "HTML" atau "Text Editor" (tab Text/Code).
+  2. Salin seluruh isi file ini (Ctrl+A -> Ctrl+C), lalu paste (Ctrl+V).
+  3. Desain 100% Self-Contained dengan Reset Terisolasi (Kebal dari polusi CSS tema WP),
+     Auto Clean-up (mencegah double header), Smooth Scroll Offset, & Mobile Drawer.
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap');
 
-  /* SCOPED WRAPPER HEADER */
-  #asc-header-navbar {
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #1e293b;
-    position: relative;
-    z-index: 9999;
-    width: 100%;
-    margin-bottom: 10px;
+  /* =========================================================================
+     1. FIX OVERFLOW KHUSUS DIVI & ELEMENTOR WORDPRESS
+     ========================================================================= */
+  .et_pb_section,
+  .et_pb_fullwidth_section,
+  .et_pb_row,
+  .et_pb_column,
+  .et_pb_module,
+  .et_pb_code,
+  .et_pb_fullwidth_code,
+  .et_pb_code_inner,
+  .elementor-section,
+  .elementor-column,
+  .elementor-widget-wrap,
+  .elementor-widget {
+    overflow: visible !important;
   }
 
+  /* =========================================================================
+     2. STRICT CSS RESET KHUSUS #asc-header-navbar (KEBAL DARI POLUSI TEMA WORDPRESS)
+     WordPress seringkali memaksa margin pada ul, li, dan header. Reset di bawah
+     menjamin tampilan tetap ramping, rapi, dan presisi di semua tema WordPress.
+     ========================================================================= */
+  #asc-header-navbar,
   #asc-header-navbar * {
-    box-sizing: border-box;
+    box-sizing: border-box !important;
     margin: 0;
     padding: 0;
+    border: 0;
+    outline: none;
+    list-style: none !important;
+    text-decoration: none !important;
+    letter-spacing: normal;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* TOP MINI ANNOUNCEMENT BAR */
-  #asc-header-navbar .asc-topbar {
-    background: linear-gradient(90deg, #0284c7 0%, #0369a1 50%, #1d4ed8 100%);
-    color: #ffffff;
-    font-size: 12px;
-    padding: 8px 20px;
-  }
-  #asc-header-navbar .asc-topbar-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  #asc-header-navbar .asc-topbar-left {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 500;
-  }
-  #asc-header-navbar .asc-topbar-dot {
-    width: 6px;
-    height: 6px;
-    background: #7dd3fc;
-    border-radius: 50%;
-  }
-  #asc-header-navbar .asc-topbar-right {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  #asc-header-navbar .asc-topbar-link {
-    color: #e0f2fe;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    transition: color 0.2s ease;
-  }
-  #asc-header-navbar .asc-topbar-link:hover {
-    color: #ffffff;
-    text-decoration: underline;
+  /* WRAPPER NAVBAR: FLOATING STICKY DENGAN Z-INDEX MAKSIMAL */
+  #asc-header-navbar {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    position: sticky !important;
+    top: 16px !important;
+    z-index: 999999 !important;
+    width: 100% !important;
+    max-width: 1220px !important;
+    margin: 14px auto 0 !important;
+    padding: 0 16px !important;
+    pointer-events: none; /* Biarkan klik di area luar navbar tembus ke bawah */
   }
 
-  /* MAIN NAVBAR WRAPPER */
-  #asc-header-navbar .asc-nav-main {
-    background: rgba(255, 255, 255, 0.94);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(226, 232, 240, 0.85);
-    border-radius: 20px;
-    max-width: 1200px;
-    margin: 12px auto 0;
-    padding: 12px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
-    position: relative;
-    transition: all 0.3s ease;
+  /* Penyesuaian jarak saat Admin login ke WordPress (ada toolbar hitam #wpadminbar) */
+  body.admin-bar #asc-header-navbar {
+    top: 48px !important;
+  }
+  @media screen and (max-width: 782px) {
+    body.admin-bar #asc-header-navbar {
+      top: 60px !important;
+    }
   }
 
-  /* BRAND & LOGO */
-  #asc-header-navbar .asc-brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    text-decoration: none;
+  /* =========================================================================
+     3. FLOATING GLASS CAPSULE (TINGGI TERKUNCI 56PX - ANTI MELEBAR)
+     ========================================================================= */
+  #asc-header-navbar .asc-nav-capsule {
+    pointer-events: auto !important;
+    width: 100% !important;
+    height: 56px !important;
+    max-height: 56px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    background: rgba(255, 255, 255, 0.84) !important;
+    backdrop-filter: blur(24px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.9) !important;
+    border-radius: 999px !important;
+    padding: 0 8px 0 16px !important;
+    box-shadow: 
+      0 10px 30px -5px rgba(2, 132, 199, 0.12),
+      0 2px 6px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+    position: relative !important;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  /* Status saat di-scroll: Sedikit lebih solid & glow halus */
+  #asc-header-navbar .asc-nav-capsule.asc-scrolled {
+    background: rgba(255, 255, 255, 0.94) !important;
+    border-color: rgba(56, 189, 248, 0.35) !important;
+    box-shadow: 
+      0 14px 38px -8px rgba(15, 23, 42, 0.16),
+      0 0 0 1px rgba(56, 189, 248, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+  }
+
+  /* =========================================================================
+     4. BRAND LOGO & TITLE
+     ========================================================================= */
+  #asc-header-navbar .asc-brand-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
   }
   #asc-header-navbar .asc-brand-emblem {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%);
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 16px;
-    letter-spacing: 0.02em;
-    box-shadow: 0 6px 16px -2px rgba(2, 132, 199, 0.4);
-    transition: transform 0.3s ease;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 11px !important;
+    background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%) !important;
+    color: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 13.5px !important;
+    letter-spacing: -0.02em !important;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.35) !important;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    flex-shrink: 0 !important;
   }
-  #asc-header-navbar .asc-brand:hover .asc-brand-emblem {
-    transform: rotate(-6deg) scale(1.05);
+  #asc-header-navbar .asc-brand-btn:hover .asc-brand-emblem {
+    transform: rotate(-8deg) scale(1.08) !important;
   }
-  #asc-header-navbar .asc-brand-text h2 {
-    font-size: 17px;
-    font-weight: 800;
-    color: #0f172a;
-    line-height: 1.15;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  #asc-header-navbar .asc-brand-titles {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    line-height: 1 !important;
   }
-  #asc-header-navbar .asc-brand-badge {
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 7px;
-    border-radius: 999px;
-    background: #e0f2fe;
-    color: #0284c7;
-    text-transform: uppercase;
+  #asc-header-navbar .asc-brand-title {
+    font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 15.5px !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.02em !important;
   }
-  #asc-header-navbar .asc-brand-text span {
-    font-size: 12px;
-    font-weight: 500;
-    color: #64748b;
+  #asc-header-navbar .asc-brand-sub {
+    font-size: 9.5px !important;
+    font-weight: 700 !important;
+    color: #0284c7 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.07em !important;
+    line-height: 1 !important;
+    margin-top: 2px !important;
   }
 
-  /* DESKTOP NAVIGATION MENU */
-  #asc-header-navbar .asc-menu-list {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    list-style: none;
+  /* =========================================================================
+     5. DESKTOP NAVIGATION MENU (ALUR LENGKAP HALAMAN)
+     ========================================================================= */
+  #asc-header-navbar .asc-nav-links {
+    display: flex !important;
+    align-items: center !important;
+    gap: 3px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
+  #asc-header-navbar .asc-nav-item {
+    display: inline-flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
   }
   #asc-header-navbar .asc-nav-link {
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    color: #334155;
-    padding: 8px 14px;
-    border-radius: 10px;
-    transition: all 0.2s ease;
-    display: inline-block;
+    display: inline-flex !important;
+    align-items: center !important;
+    height: 34px !important;
+    padding: 0 12px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #475569 !important;
+    border-radius: 999px !important;
+    letter-spacing: -0.01em !important;
+    transition: all 0.2s ease !important;
+    white-space: nowrap !important;
+    position: relative !important;
+    line-height: 1 !important;
   }
   #asc-header-navbar .asc-nav-link:hover {
-    color: #0284c7;
-    background: #f0f9ff;
+    color: #0284c7 !important;
+    background: rgba(2, 132, 199, 0.08) !important;
   }
 
-  /* CTA BUTTON */
+  /* ACTIVE STATE (MENUNJUKKAN POSISI ALUR SAAT SCROLL) */
+  #asc-header-navbar .asc-nav-link.active {
+    color: #0284c7 !important;
+    background: #e0f2fe !important;
+    font-weight: 700 !important;
+  }
+  #asc-header-navbar .asc-nav-link.active::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 4px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 14px !important;
+    height: 2px !important;
+    border-radius: 999px !important;
+    background: #0284c7 !important;
+  }
+
+  /* =========================================================================
+     6. CTA BUTTON (HUBUNGI KAMI)
+     ========================================================================= */
   #asc-header-navbar .asc-nav-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 22px;
-    background: linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%);
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 700;
-    border-radius: 12px;
-    text-decoration: none;
-    box-shadow: 0 6px 18px -3px rgba(2, 132, 199, 0.4);
-    transition: all 0.25s ease;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    height: 40px !important;
+    padding: 0 14px 0 18px !important;
+    background: #0f172a !important;
+    color: #ffffff !important;
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+    border-radius: 999px !important;
+    border: 1px solid #1e293b !important;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2) !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    flex-shrink: 0 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
   }
   #asc-header-navbar .asc-nav-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px -3px rgba(2, 132, 199, 0.55);
+    transform: translateY(-2px) !important;
+    background: #1e293b !important;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.3) !important;
+  }
+  #asc-header-navbar .asc-cta-badge {
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50% !important;
+    background: #38bdf8 !important;
+    color: #0f172a !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: transform 0.25s ease !important;
+    flex-shrink: 0 !important;
+  }
+  #asc-header-navbar .asc-nav-cta:hover .asc-cta-badge {
+    transform: translate(2px, -2px) rotate(45deg) !important;
+    background: #7dd3fc !important;
   }
 
-  /* MOBILE HAMBURGER BUTTON */
-  #asc-header-navbar .asc-hamburger {
-    display: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    border: 1px solid #e2e8f0;
-    background: #f8fafc;
-    cursor: pointer;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    padding: 8px;
-    transition: all 0.2s ease;
+  /* =========================================================================
+     7. MOBILE HAMBURGER BUTTON
+     ========================================================================= */
+  #asc-header-navbar .asc-hamburger-btn {
+    display: none !important;
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(2, 132, 199, 0.18) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    cursor: pointer !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 4px !important;
+    padding: 0 !important;
+    transition: all 0.25s ease !important;
+    flex-shrink: 0 !important;
   }
-  #asc-header-navbar .asc-hamburger span {
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: #0f172a;
-    border-radius: 2px;
-    transition: all 0.3s ease;
+  #asc-header-navbar .asc-hamburger-btn:hover {
+    background: #f0f9ff !important;
+    border-color: #38bdf8 !important;
   }
-  #asc-header-navbar .asc-hamburger.asc-open span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+  #asc-header-navbar .asc-hamburger-btn span {
+    display: block !important;
+    width: 17px !important;
+    height: 2px !important;
+    background: #0f172a !important;
+    border-radius: 2px !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
-  #asc-header-navbar .asc-hamburger.asc-open span:nth-child(2) {
-    opacity: 0;
+  #asc-header-navbar .asc-hamburger-btn.asc-open span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg) !important;
+    background: #0284c7 !important;
   }
-  #asc-header-navbar .asc-hamburger.asc-open span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+  #asc-header-navbar .asc-hamburger-btn.asc-open span:nth-child(2) {
+    opacity: 0 !important;
+  }
+  #asc-header-navbar .asc-hamburger-btn.asc-open span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg) !important;
+    background: #0284c7 !important;
   }
 
-  /* MOBILE DROPDOWN DRAWER */
+  /* =========================================================================
+     8. MOBILE DRAWER DROPDOWN (DIPISAH DI LUAR CAPSULE AGAR TIDAK MEMENGARUHI TINGGI)
+     ========================================================================= */
   #asc-header-navbar .asc-mobile-drawer {
-    display: none;
-    position: absolute;
-    top: calc(100% + 10px);
-    left: 0;
-    right: 0;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 18px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    padding: 16px;
-    flex-direction: column;
-    gap: 6px;
-    z-index: 10000;
+    display: none !important;
+    pointer-events: auto !important;
+    position: absolute !important;
+    top: 68px !important;
+    left: 16px !important;
+    right: 16px !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(28px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.9) !important;
+    border-radius: 26px !important;
+    box-shadow: 
+      0 25px 60px -10px rgba(15, 23, 42, 0.22),
+      0 0 0 1px rgba(56, 189, 248, 0.15) !important;
+    padding: 14px !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    z-index: 1000000 !important;
+    max-height: 80vh !important;
+    overflow-y: auto !important;
   }
   #asc-header-navbar .asc-mobile-drawer.asc-open {
-    display: flex;
-    animation: ascSlideDown 0.3s ease forwards;
+    display: flex !important;
+    animation: ascDrawerSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
   }
-  @keyframes ascSlideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  #asc-header-navbar .asc-mobile-link {
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    color: #334155;
-    padding: 12px 16px;
-    border-radius: 12px;
-    transition: all 0.2s ease;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  #asc-header-navbar .asc-mobile-link:hover {
-    background: #f0f9ff;
-    color: #0284c7;
+  @keyframes ascDrawerSlide {
+    from { opacity: 0; transform: translateY(-12px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  /* RESPONSIVE */
-  @media (max-width: 992px) {
-    #asc-header-navbar .asc-menu-list {
-      display: none;
+  #asc-header-navbar .asc-drawer-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 11px 14px !important;
+    border-radius: 14px !important;
+    text-decoration: none !important;
+    color: #1e293b !important;
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    transition: all 0.22s ease !important;
+  }
+  #asc-header-navbar .asc-drawer-item:hover,
+  #asc-header-navbar .asc-drawer-item.active {
+    background: #f0f9ff !important;
+    border-color: #7dd3fc !important;
+    color: #0284c7 !important;
+    transform: translateX(4px) !important;
+  }
+  #asc-header-navbar .asc-drawer-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+  #asc-header-navbar .asc-drawer-num {
+    font-size: 10.5px !important;
+    font-weight: 800 !important;
+    color: #0284c7 !important;
+    background: rgba(2, 132, 199, 0.1) !important;
+    padding: 3px 6px !important;
+    border-radius: 6px !important;
+    line-height: 1 !important;
+  }
+  #asc-header-navbar .asc-drawer-label {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+  }
+  #asc-header-navbar .asc-drawer-sub {
+    font-size: 11px !important;
+    color: #64748b !important;
+    margin-top: 2px !important;
+    line-height: 1.2 !important;
+  }
+  #asc-header-navbar .asc-drawer-cta {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    margin-top: 6px !important;
+    padding: 13px 16px !important;
+  }
+  #asc-header-navbar .asc-drawer-cta .asc-drawer-num {
+    background: #38bdf8 !important;
+    color: #0f172a !important;
+  }
+  #asc-header-navbar .asc-drawer-cta .asc-drawer-sub {
+    color: #94a3b8 !important;
+  }
+
+  /* =========================================================================
+     9. RESPONSIVE BREAKPOINTS
+     ========================================================================= */
+  @media (max-width: 1024px) {
+    #asc-header-navbar .asc-nav-links {
+      display: none !important;
     }
     #asc-header-navbar .asc-nav-cta {
-      display: none;
+      display: none !important;
     }
-    #asc-header-navbar .asc-hamburger {
-      display: flex;
-    }
-    #asc-header-navbar .asc-nav-main {
-      margin: 10px 16px 0;
+    #asc-header-navbar .asc-hamburger-btn {
+      display: flex !important;
     }
   }
 
   @media (max-width: 640px) {
-    #asc-header-navbar .asc-topbar-left {
-      font-size: 11px;
+    #asc-header-navbar {
+      top: 10px !important;
+      padding: 0 10px !important;
     }
-    #asc-header-navbar .asc-topbar-right {
-      display: none;
+    #asc-header-navbar .asc-brand-sub {
+      display: none !important;
     }
-    #asc-header-navbar .asc-brand-text span {
-      display: none;
+    #asc-header-navbar .asc-brand-title {
+      font-size: 14.5px !important;
+    }
+    #asc-header-navbar .asc-mobile-drawer {
+      left: 10px !important;
+      right: 10px !important;
+      top: 64px !important;
     }
   }
 </style>
 
 <!-- =========================================================================
-     STRUKTUR HTML SECTION 00: HEADER & NAVBAR
+     STRUKTUR HTML SECTION 00: HEADER & FLOATING NAVBAR
      ========================================================================= -->
 <div id="asc-header-navbar">
   
-  <!-- Top Mini Announcement Bar -->
-  <div class="asc-topbar">
-    <div class="asc-topbar-inner">
-      <div class="asc-topbar-left">
-        <span class="asc-topbar-dot"></span>
-        <span>Unit Kegiatan Mahasiswa • Al-Qur'an Study Club (UKM ASC) Universitas Negeri Malang</span>
-      </div>
-      <div class="asc-topbar-right">
-        <a href="https://instagram.com/ukm_asc_um" target="_blank" rel="noopener noreferrer" class="asc-topbar-link">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          <span>@ukm_asc_um</span>
-        </a>
-        <a href="https://wa.me/6281284129092" target="_blank" rel="noopener noreferrer" class="asc-topbar-link">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span>CP: 0812-8412-9092</span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main Navigation Bar -->
-  <header class="asc-nav-main">
+  <!-- THE FLOATING CAPSULE BAR (COMPACT 56PX) -->
+  <div class="asc-nav-capsule" id="ascNavCapsule">
     
-    <!-- Brand / Logo -->
-    <a href="#asc-hero-profil" class="asc-brand">
+    <!-- BRAND / LOGO (BERANDA / PROFIL) -->
+    <a href="#asc-hero-profil" class="asc-brand-btn" data-asc-scroll="#asc-hero-profil" title="Beranda UKM ASC UM">
       <div class="asc-brand-emblem">ASC</div>
-      <div class="asc-brand-text">
-        <h2>
-          UKM ASC UM
-          <span class="asc-brand-badge">Ormawa</span>
-        </h2>
-        <span>Al-Qur'an Study Club • Univ. Negeri Malang</span>
+      <div class="asc-brand-titles">
+        <span class="asc-brand-title">UKM ASC</span>
+        <span class="asc-brand-sub">Universitas Negeri Malang</span>
       </div>
     </a>
 
-    <!-- Desktop Navigation Links -->
-    <ul class="asc-menu-list">
-      <li><a href="#asc-hero-profil" class="asc-nav-link">Profil</a></li>
-      <li><a href="#asc-visi-misi" class="asc-nav-link">Visi Misi</a></li>
-      <li><a href="#asc-struktur" class="asc-nav-link">Struktur</a></li>
-      <li><a href="#asc-agenda" class="asc-nav-link">Agenda & Pembinaan</a></li>
-      <li><a href="#asc-galeri" class="asc-nav-link">Galeri</a></li>
-      <li><a href="#asc-prestasi" class="asc-nav-link">Prestasi</a></li>
-      <li><a href="#asc-kontak" class="asc-nav-link">Kontak</a></li>
+    <!-- DESKTOP NAVIGATION LINKS (ALUR LENGKAP ROADMAP) -->
+    <ul class="asc-nav-links" id="ascDesktopNav">
+      
+      <!-- 01. PROFIL -->
+      <li class="asc-nav-item">
+        <a href="#asc-hero-profil" class="asc-nav-link" data-asc-scroll="#asc-hero-profil">Profil</a>
+      </li>
+
+      <!-- 02. VISI & MISI -->
+      <li class="asc-nav-item">
+        <a href="#asc-visi-misi" class="asc-nav-link" data-asc-scroll="#asc-visi-misi,#asc-vm">Visi Misi</a>
+      </li>
+
+      <!-- 03. SEJARAH -->
+      <li class="asc-nav-item">
+        <a href="#asc-sejarah" class="asc-nav-link" data-asc-scroll="#asc-sejarah,#asc-sj">Sejarah</a>
+      </li>
+
+      <!-- 04. STRUKTUR -->
+      <li class="asc-nav-item">
+        <a href="#asc-struktur" class="asc-nav-link" data-asc-scroll="#asc-struktur">Struktur</a>
+      </li>
+
+      <!-- 05. PEMBINAAN -->
+      <li class="asc-nav-item">
+        <a href="#asc-pembinaan" class="asc-nav-link" data-asc-scroll="#asc-pembinaan,#asc-pb,#asc-agenda">Pembinaan</a>
+      </li>
+
+      <!-- 06. GALERI -->
+      <li class="asc-nav-item">
+        <a href="#asc-galeri" class="asc-nav-link" data-asc-scroll="#asc-galeri">Galeri</a>
+      </li>
+
+      <!-- 07. PRESTASI -->
+      <li class="asc-nav-item">
+        <a href="#asc-prestasi" class="asc-nav-link" data-asc-scroll="#asc-prestasi">Prestasi</a>
+      </li>
+
     </ul>
 
-    <!-- Action Button -->
-    <a href="#asc-kontak" class="asc-nav-cta">
-      <span>Hubungi Kami</span>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <!-- CTA ACTION BUTTON (HUBUNGI KAMI) -->
+    <a href="#asc-kontak" class="asc-nav-cta" data-asc-scroll="#asc-kontak" title="Hubungi Pengurus ASC">
+      <span>HUBUNGI KAMI</span>
+      <span class="asc-cta-badge">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </span>
     </a>
 
-    <!-- Mobile Hamburger Toggle -->
-    <button class="asc-hamburger" id="ascHamburgerBtn" onclick="ascToggleMobileMenu()" aria-label="Menu">
+    <!-- MOBILE HAMBURGER TOGGLE BUTTON -->
+    <button class="asc-hamburger-btn" id="ascHamburgerBtn" onclick="ascToggleMobileMenu()" aria-label="Buka Menu Navigasi">
       <span></span>
       <span></span>
       <span></span>
     </button>
 
-    <!-- Mobile Menu Drawer -->
-    <div class="asc-mobile-drawer" id="ascMobileDrawer">
-      <a href="#asc-hero-profil" class="asc-mobile-link" onclick="ascCloseMobileMenu()">
-        <span>Profil & Sejarah</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </a>
-      <a href="#asc-visi-misi" class="asc-mobile-link" onclick="ascCloseMobileMenu()">
-        <span>Visi & Misi</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </a>
-      <a href="#asc-struktur" class="asc-mobile-link" onclick="ascCloseMobileMenu()">
-        <span>Struktur Organisasi</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </a>
-      <a href="#asc-agenda" class="asc-mobile-link" onclick="ascCloseMobileMenu()">
-        <span>Agenda & 10 Pembinaan</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </a>
-      <a href="#asc-galeri" class="asc-mobile-link" onclick="ascCloseMobileMenu()">
-        <span>Galeri Kegiatan</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </a>
-      <a href="#asc-prestasi" class="asc-mobile-link" onclick="ascCloseMobileMenu()">
-        <span>Prestasi & Penghargaan</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </a>
-      <a href="#asc-kontak" class="asc-mobile-link" onclick="ascCloseMobileMenu()" style="background:#f0f9ff; color:#0284c7; font-weight:700;">
-        <span>Kontak & Media Sosial</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </a>
-    </div>
+  </div>
 
-  </header>
+  <!-- MOBILE DRAWER DROPDOWN (DILUAR CAPSULE AGAR PRESISI DAN BERSIH) -->
+  <div class="asc-mobile-drawer" id="ascMobileDrawer">
+    
+    <!-- 01. PROFIL -->
+    <a href="#asc-hero-profil" class="asc-drawer-item" data-asc-scroll="#asc-hero-profil" onclick="ascCloseMobileMenu()">
+      <div class="asc-drawer-left">
+        <span class="asc-drawer-num">01</span>
+        <div>
+          <div class="asc-drawer-label">Profil Organisasi</div>
+          <div class="asc-drawer-sub">Mengenal UKM ASC Universitas Negeri Malang</div>
+        </div>
+      </div>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+    <!-- 02. VISI & MISI -->
+    <a href="#asc-visi-misi" class="asc-drawer-item" data-asc-scroll="#asc-visi-misi,#asc-vm" onclick="ascCloseMobileMenu()">
+      <div class="asc-drawer-left">
+        <span class="asc-drawer-num">02</span>
+        <div>
+          <div class="asc-drawer-label">Visi & Misi</div>
+          <div class="asc-drawer-sub">Arah gerak & cita-cita generasi Qur'ani</div>
+        </div>
+      </div>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+    <!-- 03. SEJARAH -->
+    <a href="#asc-sejarah" class="asc-drawer-item" data-asc-scroll="#asc-sejarah,#asc-sj" onclick="ascCloseMobileMenu()">
+      <div class="asc-drawer-left">
+        <span class="asc-drawer-num">03</span>
+        <div>
+          <div class="asc-drawer-label">Sejarah ASC</div>
+          <div class="asc-drawer-sub">Jejak perjalanan dedikasi sejak tahun 2010</div>
+        </div>
+      </div>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+    <!-- 04. STRUKTUR -->
+    <a href="#asc-struktur" class="asc-drawer-item" data-asc-scroll="#asc-struktur" onclick="ascCloseMobileMenu()">
+      <div class="asc-drawer-left">
+        <span class="asc-drawer-num">04</span>
+        <div>
+          <div class="asc-drawer-label">Struktur Kepengurusan</div>
+          <div class="asc-drawer-sub">Hierarki BPH, Divisi & Tim Manajemen</div>
+        </div>
+      </div>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+    <!-- 05. PEMBINAAN -->
+    <a href="#asc-pembinaan" class="asc-drawer-item" data-asc-scroll="#asc-pembinaan,#asc-pb,#asc-agenda" onclick="ascCloseMobileMenu()">
+      <div class="asc-drawer-left">
+        <span class="asc-drawer-num">05</span>
+        <div>
+          <div class="asc-drawer-label">10 Bidang Pembinaan</div>
+          <div class="asc-drawer-sub">Kelas intensif tilawah, tafsir, kaligrafi, dll</div>
+        </div>
+      </div>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+    <!-- 06. GALERI -->
+    <a href="#asc-galeri" class="asc-drawer-item" data-asc-scroll="#asc-galeri" onclick="ascCloseMobileMenu()">
+      <div class="asc-drawer-left">
+        <span class="asc-drawer-num">06</span>
+        <div>
+          <div class="asc-drawer-label">Galeri Kegiatan</div>
+          <div class="asc-drawer-sub">Dokumentasi momen & rekaman karya nyata</div>
+        </div>
+      </div>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+    <!-- 07. PRESTASI -->
+    <a href="#asc-prestasi" class="asc-drawer-item" data-asc-scroll="#asc-prestasi" onclick="ascCloseMobileMenu()">
+      <div class="asc-drawer-left">
+        <span class="asc-drawer-num">07</span>
+        <div>
+          <div class="asc-drawer-label">Prestasi & MTQ</div>
+          <div class="asc-drawer-sub">Rekam jejak kafilah juara regional & nasional</div>
+        </div>
+      </div>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+    <!-- 08. HUBUNGI KAMI -->
+    <a href="#asc-kontak" class="asc-drawer-item asc-drawer-cta" data-asc-scroll="#asc-kontak" onclick="ascCloseMobileMenu()">
+      <div class="asc-drawer-left">
+        <span class="asc-drawer-num">08</span>
+        <div>
+          <div class="asc-drawer-label">Hubungi Kami</div>
+          <div class="asc-drawer-sub">WhatsApp CP resmi & Media Sosial</div>
+        </div>
+      </div>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+    </a>
+
+  </div>
+
 </div>
 
 <!-- =========================================================================
-     JAVASCRIPT INTERAKTIF (MOBILE MENU TOGGLE)
+     JAVASCRIPT: SELF-HEALING ANTI-DUPLIKASI, SMOOTH SCROLL OFFSET, & SCROLL SPY
      ========================================================================= -->
 <script>
-  function ascToggleMobileMenu() {
-    const btn = document.getElementById('ascHamburgerBtn');
-    const drawer = document.getElementById('ascMobileDrawer');
+(function() {
+  // 1. AUTO CLEAN-UP: Jika di WordPress terdapat header lama/duplikat, bersihkan otomatis!
+  const allHeaders = document.querySelectorAll('#asc-header-navbar');
+  if (allHeaders.length > 1) {
+    for (let i = 0; i < allHeaders.length - 1; i++) {
+      allHeaders[i].remove();
+    }
+  }
+  const oldNavs = document.querySelectorAll('.asc-nav-main');
+  oldNavs.forEach(el => el.remove());
+
+  const capsule = document.getElementById('ascNavCapsule');
+  const desktopLinks = document.querySelectorAll('#asc-header-navbar .asc-nav-link');
+  const drawerLinks = document.querySelectorAll('#asc-header-navbar .asc-drawer-item');
+
+  // 2. SCROLLED MORPHING EFFECT
+  function handleNavbarMorph() {
+    if (!capsule) return;
+    if (window.scrollY > 24) {
+      capsule.classList.add('asc-scrolled');
+    } else {
+      capsule.classList.remove('asc-scrolled');
+    }
+  }
+  window.addEventListener('scroll', handleNavbarMorph, { passive: true });
+  handleNavbarMorph();
+
+  // 3. HELPER SELEKTOR ALIAS TARGET
+  function findTargetElement(selectorStr) {
+    if (!selectorStr) return null;
+    const selectors = selectorStr.split(',');
+    for (let i = 0; i < selectors.length; i++) {
+      const sel = selectors[i].trim();
+      const el = document.querySelector(sel);
+      if (el) return el;
+    }
+    return null;
+  }
+
+  // 4. SMOOTH SCROLL DENGAN OFFSET 85PX (AGAR HEADER TIDAK MENUTUPI JUDUL SECTION)
+  const allScrollButtons = document.querySelectorAll('#asc-header-navbar [data-asc-scroll]');
+  allScrollButtons.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const selectorStr = this.getAttribute('data-asc-scroll');
+      const targetEl = findTargetElement(selectorStr);
+
+      if (targetEl) {
+        e.preventDefault();
+        
+        // Tutup mobile drawer jika terbuka
+        ascCloseMobileMenu();
+
+        const headerOffset = 85;
+        const elementPosition = targetEl.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+
+        // Update URL hash rapi tanpa hentakan layar
+        const firstSelector = selectorStr.split(',')[0].trim();
+        if (history.pushState) {
+          history.pushState(null, null, firstSelector);
+        }
+      }
+    });
+  });
+
+  // 5. SCROLL SPY ALUR LENGKAP ROADMAP
+  const spySections = [
+    { name: 'Profil', selectors: '#asc-hero-profil' },
+    { name: 'Visi Misi', selectors: '#asc-visi-misi, #asc-vm' },
+    { name: 'Sejarah', selectors: '#asc-sejarah, #asc-sj' },
+    { name: 'Struktur', selectors: '#asc-struktur' },
+    { name: 'Pembinaan', selectors: '#asc-pembinaan, #asc-pb, #asc-agenda' },
+    { name: 'Galeri', selectors: '#asc-galeri' },
+    { name: 'Prestasi', selectors: '#asc-prestasi, #asc-pr' },
+    { name: 'Kontak', selectors: '#asc-kontak' }
+  ];
+
+  function updateScrollSpy() {
+    const scrollPos = window.scrollY + 180;
+    let currentActiveIdx = -1;
+
+    for (let i = spySections.length - 1; i >= 0; i--) {
+      const el = findTargetElement(spySections[i].selectors);
+      if (el) {
+        const top = el.offsetTop;
+        if (scrollPos >= top) {
+          currentActiveIdx = i;
+          break;
+        }
+      }
+    }
+
+    if (currentActiveIdx === -1 && window.scrollY < 400) {
+      currentActiveIdx = 0;
+    }
+
+    desktopLinks.forEach((link, idx) => {
+      if (idx === currentActiveIdx) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+
+    drawerLinks.forEach((item, idx) => {
+      if (idx === currentActiveIdx) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateScrollSpy, { passive: true });
+  updateScrollSpy();
+
+})();
+
+// 6. GLOBAL MOBILE DRAWER CONTROLLER
+function ascToggleMobileMenu() {
+  const btn = document.getElementById('ascHamburgerBtn');
+  const drawer = document.getElementById('ascMobileDrawer');
+  if (btn && drawer) {
     btn.classList.toggle('asc-open');
     drawer.classList.toggle('asc-open');
   }
+}
 
-  function ascCloseMobileMenu() {
-    const btn = document.getElementById('ascHamburgerBtn');
-    const drawer = document.getElementById('ascMobileDrawer');
-    if (btn && drawer) {
-      btn.classList.remove('asc-open');
-      drawer.classList.remove('asc-open');
-    }
+function ascCloseMobileMenu() {
+  const btn = document.getElementById('ascHamburgerBtn');
+  const drawer = document.getElementById('ascMobileDrawer');
+  if (btn && drawer) {
+    btn.classList.remove('asc-open');
+    drawer.classList.remove('asc-open');
   }
+}
 
-  // Tutup menu otomatis jika user mengklik area luar navbar
-  document.addEventListener('click', function(e) {
-    const nav = document.getElementById('asc-header-navbar');
-    if (nav && !nav.contains(e.target)) {
-      ascCloseMobileMenu();
-    }
-  });
+// Tutup drawer jika pengunjung mengklik di luar area navbar
+document.addEventListener('click', function(e) {
+  const nav = document.getElementById('asc-header-navbar');
+  if (nav && !nav.contains(e.target)) {
+    ascCloseMobileMenu();
+  }
+});
+
+// Tutup drawer saat menekan tombol Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    ascCloseMobileMenu();
+  }
+});
 </script>
