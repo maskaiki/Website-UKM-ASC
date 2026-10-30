@@ -12,7 +12,7 @@
 
   <!-- SHIELDS.IO BADGES -->
   <p align="center">
-    <a href="https://sakhiasyam18.github.io/Website-UKM-ASC/"><img src="https://img.shields.io/badge/Demo%20Live-GitHub%20Pages-0284c7?style=for-the-badge&logo=githubpages&logoColor=white" alt="Live Demo" /></a>
+    <a href="https://maskaiki.github.io/Website-UKM-ASC/"><img src="https://img.shields.io/badge/Demo%20Live-GitHub%20Pages-0284c7?style=for-the-badge&logo=githubpages&logoColor=white" alt="Live Demo" /></a>
     <img src="https://img.shields.io/badge/Tech-HTML5%20%7C%20CSS3%20%7C%20JS%20ES6+-38bdf8?style=for-the-badge&logo=javascript&logoColor=white" alt="Tech Stack" />
     <img src="https://img.shields.io/badge/Architecture-Modular%20Blade%20Pattern-0f172a?style=for-the-badge&logo=laravel&logoColor=white" alt="Modular Architecture" />
     <img src="https://img.shields.io/badge/WordPress-100%25%20Compatible-21759b?style=for-the-badge&logo=wordpress&logoColor=white" alt="WordPress Ready" />
@@ -21,7 +21,7 @@
 
   <!-- QUICK ACTION BUTTONS -->
   <p align="center">
-    <a href="https://sakhiasyam18.github.io/Website-UKM-ASC/"><b>🌐 Buka Live Website »</b></a> •
+    <a href="https://maskaiki.github.io/Website-UKM-ASC/"><b>🌐 Buka Live Website »</b></a> •
     <a href="#-arsitektur-modular-blade-system"><b>🧩 Arsitektur Komponen</b></a> •
     <a href="#-cara-menjalankan-secara-lokal"><b>💻 Quick Start</b></a> •
     <a href="#-deployment-ke-github-pages"><b>🚀 Panduan Deploy</b></a>
