@@ -1,12 +1,12 @@
 <!-- =====================================================================
-UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 05: PRESTASI (VERSI 3: BERGERAK SAAT DIGULIR)
-Cara pakai di WordPress (Elementor / Divi):
-1. Widget "Custom HTML" di container FULL WIDTH, paste seluruh file ini.
-2. ISI DATA: cari "DATA PRESTASI" di bagian script. Dua cara (pilih salah satu):
-a) Isi/ubah daftar DATA (satu baris per prestasi), atau
-b) Tempel hasil ekspor CSV Google Form ke CSV_MENTAH (judul kolom boleh persis seperti form).
-3. Setelah data asli diisi, ubah MODE_CONTOH menjadi false (menghilangkan label "data contoh").
-Catatan privasi: NIM dan nomor WhatsApp dari form SENGAJA tidak dibaca/ditampilkan.
+  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 05: PRESTASI (VERSI 3: BERGERAK SAAT DIGULIR)
+  Cara pakai di WordPress (Elementor / Divi):
+  1. Widget "Custom HTML" di container FULL WIDTH, paste seluruh file ini.
+  2. ISI DATA: cari "DATA PRESTASI" di bagian script. Dua cara (pilih salah satu):
+     a) Isi/ubah daftar DATA (satu baris per prestasi), atau
+     b) Tempel hasil ekspor CSV Google Form ke CSV_MENTAH (judul kolom boleh persis seperti form).
+  3. Setelah data asli diisi, ubah MODE_CONTOH menjadi false (menghilangkan label "data contoh").
+  Catatan privasi: NIM dan nomor WhatsApp dari form SENGAJA tidak dibaca/ditampilkan.
 ====================================================================== -->
 
 <style>
@@ -1001,6 +1001,10 @@ Catatan privasi: NIM dan nomor WhatsApp dari form SENGAJA tidak dibaca/ditampilk
       align-items: start;
     }
 
+    #asc-pr .pr-cue {
+      display: none;
+    }
+
     #asc-pr .pr-row {
       grid-template-columns: 48px 1fr 24px;
       row-gap: 10px;
@@ -1100,6 +1104,7 @@ Catatan privasi: NIM dan nomor WhatsApp dari form SENGAJA tidak dibaca/ditampilk
 </style>
 
 <section id="asc-pr" aria-label="Prestasi UKM ASC">
+  <div id="asc-prestasi" style="position:relative;top:-60px;"></div>
 
   <header class="pr-hero" id="prHero">
     <div class="pr-px pr-ob" data-sp="-.22" style="width:46vw;height:46vw;right:-12vw;top:-10vw"></div>
@@ -1151,7 +1156,7 @@ Catatan privasi: NIM dan nomor WhatsApp dari form SENGAJA tidak dibaca/ditampilk
 
   <div class="pr-sc" id="prS2">
     <div class="pr-stg lt">
-      <div class="pr-top dkt"><span class="pr-eye">Sorotan prestasi</span><span class="pr-ct" id="prC2">01 / 03</span>
+      <div class="pr-top dkt"><span class="pr-eye">Sorotan prestasi</span><span class="pr-ct" id="prC2">01 / 15</span>
       </div>
       <div class="pr-gh" id="prGh">01</div>
       <div class="pr-trk" id="prTrk"></div>
@@ -1216,31 +1221,239 @@ Catatan privasi: NIM dan nomor WhatsApp dari form SENGAJA tidak dibaca/ditampilk
 <script>
   (function () {
     /* ================= PENGATURAN ================= */
-    var CFG = { MODE_CONTOH: true, LINK_FORM: '#', PER_HALAMAN: 8, TAHUN_DEFAULT: 2026 };
+    var CFG = { MODE_CONTOH: false, LINK_FORM: '#', PER_HALAMAN: 15, TAHUN_DEFAULT: 2026 };
 
     /* ================= DATA PRESTASI =================
-    Satu objek = satu prestasi. Kolom mengikuti Google Form (NIM & WhatsApp tidak dipakai):
-    lomba : Nama Prestasi/Lomba peserta : Nama (boleh banyak, pisahkan dengan " & ")
-    status : Khudama' / Khudama' Muda / Peserta Pembinaan / Alumni dept : Departemen
-    lokasi : Penyelenggara / lokasi tanggal : bebas ("17/10/2026" atau "8 Oktober 2026")
-    kategori : Akademik / Non-Akademik tingkat : Internasional / Nasional / Regional / Universitas / Lokal
-    peringkat : "Juara 1", "Juara 2 / Perak", "Harapan 1", "Best Idea", dst
-    desc : deskripsi singkat foto : URL foto (link Google Drive boleh) bukti : URL sertifikat
-    unggulan : true = dipaksa tampil di "Sorotan" (opsional) */
+       15 Capaian Prestasi Unggulan Mahasiswa UKM ASC Universitas Negeri Malang (Berdasarkan Form Pendataan): */
     var DATA = [
-      { lomba: 'Lomba Tilawah Tingkat Internasional (contoh)', peserta: 'Nama Mahasiswa A', status: 'Khudama’', dept: 'Departemen Pembinaan', lokasi: 'Nama Penyelenggara Internasional', tanggal: '17/10/2026', kategori: 'Non Akademik', tingkat: 'Internasional', peringkat: 'Juara 1 / Emas', desc: 'Deskripsi singkat tentang prestasi dan pembelajaran yang didapat. Isi di sini.', foto: '', bukti: '', unggulan: true },
-      { lomba: 'Kompetisi Karya Tulis Ilmiah Nasional (contoh)', peserta: 'Nama Mahasiswa B & Nama Mahasiswa C', status: 'Khudama’ Muda', dept: 'TDI', lokasi: 'Universitas Contoh', tanggal: '8 Oktober 2026', kategori: 'Akademik (Misal: Karya Tulis Ilmiah, Penelitian)', tingkat: 'Nasional', peringkat: 'Juara 1', desc: 'Deskripsi singkat prestasi karya tulis ilmiah.', foto: '', bukti: '' },
-      { lomba: 'Musabaqah Fahmil Qur’an Tingkat Regional (contoh)', peserta: 'Nama Mahasiswa D', status: 'Peserta Pembinaan', dept: 'Pembinaan', lokasi: 'Kota Contoh', tanggal: '26 September 2026', kategori: 'Non Akademik', tingkat: 'Regional/Kota', peringkat: 'Juara 2 / Perak', desc: '', foto: '', bukti: '' },
-      { lomba: 'Business Plan Competition (contoh)', peserta: 'Nama Mahasiswa E', status: 'Khudama’', dept: 'Departemen Kaderisasi', lokasi: 'Institut Contoh', tanggal: '07/11/2025', kategori: 'Akademik', tingkat: 'Nasional', peringkat: 'Finalis / Honorable Mention', desc: 'Masuk jajaran finalis dari ratusan tim peserta.', foto: '', bukti: '' },
-      { lomba: 'Lomba Desain Poster Dakwah Digital (contoh)', peserta: 'Nama Mahasiswa F', status: 'Khudama’ Muda', dept: 'Departemen Syiar', lokasi: 'Universitas Negeri Malang', tanggal: '22/05/2026', kategori: 'Non Akademik', tingkat: 'Universitas', peringkat: 'Juara 3 / Perunggu', desc: 'Karya poster dakwah dengan pendekatan visual yang segar.', foto: '', bukti: '' },
-      { lomba: 'Pekan Seni dan Olahraga Mahasiswa (contoh)', peserta: 'Nama Mahasiswa G & Nama Mahasiswa H', status: 'Khudama’', dept: 'Pembinaan', lokasi: 'Universitas Negeri Malang', tanggal: '17 Mei 2026', kategori: 'Non Akademik', tingkat: 'Lokal/Internal Kampus', peringkat: 'Juara 1', desc: '', foto: '', bukti: '' },
-      { lomba: 'Musabaqah Hifzhil Qur’an Antar Pondok (contoh)', peserta: 'Nama Mahasiswa I', status: 'Peserta Pembinaan', dept: 'Peserta pembinaan Tahfidzul Qur’an', lokasi: 'Pondok Pesantren Contoh', tanggal: '03/10/2026', kategori: 'Non Akademik', tingkat: 'Regional/Kota', peringkat: 'Harapan 1', desc: '', foto: '', bukti: '' },
-      { lomba: 'Kompetisi Poster Ilmiah Internasional (contoh)', peserta: 'Nama Mahasiswa J', status: 'Khudama’ Muda', dept: 'TDI', lokasi: 'Universitas Luar Negeri Contoh', tanggal: '13/02/2026', kategori: 'Akademik', tingkat: 'Internasional', peringkat: 'Best Presentation', desc: 'Mempresentasikan hasil penelitian di forum internasional.', foto: '', bukti: '' },
-      { lomba: 'Lomba Pidato Bahasa Arab (contoh)', peserta: 'Nama Mahasiswa K', status: 'Khudama’', dept: 'Departemen Pembinaan', lokasi: 'Ma’had Contoh', tanggal: '01/05/2026', kategori: 'Non Akademik', tingkat: 'Nasional', peringkat: 'Juara 2', desc: '', foto: '', bukti: '' },
-      { lomba: 'Olimpiade Sains Mahasiswa Tingkat Fakultas (contoh)', peserta: 'Nama Mahasiswa L', status: 'Khudama’ Muda', dept: 'Departemen Kaderisasi', lokasi: 'Fakultas Contoh UM', tanggal: '11/12/2025', kategori: 'Akademik', tingkat: 'Fakultas', peringkat: 'Juara 3', desc: '', foto: '', bukti: '' }
+      {
+        lomba: 'Lomba Khitobah (Pidato Bahasa Arab) Mahrojan Arabi Nasional',
+        peserta: 'Salwa Nafisah',
+        status: 'Khudama’',
+        dept: 'Departemen Pembinaan',
+        lokasi: 'MUNAYA VIII Markaz Arabiyah Pare',
+        tanggal: '03 Mei 2026',
+        kategori: 'Non-Akademik',
+        tingkat: 'Nasional',
+        peringkat: 'Juara 1 / Emas',
+        desc: 'Menampilkan kefasihan retorika dan penguasaan bahasa Arab yang mendalam dengan artikulasi percaya diri, membawakan pesan dakwah Qur’ani di kancah nasional.',
+        foto: 'https://drive.google.com/open?id=1d_mkOQNti8MPveBaRtqZ5ndWW77CBnOJ',
+        bukti: 'https://drive.google.com/open?id=1qulQIdtDgZ4o7eQ9hCAVNey8FfklnCwX',
+        unggulan: true
+      },
+      {
+        lomba: 'SOLERAM 2026: Public Speaking & Storytelling Competition',
+        peserta: 'Gina Nastiti',
+        status: 'Khudama’ Muda',
+        dept: 'Departemen Kaderisasi',
+        lokasi: 'Fakultas Ilmu Sosial Universitas Negeri Malang',
+        tanggal: '22 Juni 2026',
+        kategori: 'Non-Akademik',
+        tingkat: 'Nasional',
+        peringkat: 'Juara 1 / Emas',
+        desc: 'Membawakan narasi kebudayaan Topeng Panji sebagai sarana penyampaian nilai moralitas, integritas luhur, dan keteladanan bagi generasi muda Indonesia.',
+        foto: 'https://drive.google.com/open?id=1Q8juPEaIC1QU20xrTxXZ26q0zxb981CI',
+        bukti: 'https://drive.google.com/open?id=1GGX1qQaS3Dn_4ZXvzbMcoi43-aqlT6ng',
+        unggulan: true
+      },
+      {
+        lomba: 'Kejuaraan Nasional Pencak Silat IRJ 24 Tahun 2026',
+        peserta: 'Muhrizal Syahril Maulani',
+        status: 'Khudama’',
+        dept: 'Departemen Pembinaan',
+        lokasi: 'GOR Ken Arok Malang / PB IPSI',
+        tanggal: '25 September 2026',
+        kategori: 'Non-Akademik',
+        tingkat: 'Nasional',
+        peringkat: 'Juara 1 / Emas',
+        desc: 'Menunjukkan kedisiplinan, ketangguhan fisik, dan sportivitas seni bela diri pencak silat hingga berhasil merebut medali emas tingkat nasional bagi kontingen UM.',
+        foto: 'https://drive.google.com/open?id=1JSC87IkFoAu9z6nistaklL-d2ZmNnSAD',
+        bukti: 'https://drive.google.com/open?id=1nAQzM_lv6BZ_bH4qigiHktxrNVy-l1JV',
+        unggulan: true
+      },
+      {
+        lomba: 'Olimpiade Kimia Bidang Esai Ilmiah Nasional',
+        peserta: 'Siti Nurbaya Sulaiman',
+        status: 'Khudama’ Muda',
+        dept: 'TDI',
+        lokasi: 'Fakultas Sains dan Teknologi UIN Maulana Malik Ibrahim Malang',
+        tanggal: '17 Oktober 2026',
+        kategori: 'Akademik',
+        tingkat: 'Nasional',
+        peringkat: 'Juara 1 / Emas',
+        desc: 'Gagasan riset kimia terapan berwawasan lingkungan dan energi hijau berkelanjutan yang berhasil meraih Juara 1 dalam kompetisi esai sains nasional.',
+        foto: 'https://drive.google.com/open?id=17-GMZmnK-9f1_PCjYoGVUdHGDhHgMDYG',
+        bukti: 'https://drive.google.com/open?id=1GcW3VN26M4_29WL9MdsjWgh6sAl9_GyS',
+        unggulan: true
+      },
+      {
+        lomba: 'Cogito National Competition Bidang Karya Ilmiah',
+        peserta: 'Siti Nurbaya Sulaiman',
+        status: 'Khudama’ Muda',
+        dept: 'TDI',
+        lokasi: 'Fakultas FISIP Universitas Sriwijaya',
+        tanggal: '29 Agustus 2026',
+        kategori: 'Akademik',
+        tingkat: 'Nasional',
+        peringkat: 'Best Idea',
+        desc: 'Meraih penghargaan kehormatan Best Idea berkat orisinalitas pemikiran, metodologi riset, dan solusi aplikatif yang diajukan di hadapan dewan juri.',
+        foto: 'https://drive.google.com/open?id=1U5Hp43UTEoIItTvKbNojA0ohBWdAfv5E',
+        bukti: 'https://drive.google.com/open?id=1ms8hr2jkJ5pRfruPTX7LMJZgH7PV4w2d',
+        unggulan: true
+      },
+      {
+        lomba: 'Musabaqah Syarhil Qur’an (MSQ) PAI FEST Nasional',
+        peserta: 'Siti Dewi Nur Fatimah & Nafisa Putri Krisan Az-Zahro',
+        status: 'Khudama’ Muda',
+        dept: 'Departemen Pembinaan',
+        lokasi: 'UIN Walisongo Semarang',
+        tanggal: '10 September 2026',
+        kategori: 'Non-Akademik',
+        tingkat: 'Nasional',
+        peringkat: 'Juara 2 / Perak',
+        desc: 'Sinergi harmonis antara lantunan ayat suci Al-Qur’an, terjemah puitis, dan pensyarahan materi keislaman kontekstual mengenai ukhuwah pemuda Qur’ani.',
+        foto: 'https://drive.google.com/open?id=1nj5kTY6Fqky-GKZwLTDN9xLys-oXV994',
+        bukti: 'https://drive.google.com/open?id=1pL8TkMYaVGBPMfMcyMS2dh3RYpj0rkad',
+        unggulan: true
+      },
+      {
+        lomba: 'Lomba Karya Tulis Ilmiah Biology Soedirman Competition',
+        peserta: 'Sakinatul Lutfiyah',
+        status: 'Khudama’',
+        dept: 'Departemen Kaderisasi',
+        lokasi: 'Universitas Jenderal Soedirman',
+        tanggal: '26 September 2026',
+        kategori: 'Akademik',
+        tingkat: 'Nasional',
+        peringkat: 'Juara 2 / Perak',
+        desc: 'Inovasi karya tulis ilmiah bidang biosains terapan dan pelestarian keanekaragaman hayati yang sukses mengantarkan gelar Juara 2 tingkat nasional.',
+        foto: 'https://drive.google.com/open?id=141F7rxwmuuXrHPvHdSlCSSYO8DqpRf2_',
+        bukti: 'https://drive.google.com/open?id=1wzhqcFDL4U8CplkET49epHWnHVtg00TA',
+        unggulan: true
+      },
+      {
+        lomba: 'International Essay Competition UM × UTM',
+        peserta: 'Sakinatul Lutfiyah',
+        status: 'Khudama’',
+        dept: 'Departemen Kaderisasi',
+        lokasi: 'Universitas Negeri Malang × Universiti Teknologi Malaysia',
+        tanggal: '20 Juli 2026',
+        kategori: 'Akademik',
+        tingkat: 'Internasional',
+        peringkat: 'Runner-Up Internasional',
+        desc: 'Penulisan esai ilmiah kritis dalam forum kerja sama akademik bilateral antarperguruan tinggi Indonesia dan Malaysia.',
+        foto: 'https://drive.google.com/open?id=18NyMn8paROQkWjCzydiICD5VJG4Hr8mB',
+        bukti: 'https://drive.google.com/open?id=1Iz33QpWhXpMWxdFeyg-E0BzM-0QiNa2D',
+        unggulan: true
+      },
+      {
+        lomba: 'International Competitive Essay in Chemistry (ICEChem)',
+        peserta: 'Wildatuz Zahrah',
+        status: 'Khudama’',
+        dept: 'Departemen Pembinaan',
+        lokasi: 'Departemen Kimia Universitas Negeri Malang',
+        tanggal: '22 Juli 2026',
+        kategori: 'Akademik',
+        tingkat: 'Internasional',
+        peringkat: 'Juara 3 / Perunggu',
+        desc: 'Kompetisi esai penelitian internasional yang mempertemukan inovator muda lintas negara dalam riset kimia terapan dan biokimia berkelanjutan.',
+        foto: 'https://drive.google.com/open?id=1wI6TOvk0yRK7oT-8a0sLmN9OyjG937LY',
+        bukti: 'https://drive.google.com/open?id=1YZGCHuopeGZypjICAVvDln-amqEX7DHi',
+        unggulan: true
+      },
+      {
+        lomba: 'International Conference on Education and Teaching (ICET)',
+        peserta: 'Muhammad Daril Ilmi Hidayat',
+        status: 'Khudama’ Muda',
+        dept: 'Departemen Syiar',
+        lokasi: 'UIN Fatmawati Sukarno Bengkulu',
+        tanggal: '14 Oktober 2026',
+        kategori: 'Akademik',
+        tingkat: 'Internasional',
+        peringkat: 'Presenter Internasional',
+        desc: 'Mempresentasikan artikel penelitian ilmiah di hadapan forum akademisi internasional mengenai metodologi pendidikan karakter dan keteladanan.',
+        foto: 'https://drive.google.com/open?id=1Iq6BCDzL7XTcDjtSIrO-HdDX4NKtIm7z',
+        bukti: 'https://drive.google.com/open?id=1aHn0wBLX6zO1ppFljHxnaE8BzPmC3V68',
+        unggulan: true
+      },
+      {
+        lomba: 'Musabaqah Hifdhil Qur’an (MHQ) 20 Juz MTQ UM XVIII',
+        peserta: 'Anisa Putri Effendy',
+        status: 'Khudama’',
+        dept: 'Departemen Pembinaan',
+        lokasi: 'Aula Rektorat Lt. 9 Universitas Negeri Malang',
+        tanggal: '09 Oktober 2026',
+        kategori: 'Non-Akademik',
+        tingkat: 'Universitas',
+        peringkat: 'Juara 1 / Emas',
+        desc: 'Ketahanan hafalan, fashohah, dan kelancaran tajwid yang prima pada cabang 20 Juz dalam ajang bergengsi Musabaqah Tilawatil Qur’an Mahasiswa UM XVIII.',
+        foto: 'https://drive.google.com/open?id=1aMpfvR0a-F_GG72Yw56UlpYiOVQ250XV',
+        bukti: 'https://drive.google.com/open?id=1nSe4DSXW8Jl6-6yz0hMx5TyrKiBhNL-2',
+        unggulan: true
+      },
+      {
+        lomba: 'Musabaqah Desain Aplikasi Al-Qur’an (MDAQ) MTQ UM XVIII',
+        peserta: 'Asyam Sakhi Maulana & Mohammad Rifky Wicaksana',
+        status: 'Khudama’',
+        dept: 'Departemen Syiar',
+        lokasi: 'Universitas Negeri Malang',
+        tanggal: '10 Oktober 2026',
+        kategori: 'Non-Akademik',
+        tingkat: 'Universitas',
+        peringkat: 'Juara 2 / Perak',
+        desc: 'Perancangan prototipe produk digital Al-Qur’an interaktif yang mengombinasikan arsitektur modern, UI/UX intuitif, dan kemudahan akses pembelajaran kalamullah.',
+        foto: 'https://drive.google.com/open?id=1IY_KU_eQkwAei-ucOIs1xYxLoGn7jeJq',
+        bukti: 'https://drive.google.com/open?id=1s0WnNKDpC03WeKf3N3JPzlM4rGxAkfwQ',
+        unggulan: true
+      },
+      {
+        lomba: 'Musabaqah Karya Tulis Ilmiah Al-Qur’an (MKTIA) Nasional',
+        peserta: 'Sakinatul Lutfiyah',
+        status: 'Khudama’',
+        dept: 'Departemen Kaderisasi',
+        lokasi: 'UKM Seni Religi Universitas Brawijaya',
+        tanggal: '28 September 2026',
+        kategori: 'Akademik',
+        tingkat: 'Nasional',
+        peringkat: 'Juara 3 / Perunggu',
+        desc: 'Karya tulis ilmiah bertema Al-Qur’an yang mengkaji integrasi wahyu Ilahi dengan solusi problematika sains dan kemanusiaan di tingkat nasional.',
+        foto: 'https://drive.google.com/open?id=1dM_gcQ6QJmU-4LTqV5vJaFaM74FL3Wo1',
+        bukti: 'https://drive.google.com/open?id=1iWKdOeWVPMCWoyQYoFDYXrU6pk5PxjkT',
+        unggulan: true
+      },
+      {
+        lomba: 'Musabaqah Khaththul Qur’an (MKQ) Kontemporer MTQ UM XVIII',
+        peserta: 'Alfiyatun Nur Amaliyah',
+        status: 'Khudama’',
+        dept: 'Departemen Pembinaan',
+        lokasi: 'Universitas Negeri Malang',
+        tanggal: '08 Oktober 2026',
+        kategori: 'Non-Akademik',
+        tingkat: 'Universitas',
+        peringkat: 'Juara 3 / Perunggu',
+        desc: 'Karya seni rupa kaligrafi kontemporer yang mengekspresikan kedalaman makna ayat Al-Qur’an melalui komposisi warna, estetika modern, dan kaidah khat yang terjaga.',
+        foto: 'https://drive.google.com/open?id=18MDy6BdoF927G1oNAlccXLj6R6YOkcEQ',
+        bukti: 'https://drive.google.com/open?id=1dbNxAILh2HCWEalZUq7y2jiGwQo1heSj',
+        unggulan: true
+      },
+      {
+        lomba: 'Tasmi’ Al-Qur’an 30 Juz Bil-Ghaib Sekali Duduk',
+        peserta: 'Early Azkiyatul Awliya',
+        status: 'Peserta Pembinaan',
+        dept: 'Peserta pembinaan Tahfidzul Qur’an',
+        lokasi: 'Majelis Tahfidh Universitas Negeri Malang',
+        tanggal: '20 Februari 2026',
+        kategori: 'Non-Akademik',
+        tingkat: 'Universitas',
+        peringkat: 'Syahadah 30 Juz',
+        desc: 'Pencapaian istimewa memperdengarkan hafalan Al-Qur’an 30 Juz secara mutqin dan bil-ghaib dalam satu majelis tasmi’ syahadah.',
+        foto: '',
+        bukti: 'https://drive.google.com/open?id=11qT-G2e357XlQoXTaBgxqGMveirGivjK',
+        unggulan: true
+      }
     ];
     /* Alternatif: tempel isi file CSV dari Google Form di antara tanda kutip balik (`) di bawah.
-    Jika terisi, DATA di atas diabaikan. Judul kolom boleh sama persis dengan form. */
+       Jika terisi, DATA di atas diabaikan. Judul kolom boleh sama persis dengan form. */
     var CSV_MENTAH = ``;
     /* =============================================== */
 
@@ -1269,7 +1482,7 @@ Catatan privasi: NIM dan nomor WhatsApp dari form SENGAJA tidak dibaca/ditampilk
       if (/^departemen/.test(h)) return 'dept'; if (/lokasi/.test(h)) return 'lokasi'; if (/tanggal/.test(h)) return 'tanggal'; if (/kategori/.test(h)) return 'kategori';
       if (/tingkat \(level\)|^tingkat/.test(h)) return 'tingkat'; if (/peringkat/.test(h)) return 'peringkat'; if (/foto saat penerimaan/.test(h)) return 'foto';
       if (/bukti/.test(h)) return 'bukti'; if (/deskripsi/.test(h)) return 'desc'; return null;
-    } /* NIM, WhatsApp, foto formal, timestamp: sengaja diabaikan */
+    }       /* NIM, WhatsApp, foto formal, timestamp: sengaja diabaikan */
     function fromCSV(t) {
       var rows = parseCSV(t); if (rows.length < 2) return []; var ks = rows[0].map(keyOf);
       return rows.slice(1).filter(function (r) { return (r[0] || '').trim(); }).map(function (r) { var o = {}; ks.forEach(function (k, i) { if (k) o[k] = (r[i] || '').trim(); }); return o; });
@@ -1316,18 +1529,37 @@ Catatan privasi: NIM dan nomor WhatsApp dari form SENGAJA tidak dibaca/ditampilk
     $('prSB').innerHTML = ST.map(function (s) { return '<div class="pr-bg"><div class="pr-bn">0</div><div class="pr-bl">' + s[1] + '</div></div>'; }).join('');
     $('prDots').innerHTML = ST.map(function () { return '<i></i>'; }).join('');
     var bgs = [].slice.call($('prSB').children), dts = [].slice.call($('prDots').children);
-    var ORB = [['1', 'r1', 108], ['2', 'r2', 78], ['3', 'r3', 92], ['✦', 'r4', 64]]; /* medali yang mengorbit angka */
+    var ORB = [['1', 'r1', 108], ['2', 'r2', 78], ['3', 'r3', 92], ['✦', 'r4', 64]];                      /* medali yang mengorbit angka */
     $('prOrb').innerHTML = ORB.map(function (o, i) { return '<div class="pr-ob2"><div class="pr-flt" style="--dur:' + (5 + i) + 's;--dl:-' + i + 's"><span class="pr-md pr-disc ' + o[1] + '" style="--s:' + o[2] + 'px">' + o[0] + '</span></div></div>'; }).join('');
     var orbs = [].slice.call($('prOrb').children);
 
     /* --- sorotan: pilihan manual (unggulan) dulu, sisanya otomatis dari tingkat & peringkat --- */
     var score = function (x) { return (x.top ? 100 : 0) + x.tw * 10 + (5 - x.rank); };
-    var feat = items.slice().sort(function (a, b) { return score(b) - score(a); }).slice(0, 3);
+    var feat = items.slice().sort(function (a, b) { return score(b) - score(a); }).slice(0, 15);
     $('prTrk').innerHTML = feat.map(function (x) {
       var chips = '<span class="pr-chip' + (x.rank < 4 ? ' g' : '') + '">' + esc(x.rlabel) + '</span><span class="pr-chip">' + esc(x.tg) + '</span>';
       return '<div class="pr-tc"><div class="pr-flt" style="--dur:' + (5.5 + Math.random() * 2).toFixed(1) + 's;--dl:-' + (Math.random() * 4).toFixed(1) + 's"><article class="pr-fc"' + (x.foto ? ' style="--img:url(\'' + esc(x.foto) + '\')"' : '') + '><div class="pr-fi"><div class="pr-chips">' + chips + '</div><div><h4>' + esc(x.title) + '</h4><p>' + esc(x.who) + (x.dstr ? ' · ' + esc(x.dstr) : '') + '</p></div></div></article></div></div>';
     }).join('');
     var tcs = [].slice.call($('prTrk').children);
+
+    /* Sesuaikan tinggi scroll track panggung sorotan proporsional dengan jumlah kartu */
+    var s2 = $('prS2');
+    if (s2 && feat.length > 0) {
+      s2.style.height = (140 + feat.length * 60) + 'vh';
+      $('prC2').textContent = '01 / ' + pad2(feat.length);
+    }
+
+    /* Interaksi klik kartu sorotan untuk bergeser mulus ke kartu tersebut */
+    tcs.forEach(function (tc, idx) {
+      tc.style.cursor = 'pointer';
+      tc.addEventListener('click', function () {
+        var r2 = s2.getBoundingClientRect();
+        var top = window.pageYOffset + r2.top;
+        var totalDist = s2.offsetHeight - window.innerHeight;
+        var targetJ = Math.max(0, Math.min(1, (idx + 0.35) / (tcs.length - 1 + 0.7)));
+        window.scrollTo({ top: top + targetJ * totalDist, behavior: 'smooth' });
+      });
+    });
 
     /* --- filter, urutan, daftar --- */
     var S = { q: '', tg: 'Semua', kt: 'Semua', th: 'Semua', sort: 'terbaru', n: CFG.PER_HALAMAN };
@@ -1392,7 +1624,7 @@ Catatan privasi: NIM dan nomor WhatsApp dari form SENGAJA tidak dibaca/ditampilk
     }
     function clamp(x) { return Math.max(0, Math.min(1, x)); }
     function ease(t) { return 1 - Math.pow(1 - t, 3); }
-    function hold(u) { var t = clamp((u - .14) / .72); return t * t * (3 - 2 * t); } /* berhenti sejenak di tiap titik */
+    function hold(u) { var t = clamp((u - .14) / .72); return t * t * (3 - 2 * t); }          /* berhenti sejenak di tiap titik */
     function pad2(n) { return ('0' + n).slice(-2); }
 
     /* --- muncul saat digulir (judul, pencarian, filter) --- */
@@ -1438,7 +1670,7 @@ Catatan privasi: NIM dan nomor WhatsApp dari form SENGAJA tidak dibaca/ditampilk
         orbs.forEach(function (ob, k) {
           var a = k * Math.PI / 2 + j * Math.PI * 2.4, d = (Math.sin(a) + 1) / 2;
           ob.style.transform = 'translate3d(' + (vw / 2 + Math.cos(a) * rx).toFixed(1) + 'px,' + (vh * .46 + Math.sin(a) * ry * .85).toFixed(1) + 'px,0) scale(' + ((.62 + d * .6) * k0).toFixed(3) + ')';
-          ob.style.opacity = (.5 + d * .5).toFixed(2); ob.style.zIndex = d > .5 ? 4 : 1;
+          ob.style.opacity = (.45 + d * .55).toFixed(2); ob.style.zIndex = d > .5 ? 2 : 1;
         });
       }
 

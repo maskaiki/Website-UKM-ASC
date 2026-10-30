@@ -26,8 +26,7 @@ COMPONENTS = [
     "03_sejarah.html",
     "03_struktur_organisasi.html",
     "04_pengumuman_agenda.html",
-    "05_galeri.html",
-    "06_prestasi.html",
+    "05_prestasi.html",
     "07_link_medsos.html"
 ]
 
