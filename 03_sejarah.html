@@ -1,27 +1,29 @@
 <!-- =====================================================================
-  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 03: SEJARAH ASC  (VERSI 3: PERJALANAN, MUDAH DIBACA)
-  Sumber teks: "Sejarah ASC" oleh Ahmad Faisol Ali (Al Khoirot), 10-12-2015.
-  Konsep: sebuah titik menyusuri jalur sejarah ASC (naik saat tumbuh, turun saat vakum 2012, melesat di 2013).
-  Setiap tonggak BERHENTI cukup lama agar teksnya nyaman dibaca; lalu titik bergerak ke tonggak berikutnya.
-  Cara pakai di WordPress (Elementor / Divi):
-  1. Widget "Custom HTML" di container FULL WIDTH, paste seluruh file ini.
-  2. Elementor: Container > Advanced > Overflow = Default (agar efek "menempel" jalan).
-  3. Ganti teks: cari "DAFTAR BAB SEJARAH" di bagian script.
+  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 03: SEJARAH PERJALANAN ASC
+  Sumber Naskah Otentik: "Sejarah ASC" oleh Ahmad Faisol Ali (Gus Faisol), 10-12-2015.
+  Konsep: Scroll-driven cinematic journey menyusuri jejak sejarah ASC
+          (awal di ITS 2010 -> ruang rapat LEPPA -> badai 2012 -> titik balik masjid Al-Hikmah -> puncak Juara Umum 2013).
+  Fitur:
+  1. Jalur dinamis SVG kamera otomatis mengikuti titik sejarah.
+  2. Cerita humanis, emosional, dan otentik berstandar Gen Z & profesional.
+  3. Desain responsif di desktop & mobile, ramah WordPress Elementor / Divi.
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap');
 
   #asc-sj {
     --ice: #e0f2fe;
     --sky: #38bdf8;
-    --m: .3;
+    --sky-glow: rgba(56, 189, 248, 0.4);
+    --m: .35;
     position: relative;
     width: 100%;
-    height: 1500vh;
+    height: 1400vh;
     background: #0b1220;
     color: #fff;
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 
   #asc-sj * {
@@ -38,19 +40,12 @@
     overflow: clip;
   }
 
-  #asc-sj .sj-glow {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: radial-gradient(ellipse 70% 60% at 38% 30%, rgba(56, 189, 248, calc(.06 + var(--m)*.3)), transparent 70%), linear-gradient(180deg, rgba(2, 132, 199, calc(var(--m)*.2)), transparent 50%);
-  }
-
-  /* Kepala + penunjuk alur */
+  /* Header & Rangka Penunjuk Alur */
   #asc-sj .sj-top {
     position: absolute;
-    left: 4vw;
-    right: 4vw;
-    top: 3.2vh;
+    left: 4.5vw;
+    right: 4.5vw;
+    top: 3.5vh;
     z-index: 6;
     display: flex;
     justify-content: space-between;
@@ -59,25 +54,40 @@
   }
 
   #asc-sj .sj-tag {
-    display: inline-block;
-    padding: 5px 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
     border: 1px solid rgba(186, 230, 253, .35);
     border-radius: 999px;
-    background: rgba(2, 132, 199, .14);
+    background: rgba(2, 132, 199, .15);
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: .12em;
+    letter-spacing: .14em;
     text-transform: uppercase;
     color: #bae6fd;
     margin-bottom: 8px;
   }
 
+  #asc-sj .sj-tag::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #38bdf8;
+    box-shadow: 0 0 8px #38bdf8;
+  }
+
   #asc-sj h2 {
-    font-size: clamp(22px, 2.5vw, 38px);
-    font-weight: 600;
+    font-size: clamp(22px, 2.6vw, 38px);
+    font-weight: 800;
     letter-spacing: -.035em;
-    line-height: 1;
+    line-height: 1.1;
     color: var(--ice);
+    background: linear-gradient(135deg, #ffffff 40%, #bae6fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   #asc-sj .sj-nav {
@@ -86,12 +96,12 @@
 
   #asc-sj .sj-lb {
     display: block;
-    margin-bottom: 6px;
-    font-size: 11.5px;
+    margin-bottom: 8px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: .14em;
     text-transform: uppercase;
-    color: var(--ice);
+    color: var(--sky);
     text-align: right;
     font-variant-numeric: tabular-nums;
   }
@@ -101,7 +111,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 24px;
+    height: 28px;
   }
 
   #asc-sj .sj-ruler::before {
@@ -113,6 +123,7 @@
     height: 2px;
     margin-top: -1px;
     background: rgba(186, 230, 253, .16);
+    border-radius: 2px;
   }
 
   #asc-sj .sj-fill {
@@ -121,8 +132,11 @@
     top: 50%;
     height: 2px;
     margin-top: -1px;
-    width: 0;
+    width: 100%;
+    transform-origin: 0 50%;
+    transform: scaleX(0);
     background: linear-gradient(90deg, #0284c7, #38bdf8);
+    border-radius: 2px;
   }
 
   #asc-sj .sj-rb {
@@ -130,42 +144,48 @@
     cursor: pointer;
     position: relative;
     z-index: 1;
-    width: 20px;
-    height: 24px;
+    width: 24px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .2s ease;
   }
 
   #asc-sj .sj-rb::after {
     content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
     width: 10px;
     height: 10px;
-    margin: -5px 0 0 -5px;
     border-radius: 50%;
     background: #0b1220;
     border: 2px solid #475569;
-    transition: .3s;
+    transition: all .25s ease;
+  }
+
+  #asc-sj .sj-rb:hover::after {
+    border-color: var(--sky);
+    transform: scale(1.3);
   }
 
   #asc-sj .sj-rb.done::after {
-    background: var(--sky);
+    background: #0284c7;
     border-color: var(--sky);
   }
 
   #asc-sj .sj-rb.on::after {
-    background: #fff;
+    background: #ffffff;
     border-color: var(--sky);
-    transform: scale(1.5);
-    box-shadow: 0 0 0 4px rgba(56, 189, 248, .25);
+    transform: scale(1.6);
+    box-shadow: 0 0 12px rgba(56, 189, 248, .9);
   }
 
   #asc-sj .sj-rb:focus-visible {
     outline: 2px solid var(--sky);
-    outline-offset: 2px;
+    outline-offset: 4px;
+    border-radius: 4px;
   }
 
-  /* Jalur perjalanan */
+  /* Jalur Perjalanan (SVG Track) */
   #asc-sj .sj-world {
     position: absolute;
     left: 0;
@@ -174,24 +194,12 @@
     height: 24%;
   }
 
-  #asc-sj .sj-far,
   #asc-sj .sj-near {
     position: absolute;
     left: 0;
     top: 0;
     height: 100%;
     will-change: transform;
-  }
-
-  #asc-sj .sj-far span {
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    white-space: nowrap;
-    font-weight: 500;
-    letter-spacing: -.05em;
-    line-height: 1;
-    color: rgba(224, 242, 254, .05);
   }
 
   #asc-sj .sj-near svg {
@@ -206,7 +214,7 @@
     stroke: rgba(186, 230, 253, .16);
     stroke-width: 3;
     stroke-linecap: round;
-    stroke-dasharray: 2 9;
+    stroke-dasharray: 3 9;
   }
 
   #asc-sj .sj-prog {
@@ -220,7 +228,12 @@
     fill: #0b1220;
     stroke: #475569;
     stroke-width: 3;
+    cursor: pointer;
     transition: stroke .3s, fill .3s;
+  }
+
+  #asc-sj .sj-dot:hover {
+    stroke: var(--sky);
   }
 
   #asc-sj .sj-dot.on {
@@ -228,46 +241,44 @@
     stroke: #e0f2fe;
   }
 
-  #asc-sj .sj-ring {
-    fill: rgba(56, 189, 248, .18);
-    stroke: #e0f2fe;
-    stroke-width: 2;
-  }
-
-  #asc-sj .sj-core {
-    fill: #e0f2fe;
-  }
-
   #asc-sj .sj-chip {
     position: absolute;
     transform: translate(-50%, -100%);
     text-align: center;
     white-space: nowrap;
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: .1em;
+    letter-spacing: .08em;
     text-transform: uppercase;
     color: #64748b;
-    transition: color .3s;
+    transition: color .3s, transform .3s;
+    user-select: none;
   }
 
   #asc-sj .sj-chip b {
     display: block;
-    font-size: 16px;
+    font-size: 15px;
     letter-spacing: -.02em;
     margin-bottom: 2px;
+    color: #94a3b8;
+    transition: color .3s;
   }
 
   #asc-sj .sj-chip.on {
-    color: var(--ice);
+    color: #7dd3fc;
   }
 
-  /* Panel baca: besar, lega, kontras tinggi */
+  #asc-sj .sj-chip.on b {
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+  }
+
+  /* Panel Cerita: Modern, Humanis, Kontras Tinggi */
   #asc-sj .sj-panel {
     position: absolute;
-    left: 4vw;
-    right: 4vw;
-    top: 45%;
+    left: 4.5vw;
+    right: 4.5vw;
+    top: 44%;
     bottom: 4vh;
     z-index: 5;
   }
@@ -277,102 +288,98 @@
     position: absolute;
     inset: 0;
     display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    gap: 4vw;
-    align-items: start;
+    grid-template-columns: minmax(0, 4.6fr) minmax(0, 7.4fr);
+    gap: 4.5vw;
+    align-items: center;
     opacity: 0;
     visibility: hidden;
-    will-change: transform, opacity;
+  }
+
+  #asc-sj .sj-left-col {
+    position: relative;
   }
 
   #asc-sj .sj-big {
-    font-size: calc(var(--k)*clamp(46px, 7.4vw, 118px));
-    font-weight: 500;
+    font-size: calc(var(--k)*clamp(44px, 6.8vw, 108px));
+    font-weight: 800;
     letter-spacing: -.05em;
     line-height: .92;
-    color: var(--ice);
+    background: linear-gradient(135deg, #ffffff 15%, #bae6fd 60%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
   }
 
   #asc-sj .sj-ix {
-    display: block;
-    margin-top: 14px;
-    font-size: calc(var(--k)*12px);
-    font-weight: 800;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--sky);
-  }
-
-  #asc-sj .sj-info h3 {
-    font-size: calc(var(--k)*clamp(24px, 2.5vw, 40px));
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 6px 14px;
+    background: rgba(14, 165, 233, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 999px;
+    font-size: calc(var(--k)*11.5px);
     font-weight: 700;
-    letter-spacing: -.02em;
-    line-height: 1.15;
-    margin-bottom: calc(var(--k)*14px);
-    color: #fff;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #7dd3fc;
   }
 
-  #asc-sj .sj-info p,
-  #asc-sj .sj-info li {
-    font-size: calc(var(--k)*clamp(16px, 1.52vw, 22px));
-    line-height: 1.7;
-    color: #dbe7f3;
+  #asc-sj .sj-ix::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #38bdf8;
+    box-shadow: 0 0 8px #38bdf8;
+  }
+
+  #asc-sj .sj-info {
+    position: relative;
     max-width: 66ch;
   }
 
-  #asc-sj .sj-info p+p,
-  #asc-sj .sj-info ol+p,
-  #asc-sj .sj-info p+ol,
-  #asc-sj .sj-info p+.sj-q,
-  #asc-sj .sj-info ol+.sj-q {
-    margin-top: calc(var(--k)*.7em);
-  }
-
-  #asc-sj .sj-info ol {
-    list-style: none;
-    counter-reset: n var(--st, 0);
-    display: grid;
-    gap: calc(var(--k)*10px);
-  }
-
-  #asc-sj .sj-info li {
-    counter-increment: n;
-    position: relative;
-    padding-left: 2.5em;
-  }
-
-  #asc-sj .sj-info li::before {
-    content: counter(n);
-    position: absolute;
-    left: 0;
-    top: .12em;
-    width: 1.75em;
-    height: 1.75em;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-size: .8em;
+  #asc-sj .sj-info h3 {
+    font-size: calc(var(--k)*clamp(22px, 2.25vw, 36px));
     font-weight: 800;
-    color: #7dd3fc;
-    background: rgba(56, 189, 248, .16);
-    border: 1px solid #38bdf8;
+    letter-spacing: -.03em;
+    line-height: 1.2;
+    margin-bottom: calc(var(--k)*14px);
+    color: #ffffff;
+    text-wrap: balance;
+  }
+
+  #asc-sj .sj-info p {
+    font-size: calc(var(--k)*clamp(15px, 1.35vw, 19px));
+    line-height: 1.75;
+    color: #d3dfeb;
+  }
+
+  #asc-sj .sj-info p+p,
+  #asc-sj .sj-info p+.sj-q {
+    margin-top: calc(var(--k)*.75em);
   }
 
   #asc-sj .sj-q {
-    margin-top: .7em;
-    padding-left: 18px;
-    border-left: 3px solid var(--sky);
-    font-size: calc(var(--k)*clamp(17px, 1.6vw, 24px));
+    position: relative;
+    margin-top: calc(var(--k)*16px);
+    padding: 14px 20px 14px 22px;
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.12) 0%, rgba(14, 165, 233, 0.04) 100%);
+    border-left: 4px solid #38bdf8;
+    border-radius: 0 16px 16px 0;
+    font-size: calc(var(--k)*clamp(16px, 1.45vw, 21px));
     font-weight: 700;
     font-style: italic;
-    line-height: 1.45;
-    color: #fff;
-    max-width: 60ch;
+    line-height: 1.5;
+    color: #f0f9ff;
+    max-width: 62ch;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
-  /* Pembuka & penutup */
+  /* Layar Pembuka (Intro) & Penutup (Outro) */
   #asc-sj .sj-ov {
     position: absolute;
     inset: 0;
@@ -380,72 +387,154 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 4vw;
+    padding: 0 5vw;
     pointer-events: none;
   }
 
   #asc-sj .sj-ov.in {
-    background: linear-gradient(90deg, rgba(11, 18, 32, .94), rgba(11, 18, 32, .55) 62%, transparent);
+    background: linear-gradient(90deg, rgba(11, 18, 32, .96) 0%, rgba(11, 18, 32, .8) 55%, rgba(11, 18, 32, .2) 100%);
   }
 
   #asc-sj .sj-ov.out {
     align-items: center;
     text-align: center;
-    background: radial-gradient(ellipse at 50% 50%, rgba(11, 18, 32, .92), rgba(11, 18, 32, .6) 70%, transparent);
+    background: radial-gradient(ellipse at 50% 50%, rgba(11, 18, 32, .96) 0%, rgba(11, 18, 32, .8) 65%, transparent 100%);
     opacity: 0;
   }
 
+  #asc-sj .sj-ov-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #7dd3fc;
+    margin-bottom: 20px;
+    width: fit-content;
+  }
+
+  #asc-sj .sj-ov-badge::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #38bdf8;
+    box-shadow: 0 0 8px #38bdf8;
+  }
+
   #asc-sj .sj-ov h3 {
-    font-size: min(15vw, 32vh);
-    font-weight: 500;
-    letter-spacing: -.045em;
-    line-height: .92;
+    font-size: clamp(38px, 6.2vw, 82px);
+    font-weight: 800;
+    letter-spacing: -.04em;
+    line-height: .98;
     color: var(--ice);
   }
 
   #asc-sj .sj-ov h3 i {
     font-style: normal;
-    color: var(--sky);
+    background: linear-gradient(135deg, #38bdf8, #bae6fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   #asc-sj .sj-ov.out h3 {
-    font-size: min(10vw, 24vh);
+    font-size: clamp(34px, 5.2vw, 68px);
   }
 
   #asc-sj .sj-ov p {
-    max-width: 540px;
-    margin-top: 4vh;
+    max-width: 620px;
+    margin-top: 22px;
     font-size: clamp(15px, 1.3vw, 19px);
     line-height: 1.75;
-    color: #dbe7f3;
+    color: #cbd5e1;
   }
 
-  #asc-sj .sj-ov small {
-    margin-top: 5vh;
-    font-size: 12px;
+  #asc-sj .sj-scroll-callout {
+    margin-top: 36px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  #asc-sj .sj-mouse-wheel {
+    width: 22px;
+    height: 34px;
+    border: 2px solid rgba(186, 230, 253, 0.6);
+    border-radius: 12px;
+    position: relative;
+  }
+
+  #asc-sj .sj-mouse-wheel::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 6px;
+    background: #38bdf8;
+    border-radius: 2px;
+    animation: sjWheelMove 1.6s infinite ease-in-out;
+  }
+
+  @keyframes sjWheelMove {
+    0% {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translate(-50%, 12px);
+      opacity: 0;
+    }
+  }
+
+  #asc-sj .sj-scroll-callout small {
+    font-size: 12.5px;
     font-weight: 700;
-    letter-spacing: .22em;
+    letter-spacing: .16em;
     color: #bae6fd;
     text-transform: uppercase;
   }
 
-  #asc-sj .sj-ov.out small {
-    letter-spacing: .04em;
-    color: #94a3b8;
-    text-transform: none;
-    font-weight: 500;
-    font-size: 13px;
+  #asc-sj .sj-out-quote-box {
+    margin-top: 24px;
+    padding: 14px 28px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 14px;
+    font-style: italic;
+    font-size: clamp(16px, 1.4vw, 20px);
+    font-weight: 700;
+    color: #e0f2fe;
+    max-width: 600px;
   }
 
-  @media (max-width:700px) {
+  #asc-sj .sj-ov.out small {
+    margin-top: 20px;
+    letter-spacing: .03em;
+    color: #94a3b8;
+    font-weight: 500;
+    font-size: 13.5px;
+  }
+
+  /* Responsif Mobile & Layar Kecil */
+  @media (max-width: 768px) {
     #asc-sj {
-      height: 1600vh;
+      height: 1450vh;
     }
 
     #asc-sj .sj-top {
       flex-direction: column;
       align-items: stretch;
-      gap: 10px;
+      gap: 12px;
       top: 2.2vh;
     }
 
@@ -455,49 +544,60 @@
 
     #asc-sj .sj-lb {
       text-align: left;
-      font-size: 10.5px;
+      font-size: 11px;
     }
 
     #asc-sj .sj-world {
-      top: 19%;
-      height: 19%;
+      top: 18%;
+      height: 18%;
     }
 
     #asc-sj .sj-panel {
-      top: 40%;
+      top: 38%;
       bottom: 2.5vh;
     }
 
     #asc-sj .sj-p {
       grid-template-columns: 1fr;
-      gap: 4px;
+      gap: 8px;
+    }
+
+    #asc-sj .sj-left-col {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 4px;
     }
 
     #asc-sj .sj-big {
-      font-size: calc(var(--k)*clamp(36px, 11vw, 54px));
+      font-size: calc(var(--k)*clamp(28px, 8vw, 42px));
+      line-height: 1;
     }
 
     #asc-sj .sj-ix {
-      margin-top: 6px;
+      margin-top: 0;
+      padding: 4px 10px;
+      font-size: 10.5px;
     }
 
     #asc-sj .sj-info h3 {
-      font-size: calc(var(--k)*20px);
+      font-size: calc(var(--k)*clamp(18px, 4.8vw, 22px));
       margin-bottom: calc(var(--k)*8px);
     }
 
-    #asc-sj .sj-info p,
-    #asc-sj .sj-info li {
-      font-size: calc(var(--k)*15px);
-      line-height: 1.6;
+    #asc-sj .sj-info p {
+      font-size: calc(var(--k)*clamp(13.5px, 3.6vw, 15.5px));
+      line-height: 1.58;
     }
 
     #asc-sj .sj-q {
-      font-size: calc(var(--k)*16.5px);
+      font-size: calc(var(--k)*clamp(14px, 3.8vw, 16.5px));
+      padding: 10px 14px;
+      margin-top: 10px;
     }
 
     #asc-sj .sj-chip {
-      font-size: 9px;
+      font-size: 9.5px;
     }
 
     #asc-sj .sj-chip b {
@@ -509,7 +609,7 @@
     }
   }
 
-  /* Gerak dikurangi: daftar bab biasa */
+  /* Preferensi Gerak Berkurang (Reduced Motion Fallback) */
   #asc-sj.sj-static {
     height: auto;
   }
@@ -531,7 +631,9 @@
 
   #asc-sj.sj-static .sj-nav,
   #asc-sj.sj-static .sj-world,
-  #asc-sj.sj-static .sj-glow {
+  #asc-sj.sj-static .sj-bg,
+  #asc-sj.sj-static .sj-bg2,
+  #asc-sj.sj-static .sj-tk {
     display: none;
   }
 
@@ -551,182 +653,355 @@
     display: none;
   }
 
-  @media (max-width:700px) {
+  @media (max-width: 768px) {
     #asc-sj.sj-static .sj-p {
       grid-template-columns: 1fr;
     }
+  }
+
+  /* ===== Penyempurnaan: ringan, halus, tanpa "noise" di latar ===== */
+  #asc-sj .sj-st {
+    contain: layout paint;
+  }
+
+  #asc-sj .sj-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse 70% 60% at 38% 30%, rgba(56, 189, 248, .14), transparent 70%), radial-gradient(circle at 80% 78%, rgba(2, 132, 199, .10), transparent 60%);
+  }
+
+  #asc-sj .sj-bg2 {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    will-change: opacity;
+    background: radial-gradient(ellipse 80% 70% at 40% 28%, rgba(56, 189, 248, .36), transparent 70%), radial-gradient(circle at 78% 72%, rgba(14, 165, 233, .2), transparent 62%), linear-gradient(180deg, rgba(2, 132, 199, .16), transparent 55%);
+  }
+
+  /* pengganti teks latar: skala waktu halus yang ikut bergeser (tanda arah perjalanan) */
+  #asc-sj .sj-tk {
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 16px;
+    width: calc(100% + 200px);
+    pointer-events: none;
+    will-change: transform;
+    background: linear-gradient(90deg, rgba(186, 230, 253, .28) 1px, transparent 1px) 0 100% / 200px 16px repeat-x, linear-gradient(90deg, rgba(186, 230, 253, .13) 1px, transparent 1px) 0 100% / 40px 8px repeat-x;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  }
+
+  /* penanda posisi (HTML, digerakkan lewat transform: ringan) */
+  #asc-sj .sj-mk {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    will-change: transform;
+    pointer-events: none;
+  }
+
+  #asc-sj .sj-mk::before {
+    content: "";
+    position: absolute;
+    left: -18px;
+    top: -18px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid rgba(186, 230, 253, .75);
+    background: rgba(56, 189, 248, .2);
+    animation: sjPulse 2.4s ease-in-out infinite;
+  }
+
+  #asc-sj .sj-mk::after {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: -7px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 14px 2px rgba(56, 189, 248, .8);
+  }
+
+  @keyframes sjPulse {
+
+    0%,
+    100% {
+      transform: scale(.82);
+      opacity: 1;
+    }
+
+    50% {
+      transform: scale(1.15);
+      opacity: .4;
+    }
+  }
+
+  #asc-sj .sj-dot.on {
+    stroke: #fff;
+  }
+
+  #asc-sj .sj-ov {
+    visibility: hidden;
+  }
+
+  #asc-sj .sj-left-col,
+  #asc-sj .sj-info {
+    will-change: transform;
+  }
+
+  #asc-sj .sj-chip {
+    cursor: pointer;
+  }
+
+  #asc-sj.sj-static .sj-ov {
+    visibility: visible;
   }
 </style>
 
 <section id="asc-sj" aria-label="Sejarah UKM ASC">
   <span id="asc-sejarah" style="position:relative;top:-90px;display:block;visibility:hidden;height:0;width:0;"></span>
   <div class="sj-st">
-    <div class="sj-glow"></div>
+    <div class="sj-bg"></div>
+    <div class="sj-bg2" id="sjBg2"></div>
     <div class="sj-top">
-      <div><span class="sj-tag">Al-Quran Study Club &middot; UM</span>
-        <h2>Sejarah ASC</h2>
+      <div>
+        <span class="sj-tag">Al-Qur’an Study Club &middot; Universitas Negeri Malang</span>
+        <h2>Sejarah &amp; Perjalanan ASC</h2>
       </div>
-      <div class="sj-nav"><span class="sj-lb" id="sjLb">&nbsp;</span>
-        <nav class="sj-ruler" id="sjRuler" aria-label="Alur sejarah"><i class="sj-fill" id="sjFill"></i></nav>
+      <div class="sj-nav">
+        <span class="sj-lb" id="sjLb">&nbsp;</span>
+        <nav class="sj-ruler" id="sjRuler" aria-label="Alur linimasa sejarah"><i class="sj-fill" id="sjFill"></i></nav>
       </div>
     </div>
 
     <div class="sj-world">
-      <div class="sj-far" id="sjFar"></div>
+      <div class="sj-tk" id="sjTk"></div>
       <div class="sj-near" id="sjNear">
         <svg id="sjSvg" aria-hidden="true">
           <defs>
             <linearGradient id="sjG" x1="0" x2="1">
-              <stop offset="0" stop-color="#0284c7" />
-              <stop offset="1" stop-color="#7dd3fc" />
+              <stop offset="0%" stop-color="#0284c7" />
+              <stop offset="50%" stop-color="#38bdf8" />
+              <stop offset="100%" stop-color="#bae6fd" />
             </linearGradient>
           </defs>
           <path class="sj-base" id="sjBase" />
           <path class="sj-prog" id="sjProg" />
           <g id="sjDots"></g>
-          <g id="sjMk">
-            <circle class="sj-ring" r="16" />
-            <circle class="sj-core" r="6" />
-          </g>
         </svg>
+        <div class="sj-mk" id="sjMk"></div>
       </div>
     </div>
 
     <div class="sj-panel" id="sjPanel"></div>
 
     <div class="sj-ov in" id="sjIn">
-      <h3>Sejarah<br><i>ASC</i></h3>
-      <p>Dari ruang rapat LEPPA hingga resmi menjadi Unit Kegiatan Mahasiswa Universitas Negeri Malang: sebuah
-        perjalanan yang dibangun dengan khidmah.</p>
-      <small>Gulir pelan untuk membaca &darr;</small>
+      <span class="sj-ov-badge">Napak Tilas 2010 &ndash; 2013</span>
+      <h3>Kisah Perjalanan<br><i>Khidmah Qur’ani</i></h3>
+      <p>Dari kesederhanaan ruang rapat LEPPA hingga dinobatkan sebagai Juara Umum Nasional dan resmi disahkan oleh
+        Rektor Universitas Negeri Malang. Sebuah perjalanan tentang menanggalkan ego, berdikari, dan merawat cinta pada
+        Al-Qur’an.</p>
+      <div class="sj-scroll-callout">
+        <div class="sj-mouse-wheel"></div>
+        <small>Gulir pelan ke bawah untuk menelusuri &darr;</small>
+      </div>
     </div>
+
     <div class="sj-ov out" id="sjOut">
-      <h3>Mengabdi,<br><i>bukan bekerja.</i></h3>
-      <p>Ruh dan nilai berkhidmah kepada Al-Qur’an sejak masa ASC LEPPA hingga menjadi UKM tidak berkurang sedikit pun.
-      </p>
-      <small>Disarikan dari tulisan Ahmad Faisol Ali (Al Khoirot), 10-12-2015.</small>
+      <span class="sj-ov-badge">Prinsip Abadi Sejak 2010</span>
+      <h3>Mengabdi,<br><i>Bukan Bekerja.</i></h3>
+      <p>Lebih dari satu dekade berlalu, ketulusan para perintis tetap menjadi kompas utama UKM Al-Qur’an Study Club:
+        berdiri di atas semua golongan, merangkul setiap pecinta Al-Qur’an di Universitas Negeri Malang.</p>
+      <div class="sj-out-quote-box">
+        “Harus bisa menghidupkan ASC, jangan mencari hidup di ASC.”
+      </div>
+      <small>Disarikan langsung dari catatan sejarah perintis oleh Ahmad Faisol Ali (Gus Faisol), 10 Desember
+        2015.</small>
     </div>
   </div>
 </section>
 
 <script>
   (function () {
-    /* ============ DAFTAR BAB SEJARAH ============
-       big: angka/teks besar  (k: 'y' tahun, 'n' angka + akhiran s, 't' teks)   c: label singkat di jalur
-       y: tinggi jalur (0 puncak, 1 dasar)   m: cahaya suasana (0 gelap - 1 terang)
-       p: paragraf sebelum daftar   ol: daftar bernomor (st = nomor awal - 1)   post: paragraf setelah daftar   q: kutipan */
+    /* =========================================================================
+       DAFTAR BAB SEJARAH ASC (10 TONGGAK EMAS)
+       Sumber: Catatan Otentik Ahmad Faisol Ali (Gus Faisol), 10-12-2015
+       big: teks/angka besar  (k: 'y' tahun, 'n' angka + akhiran s, 't' teks)
+       c: label singkat pada ruler & jalur SVG
+       h: judul bab cerita
+       y: tinggi kurva (0 puncak kemenangan, 1 titik terendah)
+       m: intensitas ambience glow (0 gelap sunyi, 1 terang benderang)
+       p: kumpulan paragraf cerita
+       q: kutipan hikmah / moto emas
+       ========================================================================= */
     var DATA = [
       {
-        big: { k: 'y', v: 2010 }, c: 'MTQ ITS', h: 'Gagasan dari MTQ di ITS', y: .66, m: .3,
-        p: ['Musabaqah Tilawatil Qur’an (MTQ) regional Jawa Timur 2010 di ITS menjadi saksi bertemunya para pecinta Qur’an Universitas Negeri Malang.',
-          'Pembinaan intensif selama dua minggu belum membuahkan hasil berarti dalam perlombaan itu. Maka seluruh kafilah dan para pembina (Alm. Dr. Syafaat, Alm. Dr. Adib, Dr. Yusuf Hanafi, dan Dr. Munjin Nashi) sepakat: harus ada wadah yang menampung pembinaan Al-Qur’an secara intensif.']
+        big: { k: 'y', v: 2010 },
+        c: 'Surabaya 2010',
+        h: 'Dua Minggu yang Mengubah Segalanya',
+        y: .65,
+        m: .35,
+        p: [
+          'Semua bermula dari evaluasi jujur di Surabaya tahun 2010. Kala itu, Kafilah Universitas Negeri Malang baru saja tuntas berlaga di ajang MTQ Mahasiswa Regional Jawa Timur di kampus ITS.',
+          'Pembinaan kilat selama dua minggu terasa belum cukup untuk berbicara banyak di panggung kompetisi. Di titik itulah para pembina kafilah—Alm. Dr. Syafa’at, Alm. Dr. Adib, Dr. Yusuf Hanafi, dan Dr. Munjin Nasih—berkumpul bersama para mahasiswa dan sampai pada satu kesadaran bersama:'
+        ],
+        q: '“Cinta dan pembinaan Al-Qur’an di kampus tak boleh musiman. Harus ada wadah permanen yang merawatnya sepanjang tahun.”'
       },
       {
-        big: { k: 't', v: 'MMQ' }, c: 'LEPPA UM', h: 'Berkumpul di ruang rapat LEPPA', y: .58, m: .4,
-        p: ['Sepulang dari MTQ ITS, para kafilah berkumpul di ruang rapat LEPPA UM untuk membicarakan kelanjutan rencana pembentukan lembaga Qur’an tersebut.',
-          'Hadir dalam pertemuan itu: M. Aris Liswanto, Bahrul Ulum, Ikhwan, Fery Fauzi, Ahmad Faisol Ali, Iqlimatul Chusniah, Ariza, Farida Nur Rahmi, dan Nadia.']
+        big: { k: 'n', v: 9, s: ' Tokoh' },
+        c: 'Ruang LEPPA',
+        h: 'Satu Meja, Menanggalkan Ego Golongan',
+        y: .54,
+        m: .45,
+        p: [
+          'Sepulang dari ITS, sembilan perintis berkumpul di ruang rapat LEPPA UM: M. Aris Liswanto, Bahrul Ulum, Ikhwan, Fery Fauzi, Ahmad Faisol Ali, Iqlimatul Chusniah, Ariza, Farida Nur Rahmi, dan Nadia.',
+          'Di meja itu duduk aktivis dari berbagai pergerakan yang kerap berseberangan: Aris Liswanto (PMII), Bahrul Ulum (HTI), dan Ahmad Faisol Ali (KAMMI). Namun demi Al-Qur’an, mereka menanggalkan bendera dan ego masing-masing, berikrar agar wadah ini berdiri netral tanpa hegemoni kelompok mana pun.'
+        ],
+        q: '“Menjadi perekat ummat yang berdiri di atas dan untuk semua golongan.”'
       },
       {
-        big: { k: 't', v: 'Sepakat' }, c: 'Kesepakatan', h: 'Nama dan tujuan wadah', y: .5, m: .48,
-        p: ['Pertemuan itu menyepakati beberapa hal. Dua di antaranya:'],
-        ol: ['Nama wadah pembinaan: Multaqo Muhibbil Qur’an (MMQ). Sengaja tanpa embel-embel “mahasiswa”, agar kelak wadah ini dapat terus dikembangkan dan dinikmati seluruh elemen masyarakat, di dalam maupun di luar kampus.',
-          'Pembinaan bukan hanya bagi kafilah MTQ regional Jawa Timur 2010, tetapi bagi seluruh mahasiswa Universitas Negeri Malang, dalam rangka membumikan Qur’an di UM.']
+        big: { k: 't', v: 'ASC' },
+        c: 'Identitas Baru',
+        h: 'Lahirnya Nama Al-Qur’an Study Club',
+        y: .46,
+        m: .55,
+        p: [
+          'Awalnya wadah ini disepakati bernama Multaqo Muhibbil Qur’an (MMQ)—sengaja tanpa embel-embel “mahasiswa” dengan harapan kelak manfaatnya menembus masyarakat luas di dalam maupun luar kampus.',
+          'Namun seminggu kemudian pada musyawarah kedua, nama tersebut disesuaikan menjadi Al-Qur’an Study Club (ASC). Tujuannya sederhana namun visioner: agar terasa ramah, inklusif, dan luwes diterima oleh seluruh kalangan mahasiswa kampus umum.',
+          'M. Aris Liswanto pun diamanahi sebagai Ketua Pertama, didampingi koordinator pembinaan, koordinator kaderisasi, sekretaris, dan bendahara.'
+        ]
       },
       {
-        big: { k: 't', v: 'Netral' }, c: 'Semua golongan', h: 'Wadah untuk semua golongan', y: .44, m: .55, st: 2,
-        ol: ['Wadah ini harus netral dari keberpihakan pada golongan tertentu, sehingga semua aliran dan golongan dapat merasakan sejuknya ukhuwah Islamiyah dan belajar Al-Qur’an di dalamnya.',
-          'Moto wadah ini: “Menjadi perekat umat yang berdiri di atas dan untuk semua golongan.”'],
-        post: ['Meski para pendiri memiliki wadah dakwah masing-masing, semua peserta sidang berkomitmen menjaga wadah ini dari hegemoni kelompok tertentu. Bukan anti golongan, melainkan saling menjaga agar wadah ini terus menjadi tempat belajar Al-Qur’an bagi seluruh golongan.']
+        big: { k: 't', v: 'Gerilya' },
+        c: 'Ujian Awal',
+        h: 'Latihan Lesehan hingga Dituduh Ilegal',
+        y: .38,
+        m: .65,
+        p: [
+          'Perjalanan awal ditempuh serba gerilya. Tanpa ruangan sekretariat, nihil fasilitas, dan nol anggaran. Pembinaan rutin digelar lesehan berpindah-pindah di selasar dan lorong kampus yang sepi.',
+          'Bahkan saking sederhananya, pembinaan sempat dibubarkan oleh petugas keamanan kampus karena dicurigai sebagai perkumpulan tak berizin. Demi kepastian hukum, para pendiri sowan agar ASC dilegalkan di bawah naungan LEPPA UM—dan alhamdulillah, pintu itu dibuka dengan tangan terbuka.'
+        ]
       },
       {
-        big: { k: 't', v: 'ASC' }, c: 'Musyawarah II', h: 'Dari MMQ menjadi ASC', y: .38, m: .62,
-        p: ['Seminggu kemudian diadakan musyawarah kedua untuk membahas kelengkapan administrasi organisasi. Disepakati:'],
-        ol: ['Nama MMQ diganti menjadi Al-Qur’an Study Club (ASC), dengan harapan wadah pembinaan ini dapat diterima oleh kalangan mahasiswa.',
-          'Penetapan lambang serta visi-misi ASC.', 'Aris Liswanto ditunjuk sebagai ketua ASC.',
-          'Dibentuk koordinator pembinaan, koordinator kaderisasi, sekretaris, dan bendahara.']
-      },
-      {
-        big: { k: 't', v: 'LEPPA' }, c: 'Pembinaan perdana', h: 'Dimulai dari kesederhanaan', y: .32, m: .68,
-        p: ['Seusai musyawarah kedua, pembinaan mulai dijalankan dengan sangat sederhana: di tempat seadanya, tanpa fasilitas dan dana. Pembinaan bahkan sering dibubarkan karena dianggap kelompok ilegal.',
-          'Karena itu ASC diminta untuk dilegalkan di bawah LEPPA. Alhamdulillah, para pembina dan pimpinan LEPPA menyetujuinya, sehingga pembinaan dapat dilaksanakan dengan istiqamah di gedung LEPPA.']
-      },
-      {
-        big: { k: 'n', v: 150, s: '+' }, c: 'Open house', h: 'Open house pertama', y: .26, m: .74,
-        p: ['Tujuan pembentukan ASC, yaitu pembinaan yang tidak hanya untuk peserta kafilah, rupanya kurang tersosialisasi. Yang mengikuti pembinaan hanyalah para kafilah.',
-          'Maka diadakanlah open house pertama, dan dengan izin Allah lebih dari 150 peserta hadir. Seluruh biayanya berasal dari iuran para pengurus ASC.'],
+        big: { k: 'n', v: 150, s: '+' },
+        c: 'Open House I',
+        h: 'Nafas Patungan & Ruh Berkhidmah',
+        y: .28,
+        m: .75,
+        p: [
+          'Di awal perjalanannya, ASC sempat disalahpahami sebagai komunitas eksklusif anak-anak kafilah lomba saja. Untuk mendobrak stigma itu dan membumikan dakwah ke seisi UM, Open House perdana pun digelar.',
+          'Hasilnya luar biasa: lebih dari 150 mahasiswa hadir memenuhi ruangan. Yang paling menyentuh, seluruh biaya acara ditanggung murni dari urunan uang saku para pengurus sendiri tanpa sponsor.'
+        ],
         q: '“Harus bisa menghidupkan ASC, jangan mencari hidup di ASC.”'
       },
       {
-        big: { k: 'y', v: 2012 }, c: 'Masa vakum', h: 'Masa vakum', y: .86, m: .05,
-        p: ['Dengan segenap keterbatasan, pembinaan ASC terus berjalan hingga 2012, ketika LEPPA dibubarkan dan Aris Liswanto lulus. ASC pun vakum.',
-          'Tidak ada pembinaan, kecuali pembinaan kaligrafi yang dibimbing Syahrul Munir. Dengan rekomendasi HMJ Sastra Arab, kegiatan itu berlangsung di Laboratorium Bahasa Arab.']
+        big: { k: 'y', v: 2012 },
+        c: 'Masa Kritis',
+        h: 'Mati Suri di Laboratorium Bahasa Arab',
+        y: .88,
+        m: .10,
+        p: [
+          'Tahun 2012 menghadirkan badai terberat: lembaga LEPPA resmi dibubarkan oleh pihak kampus, dan di saat bersamaan Ketua ASC Aris Liswanto telah lulus wisuda. ASC mendadak kehilangan payung hukum dan figur nakhoda.',
+          'Kegiatan vakum total. Di tengah ancaman bubar, denyut nadi ASC hanya tersisa pada satu cabang: pembinaan Kaligrafi yang dirawat penuh keikhlasan oleh Syahrul Munir di Laboratorium Bahasa Arab, berkat surat rekomendasi hangat dari HMJ Sastra Arab.'
+        ]
       },
       {
-        big: { k: 't', v: 'Bangkit' }, c: 'Tekad kembali', h: 'Tekad menghidupkan kembali', y: .7, m: .3,
-        p: ['Melihat kondisi itu, Ahmad Syahrul Munir dan Ahmad Faisol bertekad memaksimalkan kembali ASC. Mereka mengadukannya kepada Alm. Dr. Syafaat, yang menanggapinya dengan sangat antusias dan siap membantu dengan segenap kemampuan.',
-          'Strategi pun dibuat: Syahrul dan Faisol mengonsolidasikan kepengurusan, sedangkan Alm. Ust. Syafaat melobi pimpinan yayasan Masjid Al-Hikmah agar ASC dapat bernaung di bawahnya.']
+        big: { k: 't', v: 'Al-Hikmah' },
+        c: 'Satu Meja',
+        h: 'Bermodal Satu Meja di Sudut Masjid',
+        y: .58,
+        m: .50,
+        p: [
+          'Enggan melihat lentera Al-Qur’an ini padam, Ahmad Syahrul Munir dan Ahmad Faisol Ali membulatkan tekad untuk bangkit. Mereka sowan menemui Alm. Dr. Syafa’at, yang langsung menyambut haru dan siap pasang badan membantu.',
+          'Konsolidasi pengurus kilat digelar, sementara Alm. Dr. Syafa’at melobi Yayasan Masjid Al-Hikmah UM. Yayasan menyambut hangat dan menyediakan satu meja khusus di kantor yayasan masjid sebagai markas sementara. Sejak saat itu, wadah ini bertransformasi menjadi ASC Al-Hikmah.'
+        ]
       },
       {
-        big: { k: 't', v: 'Al-Hikmah' }, c: 'ASC Al-Hikmah', h: 'Bernaung di Masjid Al-Hikmah', y: .55, m: .5,
-        p: ['Alhamdulillah, berkat khidmah pada Al-Qur’an, konsolidasi kepengurusan berhasil dilakukan dalam waktu singkat dan pimpinan yayasan Masjid Al-Hikmah menyetujui ASC berada di bawah naungan masjid.',
-          'Sebagai bukti keseriusan yayasan, ASC diberi satu meja khusus di kantor yayasan sebagai kantor sementara. Pada waktu itu ASC berganti nama menjadi ASC AL-HIKMAH.']
+        big: { k: 'n', v: 700, s: '+' },
+        c: 'Amanah BBQ',
+        h: '700 Pendaftar & Kepercayaan Universitas',
+        y: .32,
+        m: .78,
+        p: [
+          'Open House ASC Al-Hikmah digelar. MasyaAllah tabarakallah, antusiasme mahasiswa meledak tak terbendung: lebih dari 700 pendaftar membanjiri meja pendaftaran di masjid!',
+          'Melihat gelombang tersebut, dosen-dosen Pendidikan Agama Islam (PAI) UM turun langsung mengisi kelas pembinaan. Tak berselang lama, pimpinan universitas mempercayakan program akbar Bimbingan Baca Al-Qur’an (BBQ) mahasiswa baru untuk dikelola langsung oleh ASC Al-Hikmah.'
+        ]
       },
       {
-        big: { k: 'n', v: 700, s: '+' }, c: 'Pendaftar', h: 'Pendaftar melonjak', y: .4, m: .7,
-        p: ['Open house ASC Al-Hikmah segera digelar, dan masyaAllah tabarakallah, pendaftarnya mencapai lebih dari 700 orang.',
-          'Dengan bantuan yayasan, dosen-dosen Pendidikan Agama Islam (PAI) diundang untuk sosialisasi dan diminta mengisi pembinaan. Beberapa saat kemudian ASC Al-Hikmah dipercaya menjadi pelaksana kegiatan Bimbingan Baca Al-Qur’an (BBQ), dan dengan bantuan Allah semuanya dapat terlaksana di tengah keterbatasan.']
+        big: { k: 'y', v: 2013 },
+        c: 'Padang 2013',
+        h: 'Juara Umum Nasional & Peresmian UKM',
+        y: .14,
+        m: .98,
+        p: [
+          'Buah dari pembinaan intensif dan ketulusan berkhidmah berbuah manis di panggung tertinggi. Pada perhelatan akbar MTQ Mahasiswa Nasional (MTQMN) XIII di Padang tahun 2013, Kafilah UM—yang 99% anggotanya adalah kader dan pengurus ASC—sukses dinobatkan sebagai JUARA UMUM NASIONAL.',
+          'Atas pencapaian emas ini, pada 18 Ramadhan 1434 H / 2013, Rektor Universitas Negeri Malang secara resmi menetapkan ASC sebagai Unit Kegiatan Mahasiswa (UKM) mandiri di lingkungan UM.'
+        ]
       },
       {
-        big: { k: 'y', v: 2013 }, c: 'Resmi UKM', h: 'Juara umum dan peresmian UKM', y: .14, m: 1,
-        p: ['Perbaikan administrasi dan pemaksimalan pembinaan terus diupayakan. Dengan rahmat dan inayah Allah, Kafilah MTQ UM, yang 99% adalah pengurus dan anggota ASC Al-Hikmah, meraih Juara Umum MTQ Mahasiswa Nasional di Padang.',
-          'Sebagai apresiasi, pada 18 Ramadhan 2013 ASC Al-Hikmah diresmikan oleh Rektor Universitas Negeri Malang sebagai Unit Kegiatan Mahasiswa (UKM). Namanya pun berganti menjadi UKM Al-Qur’an Study Club.']
-      },
-      {
-        big: { k: 't', v: 'Khidmah' }, c: 'Penutup', h: 'Mengabdi, bukan bekerja', y: .1, m: 1,
-        p: ['Agar seluruh civitas akademika UM mengenal UKM baru ini, dengan uang iuran seluruh khodim, ASC mengirim parsel ucapan selamat Ramadhan dan Hari Raya kepada jajaran Rektorat, Dekanat, BEM Universitas, BEM Fakultas, dan HMJ se-Universitas Negeri Malang.',
-          'Itu menjadi bukti nyata bahwa ruh dan nilai berkhidmah sejak ASC LEPPA hingga menjadi UKM ASC tidak berkurang sedikit pun.'],
+        big: { k: 't', v: 'Khidmah' },
+        c: 'Ruh Abadi',
+        h: 'Parsel Ramadhan: Mengabdi, Bukan Bekerja',
+        y: .08,
+        m: 1.0,
+        p: [
+          'Begitu resmi berstatus UKM, para pengurus langsung mengumpulkan uang iuran pribadi. Mereka mengirimkan parsel ucapan selamat Ramadhan & Hari Raya ke seluruh jajaran Rektorat, Dekanat, BEM Universitas, hingga seluruh HMJ se-UM sebagai tanda ta’aruf dan silaturahmi.',
+          'Tradisi tersebut menjadi bukti nyata bahwa sejak berpeluh di lorong LEPPA hingga menorehkan gelar juara nasional, nilai dasar ASC tak pernah bergeser sejengkal pun:'
+        ],
         q: '“Mengabdi, bukan bekerja.”'
       }
     ];
-    /* ============================================ */
 
-    var root = document.getElementById('asc-sj'); if (!root) return;
+    var root = document.getElementById('asc-sj');
+    if (!root) return;
     var N = DATA.length, NS = 'http://www.w3.org/2000/svg';
+
     function $(id) { return document.getElementById(id); }
     function pad(n) { return ('0' + n).slice(-2); }
     function bigTxt(b) { return b.k === 'n' ? b.v + (b.s || '') : String(b.v); }
     function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
-    function words(d) { return (d.p || []).concat(d.ol || [], d.post || [], d.q ? [d.q] : []).join(' ').split(/\s+/).length; }
+    function words(d) { return (d.p || []).concat(d.q ? [d.q] : []).join(' ').split(/\s+/).length; }
+    function clamp(x) { return Math.max(0, Math.min(1, x)); }
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function ease(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }     /* easeInOutCubic: awal & akhir lembut */
+    function soft(t) { return t * t * (3 - 2 * t); }
 
-    /* Panel cerita + penanda alur */
+    /* Panel konten + penunjuk garis waktu */
     var panel = $('sjPanel'), ruler = $('sjRuler'), rb = [], ps = [];
     DATA.forEach(function (d, i) {
-      var a = document.createElement('article'); a.className = 'sj-p'; if (d.st) a.style.setProperty('--st', d.st);
-      var h = '<div><div class="sj-big" aria-label="' + esc(bigTxt(d.big)) + '">' + esc(bigTxt(d.big)) + '</div><span class="sj-ix">' + pad(i + 1) + ' / ' + pad(N) + ' &middot; ' + esc(d.c) + '</span></div><div class="sj-info"><h3>' + esc(d.h) + '</h3>';
+      var a = document.createElement('article'); a.className = 'sj-p';
+      var h = '<div class="sj-left-col"><div class="sj-big" aria-label="' + esc(bigTxt(d.big)) + '">' + esc(bigTxt(d.big)) + '</div>' +
+        '<span class="sj-ix">' + pad(i + 1) + ' / ' + pad(N) + ' &middot; ' + esc(d.c) + '</span></div><div class="sj-info"><h3>' + esc(d.h) + '</h3>';
       (d.p || []).forEach(function (t) { h += '<p>' + esc(t) + '</p>'; });
-      if (d.ol) h += '<ol>' + d.ol.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ol>';
-      (d.post || []).forEach(function (t) { h += '<p>' + esc(t) + '</p>'; });
       if (d.q) h += '<blockquote class="sj-q">' + esc(d.q) + '</blockquote>';
-      a.innerHTML = h + '</div>'; panel.appendChild(a); ps.push({ el: a, big: a.querySelector('.sj-big') });
+      a.innerHTML = h + '</div>'; panel.appendChild(a);
+      ps.push({ el: a, big: a.querySelector('.sj-big'), L: a.querySelector('.sj-left-col'), R: a.querySelector('.sj-info'), shown: false, txt: '' });
       var b = document.createElement('button'); b.type = 'button'; b.className = 'sj-rb'; b.setAttribute('aria-label', pad(i + 1) + '. ' + d.h); ruler.appendChild(b); rb.push(b);
     });
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { root.classList.add('sj-static'); return; }
 
-    /* Pastikan parent WordPress tidak memblokir position: sticky */
+    /* Pastikan container WordPress tidak memblokir sticky */
     var q = root.parentElement, w = 0;
     while (q && q !== document.documentElement && w++ < 20) {
       var cs = getComputedStyle(q);
-      if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) q.style.setProperty('overflow', 'visible', 'important'); q = q.parentElement;
+      if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) q.style.setProperty('overflow', 'visible', 'important');
+      q = q.parentElement;
     }
 
-    var far = $('sjFar'), near = $('sjNear'), svg = $('sjSvg'), base = $('sjBase'), prog = $('sjProg'), dots = $('sjDots'), mk = $('sjMk'), fill = $('sjFill'), lb = $('sjLb'), inEl = $('sjIn'), outEl = $('sjOut'), world = root.querySelector('.sj-world');
-    var chips = [], dotEls = [], farEls = [], nodeLen = [], total = 1, worldW = 0, vw = 0, ZH = 0, X = [];
-    function clamp(x) { return Math.max(0, Math.min(1, x)); }
-    function lerp(a, b, t) { return a + (b - a) * t; }
-    function ease(t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+    var near = $('sjNear'), tk = $('sjTk'), svg = $('sjSvg'), base = $('sjBase'), prog = $('sjProg'), dots = $('sjDots'), mk = $('sjMk'),
+      fill = $('sjFill'), lb = $('sjLb'), inEl = $('sjIn'), outEl = $('sjOut'), bg2 = $('sjBg2'), world = root.querySelector('.sj-world');
+    var chips = [], dotEls = [], nodeLen = [], total = 1, worldW = 0, vw = 0, ZH = 0, X = [], SX = [], SY = [], S = 700;
 
-    /* Teks terlalu panjang? Kecilkan huruf sedikit demi sedikit sampai muat di panel */
+    /* Teks terlalu panjang? kecilkan sedikit supaya muat di panel */
     function fit() {
       var H = panel.clientHeight;
       ps.forEach(function (p) {
@@ -735,40 +1010,47 @@
       });
     }
 
-    /* Jalur (kurva halus melewati semua tonggak) */
+    /* Jalur kurva halus melewati semua tonggak. Titiknya disampel sekali, jadi saat digulir tinggal dibaca (ringan). */
     function build() {
       vw = window.innerWidth; ZH = world.clientHeight;
       var dx = Math.max(300, Math.min(520, vw * .42)), x0 = vw * .2, pts = [[x0 - dx * .9, ZH * .8]];
-      X = []; DATA.forEach(function (d, i) { X.push(x0 + i * dx); pts.push([X[i], ZH * d.y]); });
-      pts.push([X[N - 1] + dx * .9, ZH * .08]); worldW = X[N - 1] + dx * .9 + vw * .3;
+      X = [];
+      DATA.forEach(function (d, i) { X.push(x0 + i * dx); pts.push([X[i], ZH * d.y]); });
+      pts.push([X[N - 1] + dx * .9, ZH * .08]);
+      worldW = X[N - 1] + dx * .9 + vw * .3;
       function seg(k) {
         var p0 = pts[Math.max(0, k - 1)], p1 = pts[k], p2 = pts[k + 1], p3 = pts[Math.min(pts.length - 1, k + 2)];
         return 'C' + (p1[0] + (p2[0] - p0[0]) / 6) + ' ' + (p1[1] + (p2[1] - p0[1]) / 6) + ',' + (p2[0] - (p3[0] - p1[0]) / 6) + ' ' + (p2[1] - (p3[1] - p1[1]) / 6) + ',' + p2[0] + ' ' + p2[1];
       }
       var d = 'M' + pts[0][0] + ' ' + pts[0][1], ds = [d];
       for (var k = 0; k < pts.length - 1; k++) { d += seg(k); ds.push(d); }
-      svg.setAttribute('width', worldW); svg.setAttribute('height', ZH); near.style.width = worldW + 'px'; far.style.width = worldW + 'px';
+      svg.setAttribute('width', worldW); svg.setAttribute('height', ZH); near.style.width = worldW + 'px';
       base.setAttribute('d', d); prog.setAttribute('d', d);
       nodeLen = []; for (k = 1; k <= N; k++) { prog.setAttribute('d', ds[k]); nodeLen.push(prog.getTotalLength()); }
-      prog.setAttribute('d', d); total = prog.getTotalLength(); prog.style.strokeDasharray = total;
-      dots.innerHTML = ''; chips.forEach(function (c) { c.remove(); }); farEls.forEach(function (c) { c.remove(); }); chips = []; dotEls = []; farEls = [];
+      prog.setAttribute('d', d); total = prog.getTotalLength(); prog.style.strokeDasharray = total; prog.style.strokeDashoffset = total;
+      SX = []; SY = []; for (k = 0; k <= S; k++) { var p = prog.getPointAtLength(total * k / S); SX.push(p.x); SY.push(p.y); }
+
+      dots.innerHTML = ''; chips.forEach(function (c) { c.remove(); }); chips = []; dotEls = [];
       DATA.forEach(function (dd, i) {
-        var c = document.createElementNS(NS, 'circle'); c.setAttribute('class', 'sj-dot'); c.setAttribute('r', 8); c.setAttribute('cx', X[i]); c.setAttribute('cy', ZH * dd.y); dots.appendChild(c); dotEls.push(c);
-        var ch = document.createElement('div'); ch.className = 'sj-chip'; ch.style.left = X[i] + 'px'; ch.style.top = (ZH * dd.y - 20) + 'px'; ch.innerHTML = '<b>' + esc(bigTxt(dd.big)) + '</b>' + esc(dd.c); near.appendChild(ch); chips.push(ch);
-        var f = document.createElement('span'); f.textContent = bigTxt(dd.big); f.style.fontSize = Math.min(ZH * .95, vw * .34) + 'px'; f.style.left = (X[i] * .55 + vw * .36 * .45) + 'px'; far.appendChild(f); farEls.push(f);
+        var c = document.createElementNS(NS, 'circle');
+        c.setAttribute('class', 'sj-dot'); c.setAttribute('r', 8); c.setAttribute('cx', X[i]); c.setAttribute('cy', ZH * dd.y);
+        c.setAttribute('role', 'button'); c.setAttribute('aria-label', dd.h);
+        c.addEventListener('click', function () { scrollToStep(i); }); dots.appendChild(c); dotEls.push(c);
+        var ch = document.createElement('div'); ch.className = 'sj-chip'; ch.style.left = X[i] + 'px'; ch.style.top = (ZH * dd.y - 20) + 'px';
+        ch.innerHTML = '<b>' + esc(bigTxt(dd.big)) + '</b>' + esc(dd.c); ch.addEventListener('click', function () { scrollToStep(i); }); near.appendChild(ch); chips.push(ch);
       });
-      geom(); fit();
+      onCount = -1; aiLast = -1; geom(); fit();
     }
 
-    /* Garis waktu scroll: tiap tonggak "berhenti" (dwell) sesuai panjang teksnya, lalu bergerak ke tonggak berikutnya */
+    /* Garis waktu scroll: tiap tonggak "berhenti" sesuai panjang teksnya, lalu bergerak ke tonggak berikutnya */
     var U = 0, INTRO = 0, TRAVEL = 0, OUT = 0, DW = [], TOT = 0;
     function geom() {
-      U = window.innerHeight / 100; INTRO = 55 * U; TRAVEL = 26 * U; OUT = 70 * U;
+      U = window.innerHeight / 100; INTRO = 55 * U; TRAVEL = 28 * U; OUT = 70 * U;
       DW = DATA.map(function (d) { return (58 + .55 * words(d)) * U; });
       TOT = INTRO + OUT + (N - 1) * TRAVEL + DW.reduce(function (a, b) { return a + b; }, 0);
       root.style.height = (window.innerHeight + TOT) + 'px';
     }
-    function locate(y) {                                                        /* y (px) -> f (posisi di antara tonggak), tahap */
+    function locate(y) {
       if (y < INTRO) return { f: 0, pre: y / INTRO };
       y -= INTRO;
       for (var i = 0; i < N; i++) {
@@ -778,51 +1060,80 @@
       }
       return { f: N - 1, post: clamp(y / OUT) };
     }
+    function pointAt(len) {                                                  /* titik di jalur dari tabel sampel */
+      var t = clamp(len / total) * S, i = Math.min(S - 1, Math.floor(t)), u = t - i;
+      return [SX[i] + (SX[i + 1] - SX[i]) * u, SY[i] + (SY[i + 1] - SY[i]) * u];
+    }
 
-    var ticking = false;
-    function render() {
-      ticking = false;
-      var r = root.getBoundingClientRect(), y = Math.max(0, Math.min(TOT, -r.top)), L = locate(y), f = L.f, len;
+    var onCount = -1, aiLast = -1, offLast = -1, ovIn = -1, ovOut = -1;
+    function draw(y) {
+      var L = locate(y), f = L.f, len;
       if (L.pre !== undefined) len = nodeLen[0] * ease(clamp(L.pre));
       else if (L.post !== undefined) len = lerp(nodeLen[N - 1], total, L.post);
       else if (L.u !== undefined) len = lerp(nodeLen[L.i], nodeLen[L.i + 1], L.u);
       else len = nodeLen[Math.round(f)];
 
-      var pt = prog.getPointAtLength(len);
-      prog.style.strokeDashoffset = total - len; mk.setAttribute('transform', 'translate(' + pt.x + ',' + pt.y + ')');
-      var cam = Math.max(0, Math.min(worldW - vw, pt.x - vw * .36));
-      near.style.transform = 'translate3d(' + (-cam) + 'px,0,0)'; far.style.transform = 'translate3d(' + (-cam * .55) + 'px,0,0)';
+      var pt = pointAt(len);
+      if (Math.abs(total - len - offLast) > .4) { offLast = total - len; prog.style.strokeDashoffset = offLast; }
+      mk.style.transform = 'translate3d(' + pt[0].toFixed(1) + 'px,' + pt[1].toFixed(1) + 'px,0)';
+      var cam = Math.max(0, Math.min(worldW - vw, pt[0] - vw * .36));
+      near.style.transform = 'translate3d(' + (-cam).toFixed(1) + 'px,0,0)';
+      tk.style.transform = 'translate3d(' + (-((cam * .35) % 200)).toFixed(1) + 'px,0,0)';
 
-      var fl = Math.floor(f), m = lerp(DATA[fl].m, DATA[Math.min(N - 1, fl + 1)].m, f - fl); root.style.setProperty('--m', m.toFixed(3));
-      chips.forEach(function (c, k) { var on = f >= k - .05; c.classList.toggle('on', on); dotEls[k].classList.toggle('on', on); });
+      var fl = Math.floor(f);
+      bg2.style.opacity = lerp(DATA[fl].m, DATA[Math.min(N - 1, fl + 1)].m, f - fl).toFixed(3);
+
+      var oc = Math.min(N, Math.floor(f + .05) + 1);                          /* tonggak yang sudah terlewati */
+      if (oc !== onCount) { onCount = oc; chips.forEach(function (c, k) { c.classList.toggle('on', k < oc); dotEls[k].classList.toggle('on', k < oc); }); }
 
       var vis = clamp((y / INTRO - .55) / .4) * (1 - clamp((L.post || 0) * 3));
       ps.forEach(function (p, k) {
-        var d = f - k, o = clamp(1 - Math.abs(d) * 2.6) * vis;
-        p.el.style.visibility = o > 0 ? 'visible' : 'hidden'; if (o <= 0) return;
-        p.el.style.opacity = o.toFixed(3); p.el.style.transform = 'translate3d(0,' + (-d * 30).toFixed(1) + 'px,0)';
-        var D = DATA[k].big, t = clamp((f - (k - .6)) / .5);                            /* angka menghitung naik saat tiba */
-        p.big.textContent = D.k === 'n' ? Math.round(D.v * t) + (D.s || '') : D.k === 'y' ? Math.round(D.v - 9 + 9 * t) : D.v.slice(0, Math.max(1, Math.ceil(D.v.length * clamp(t * 1.4))));
+        var d = f - k, o = soft(clamp(1 - Math.abs(d) * 2.4)) * vis;
+        if (o <= 0.002) { if (p.shown) { p.shown = false; p.el.style.visibility = 'hidden'; p.el.style.opacity = 0; } return; }
+        if (!p.shown) { p.shown = true; p.el.style.visibility = 'visible'; }
+        p.el.style.opacity = o.toFixed(3);
+        p.L.style.transform = 'translate3d(0,' + (-d * 34).toFixed(1) + 'px,0)';               /* dua kolom bergerak beda kecepatan: terasa berlapis */
+        p.R.style.transform = 'translate3d(0,' + (-d * 22).toFixed(1) + 'px,0)';
+        var D = DATA[k].big, t = clamp((f - (k - .6)) / .5);
+        var txt = D.k === 'n' ? Math.round(D.v * t) + (D.s || '') : D.k === 'y' ? String(Math.round(D.v - 9 + 9 * t)) : D.v.slice(0, Math.max(1, Math.ceil(D.v.length * clamp(t * 1.4))));
+        if (txt !== p.txt) { p.txt = txt; p.big.textContent = txt; }
       });
-      inEl.style.opacity = (1 - clamp(y / (INTRO * .8))).toFixed(3); outEl.style.opacity = clamp(((L.post || 0) - .15) / .4).toFixed(3);
-      var ai = Math.round(f); lb.textContent = pad(ai + 1) + ' / ' + pad(N) + ' · ' + DATA[ai].c;
-      rb.forEach(function (b, k) { b.classList.toggle('on', k === ai); b.classList.toggle('done', k < ai); });
-      fill.style.width = (f / (N - 1) * 100).toFixed(2) + '%';
-    }
-    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(render); } }
 
-    /* Klik titik = lompat ke tonggak itu */
-    rb.forEach(function (b, k) {
-      b.addEventListener('click', function () {
-        var y = INTRO + 4 * U; for (var j = 0; j < k; j++) y += DW[j] + TRAVEL;
-        var r = root.getBoundingClientRect(); window.scrollTo({ top: window.pageYOffset + r.top + y, behavior: 'smooth' });
-      });
-    });
+      var oi = clamp(1 - y / (INTRO * .8)), oo = clamp(((L.post || 0) - .15) / .4);
+      if (oi !== ovIn) { ovIn = oi; inEl.style.opacity = oi.toFixed(3); inEl.style.visibility = oi > 0 ? 'visible' : 'hidden'; }
+      if (oo !== ovOut) { ovOut = oo; outEl.style.opacity = oo.toFixed(3); outEl.style.visibility = oo > 0 ? 'visible' : 'hidden'; }
+
+      var ai = Math.round(f);
+      if (ai !== aiLast) { aiLast = ai; lb.textContent = pad(ai + 1) + ' / ' + pad(N) + ' · ' + DATA[ai].c; rb.forEach(function (b, k) { b.classList.toggle('on', k === ai); b.classList.toggle('done', k < ai); }); }
+      fill.style.transform = 'scaleX(' + (f / (N - 1)).toFixed(4) + ')';
+    }
+
+    /* Scroll dihaluskan: posisi tampilan mengejar posisi gulir dengan peredam (loop hanya hidup saat ada gerakan) */
+    var target = 0, cur = 0, raf = 0, last = 0;
+    function read() { var r = root.getBoundingClientRect(); return Math.max(0, Math.min(TOT, -r.top)); }
+    function loop(now) {
+      var dt = Math.min(.05, (now - last) / 1000 || .016); last = now;
+      cur += (target - cur) * (1 - Math.exp(-dt * 9));
+      if (Math.abs(target - cur) < .4) cur = target;
+      draw(cur);
+      raf = cur === target ? 0 : requestAnimationFrame(loop);
+    }
+    function onScroll() { target = read(); if (!raf) { last = performance.now(); raf = requestAnimationFrame(loop); } }
+    function snapNow() { target = cur = read(); draw(cur); }
+
+    /* Lompat halus ke tonggak tertentu */
+    function scrollToStep(k) {
+      var y = INTRO + 4 * U;
+      for (var j = 0; j < k; j++) y += DW[j] + TRAVEL;
+      var r = root.getBoundingClientRect();
+      window.scrollTo({ top: window.pageYOffset + r.top + y, behavior: 'smooth' });
+    }
+    rb.forEach(function (b, k) { b.addEventListener('click', function () { scrollToStep(k); }); });
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', function () { build(); onScroll(); }, { passive: true });
-    window.addEventListener('load', function () { build(); render(); });
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fit(); onScroll(); });
-    build(); render();
+    var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { build(); snapNow(); }, 120); }, { passive: true });
+    window.addEventListener('load', function () { build(); snapNow(); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fit(); });
+    build(); snapNow();
   })();
 </script>
