@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>UKM Al-Qur'an Study Club (ASC) - Universitas Negeri Malang</title>
-  
+
   <!-- SEO & Meta Tags -->
-  <meta name="description" content="Website Resmi UKM Al-Qur'an Study Club (ASC) Universitas Negeri Malang. Wadah pembinaan Al-Qur'an, tilawah, tahfidh, kaligrafi, syiar, dan prestasi mahasiswa UM.">
-  <meta name="keywords" content="UKM ASC, ASC UM, Al-Qur'an Study Club, Universitas Negeri Malang, UKM UM, MTQMN, Mahasiswa UM">
+  <meta name="description"
+    content="Website Resmi UKM Al-Qur'an Study Club (ASC) Universitas Negeri Malang. Wadah pembinaan Al-Qur'an, tilawah, tahfidh, kaligrafi, syiar, dan prestasi mahasiswa UM.">
+  <meta name="keywords"
+    content="UKM ASC, ASC UM, Al-Qur'an Study Club, Universitas Negeri Malang, UKM UM, MTQMN, Mahasiswa UM">
   <meta name="author" content="UKM ASC Universitas Negeri Malang">
   <meta name="theme-color" content="#0284c7">
 
@@ -15,13 +18,15 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://maskaiki.github.io/Website-UKM-ASC/">
   <meta property="og:title" content="UKM Al-Qur'an Study Club (ASC) - Universitas Negeri Malang">
-  <meta property="og:description" content="Membina Generasi Qur'ani yang Berkarakter, Berprestasi, dan Berkontribusi Nyata di Universitas Negeri Malang.">
+  <meta property="og:description"
+    content="Membina Generasi Qur'ani yang Berkarakter, Berprestasi, dan Berkontribusi Nyata di Universitas Negeri Malang.">
   <meta property="og:image" content="https://ormawa.um.ac.id/wp-content/uploads/2020/09/cropped-logo-um-32x32.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="UKM Al-Qur'an Study Club (ASC) - UM">
-  <meta name="twitter:description" content="Membina Generasi Qur'ani yang Berkarakter, Berprestasi, dan Berkontribusi Nyata.">
+  <meta name="twitter:description"
+    content="Membina Generasi Qur'ani yang Berkarakter, Berprestasi, dan Berkontribusi Nyata.">
   <meta name="twitter:image" content="https://ormawa.um.ac.id/wp-content/uploads/2020/09/cropped-logo-um-32x32.png">
 
   <!-- Favicon -->
@@ -30,13 +35,17 @@
   <!-- Preconnect Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Amiri:wght@400;700&display=swap"
+    rel="stylesheet">
 
   <style>
     /* =========================================================================
        GLOBAL RESET & DASAR LAYOUT (LIGHTWEIGHT BLADE MASTER)
        ========================================================================= */
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
     }
 
@@ -166,13 +175,25 @@
     }
 
     @keyframes ascPulseRing {
-      0% { transform: scale(0.9); opacity: 0.9; }
-      100% { transform: scale(1.35); opacity: 0; }
+      0% {
+        transform: scale(0.9);
+        opacity: 0.9;
+      }
+
+      100% {
+        transform: scale(1.35);
+        opacity: 0;
+      }
     }
 
     @keyframes ascLoaderProgress {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(250%); }
+      0% {
+        transform: translateX(-100%);
+      }
+
+      100% {
+        transform: translateX(250%);
+      }
     }
 
     /* =========================================================================
@@ -235,6 +256,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- PRELOADER -->
@@ -258,17 +280,21 @@
       <h2>💡 Mode File Lokal Terdeteksi</h2>
       <p>
         Kamu membuka <code>index.html</code> langsung melalui klik berkas (protokol <code>file://</code>).
-        Demi alasan keamanan, browser membatasi fungsi <code>fetch()</code> modular saat membuka file langsung dari disk.
+        Demi alasan keamanan, browser membatasi fungsi <code>fetch()</code> modular saat membuka file langsung dari
+        disk.
       </p>
       <p><strong>Dua Cara Termudah Menjalankan Website:</strong></p>
       <ol style="margin-left: 20px; padding: 0;">
-        <li><strong>Deploy ke GitHub Pages:</strong> Push ke repository GitHub kamu. Website akan aktif dan termuat 100% otomatis di <code>https://&lt;username&gt;.github.io/&lt;repo&gt;/</code>.</li>
+        <li><strong>Deploy ke GitHub Pages:</strong> Push ke repository GitHub kamu. Website akan aktif dan termuat 100%
+          otomatis di <code>https://&lt;username&gt;.github.io/&lt;repo&gt;/</code>.</li>
         <li><strong>Preview Lokal dengan Python:</strong> Jalankan perintah berikut di terminal/PowerShell:
-          <pre style="background: #0f172a; color: #38bdf8; padding: 10px 14px; border-radius: 8px; margin: 8px 0; overflow-x: auto;">python build.py --serve</pre>
+          <pre
+            style="background: #0f172a; color: #38bdf8; padding: 10px 14px; border-radius: 8px; margin: 8px 0; overflow-x: auto;">python build.py --serve</pre>
           atau gunakan ekstensi <strong>Live Server</strong> di VS Code.
         </li>
       </ol>
-      <button class="asc-local-btn" onclick="document.getElementById('asc-local-file-modal').style.display='none'">Tutup Notifikasi</button>
+      <button class="asc-local-btn" onclick="document.getElementById('asc-local-file-modal').style.display='none'">Tutup
+        Notifikasi</button>
     </div>
   </div>
 
@@ -303,7 +329,7 @@
        LIGHTWEIGHT BLADE COMPONENT LOADER ENGINE
        ========================================================================= -->
   <script data-engine="asc-blade-loader">
-    (function() {
+    (function () {
       'use strict';
 
       // 1. Deteksi apakah dibuka via file:// lokal tanpa web server
@@ -355,18 +381,18 @@
       // Ambil dan muat semua file komponen secara asinkron
       async function loadAllComponents() {
         try {
-          var fetchJobs = slots.map(function(slot) {
+          var fetchJobs = slots.map(function (slot) {
             var src = slot.getAttribute('data-src');
             // Cache busting halus dengan versi/timestamp jika diperlukan
             return fetch(src, { cache: 'no-cache' })
-              .then(function(res) {
+              .then(function (res) {
                 if (!res.ok) throw new Error('HTTP ' + res.status + ' pada ' + src);
                 return res.text();
               })
-              .then(function(html) {
+              .then(function (html) {
                 return { slot: slot, src: src, html: html, ok: true };
               })
-              .catch(function(err) {
+              .catch(function (err) {
                 console.warn('[ASC Blade Loader] Gagal memuat ' + src + ':', err);
                 return { slot: slot, src: src, html: '', ok: false, err: err };
               });
@@ -376,7 +402,7 @@
           var allExtractedScripts = [];
 
           // Masukkan HTML ke dalam slot secara berurutan
-          results.forEach(function(item) {
+          results.forEach(function (item) {
             if (!item.ok) {
               item.slot.innerHTML = '<div style="padding: 30px; text-align: center; color: #dc2626; background: #fef2f2; border-radius: 12px; margin: 20px;">' +
                 'Gagal memuat komponen <strong>' + item.src + '</strong>. Pastikan file tersedia di root folder.</div>';
@@ -388,7 +414,7 @@
 
             // Kumpulkan script untuk dijalankan nanti
             var scripts = Array.from(temp.querySelectorAll('script'));
-            scripts.forEach(function(s) {
+            scripts.forEach(function (s) {
               allExtractedScripts.push(s);
               s.remove(); // Hapus script yang belum aktif dari temp DOM
             });
@@ -402,7 +428,7 @@
           });
 
           // Jalankan semua script komponen
-          executeScriptsSequentially(allExtractedScripts, function() {
+          executeScriptsSequentially(allExtractedScripts, function () {
             // Beri tahu seluruh event listener bahwa komponen telah siap
             window.dispatchEvent(new Event('DOMContentLoaded'));
             window.dispatchEvent(new Event('load'));
@@ -411,7 +437,7 @@
 
             // Tangani auto scroll jika ada hash di URL (misal: index.html#asc-galeri)
             if (window.location.hash) {
-              setTimeout(function() {
+              setTimeout(function () {
                 var target = document.querySelector(window.location.hash);
                 if (target) {
                   target.scrollIntoView({ behavior: 'smooth' });
@@ -422,7 +448,7 @@
             // Sembunyikan preloader dengan animasi halus
             if (preloader) {
               preloader.classList.add('asc-hidden');
-              setTimeout(function() {
+              setTimeout(function () {
                 preloader.remove();
               }, 600);
             }
@@ -445,4 +471,5 @@
     })();
   </script>
 </body>
+
 </html>
