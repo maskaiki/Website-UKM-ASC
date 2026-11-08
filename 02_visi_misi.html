@@ -7,8 +7,6 @@ Cara pakai di WordPress (Elementor / Divi):
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
-
   #asc-vm {
     position: relative;
     height: 1300vh;
@@ -25,6 +23,8 @@ Cara pakai di WordPress (Elementor / Divi):
   }
 
   #asc-vm .vm-pin {
+    padding-top: var(--asc-hh, 0px);
+    box-sizing: border-box;
     position: sticky;
     top: 0;
     height: 100vh;
@@ -37,7 +37,7 @@ Cara pakai di WordPress (Elementor / Divi):
   /* Frame 16:9 ala video, skala semua isi pakai satuan cqw */
   #asc-vm .vm-frame {
     position: relative;
-    width: min(94vw, 1360px, calc((100svh - 40px)*16/9));
+    width: min(94vw, 1360px, calc((100svh - 40px - var(--asc-hh, 0px))*16/9));
     aspect-ratio: 16/9;
     container-type: size;
     border-radius: 18px;
@@ -72,7 +72,6 @@ Cara pakai di WordPress (Elementor / Divi):
     color: var(--fg);
     --lp: 0;
     --sp: 40%;
-    will-change: clip-path;
   }
 
   #asc-vm .vm-s[data-theme="dark"] {
@@ -538,7 +537,7 @@ Cara pakai di WordPress (Elementor / Divi):
   @media (max-width:700px) {
     #asc-vm .vm-frame {
       aspect-ratio: 4/5;
-      width: min(94vw, calc((100svh - 40px)*.8));
+      width: min(94vw, calc((100svh - 40px - var(--asc-hh, 0px))*.8));
       border-radius: 14px;
     }
 
@@ -765,6 +764,11 @@ Cara pakai di WordPress (Elementor / Divi):
       aspect-ratio: 4/5;
     }
   }
+
+  /* Rapikan: cegah scroll horizontal tak sengaja */
+  #asc-vm {
+    overflow-x: clip;
+  }
 </style>
 
 <section id="asc-vm" aria-label="Visi dan Misi UKM ASC">
@@ -892,6 +896,53 @@ Cara pakai di WordPress (Elementor / Divi):
   </div>
 </section>
 
+<!-- ASC CORE: blok ini IDENTIK di semua file. Hanya dijalankan sekali walau ditempel berkali-kali (tidak ada skrip ganda). -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v) return;
+    var A = w.ASC = { v: 1 };
+
+    /* 1. Satu pemuat font untuk seluruh halaman (tidak ada @import per-section) */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. CSS bersama: animasi section yang di luar layar dijeda otomatis (hemat CPU/GPU) */
+    var st = d.createElement('style'); st.id = 'asc-core-css';
+    st.textContent = '[data-asc-off] *,[data-asc-off] *::before,[data-asc-off] *::after{animation-play-state:paused!important}';
+    d.head.appendChild(st);
+
+    /* 3. Buka overflow milik container/tema yang membuat position:sticky gagal */
+    function clip(v) { return v === 'hidden' || v === 'auto' || v === 'scroll'; }
+    A.unlock = function (root) {
+      try {
+        var canClip = !!(w.CSS && CSS.supports && CSS.supports('overflow-x', 'clip')), html = d.documentElement, hcs = w.getComputedStyle(html);
+        var htmlClips = clip(hcs.overflowX) || clip(hcs.overflowY), n = root.parentElement;
+        while (n && n !== html) {
+          var cs = w.getComputedStyle(n), isBody = n === d.body;
+          if ((!isBody || htmlClips) && (clip(cs.overflowX) || clip(cs.overflowY))) {
+            var real = (cs.overflowY === 'auto' || cs.overflowY === 'scroll') && n.scrollHeight > n.clientHeight + 2;
+            if (!real) { n.style.setProperty('overflow-x', canClip ? 'clip' : 'visible', 'important'); n.style.setProperty('overflow-y', 'visible', 'important'); }
+          }
+          n = n.parentElement;
+        }
+      } catch (e) { /* abaikan */ }
+    };
+
+    /* 4. Pantau section: tandai di luar layar (animasi dijeda) dan beri tahu skripnya agar berhenti bekerja */
+    A.watch = function (root, cb) {
+      if (!w.IntersectionObserver) { if (cb) cb(true); return; }
+      new IntersectionObserver(function (es) {
+        var on = es[es.length - 1].isIntersecting;
+        if (on) root.removeAttribute('data-asc-off'); else root.setAttribute('data-asc-off', '');
+        if (cb) cb(on);
+      }, { rootMargin: '100% 0px 100% 0px' }).observe(root);
+    };
+  })(window, document);
+</script>
+
 <script>
   (function () {
     var root = document.getElementById('asc-vm'); if (!root) return;
@@ -919,13 +970,7 @@ Cara pakai di WordPress (Elementor / Divi):
       root.classList.add('vm-static'); ticks.forEach(function (t) { t.style.opacity = 1; }); head.style.display = 'none'; return;
     }
 
-    /* Pastikan parent WordPress tidak memblokir position: sticky */
-    var p = root.parentElement, n = 0;
-    while (p && p !== document.documentElement && n++ < 20) {
-      var cs = getComputedStyle(p);
-      if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) p.style.setProperty('overflow', 'visible', 'important');
-      p = p.parentElement;
-    }
+    ASC.unlock(root);
 
     function clamp(x) { return Math.max(0, Math.min(1, x)); }
     function ease(t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
@@ -962,6 +1007,8 @@ Cara pakai di WordPress (Elementor / Divi):
         var u = s._u, m = u.length, base = i ? 12 * U : 2 * U;
         for (var k = 0; k < m; k++) {
           var v = clamp((lp - (base + k * 2.4 * U)) / (7 * U)), el = u[k];
+          if (el._v === v) continue;
+          el._v = v;
           el.style.opacity = v.toFixed(3);
           el.style.transform = 'translate3d(0,' + ((1 - v) * 26).toFixed(1) + 'px,0)';
         }
@@ -985,8 +1032,11 @@ Cara pakai di WordPress (Elementor / Divi):
       render(cur);
       raf = cur === target ? 0 : requestAnimationFrame(frameLoop);
     }
-    function onScroll() { target = read(); if (!raf) { last = performance.now(); raf = requestAnimationFrame(frameLoop); } }
+    function onScroll() {
+      if (!awake) return; target = read(); if (!raf) { last = performance.now(); raf = requestAnimationFrame(frameLoop); }
+    }
 
+    var awake = true; ASC.watch(root, function (on) { awake = on; if (on) onScroll(); });
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', function () { geom(); target = cur = read(); render(cur); }, { passive: true });
     window.addEventListener('load', function () { geom(); target = cur = read(); render(cur); });

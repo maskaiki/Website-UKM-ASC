@@ -10,8 +10,6 @@
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-
   #asc-pr {
     --ink: #0f172a;
     --mut: #64748b;
@@ -226,7 +224,6 @@
 
   #asc-pr .pr-ob {
     border-radius: 50%;
-    filter: blur(50px);
     background: radial-gradient(circle, rgba(56, 189, 248, .5), transparent 70%);
     pointer-events: none;
   }
@@ -519,8 +516,7 @@
   #asc-pr .pr-chip {
     padding: 6px 13px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, .16);
-    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, .22);
     border: 1px solid rgba(255, 255, 255, .28);
     font-size: 11.5px;
     font-weight: 700;
@@ -1101,6 +1097,16 @@
     min-height: auto;
     padding: 80px 0;
   }
+
+  /* Rapikan: cegah scroll horizontal tak sengaja */
+  #asc-pr {
+    overflow-x: clip;
+  }
+
+  /* Beri ruang untuk header yang menempel di atas */
+  #asc-pr .pr-top {
+    top: calc(4.5vh + var(--asc-hh, 0px));
+  }
 </style>
 
 <section id="asc-pr" aria-label="Prestasi UKM ASC">
@@ -1217,6 +1223,53 @@
     </div>
   </div>
 </section>
+
+<!-- ASC CORE: blok ini IDENTIK di semua file. Hanya dijalankan sekali walau ditempel berkali-kali (tidak ada skrip ganda). -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v) return;
+    var A = w.ASC = { v: 1 };
+
+    /* 1. Satu pemuat font untuk seluruh halaman (tidak ada @import per-section) */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. CSS bersama: animasi section yang di luar layar dijeda otomatis (hemat CPU/GPU) */
+    var st = d.createElement('style'); st.id = 'asc-core-css';
+    st.textContent = '[data-asc-off] *,[data-asc-off] *::before,[data-asc-off] *::after{animation-play-state:paused!important}';
+    d.head.appendChild(st);
+
+    /* 3. Buka overflow milik container/tema yang membuat position:sticky gagal */
+    function clip(v) { return v === 'hidden' || v === 'auto' || v === 'scroll'; }
+    A.unlock = function (root) {
+      try {
+        var canClip = !!(w.CSS && CSS.supports && CSS.supports('overflow-x', 'clip')), html = d.documentElement, hcs = w.getComputedStyle(html);
+        var htmlClips = clip(hcs.overflowX) || clip(hcs.overflowY), n = root.parentElement;
+        while (n && n !== html) {
+          var cs = w.getComputedStyle(n), isBody = n === d.body;
+          if ((!isBody || htmlClips) && (clip(cs.overflowX) || clip(cs.overflowY))) {
+            var real = (cs.overflowY === 'auto' || cs.overflowY === 'scroll') && n.scrollHeight > n.clientHeight + 2;
+            if (!real) { n.style.setProperty('overflow-x', canClip ? 'clip' : 'visible', 'important'); n.style.setProperty('overflow-y', 'visible', 'important'); }
+          }
+          n = n.parentElement;
+        }
+      } catch (e) { /* abaikan */ }
+    };
+
+    /* 4. Pantau section: tandai di luar layar (animasi dijeda) dan beri tahu skripnya agar berhenti bekerja */
+    A.watch = function (root, cb) {
+      if (!w.IntersectionObserver) { if (cb) cb(true); return; }
+      new IntersectionObserver(function (es) {
+        var on = es[es.length - 1].isIntersecting;
+        if (on) root.removeAttribute('data-asc-off'); else root.setAttribute('data-asc-off', '');
+        if (cb) cb(on);
+      }, { rootMargin: '100% 0px 100% 0px' }).observe(root);
+    };
+  })(window, document);
+</script>
 
 <script>
   (function () {
@@ -1696,14 +1749,12 @@
     if (reduce) {
       root.classList.add('pr-static'); bgs.forEach(function (b, i) { b.firstChild.textContent = ST[i][0]; });
     } else {
-      /* Pastikan parent WordPress tidak memblokir position: sticky */
-      var q = root.parentElement, wn = 0;
-      while (q && q !== document.documentElement && wn++ < 20) {
-        var cs = getComputedStyle(q);
-        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) q.style.setProperty('overflow', 'visible', 'important'); q = q.parentElement;
-      }
-      window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(render); } }, { passive: true });
-      window.addEventListener('resize', function () { if (!ticking) { ticking = true; requestAnimationFrame(render); } }, { passive: true });
+      ASC.unlock(root);
+      var awake = true;
+      function onScroll() { if (!awake) return; if (!ticking) { ticking = true; requestAnimationFrame(render); } }
+      ASC.watch(root, function (on) { awake = on; if (on) onScroll(); });
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
       window.addEventListener('load', render);
       render();
     }

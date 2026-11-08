@@ -19,8 +19,6 @@ ganti path pada elemen #ascLettersG (koordinat berpusat di 0,0) dan sesuaikan
 GEO.gw / GEO.gh di script.
 ====================================================================== -->
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
   /* =========================================================================
 WRAPPER & VARIABEL WARNA
 CATATAN: wrapper ini TIDAK boleh diberi overflow hidden/auto (merusak sticky).
@@ -83,7 +81,6 @@ BAGIAN 1 - INTRO (hero langit biru seperti sebelumnya)
     border-radius: 50%;
     pointer-events: none;
     z-index: 1;
-    filter: blur(60px);
     will-change: transform;
   }
 
@@ -131,7 +128,6 @@ BAGIAN 1 - INTRO (hero langit biru seperti sebelumnya)
   #asc-hero-profil .asc-cloud {
     position: absolute;
     background: rgba(255, 255, 255, 0.65);
-    filter: blur(1px);
     pointer-events: none;
     z-index: 1;
   }
@@ -200,10 +196,8 @@ BAGIAN 1 - INTRO (hero langit biru seperti sebelumnya)
     padding: 7px 16px;
     margin-bottom: 26px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.82);
     border: 1px solid rgba(14, 165, 233, 0.25);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -269,9 +263,7 @@ BAGIAN 1 - INTRO (hero langit biru seperti sebelumnya)
   }
 
   #asc-hero-profil .asc-btn-outline {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.82);
     color: var(--asc-ink);
     border: 1.5px solid rgba(15, 23, 42, 0.15);
     font-weight: 500;
@@ -632,9 +624,7 @@ RESPONSIVE
       font-size: 15px;
     }
 
-    #asc-hero-profil .asc-glow {
-      filter: blur(40px);
-    }
+    #asc-hero-profil .asc-glow {}
 
     #asc-hero-profil .asc-caption {
       font-size: 11px;
@@ -678,6 +668,11 @@ RESPONSIVE
       transform: none;
       transition: none;
     }
+  }
+
+  /* Rapikan: cegah scroll horizontal tak sengaja */
+  #asc-hero-profil {
+    overflow-x: clip;
   }
 </style>
 
@@ -802,6 +797,53 @@ RESPONSIVE
   </div>
 </div>
 
+<!-- ASC CORE: blok ini IDENTIK di semua file. Hanya dijalankan sekali walau ditempel berkali-kali (tidak ada skrip ganda). -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v) return;
+    var A = w.ASC = { v: 1 };
+
+    /* 1. Satu pemuat font untuk seluruh halaman (tidak ada @import per-section) */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. CSS bersama: animasi section yang di luar layar dijeda otomatis (hemat CPU/GPU) */
+    var st = d.createElement('style'); st.id = 'asc-core-css';
+    st.textContent = '[data-asc-off] *,[data-asc-off] *::before,[data-asc-off] *::after{animation-play-state:paused!important}';
+    d.head.appendChild(st);
+
+    /* 3. Buka overflow milik container/tema yang membuat position:sticky gagal */
+    function clip(v) { return v === 'hidden' || v === 'auto' || v === 'scroll'; }
+    A.unlock = function (root) {
+      try {
+        var canClip = !!(w.CSS && CSS.supports && CSS.supports('overflow-x', 'clip')), html = d.documentElement, hcs = w.getComputedStyle(html);
+        var htmlClips = clip(hcs.overflowX) || clip(hcs.overflowY), n = root.parentElement;
+        while (n && n !== html) {
+          var cs = w.getComputedStyle(n), isBody = n === d.body;
+          if ((!isBody || htmlClips) && (clip(cs.overflowX) || clip(cs.overflowY))) {
+            var real = (cs.overflowY === 'auto' || cs.overflowY === 'scroll') && n.scrollHeight > n.clientHeight + 2;
+            if (!real) { n.style.setProperty('overflow-x', canClip ? 'clip' : 'visible', 'important'); n.style.setProperty('overflow-y', 'visible', 'important'); }
+          }
+          n = n.parentElement;
+        }
+      } catch (e) { /* abaikan */ }
+    };
+
+    /* 4. Pantau section: tandai di luar layar (animasi dijeda) dan beri tahu skripnya agar berhenti bekerja */
+    A.watch = function (root, cb) {
+      if (!w.IntersectionObserver) { if (cb) cb(true); return; }
+      new IntersectionObserver(function (es) {
+        var on = es[es.length - 1].isIntersecting;
+        if (on) root.removeAttribute('data-asc-off'); else root.setAttribute('data-asc-off', '');
+        if (cb) cb(on);
+      }, { rootMargin: '100% 0px 100% 0px' }).observe(root);
+    };
+  })(window, document);
+</script>
+
 <script>
   (function () {
     'use strict';
@@ -833,7 +875,7 @@ RESPONSIVE
     var mqReduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
 
     var W = 1600, H = 900, sf = 0.9, s0 = 20;
-    var compact = false, staticMode = false, lastP = -1, queued = false;
+    var compact = false, staticMode = false, lastP = -1, queued = false, awake = true;
 
     function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
     function range(v, a, b) { return b <= a ? (v >= b ? 1 : 0) : clamp((v - a) / (b - a), 0, 1); }
@@ -982,7 +1024,7 @@ RESPONSIVE
     }
 
     function schedule() {
-      if (queued) { return; }
+      if (queued || !awake) { return; }
       queued = true;
       if (window.requestAnimationFrame) { window.requestAnimationFrame(function () { update(false); }); }
       else { update(false); }
@@ -1024,6 +1066,7 @@ RESPONSIVE
       applyMode();
 
       window.addEventListener('scroll', schedule, { passive: true });
+      ASC.watch(root, function (on) { awake = on; if (on) { measure(); update(true); } });
       window.addEventListener('resize', function () { measure(); schedule(); });
       window.addEventListener('orientationchange', function () { window.setTimeout(function () { measure(); update(true); }, 250); });
       window.addEventListener('load', function () { unlockAncestors(); measure(); update(true); });

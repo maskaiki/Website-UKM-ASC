@@ -12,8 +12,6 @@
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap');
-
   /* =========================================================================
      1. FIX OVERFLOW KHUSUS DIVI & ELEMENTOR WORDPRESS
      ========================================================================= */
@@ -86,9 +84,7 @@
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
-    background: rgba(255, 255, 255, 0.84) !important;
-    backdrop-filter: blur(24px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
     border: 1px solid rgba(255, 255, 255, 0.9) !important;
     border-radius: 999px !important;
     padding: 0 8px 0 16px !important;
@@ -97,7 +93,7 @@
       0 2px 6px rgba(0, 0, 0, 0.04),
       inset 0 1px 0 rgba(255, 255, 255, 1) !important;
     position: relative !important;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   /* Status saat di-scroll: Sedikit lebih solid & glow halus */
@@ -200,7 +196,7 @@
     color: #475569 !important;
     border-radius: 999px !important;
     letter-spacing: -0.01em !important;
-    transition: all 0.2s ease !important;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, opacity 0.2s ease !important;
     white-space: nowrap !important;
     position: relative !important;
     line-height: 1 !important;
@@ -246,7 +242,7 @@
     border-radius: 999px !important;
     border: 1px solid #1e293b !important;
     box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2) !important;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
     flex-shrink: 0 !important;
     line-height: 1 !important;
     white-space: nowrap !important;
@@ -292,7 +288,7 @@
     align-items: center !important;
     gap: 4px !important;
     padding: 0 !important;
-    transition: all 0.25s ease !important;
+    transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, opacity 0.25s ease !important;
     flex-shrink: 0 !important;
   }
 
@@ -307,7 +303,7 @@
     height: 2px !important;
     background: #0f172a !important;
     border-radius: 2px !important;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   #asc-header-navbar .asc-hamburger-btn.asc-open span:nth-child(1) {
@@ -335,8 +331,6 @@
     left: 16px !important;
     right: 16px !important;
     background: rgba(255, 255, 255, 0.96) !important;
-    backdrop-filter: blur(28px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
     border: 1px solid rgba(255, 255, 255, 0.9) !important;
     border-radius: 26px !important;
     box-shadow:
@@ -377,7 +371,7 @@
     color: #1e293b !important;
     background: #f8fafc !important;
     border: 1px solid #e2e8f0 !important;
-    transition: all 0.22s ease !important;
+    transition: color 0.22s ease, background-color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease, opacity 0.22s ease !important;
   }
 
   #asc-header-navbar .asc-drawer-item:hover,
@@ -541,8 +535,7 @@
     </a>
 
     <!-- MOBILE HAMBURGER TOGGLE BUTTON -->
-    <button class="asc-hamburger-btn" id="ascHamburgerBtn" onclick="ascToggleMobileMenu()"
-      aria-label="Buka Menu Navigasi">
+    <button class="asc-hamburger-btn" id="ascHamburgerBtn" aria-label="Buka Menu Navigasi">
       <span></span>
       <span></span>
       <span></span>
@@ -554,8 +547,7 @@
   <div class="asc-mobile-drawer" id="ascMobileDrawer">
 
     <!-- 01. PROFIL -->
-    <a href="#asc-hero-profil" class="asc-drawer-item" data-asc-scroll="#asc-hero-profil"
-      onclick="ascCloseMobileMenu()">
+    <a href="#asc-hero-profil" class="asc-drawer-item" data-asc-scroll="#asc-hero-profil">
       <div class="asc-drawer-left">
         <span class="asc-drawer-num">01</span>
         <div>
@@ -569,8 +561,7 @@
     </a>
 
     <!-- 02. VISI & MISI -->
-    <a href="#asc-visi-misi" class="asc-drawer-item" data-asc-scroll="#asc-visi-misi,#asc-vm"
-      onclick="ascCloseMobileMenu()">
+    <a href="#asc-visi-misi" class="asc-drawer-item" data-asc-scroll="#asc-visi-misi,#asc-vm">
       <div class="asc-drawer-left">
         <span class="asc-drawer-num">02</span>
         <div>
@@ -584,8 +575,7 @@
     </a>
 
     <!-- 03. SEJARAH -->
-    <a href="#asc-sejarah" class="asc-drawer-item" data-asc-scroll="#asc-sejarah,#asc-sj"
-      onclick="ascCloseMobileMenu()">
+    <a href="#asc-sejarah" class="asc-drawer-item" data-asc-scroll="#asc-sejarah,#asc-sj">
       <div class="asc-drawer-left">
         <span class="asc-drawer-num">03</span>
         <div>
@@ -599,7 +589,7 @@
     </a>
 
     <!-- 04. STRUKTUR -->
-    <a href="#asc-struktur" class="asc-drawer-item" data-asc-scroll="#asc-struktur" onclick="ascCloseMobileMenu()">
+    <a href="#asc-struktur" class="asc-drawer-item" data-asc-scroll="#asc-struktur">
       <div class="asc-drawer-left">
         <span class="asc-drawer-num">04</span>
         <div>
@@ -613,8 +603,7 @@
     </a>
 
     <!-- 05. PEMBINAAN -->
-    <a href="#asc-pembinaan" class="asc-drawer-item" data-asc-scroll="#asc-pembinaan,#asc-pb,#asc-agenda"
-      onclick="ascCloseMobileMenu()">
+    <a href="#asc-pembinaan" class="asc-drawer-item" data-asc-scroll="#asc-pembinaan,#asc-pb,#asc-agenda">
       <div class="asc-drawer-left">
         <span class="asc-drawer-num">05</span>
         <div>
@@ -628,7 +617,7 @@
     </a>
 
     <!-- 06. GALERI -->
-    <a href="#asc-galeri" class="asc-drawer-item" data-asc-scroll="#asc-galeri" onclick="ascCloseMobileMenu()">
+    <a href="#asc-galeri" class="asc-drawer-item" data-asc-scroll="#asc-galeri">
       <div class="asc-drawer-left">
         <span class="asc-drawer-num">06</span>
         <div>
@@ -642,7 +631,7 @@
     </a>
 
     <!-- 07. PRESTASI -->
-    <a href="#asc-prestasi" class="asc-drawer-item" data-asc-scroll="#asc-prestasi" onclick="ascCloseMobileMenu()">
+    <a href="#asc-prestasi" class="asc-drawer-item" data-asc-scroll="#asc-prestasi">
       <div class="asc-drawer-left">
         <span class="asc-drawer-num">07</span>
         <div>
@@ -656,8 +645,7 @@
     </a>
 
     <!-- 08. HUBUNGI KAMI -->
-    <a href="#asc-kontak" class="asc-drawer-item asc-drawer-cta" data-asc-scroll="#asc-kontak"
-      onclick="ascCloseMobileMenu()">
+    <a href="#asc-kontak" class="asc-drawer-item asc-drawer-cta" data-asc-scroll="#asc-kontak">
       <div class="asc-drawer-left">
         <span class="asc-drawer-num">08</span>
         <div>
@@ -677,161 +665,153 @@
 <!-- =========================================================================
      JAVASCRIPT: SELF-HEALING ANTI-DUPLIKASI, SMOOTH SCROLL OFFSET, & SCROLL SPY
      ========================================================================= -->
+<!-- ASC CORE: blok ini IDENTIK di semua file. Hanya dijalankan sekali walau ditempel berkali-kali (tidak ada skrip ganda). -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v) return;
+    var A = w.ASC = { v: 1 };
+
+    /* 1. Satu pemuat font untuk seluruh halaman (tidak ada @import per-section) */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. CSS bersama: animasi section yang di luar layar dijeda otomatis (hemat CPU/GPU) */
+    var st = d.createElement('style'); st.id = 'asc-core-css';
+    st.textContent = '[data-asc-off] *,[data-asc-off] *::before,[data-asc-off] *::after{animation-play-state:paused!important}';
+    d.head.appendChild(st);
+
+    /* 3. Buka overflow milik container/tema yang membuat position:sticky gagal */
+    function clip(v) { return v === 'hidden' || v === 'auto' || v === 'scroll'; }
+    A.unlock = function (root) {
+      try {
+        var canClip = !!(w.CSS && CSS.supports && CSS.supports('overflow-x', 'clip')), html = d.documentElement, hcs = w.getComputedStyle(html);
+        var htmlClips = clip(hcs.overflowX) || clip(hcs.overflowY), n = root.parentElement;
+        while (n && n !== html) {
+          var cs = w.getComputedStyle(n), isBody = n === d.body;
+          if ((!isBody || htmlClips) && (clip(cs.overflowX) || clip(cs.overflowY))) {
+            var real = (cs.overflowY === 'auto' || cs.overflowY === 'scroll') && n.scrollHeight > n.clientHeight + 2;
+            if (!real) { n.style.setProperty('overflow-x', canClip ? 'clip' : 'visible', 'important'); n.style.setProperty('overflow-y', 'visible', 'important'); }
+          }
+          n = n.parentElement;
+        }
+      } catch (e) { /* abaikan */ }
+    };
+
+    /* 4. Pantau section: tandai di luar layar (animasi dijeda) dan beri tahu skripnya agar berhenti bekerja */
+    A.watch = function (root, cb) {
+      if (!w.IntersectionObserver) { if (cb) cb(true); return; }
+      new IntersectionObserver(function (es) {
+        var on = es[es.length - 1].isIntersecting;
+        if (on) root.removeAttribute('data-asc-off'); else root.setAttribute('data-asc-off', '');
+        if (cb) cb(on);
+      }, { rootMargin: '100% 0px 100% 0px' }).observe(root);
+    };
+  })(window, document);
+</script>
+
 <script>
   (function () {
-    // 1. AUTO CLEAN-UP: Jika di WordPress terdapat header lama/duplikat, bersihkan otomatis!
-    const allHeaders = document.querySelectorAll('#asc-header-navbar');
-    if (allHeaders.length > 1) {
-      for (let i = 0; i < allHeaders.length - 1; i++) {
-        allHeaders[i].remove();
-      }
-    }
-    const oldNavs = document.querySelectorAll('.asc-nav-main');
-    oldNavs.forEach(el => el.remove());
+    /* Dipasang ulang? bersihkan listener lama, lalu buang header ganda (yang terakhir dipertahankan) */
+    var A = window.ASC || (window.ASC = {});
+    if (A.hdrOff) A.hdrOff();
+    var dup = document.querySelectorAll('#asc-header-navbar');
+    for (var i = 0; i < dup.length - 1; i++) dup[i].remove();
+    document.querySelectorAll('.asc-nav-main').forEach(function (el) { if (!el.querySelector('#asc-header-navbar') && !el.id) el.remove(); });
+    var nav = document.getElementById('asc-header-navbar');
+    if (!nav) return;
+    var capsule = document.getElementById('ascNavCapsule') || nav.querySelector('.asc-nav-capsule');
+    var btn = document.getElementById('ascHamburgerBtn'), drawer = document.getElementById('ascMobileDrawer');
+    var OFFSET = 88;                                           /* jarak berhenti di bawah header saat menggulir */
 
-    const capsule = document.getElementById('ascNavCapsule');
-    const desktopLinks = document.querySelectorAll('#asc-header-navbar .asc-nav-link');
-    const drawerLinks = document.querySelectorAll('#asc-header-navbar .asc-drawer-item');
+    function find(sel) { var a = sel.split(','), out = []; for (var k = 0; k < a.length; k++) { var el = document.querySelector(a[k].trim()); if (el) out.push(el); } return out; }
 
-    // 2. SCROLLED MORPHING EFFECT
-    function handleNavbarMorph() {
-      if (!capsule) return;
-      if (window.scrollY > 24) {
-        capsule.classList.add('asc-scrolled');
-      } else {
-        capsule.classList.remove('asc-scrolled');
-      }
-    }
-    window.addEventListener('scroll', handleNavbarMorph, { passive: true });
-    handleNavbarMorph();
-
-    // 3. HELPER SELEKTOR ALIAS TARGET
-    function findTargetElement(selectorStr) {
-      if (!selectorStr) return null;
-      const selectors = selectorStr.split(',');
-      for (let i = 0; i < selectors.length; i++) {
-        const sel = selectors[i].trim();
-        const el = document.querySelector(sel);
-        if (el) return el;
-      }
-      return null;
-    }
-
-    // 4. SMOOTH SCROLL DENGAN OFFSET 85PX (AGAR HEADER TIDAK MENUTUPI JUDUL SECTION)
-    const allScrollButtons = document.querySelectorAll('#asc-header-navbar [data-asc-scroll]');
-    allScrollButtons.forEach(btn => {
-      btn.addEventListener('click', function (e) {
-        const selectorStr = this.getAttribute('data-asc-scroll');
-        const targetEl = findTargetElement(selectorStr);
-
-        if (targetEl) {
-          e.preventDefault();
-
-          // Tutup mobile drawer jika terbuka
-          ascCloseMobileMenu();
-
-          const headerOffset = 85;
-          const elementPosition = targetEl.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-
-          // Update URL hash rapi tanpa hentakan layar
-          const firstSelector = selectorStr.split(',')[0].trim();
-          if (history.pushState) {
-            history.pushState(null, null, firstSelector);
-          }
-        }
-      });
+    /* Kelompokkan tautan menu berdasarkan tujuannya (desktop + drawer) */
+    var items = [].slice.call(nav.querySelectorAll('.asc-nav-link[data-asc-scroll], .asc-drawer-item[data-asc-scroll]')), groups = [], byKey = {};
+    items.forEach(function (a) {
+      var k = a.getAttribute('data-asc-scroll'), g = byKey[k];
+      if (!g) { g = byKey[k] = { key: k, links: [], el: null }; groups.push(g); }
+      g.links.push(a);
     });
 
-    // 5. SCROLL SPY ALUR LENGKAP ROADMAP
-    const spySections = [
-      { name: 'Profil', selectors: '#asc-hero-profil' },
-      { name: 'Visi Misi', selectors: '#asc-visi-misi, #asc-vm' },
-      { name: 'Sejarah', selectors: '#asc-sejarah, #asc-sj' },
-      { name: 'Struktur', selectors: '#asc-struktur' },
-      { name: 'Pembinaan', selectors: '#asc-pembinaan, #asc-pb, #asc-agenda' },
-      { name: 'Galeri', selectors: '#asc-galeri' },
-      { name: 'Prestasi', selectors: '#asc-prestasi, #asc-pr' },
-      { name: 'Kontak', selectors: '#asc-kontak' }
-    ];
-
-    function updateScrollSpy() {
-      const scrollPos = window.scrollY + 180;
-      let currentActiveIdx = -1;
-
-      for (let i = spySections.length - 1; i >= 0; i--) {
-        const el = findTargetElement(spySections[i].selectors);
-        if (el) {
-          const top = el.offsetTop;
-          if (scrollPos >= top) {
-            currentActiveIdx = i;
-            break;
-          }
-        }
-      }
-
-      if (currentActiveIdx === -1 && window.scrollY < 400) {
-        currentActiveIdx = 0;
-      }
-
-      desktopLinks.forEach((link, idx) => {
-        if (idx === currentActiveIdx) {
-          link.classList.add('active');
-        } else {
-          link.classList.remove('active');
-        }
+    /* Menu yang tujuannya tidak ada di halaman otomatis disembunyikan; nomor drawer dirapikan ulang */
+    function prune() {
+      groups.forEach(function (g) {
+        var els = find(g.key); g.el = els.length ? els[els.length - 1] : null;   /* elemen terakhir = akar section */
+        g.links.forEach(function (a) {
+          var host = a.closest('li') || a;
+          if (g.el) { host.style.removeProperty('display'); a.style.removeProperty('display'); }
+          else { host.style.setProperty('display', 'none', 'important'); a.style.setProperty('display', 'none', 'important'); }
+        });
       });
-
-      drawerLinks.forEach((item, idx) => {
-        if (idx === currentActiveIdx) {
-          item.classList.add('active');
-        } else {
-          item.classList.remove('active');
-        }
+      var n = 0;
+      [].forEach.call(nav.querySelectorAll('.asc-drawer-item[data-asc-scroll]'), function (a) {
+        if (a.style.display === 'none') return;
+        var num = a.querySelector('.asc-drawer-num'); if (num) num.textContent = ('0' + (++n)).slice(-2);
       });
     }
 
-    window.addEventListener('scroll', updateScrollSpy, { passive: true });
-    updateScrollSpy();
+    /* Satu pengendali scroll (dibatasi rAF): morph kapsul, menu aktif, dan tinggi header untuk section lain */
+    var ticking = false, scrolled = null, activeKey = null, hhLast = -1;
+    function tick() {
+      ticking = false;
+      var y = window.pageYOffset || 0;
+      var s = y > 24;
+      if (s !== scrolled && capsule) { scrolled = s; capsule.classList.toggle('asc-scrolled', s); }
 
+      var best = null, bestTop = -1e9;
+      for (var i = 0; i < groups.length; i++) {
+        var g = groups[i]; if (!g.el) continue;
+        var top = g.el.getBoundingClientRect().top;
+        if (top <= 200 && top > bestTop) { bestTop = top; best = g; }
+      }
+      if (!best && y < 400) { for (var j = 0; j < groups.length; j++) if (groups[j].el) { best = groups[j]; break; } }
+      var key = best ? best.key : null;
+      if (key !== activeKey) {
+        activeKey = key;
+        groups.forEach(function (g) { g.links.forEach(function (a) { a.classList.toggle('active', g.key === key); }); });
+      }
+
+      /* Beri tahu section yang menempel (pinned) berapa tinggi header yang sedang menutupi layar */
+      var r = (capsule || nav).getBoundingClientRect(), hh = r.bottom > 0 ? Math.round(r.bottom + 8) : 0;
+      if (Math.abs(hh - hhLast) > 1) { hhLast = hh; document.documentElement.style.setProperty('--asc-hh', hh + 'px'); }
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(tick); } }
+
+    /* Klik menu: gulir halus ke akar section (tanpa offset ganda dengan jangkar) */
+    function go(key, ev) {
+      var els = find(key); if (!els.length) return;
+      if (ev) ev.preventDefault();
+      var el = els[els.length - 1];
+      var top = el.getBoundingClientRect().top + (window.pageYOffset || 0) - OFFSET;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      try { history.replaceState(null, '', key.split(',')[0].trim()); } catch (e) { }
+      closeMenu();
+    }
+    function onNavClick(e) { var a = e.target.closest ? e.target.closest('[data-asc-scroll]') : null; if (a && nav.contains(a)) go(a.getAttribute('data-asc-scroll'), e); }
+    nav.addEventListener('click', onNavClick);
+
+    /* Drawer mobile */
+    function setMenu(open) { if (!btn || !drawer) return; btn.classList.toggle('asc-open', open); drawer.classList.toggle('asc-open', open); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    function closeMenu() { setMenu(false); }
+    function onBtn(e) { e.stopPropagation(); setMenu(!(drawer && drawer.classList.contains('asc-open'))); }
+    function onDoc(e) { if (!nav.contains(e.target)) closeMenu(); }
+    function onKey(e) { if (e.key === 'Escape') closeMenu(); }
+    if (btn) btn.addEventListener('click', onBtn);
+    document.addEventListener('click', onDoc);
+    document.addEventListener('keydown', onKey);
+
+    function onLoad() { prune(); tick(); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    window.addEventListener('load', onLoad);
+    document.addEventListener('DOMContentLoaded', onLoad);
+    A.hdrOff = function () {
+      window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); window.removeEventListener('load', onLoad);
+      document.removeEventListener('DOMContentLoaded', onLoad); document.removeEventListener('click', onDoc); document.removeEventListener('keydown', onKey);
+    };
+    prune(); tick();
   })();
-
-  // 6. GLOBAL MOBILE DRAWER CONTROLLER
-  function ascToggleMobileMenu() {
-    const btn = document.getElementById('ascHamburgerBtn');
-    const drawer = document.getElementById('ascMobileDrawer');
-    if (btn && drawer) {
-      btn.classList.toggle('asc-open');
-      drawer.classList.toggle('asc-open');
-    }
-  }
-
-  function ascCloseMobileMenu() {
-    const btn = document.getElementById('ascHamburgerBtn');
-    const drawer = document.getElementById('ascMobileDrawer');
-    if (btn && drawer) {
-      btn.classList.remove('asc-open');
-      drawer.classList.remove('asc-open');
-    }
-  }
-
-  // Tutup drawer jika pengunjung mengklik di luar area navbar
-  document.addEventListener('click', function (e) {
-    const nav = document.getElementById('asc-header-navbar');
-    if (nav && !nav.contains(e.target)) {
-      ascCloseMobileMenu();
-    }
-  });
-
-  // Tutup drawer saat menekan tombol Escape
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      ascCloseMobileMenu();
-    }
-  });
 </script>

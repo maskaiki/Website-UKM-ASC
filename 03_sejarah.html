@@ -10,8 +10,6 @@
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap');
-
   #asc-sj {
     --ice: #e0f2fe;
     --sky: #38bdf8;
@@ -87,7 +85,6 @@
     color: var(--ice);
     background: linear-gradient(135deg, #ffffff 40%, #bae6fd 100%);
     -webkit-background-clip: text;
-    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
@@ -160,7 +157,7 @@
     border-radius: 50%;
     background: #0b1220;
     border: 2px solid #475569;
-    transition: all .25s ease;
+    transition: color .25s ease, background-color .25s ease, border-color .25s ease, box-shadow .25s ease, transform .25s ease, opacity .25s ease;
   }
 
   #asc-sj .sj-rb:hover::after {
@@ -307,7 +304,6 @@
     line-height: .92;
     background: linear-gradient(135deg, #ffffff 15%, #bae6fd 60%, #38bdf8 100%);
     -webkit-background-clip: text;
-    background-clip: text;
     -webkit-text-fill-color: transparent;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
@@ -443,7 +439,6 @@
     font-style: normal;
     background: linear-gradient(135deg, #38bdf8, #bae6fd);
     -webkit-background-clip: text;
-    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
@@ -767,6 +762,30 @@
   #asc-sj.sj-static .sj-ov {
     visibility: visible;
   }
+
+  /* Rapikan: cegah scroll horizontal tak sengaja */
+  #asc-sj {
+    overflow-x: clip;
+  }
+
+  /* Beri ruang untuk header yang menempel di atas */
+  #asc-sj .sj-top {
+    top: calc(3.2vh + var(--asc-hh, 0px));
+  }
+
+  #asc-sj .sj-world {
+    top: calc(15% + var(--asc-hh, 0px) * .5);
+  }
+
+  @media (max-width: 700px) {
+    #asc-sj .sj-top {
+      top: calc(2.2vh + var(--asc-hh, 0px));
+    }
+
+    #asc-sj .sj-world {
+      top: calc(19% + var(--asc-hh, 0px) * .5);
+    }
+  }
 </style>
 
 <section id="asc-sj" aria-label="Sejarah UKM ASC">
@@ -831,6 +850,53 @@
     </div>
   </div>
 </section>
+
+<!-- ASC CORE: blok ini IDENTIK di semua file. Hanya dijalankan sekali walau ditempel berkali-kali (tidak ada skrip ganda). -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v) return;
+    var A = w.ASC = { v: 1 };
+
+    /* 1. Satu pemuat font untuk seluruh halaman (tidak ada @import per-section) */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. CSS bersama: animasi section yang di luar layar dijeda otomatis (hemat CPU/GPU) */
+    var st = d.createElement('style'); st.id = 'asc-core-css';
+    st.textContent = '[data-asc-off] *,[data-asc-off] *::before,[data-asc-off] *::after{animation-play-state:paused!important}';
+    d.head.appendChild(st);
+
+    /* 3. Buka overflow milik container/tema yang membuat position:sticky gagal */
+    function clip(v) { return v === 'hidden' || v === 'auto' || v === 'scroll'; }
+    A.unlock = function (root) {
+      try {
+        var canClip = !!(w.CSS && CSS.supports && CSS.supports('overflow-x', 'clip')), html = d.documentElement, hcs = w.getComputedStyle(html);
+        var htmlClips = clip(hcs.overflowX) || clip(hcs.overflowY), n = root.parentElement;
+        while (n && n !== html) {
+          var cs = w.getComputedStyle(n), isBody = n === d.body;
+          if ((!isBody || htmlClips) && (clip(cs.overflowX) || clip(cs.overflowY))) {
+            var real = (cs.overflowY === 'auto' || cs.overflowY === 'scroll') && n.scrollHeight > n.clientHeight + 2;
+            if (!real) { n.style.setProperty('overflow-x', canClip ? 'clip' : 'visible', 'important'); n.style.setProperty('overflow-y', 'visible', 'important'); }
+          }
+          n = n.parentElement;
+        }
+      } catch (e) { /* abaikan */ }
+    };
+
+    /* 4. Pantau section: tandai di luar layar (animasi dijeda) dan beri tahu skripnya agar berhenti bekerja */
+    A.watch = function (root, cb) {
+      if (!w.IntersectionObserver) { if (cb) cb(true); return; }
+      new IntersectionObserver(function (es) {
+        var on = es[es.length - 1].isIntersecting;
+        if (on) root.removeAttribute('data-asc-off'); else root.setAttribute('data-asc-off', '');
+        if (cb) cb(on);
+      }, { rootMargin: '100% 0px 100% 0px' }).observe(root);
+    };
+  })(window, document);
+</script>
 
 <script>
   (function () {
@@ -992,13 +1058,7 @@
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { root.classList.add('sj-static'); return; }
 
-    /* Pastikan container WordPress tidak memblokir sticky */
-    var q = root.parentElement, w = 0;
-    while (q && q !== document.documentElement && w++ < 20) {
-      var cs = getComputedStyle(q);
-      if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) q.style.setProperty('overflow', 'visible', 'important');
-      q = q.parentElement;
-    }
+    ASC.unlock(root);
 
     var near = $('sjNear'), tk = $('sjTk'), svg = $('sjSvg'), base = $('sjBase'), prog = $('sjProg'), dots = $('sjDots'), mk = $('sjMk'),
       fill = $('sjFill'), lb = $('sjLb'), inEl = $('sjIn'), outEl = $('sjOut'), bg2 = $('sjBg2'), world = root.querySelector('.sj-world');
@@ -1068,7 +1128,8 @@
       return [SX[i] + (SX[i + 1] - SX[i]) * u, SY[i] + (SY[i + 1] - SY[i]) * u];
     }
 
-    var onCount = -1, aiLast = -1, offLast = -1, ovIn = -1, ovOut = -1;
+    var onCount = -1, aiLast = -1, offLast = -1, ovIn = -1, ovOut = -1,
+      woLast = -1;
     function draw(y) {
       var L = locate(y), f = L.f, len;
       if (L.pre !== undefined) len = nodeLen[0] * ease(clamp(L.pre));
@@ -1106,6 +1167,11 @@
       if (oi !== ovIn) { ovIn = oi; inEl.style.opacity = oi.toFixed(3); inEl.style.visibility = oi > 0 ? 'visible' : 'hidden'; }
       if (oo !== ovOut) { ovOut = oo; outEl.style.opacity = oo.toFixed(3); outEl.style.visibility = oo > 0 ? 'visible' : 'hidden'; }
 
+      var wo = (1 - .9 * oi) * (1 - .9 * oo);   /* jalur memudar saat judul pembuka/penutup tampil */
+
+      if (Math.abs(wo - woLast) > .004) { woLast = wo; world.style.opacity = wo.toFixed(3); }
+
+
       var ai = Math.round(f);
       if (ai !== aiLast) { aiLast = ai; lb.textContent = pad(ai + 1) + ' / ' + pad(N) + ' · ' + DATA[ai].c; rb.forEach(function (b, k) { b.classList.toggle('on', k === ai); b.classList.toggle('done', k < ai); }); }
       fill.style.transform = 'scaleX(' + (f / (N - 1)).toFixed(4) + ')';
@@ -1121,7 +1187,9 @@
       draw(cur);
       raf = cur === target ? 0 : requestAnimationFrame(loop);
     }
-    function onScroll() { target = read(); if (!raf) { last = performance.now(); raf = requestAnimationFrame(loop); } }
+    function onScroll() {
+      if (!awake) return; target = read(); if (!raf) { last = performance.now(); raf = requestAnimationFrame(loop); }
+    }
     function snapNow() { target = cur = read(); draw(cur); }
 
     /* Lompat halus ke tonggak tertentu */
@@ -1133,6 +1201,7 @@
     }
     rb.forEach(function (b, k) { b.addEventListener('click', function () { scrollToStep(k); }); });
 
+    var awake = true; ASC.watch(root, function (on) { awake = on; if (on) onScroll(); });
     window.addEventListener('scroll', onScroll, { passive: true });
     var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { build(); snapNow(); }, 120); }, { passive: true });
     window.addEventListener('load', function () { build(); snapNow(); });

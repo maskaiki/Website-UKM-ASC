@@ -9,8 +9,6 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-
   #asc-pb {
     --blue: #0284c7;
     --royal: #2563eb;
@@ -295,9 +293,26 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
       font-size: 13px;
     }
   }
+
+  /* Rapikan: cegah scroll horizontal tak sengaja */
+  #asc-pb {
+    overflow-x: clip;
+  }
+
+  /* Beri ruang untuk header yang menempel di atas */
+  #asc-pb .pb-head {
+    top: max(15vh, calc(var(--asc-hh, 0px) + 24px));
+  }
+
+  @media (max-width: 640px) {
+    #asc-pb .pb-head {
+      top: max(11vh, calc(var(--asc-hh, 0px) + 20px));
+    }
+  }
 </style>
 
 <section id="asc-pb" aria-label="10 Bidang Pembinaan UKM ASC">
+  <span id="asc-pembinaan" style="position:relative;top:-90px;display:block;visibility:hidden;height:0;width:0;"></span>
   <div class="pb-stage">
     <div class="pb-wash"></div>
     <div class="pb-head">
@@ -316,6 +331,53 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     </div>
   </div>
 </section>
+
+<!-- ASC CORE: blok ini IDENTIK di semua file. Hanya dijalankan sekali walau ditempel berkali-kali (tidak ada skrip ganda). -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v) return;
+    var A = w.ASC = { v: 1 };
+
+    /* 1. Satu pemuat font untuk seluruh halaman (tidak ada @import per-section) */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. CSS bersama: animasi section yang di luar layar dijeda otomatis (hemat CPU/GPU) */
+    var st = d.createElement('style'); st.id = 'asc-core-css';
+    st.textContent = '[data-asc-off] *,[data-asc-off] *::before,[data-asc-off] *::after{animation-play-state:paused!important}';
+    d.head.appendChild(st);
+
+    /* 3. Buka overflow milik container/tema yang membuat position:sticky gagal */
+    function clip(v) { return v === 'hidden' || v === 'auto' || v === 'scroll'; }
+    A.unlock = function (root) {
+      try {
+        var canClip = !!(w.CSS && CSS.supports && CSS.supports('overflow-x', 'clip')), html = d.documentElement, hcs = w.getComputedStyle(html);
+        var htmlClips = clip(hcs.overflowX) || clip(hcs.overflowY), n = root.parentElement;
+        while (n && n !== html) {
+          var cs = w.getComputedStyle(n), isBody = n === d.body;
+          if ((!isBody || htmlClips) && (clip(cs.overflowX) || clip(cs.overflowY))) {
+            var real = (cs.overflowY === 'auto' || cs.overflowY === 'scroll') && n.scrollHeight > n.clientHeight + 2;
+            if (!real) { n.style.setProperty('overflow-x', canClip ? 'clip' : 'visible', 'important'); n.style.setProperty('overflow-y', 'visible', 'important'); }
+          }
+          n = n.parentElement;
+        }
+      } catch (e) { /* abaikan */ }
+    };
+
+    /* 4. Pantau section: tandai di luar layar (animasi dijeda) dan beri tahu skripnya agar berhenti bekerja */
+    A.watch = function (root, cb) {
+      if (!w.IntersectionObserver) { if (cb) cb(true); return; }
+      new IntersectionObserver(function (es) {
+        var on = es[es.length - 1].isIntersecting;
+        if (on) root.removeAttribute('data-asc-off'); else root.setAttribute('data-asc-off', '');
+        if (cb) cb(on);
+      }, { rootMargin: '100% 0px 100% 0px' }).observe(root);
+    };
+  })(window, document);
+</script>
 
 <script>
   (function () {
@@ -343,12 +405,14 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
         '<h3>' + x.t + '</h3><p>' + x.d + '</p><div class="pb-row"><a class="pb-btn" href="' + x.link + '">Selengkapnya</a><a class="pb-go" href="' + x.link + '" aria-label="Buka ' + x.t + '">→</a></div></article>';
     });
     track.innerHTML = h;
-    var cards = [].slice.call(track.children), vw, vh, trackW, startX, endX, ticking = false;
+    ASC.unlock(root);
+    var cards = [].slice.call(track.children), lefts = [], vw, vh, trackW, startX, endX, ticking = false;
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { root.classList.add('pb-static'); return; }
 
     function measure() {
       vw = window.innerWidth; vh = window.innerHeight; trackW = track.scrollWidth;
+      lefts = cards.map(function (c) { return c.offsetLeft + c.offsetWidth / 2; });   /* posisi tengah kartu disimpan sekali: tanpa baca layout tiap frame */
       startX = vw * 0.92; endX = -(trackW - vw * 0.78);
       root.style.height = (vh + (startX - endX) * 0.85) + 'px';
       update();
@@ -366,14 +430,15 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
       line.style.stroke = 'rgb(' + Math.round(lerp(186, 15, c)) + ',' + Math.round(lerp(224, 23, c)) + ',' + Math.round(lerp(247, 42, c)) + ')';
       var best = 0, bd = 1e9;
       cards.forEach(function (el, i) {
-        var b = el.getBoundingClientRect(), cx = b.left + b.width / 2, off = (cx - vw / 2) / vw;
+        var cx = x + lefts[i], off = (cx - vw / 2) / vw;
         var rot = (i % 2 ? 1 : -1) * 2.6 + off * 5, y = Math.sin(i * 1.7) * 14 + Math.abs(off) * 18;
         el.style.transform = 'translate3d(0,' + y + 'px,0) rotate(' + rot + 'deg)';
         var d = Math.abs(off); if (d < bd) { bd = d; best = i; }
       });
       countEl.textContent = (best + 1) + ' dari ' + cards.length;
     }
-    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    function onScroll() { if (!awake) return; if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    var awake = true; ASC.watch(root, function (on) { awake = on; if (on) onScroll(); });
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', measure);
     window.addEventListener('load', measure);
