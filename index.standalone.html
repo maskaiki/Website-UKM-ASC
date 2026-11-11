@@ -55,8 +55,6 @@
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap');
-
   /* =========================================================================
      1. FIX OVERFLOW KHUSUS DIVI & ELEMENTOR WORDPRESS
      ========================================================================= */
@@ -129,9 +127,7 @@
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
-    background: rgba(255, 255, 255, 0.84) !important;
-    backdrop-filter: blur(24px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
     border: 1px solid rgba(255, 255, 255, 0.9) !important;
     border-radius: 999px !important;
     padding: 0 8px 0 16px !important;
@@ -140,7 +136,7 @@
       0 2px 6px rgba(0, 0, 0, 0.04),
       inset 0 1px 0 rgba(255, 255, 255, 1) !important;
     position: relative !important;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   /* Status saat di-scroll: Sedikit lebih solid & glow halus */
@@ -243,7 +239,7 @@
     color: #475569 !important;
     border-radius: 999px !important;
     letter-spacing: -0.01em !important;
-    transition: all 0.2s ease !important;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, opacity 0.2s ease !important;
     white-space: nowrap !important;
     position: relative !important;
     line-height: 1 !important;
@@ -289,7 +285,7 @@
     border-radius: 999px !important;
     border: 1px solid #1e293b !important;
     box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2) !important;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
     flex-shrink: 0 !important;
     line-height: 1 !important;
     white-space: nowrap !important;
@@ -335,7 +331,7 @@
     align-items: center !important;
     gap: 4px !important;
     padding: 0 !important;
-    transition: all 0.25s ease !important;
+    transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, opacity 0.25s ease !important;
     flex-shrink: 0 !important;
   }
 
@@ -350,7 +346,7 @@
     height: 2px !important;
     background: #0f172a !important;
     border-radius: 2px !important;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   #asc-header-navbar .asc-hamburger-btn.asc-open span:nth-child(1) {
@@ -378,8 +374,6 @@
     left: 16px !important;
     right: 16px !important;
     background: rgba(255, 255, 255, 0.96) !important;
-    backdrop-filter: blur(28px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
     border: 1px solid rgba(255, 255, 255, 0.9) !important;
     border-radius: 26px !important;
     box-shadow:
@@ -420,7 +414,7 @@
     color: #1e293b !important;
     background: #f8fafc !important;
     border: 1px solid #e2e8f0 !important;
-    transition: all 0.22s ease !important;
+    transition: color 0.22s ease, background-color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease, opacity 0.22s ease !important;
   }
 
   #asc-header-navbar .asc-drawer-item:hover,
@@ -584,8 +578,7 @@
     </a>
 
     <!-- MOBILE HAMBURGER TOGGLE BUTTON -->
-    <button class="asc-hamburger-btn" id="ascHamburgerBtn" onclick="ascToggleMobileMenu()"
-      aria-label="Buka Menu Navigasi">
+    <button class="asc-hamburger-btn" id="ascHamburgerBtn" aria-label="Buka Menu Navigasi">
       <span></span>
       <span></span>
       <span></span>
@@ -597,8 +590,7 @@
   <div class="asc-mobile-drawer" id="ascMobileDrawer">
 
     <!-- 01. PROFIL -->
-    <a href="#asc-hero-profil" class="asc-drawer-item" data-asc-scroll="#asc-hero-profil"
-      onclick="ascCloseMobileMenu()">
+    <a href="#asc-hero-profil" class="asc-drawer-item" data-asc-scroll="#asc-hero-profil">
       <div class="asc-drawer-left">
         <span class="asc-drawer-num">01</span>
         <div>
@@ -612,8 +604,7 @@
     </a>
 
     <!-- 02. VISI & MISI -->
-    <a href="#asc-visi-misi" class="asc-drawer-item" data-asc-scroll="#asc-visi-misi,#asc-vm"
-      onclick="ascCloseMobileMenu()">
+    <a href="#asc-visi-misi" class="asc-drawer-item" data-asc-scroll="#asc-visi-misi,#asc-vm">
       <div class="asc-drawer-left">
         <span class="asc-drawer-num">02</span>
         <div>
@@ -627,8 +618,7 @@
     </a>
 
     <!-- 03. SEJARAH -->
-    <a href="#asc-sejarah" class="asc-drawer-item" data-asc-scroll="#asc-sejarah,#asc-sj"
-      onclick="ascCloseMobileMenu()">
+    <a href="#asc-sejarah" class="asc-drawer-item" data-asc-scroll="#asc-sejarah,#asc-sj">
       <div class="asc-drawer-left">
         <span class="asc-drawer-num">03</span>
         <div>
@@ -642,7 +632,7 @@
     </a>
 
     <!-- 04. STRUKTUR -->
-    <a href="#asc-struktur" class="asc-drawer-item" data-asc-scroll="#asc-struktur" onclick="ascCloseMobileMenu()">
+    <a href="#asc-struktur" class="asc-drawer-item" data-asc-scroll="#asc-struktur">
       <div class="asc-drawer-left">
         <span class="asc-drawer-num">04</span>
         <div>
@@ -656,8 +646,7 @@
     </a>
 
     <!-- 05. PEMBINAAN -->
-    <a href="#asc-pembinaan" class="asc-drawer-item" data-asc-scroll="#asc-pembinaan,#asc-pb,#asc-agenda"
-      onclick="ascCloseMobileMenu()">
+    <a href="#asc-pembinaan" class="asc-drawer-item" data-asc-scroll="#asc-pembinaan,#asc-pb,#asc-agenda">
       <div class="asc-drawer-left">
         <span class="asc-drawer-num">05</span>
         <div>
@@ -671,7 +660,7 @@
     </a>
 
     <!-- 06. GALERI -->
-    <a href="#asc-galeri" class="asc-drawer-item" data-asc-scroll="#asc-galeri" onclick="ascCloseMobileMenu()">
+    <a href="#asc-galeri" class="asc-drawer-item" data-asc-scroll="#asc-galeri">
       <div class="asc-drawer-left">
         <span class="asc-drawer-num">06</span>
         <div>
@@ -685,7 +674,7 @@
     </a>
 
     <!-- 07. PRESTASI -->
-    <a href="#asc-prestasi" class="asc-drawer-item" data-asc-scroll="#asc-prestasi" onclick="ascCloseMobileMenu()">
+    <a href="#asc-prestasi" class="asc-drawer-item" data-asc-scroll="#asc-prestasi">
       <div class="asc-drawer-left">
         <span class="asc-drawer-num">07</span>
         <div>
@@ -699,8 +688,7 @@
     </a>
 
     <!-- 08. HUBUNGI KAMI -->
-    <a href="#asc-kontak" class="asc-drawer-item asc-drawer-cta" data-asc-scroll="#asc-kontak"
-      onclick="ascCloseMobileMenu()">
+    <a href="#asc-kontak" class="asc-drawer-item asc-drawer-cta" data-asc-scroll="#asc-kontak">
       <div class="asc-drawer-left">
         <span class="asc-drawer-num">08</span>
         <div>
@@ -720,163 +708,155 @@
 <!-- =========================================================================
      JAVASCRIPT: SELF-HEALING ANTI-DUPLIKASI, SMOOTH SCROLL OFFSET, & SCROLL SPY
      ========================================================================= -->
+<!-- ASC CORE: blok ini IDENTIK di semua file. Hanya dijalankan sekali walau ditempel berkali-kali (tidak ada skrip ganda). -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v) return;
+    var A = w.ASC = { v: 1 };
+
+    /* 1. Satu pemuat font untuk seluruh halaman (tidak ada impor font per-section) */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. CSS bersama: animasi section yang di luar layar dijeda otomatis (hemat CPU/GPU) */
+    var st = d.createElement('style'); st.id = 'asc-core-css';
+    st.textContent = '[data-asc-off] *,[data-asc-off] *::before,[data-asc-off] *::after{animation-play-state:paused!important}';
+    d.head.appendChild(st);
+
+    /* 3. Buka overflow milik container/tema yang membuat position:sticky gagal */
+    function clip(v) { return v === 'hidden' || v === 'auto' || v === 'scroll'; }
+    A.unlock = function (root) {
+      try {
+        var canClip = !!(w.CSS && CSS.supports && CSS.supports('overflow-x', 'clip')), html = d.documentElement, hcs = w.getComputedStyle(html);
+        var htmlClips = clip(hcs.overflowX) || clip(hcs.overflowY), n = root.parentElement;
+        while (n && n !== html) {
+          var cs = w.getComputedStyle(n), isBody = n === d.body;
+          if ((!isBody || htmlClips) && (clip(cs.overflowX) || clip(cs.overflowY))) {
+            var real = (cs.overflowY === 'auto' || cs.overflowY === 'scroll') && n.scrollHeight > n.clientHeight + 2;
+            if (!real) { n.style.setProperty('overflow-x', canClip ? 'clip' : 'visible', 'important'); n.style.setProperty('overflow-y', 'visible', 'important'); }
+          }
+          n = n.parentElement;
+        }
+      } catch (e) { /* abaikan */ }
+    };
+
+    /* 4. Pantau section: tandai di luar layar (animasi dijeda) dan beri tahu skripnya agar berhenti bekerja */
+    A.watch = function (root, cb) {
+      if (!w.IntersectionObserver) { if (cb) cb(true); return; }
+      new IntersectionObserver(function (es) {
+        var on = es[es.length - 1].isIntersecting;
+        if (on) root.removeAttribute('data-asc-off'); else root.setAttribute('data-asc-off', '');
+        if (cb) cb(on);
+      }, { rootMargin: '100% 0px 100% 0px' }).observe(root);
+    };
+  })(window, document);
+</script>
+
 <script>
   (function () {
-    // 1. AUTO CLEAN-UP: Jika di WordPress terdapat header lama/duplikat, bersihkan otomatis!
-    const allHeaders = document.querySelectorAll('#asc-header-navbar');
-    if (allHeaders.length > 1) {
-      for (let i = 0; i < allHeaders.length - 1; i++) {
-        allHeaders[i].remove();
-      }
-    }
-    const oldNavs = document.querySelectorAll('.asc-nav-main');
-    oldNavs.forEach(el => el.remove());
+    /* Dipasang ulang? bersihkan listener lama, lalu buang header ganda (yang terakhir dipertahankan) */
+    var A = window.ASC || (window.ASC = {});
+    if (A.hdrOff) A.hdrOff();
+    var dup = document.querySelectorAll('#asc-header-navbar');
+    for (var i = 0; i < dup.length - 1; i++) dup[i].remove();
+    document.querySelectorAll('.asc-nav-main').forEach(function (el) { if (!el.querySelector('#asc-header-navbar') && !el.id) el.remove(); });
+    var nav = document.getElementById('asc-header-navbar');
+    if (!nav) return;
+    var capsule = document.getElementById('ascNavCapsule') || nav.querySelector('.asc-nav-capsule');
+    var btn = document.getElementById('ascHamburgerBtn'), drawer = document.getElementById('ascMobileDrawer');
+    var OFFSET = 88;                                           /* jarak berhenti di bawah header saat menggulir */
 
-    const capsule = document.getElementById('ascNavCapsule');
-    const desktopLinks = document.querySelectorAll('#asc-header-navbar .asc-nav-link');
-    const drawerLinks = document.querySelectorAll('#asc-header-navbar .asc-drawer-item');
+    function find(sel) { var a = sel.split(','), out = []; for (var k = 0; k < a.length; k++) { var el = document.querySelector(a[k].trim()); if (el) out.push(el); } return out; }
 
-    // 2. SCROLLED MORPHING EFFECT
-    function handleNavbarMorph() {
-      if (!capsule) return;
-      if (window.scrollY > 24) {
-        capsule.classList.add('asc-scrolled');
-      } else {
-        capsule.classList.remove('asc-scrolled');
-      }
-    }
-    window.addEventListener('scroll', handleNavbarMorph, { passive: true });
-    handleNavbarMorph();
-
-    // 3. HELPER SELEKTOR ALIAS TARGET
-    function findTargetElement(selectorStr) {
-      if (!selectorStr) return null;
-      const selectors = selectorStr.split(',');
-      for (let i = 0; i < selectors.length; i++) {
-        const sel = selectors[i].trim();
-        const el = document.querySelector(sel);
-        if (el) return el;
-      }
-      return null;
-    }
-
-    // 4. SMOOTH SCROLL DENGAN OFFSET 85PX (AGAR HEADER TIDAK MENUTUPI JUDUL SECTION)
-    const allScrollButtons = document.querySelectorAll('#asc-header-navbar [data-asc-scroll]');
-    allScrollButtons.forEach(btn => {
-      btn.addEventListener('click', function (e) {
-        const selectorStr = this.getAttribute('data-asc-scroll');
-        const targetEl = findTargetElement(selectorStr);
-
-        if (targetEl) {
-          e.preventDefault();
-
-          // Tutup mobile drawer jika terbuka
-          ascCloseMobileMenu();
-
-          const headerOffset = 85;
-          const elementPosition = targetEl.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-
-          // Update URL hash rapi tanpa hentakan layar
-          const firstSelector = selectorStr.split(',')[0].trim();
-          if (history.pushState) {
-            history.pushState(null, null, firstSelector);
-          }
-        }
-      });
+    /* Kelompokkan tautan menu berdasarkan tujuannya (desktop + drawer) */
+    var items = [].slice.call(nav.querySelectorAll('.asc-nav-link[data-asc-scroll], .asc-drawer-item[data-asc-scroll]')), groups = [], byKey = {};
+    items.forEach(function (a) {
+      var k = a.getAttribute('data-asc-scroll'), g = byKey[k];
+      if (!g) { g = byKey[k] = { key: k, links: [], el: null }; groups.push(g); }
+      g.links.push(a);
     });
 
-    // 5. SCROLL SPY ALUR LENGKAP ROADMAP
-    const spySections = [
-      { name: 'Profil', selectors: '#asc-hero-profil' },
-      { name: 'Visi Misi', selectors: '#asc-visi-misi, #asc-vm' },
-      { name: 'Sejarah', selectors: '#asc-sejarah, #asc-sj' },
-      { name: 'Struktur', selectors: '#asc-struktur' },
-      { name: 'Pembinaan', selectors: '#asc-pembinaan, #asc-pb, #asc-agenda' },
-      { name: 'Galeri', selectors: '#asc-galeri' },
-      { name: 'Prestasi', selectors: '#asc-prestasi, #asc-pr' },
-      { name: 'Kontak', selectors: '#asc-kontak' }
-    ];
-
-    function updateScrollSpy() {
-      const scrollPos = window.scrollY + 180;
-      let currentActiveIdx = -1;
-
-      for (let i = spySections.length - 1; i >= 0; i--) {
-        const el = findTargetElement(spySections[i].selectors);
-        if (el) {
-          const top = el.offsetTop;
-          if (scrollPos >= top) {
-            currentActiveIdx = i;
-            break;
-          }
-        }
-      }
-
-      if (currentActiveIdx === -1 && window.scrollY < 400) {
-        currentActiveIdx = 0;
-      }
-
-      desktopLinks.forEach((link, idx) => {
-        if (idx === currentActiveIdx) {
-          link.classList.add('active');
-        } else {
-          link.classList.remove('active');
-        }
+    /* Menu yang tujuannya tidak ada di halaman otomatis disembunyikan; nomor drawer dirapikan ulang */
+    function prune() {
+      groups.forEach(function (g) {
+        var els = find(g.key); g.el = els.length ? els[els.length - 1] : null;   /* elemen terakhir = akar section */
+        g.links.forEach(function (a) {
+          var host = a.closest('li') || a;
+          if (g.el) { host.style.removeProperty('display'); a.style.removeProperty('display'); }
+          else { host.style.setProperty('display', 'none', 'important'); a.style.setProperty('display', 'none', 'important'); }
+        });
       });
-
-      drawerLinks.forEach((item, idx) => {
-        if (idx === currentActiveIdx) {
-          item.classList.add('active');
-        } else {
-          item.classList.remove('active');
-        }
+      var n = 0;
+      [].forEach.call(nav.querySelectorAll('.asc-drawer-item[data-asc-scroll]'), function (a) {
+        if (a.style.display === 'none') return;
+        var num = a.querySelector('.asc-drawer-num'); if (num) num.textContent = ('0' + (++n)).slice(-2);
       });
     }
 
-    window.addEventListener('scroll', updateScrollSpy, { passive: true });
-    updateScrollSpy();
+    /* Satu pengendali scroll (dibatasi rAF): morph kapsul, menu aktif, dan tinggi header untuk section lain */
+    var ticking = false, scrolled = null, activeKey = null, hhLast = -1;
+    function tick() {
+      ticking = false;
+      var y = window.pageYOffset || 0;
+      var s = y > 24;
+      if (s !== scrolled && capsule) { scrolled = s; capsule.classList.toggle('asc-scrolled', s); }
 
+      var best = null, bestTop = -1e9;
+      for (var i = 0; i < groups.length; i++) {
+        var g = groups[i]; if (!g.el) continue;
+        var top = g.el.getBoundingClientRect().top;
+        if (top <= 200 && top > bestTop) { bestTop = top; best = g; }
+      }
+      if (!best && y < 400) { for (var j = 0; j < groups.length; j++) if (groups[j].el) { best = groups[j]; break; } }
+      var key = best ? best.key : null;
+      if (key !== activeKey) {
+        activeKey = key;
+        groups.forEach(function (g) { g.links.forEach(function (a) { a.classList.toggle('active', g.key === key); }); });
+      }
+
+      /* Beri tahu section yang menempel (pinned) berapa tinggi header yang sedang menutupi layar */
+      var r = (capsule || nav).getBoundingClientRect(), hh = r.bottom > 0 ? Math.round(r.bottom + 8) : 0;
+      if (Math.abs(hh - hhLast) > 1) { hhLast = hh; document.documentElement.style.setProperty('--asc-hh', hh + 'px'); }
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(tick); } }
+
+    /* Klik menu: gulir halus ke akar section (tanpa offset ganda dengan jangkar) */
+    function go(key, ev) {
+      var els = find(key); if (!els.length) return;
+      if (ev) ev.preventDefault();
+      var el = els[els.length - 1];
+      var top = el.getBoundingClientRect().top + (window.pageYOffset || 0) - OFFSET;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      try { history.replaceState(null, '', key.split(',')[0].trim()); } catch (e) { }
+      closeMenu();
+    }
+    function onNavClick(e) { var a = e.target.closest ? e.target.closest('[data-asc-scroll]') : null; if (a && nav.contains(a)) go(a.getAttribute('data-asc-scroll'), e); }
+    nav.addEventListener('click', onNavClick);
+
+    /* Drawer mobile */
+    function setMenu(open) { if (!btn || !drawer) return; btn.classList.toggle('asc-open', open); drawer.classList.toggle('asc-open', open); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    function closeMenu() { setMenu(false); }
+    function onBtn(e) { e.stopPropagation(); setMenu(!(drawer && drawer.classList.contains('asc-open'))); }
+    function onDoc(e) { if (!nav.contains(e.target)) closeMenu(); }
+    function onKey(e) { if (e.key === 'Escape') closeMenu(); }
+    if (btn) btn.addEventListener('click', onBtn);
+    document.addEventListener('click', onDoc);
+    document.addEventListener('keydown', onKey);
+
+    function onLoad() { prune(); tick(); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    window.addEventListener('load', onLoad);
+    document.addEventListener('DOMContentLoaded', onLoad);
+    A.hdrOff = function () {
+      window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); window.removeEventListener('load', onLoad);
+      document.removeEventListener('DOMContentLoaded', onLoad); document.removeEventListener('click', onDoc); document.removeEventListener('keydown', onKey);
+    };
+    prune(); tick();
   })();
-
-  // 6. GLOBAL MOBILE DRAWER CONTROLLER
-  function ascToggleMobileMenu() {
-    const btn = document.getElementById('ascHamburgerBtn');
-    const drawer = document.getElementById('ascMobileDrawer');
-    if (btn && drawer) {
-      btn.classList.toggle('asc-open');
-      drawer.classList.toggle('asc-open');
-    }
-  }
-
-  function ascCloseMobileMenu() {
-    const btn = document.getElementById('ascHamburgerBtn');
-    const drawer = document.getElementById('ascMobileDrawer');
-    if (btn && drawer) {
-      btn.classList.remove('asc-open');
-      drawer.classList.remove('asc-open');
-    }
-  }
-
-  // Tutup drawer jika pengunjung mengklik di luar area navbar
-  document.addEventListener('click', function (e) {
-    const nav = document.getElementById('asc-header-navbar');
-    if (nav && !nav.contains(e.target)) {
-      ascCloseMobileMenu();
-    }
-  });
-
-  // Tutup drawer saat menekan tombol Escape
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      ascCloseMobileMenu();
-    }
-  });
 </script>
 <!-- END COMPONENT: 00_header.html -->
 
@@ -892,7 +872,7 @@ CARA PAKAI DI WORDPRESS
 editor teks WordPress menyisipkan <p>/<br> otomatis dan bisa merusak script.
 Divi: pakai modul "Code".
 2. Copy semua isi file ini lalu paste.
-3. Ganti foto: isi atribut data-image di <div id="asc-hero-profil"> di bawah
+3. Ganti foto: isi atribut data-image di elemen #asc-hero-profil di bawah
 (URL foto dari Media Library WordPress, mis. foto kampus UNM atau kegiatan ASC).
 Kalau dikosongkan, isi huruf memakai latar biru bawaan.
 4. Supaya efek penuh lebar layar, atur container Elementor ke "Full Width" dengan padding 0.
@@ -903,8 +883,6 @@ ganti path pada elemen #ascLettersG (koordinat berpusat di 0,0) dan sesuaikan
 GEO.gw / GEO.gh di script.
 ====================================================================== -->
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
   /* =========================================================================
 WRAPPER & VARIABEL WARNA
 CATATAN: wrapper ini TIDAK boleh diberi overflow hidden/auto (merusak sticky).
@@ -967,7 +945,6 @@ BAGIAN 1 - INTRO (hero langit biru seperti sebelumnya)
     border-radius: 50%;
     pointer-events: none;
     z-index: 1;
-    filter: blur(60px);
     will-change: transform;
   }
 
@@ -1015,7 +992,6 @@ BAGIAN 1 - INTRO (hero langit biru seperti sebelumnya)
   #asc-hero-profil .asc-cloud {
     position: absolute;
     background: rgba(255, 255, 255, 0.65);
-    filter: blur(1px);
     pointer-events: none;
     z-index: 1;
   }
@@ -1084,10 +1060,8 @@ BAGIAN 1 - INTRO (hero langit biru seperti sebelumnya)
     padding: 7px 16px;
     margin-bottom: 26px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.82);
     border: 1px solid rgba(14, 165, 233, 0.25);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -1153,9 +1127,7 @@ BAGIAN 1 - INTRO (hero langit biru seperti sebelumnya)
   }
 
   #asc-hero-profil .asc-btn-outline {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.82);
     color: var(--asc-ink);
     border: 1.5px solid rgba(15, 23, 42, 0.15);
     font-weight: 500;
@@ -1516,10 +1488,6 @@ RESPONSIVE
       font-size: 15px;
     }
 
-    #asc-hero-profil .asc-glow {
-      filter: blur(40px);
-    }
-
     #asc-hero-profil .asc-caption {
       font-size: 11px;
       letter-spacing: 0.14em;
@@ -1562,6 +1530,11 @@ RESPONSIVE
       transform: none;
       transition: none;
     }
+  }
+
+  /* Rapikan: cegah scroll horizontal tak sengaja */
+  #asc-hero-profil {
+    overflow-x: clip;
   }
 </style>
 
@@ -1686,6 +1659,53 @@ RESPONSIVE
   </div>
 </div>
 
+<!-- ASC CORE: blok ini IDENTIK di semua file. Hanya dijalankan sekali walau ditempel berkali-kali (tidak ada skrip ganda). -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v) return;
+    var A = w.ASC = { v: 1 };
+
+    /* 1. Satu pemuat font untuk seluruh halaman (tidak ada impor font per-section) */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. CSS bersama: animasi section yang di luar layar dijeda otomatis (hemat CPU/GPU) */
+    var st = d.createElement('style'); st.id = 'asc-core-css';
+    st.textContent = '[data-asc-off] *,[data-asc-off] *::before,[data-asc-off] *::after{animation-play-state:paused!important}';
+    d.head.appendChild(st);
+
+    /* 3. Buka overflow milik container/tema yang membuat position:sticky gagal */
+    function clip(v) { return v === 'hidden' || v === 'auto' || v === 'scroll'; }
+    A.unlock = function (root) {
+      try {
+        var canClip = !!(w.CSS && CSS.supports && CSS.supports('overflow-x', 'clip')), html = d.documentElement, hcs = w.getComputedStyle(html);
+        var htmlClips = clip(hcs.overflowX) || clip(hcs.overflowY), n = root.parentElement;
+        while (n && n !== html) {
+          var cs = w.getComputedStyle(n), isBody = n === d.body;
+          if ((!isBody || htmlClips) && (clip(cs.overflowX) || clip(cs.overflowY))) {
+            var real = (cs.overflowY === 'auto' || cs.overflowY === 'scroll') && n.scrollHeight > n.clientHeight + 2;
+            if (!real) { n.style.setProperty('overflow-x', canClip ? 'clip' : 'visible', 'important'); n.style.setProperty('overflow-y', 'visible', 'important'); }
+          }
+          n = n.parentElement;
+        }
+      } catch (e) { /* abaikan */ }
+    };
+
+    /* 4. Pantau section: tandai di luar layar (animasi dijeda) dan beri tahu skripnya agar berhenti bekerja */
+    A.watch = function (root, cb) {
+      if (!w.IntersectionObserver) { if (cb) cb(true); return; }
+      new IntersectionObserver(function (es) {
+        var on = es[es.length - 1].isIntersecting;
+        if (on) root.removeAttribute('data-asc-off'); else root.setAttribute('data-asc-off', '');
+        if (cb) cb(on);
+      }, { rootMargin: '100% 0px 100% 0px' }).observe(root);
+    };
+  })(window, document);
+</script>
+
 <script>
   (function () {
     'use strict';
@@ -1717,7 +1737,7 @@ RESPONSIVE
     var mqReduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
 
     var W = 1600, H = 900, sf = 0.9, s0 = 20;
-    var compact = false, staticMode = false, lastP = -1, queued = false;
+    var compact = false, staticMode = false, lastP = -1, queued = false, awake = true;
 
     function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
     function range(v, a, b) { return b <= a ? (v >= b ? 1 : 0) : clamp((v - a) / (b - a), 0, 1); }
@@ -1866,7 +1886,7 @@ RESPONSIVE
     }
 
     function schedule() {
-      if (queued) { return; }
+      if (queued || !awake) { return; }
       queued = true;
       if (window.requestAnimationFrame) { window.requestAnimationFrame(function () { update(false); }); }
       else { update(false); }
@@ -1908,6 +1928,7 @@ RESPONSIVE
       applyMode();
 
       window.addEventListener('scroll', schedule, { passive: true });
+      ASC.watch(root, function (on) { awake = on; if (on) { measure(); update(true); } });
       window.addEventListener('resize', function () { measure(); schedule(); });
       window.addEventListener('orientationchange', function () { window.setTimeout(function () { measure(); update(true); }, 250); });
       window.addEventListener('load', function () { unlockAncestors(); measure(); update(true); });
@@ -1944,8 +1965,6 @@ Cara pakai di WordPress (Elementor / Divi):
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
-
   #asc-vm {
     position: relative;
     height: 1300vh;
@@ -1962,6 +1981,8 @@ Cara pakai di WordPress (Elementor / Divi):
   }
 
   #asc-vm .vm-pin {
+    padding-top: var(--asc-hh, 0px);
+    box-sizing: border-box;
     position: sticky;
     top: 0;
     height: 100vh;
@@ -1974,7 +1995,7 @@ Cara pakai di WordPress (Elementor / Divi):
   /* Frame 16:9 ala video, skala semua isi pakai satuan cqw */
   #asc-vm .vm-frame {
     position: relative;
-    width: min(94vw, 1360px, calc((100svh - 40px)*16/9));
+    width: min(94vw, 1360px, calc((100svh - 40px - var(--asc-hh, 0px))*16/9));
     aspect-ratio: 16/9;
     container-type: size;
     border-radius: 18px;
@@ -2009,7 +2030,6 @@ Cara pakai di WordPress (Elementor / Divi):
     color: var(--fg);
     --lp: 0;
     --sp: 40%;
-    will-change: clip-path;
   }
 
   #asc-vm .vm-s[data-theme="dark"] {
@@ -2475,7 +2495,7 @@ Cara pakai di WordPress (Elementor / Divi):
   @media (max-width:700px) {
     #asc-vm .vm-frame {
       aspect-ratio: 4/5;
-      width: min(94vw, calc((100svh - 40px)*.8));
+      width: min(94vw, calc((100svh - 40px - var(--asc-hh, 0px))*.8));
       border-radius: 14px;
     }
 
@@ -2702,6 +2722,11 @@ Cara pakai di WordPress (Elementor / Divi):
       aspect-ratio: 4/5;
     }
   }
+
+  /* Rapikan: cegah scroll horizontal tak sengaja */
+  #asc-vm {
+    overflow-x: clip;
+  }
 </style>
 
 <section id="asc-vm" aria-label="Visi dan Misi UKM ASC">
@@ -2829,6 +2854,53 @@ Cara pakai di WordPress (Elementor / Divi):
   </div>
 </section>
 
+<!-- ASC CORE: blok ini IDENTIK di semua file. Hanya dijalankan sekali walau ditempel berkali-kali (tidak ada skrip ganda). -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v) return;
+    var A = w.ASC = { v: 1 };
+
+    /* 1. Satu pemuat font untuk seluruh halaman (tidak ada impor font per-section) */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. CSS bersama: animasi section yang di luar layar dijeda otomatis (hemat CPU/GPU) */
+    var st = d.createElement('style'); st.id = 'asc-core-css';
+    st.textContent = '[data-asc-off] *,[data-asc-off] *::before,[data-asc-off] *::after{animation-play-state:paused!important}';
+    d.head.appendChild(st);
+
+    /* 3. Buka overflow milik container/tema yang membuat position:sticky gagal */
+    function clip(v) { return v === 'hidden' || v === 'auto' || v === 'scroll'; }
+    A.unlock = function (root) {
+      try {
+        var canClip = !!(w.CSS && CSS.supports && CSS.supports('overflow-x', 'clip')), html = d.documentElement, hcs = w.getComputedStyle(html);
+        var htmlClips = clip(hcs.overflowX) || clip(hcs.overflowY), n = root.parentElement;
+        while (n && n !== html) {
+          var cs = w.getComputedStyle(n), isBody = n === d.body;
+          if ((!isBody || htmlClips) && (clip(cs.overflowX) || clip(cs.overflowY))) {
+            var real = (cs.overflowY === 'auto' || cs.overflowY === 'scroll') && n.scrollHeight > n.clientHeight + 2;
+            if (!real) { n.style.setProperty('overflow-x', canClip ? 'clip' : 'visible', 'important'); n.style.setProperty('overflow-y', 'visible', 'important'); }
+          }
+          n = n.parentElement;
+        }
+      } catch (e) { /* abaikan */ }
+    };
+
+    /* 4. Pantau section: tandai di luar layar (animasi dijeda) dan beri tahu skripnya agar berhenti bekerja */
+    A.watch = function (root, cb) {
+      if (!w.IntersectionObserver) { if (cb) cb(true); return; }
+      new IntersectionObserver(function (es) {
+        var on = es[es.length - 1].isIntersecting;
+        if (on) root.removeAttribute('data-asc-off'); else root.setAttribute('data-asc-off', '');
+        if (cb) cb(on);
+      }, { rootMargin: '100% 0px 100% 0px' }).observe(root);
+    };
+  })(window, document);
+</script>
+
 <script>
   (function () {
     var root = document.getElementById('asc-vm'); if (!root) return;
@@ -2856,13 +2928,7 @@ Cara pakai di WordPress (Elementor / Divi):
       root.classList.add('vm-static'); ticks.forEach(function (t) { t.style.opacity = 1; }); head.style.display = 'none'; return;
     }
 
-    /* Pastikan parent WordPress tidak memblokir position: sticky */
-    var p = root.parentElement, n = 0;
-    while (p && p !== document.documentElement && n++ < 20) {
-      var cs = getComputedStyle(p);
-      if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) p.style.setProperty('overflow', 'visible', 'important');
-      p = p.parentElement;
-    }
+    ASC.unlock(root);
 
     function clamp(x) { return Math.max(0, Math.min(1, x)); }
     function ease(t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
@@ -2899,6 +2965,8 @@ Cara pakai di WordPress (Elementor / Divi):
         var u = s._u, m = u.length, base = i ? 12 * U : 2 * U;
         for (var k = 0; k < m; k++) {
           var v = clamp((lp - (base + k * 2.4 * U)) / (7 * U)), el = u[k];
+          if (el._v === v) continue;
+          el._v = v;
           el.style.opacity = v.toFixed(3);
           el.style.transform = 'translate3d(0,' + ((1 - v) * 26).toFixed(1) + 'px,0)';
         }
@@ -2922,8 +2990,11 @@ Cara pakai di WordPress (Elementor / Divi):
       render(cur);
       raf = cur === target ? 0 : requestAnimationFrame(frameLoop);
     }
-    function onScroll() { target = read(); if (!raf) { last = performance.now(); raf = requestAnimationFrame(frameLoop); } }
+    function onScroll() {
+      if (!awake) return; target = read(); if (!raf) { last = performance.now(); raf = requestAnimationFrame(frameLoop); }
+    }
 
+    var awake = true; ASC.watch(root, function (on) { awake = on; if (on) onScroll(); });
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', function () { geom(); target = cur = read(); render(cur); }, { passive: true });
     window.addEventListener('load', function () { geom(); target = cur = read(); render(cur); });
@@ -2946,8 +3017,6 @@ Cara pakai di WordPress (Elementor / Divi):
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap');
-
   #asc-sj {
     --ice: #e0f2fe;
     --sky: #38bdf8;
@@ -3096,7 +3165,7 @@ Cara pakai di WordPress (Elementor / Divi):
     border-radius: 50%;
     background: #0b1220;
     border: 2px solid #475569;
-    transition: all .25s ease;
+    transition: color .25s ease, background-color .25s ease, border-color .25s ease, box-shadow .25s ease, transform .25s ease, opacity .25s ease;
   }
 
   #asc-sj .sj-rb:hover::after {
@@ -3703,6 +3772,30 @@ Cara pakai di WordPress (Elementor / Divi):
   #asc-sj.sj-static .sj-ov {
     visibility: visible;
   }
+
+  /* Rapikan: cegah scroll horizontal tak sengaja */
+  #asc-sj {
+    overflow-x: clip;
+  }
+
+  /* Beri ruang untuk header yang menempel di atas */
+  #asc-sj .sj-top {
+    top: calc(3.2vh + var(--asc-hh, 0px));
+  }
+
+  #asc-sj .sj-world {
+    top: calc(15% + var(--asc-hh, 0px) * .5);
+  }
+
+  @media (max-width: 700px) {
+    #asc-sj .sj-top {
+      top: calc(2.2vh + var(--asc-hh, 0px));
+    }
+
+    #asc-sj .sj-world {
+      top: calc(19% + var(--asc-hh, 0px) * .5);
+    }
+  }
 </style>
 
 <section id="asc-sj" aria-label="Sejarah UKM ASC">
@@ -3767,6 +3860,53 @@ Cara pakai di WordPress (Elementor / Divi):
     </div>
   </div>
 </section>
+
+<!-- ASC CORE: blok ini IDENTIK di semua file. Hanya dijalankan sekali walau ditempel berkali-kali (tidak ada skrip ganda). -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v) return;
+    var A = w.ASC = { v: 1 };
+
+    /* 1. Satu pemuat font untuk seluruh halaman (tidak ada impor font per-section) */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. CSS bersama: animasi section yang di luar layar dijeda otomatis (hemat CPU/GPU) */
+    var st = d.createElement('style'); st.id = 'asc-core-css';
+    st.textContent = '[data-asc-off] *,[data-asc-off] *::before,[data-asc-off] *::after{animation-play-state:paused!important}';
+    d.head.appendChild(st);
+
+    /* 3. Buka overflow milik container/tema yang membuat position:sticky gagal */
+    function clip(v) { return v === 'hidden' || v === 'auto' || v === 'scroll'; }
+    A.unlock = function (root) {
+      try {
+        var canClip = !!(w.CSS && CSS.supports && CSS.supports('overflow-x', 'clip')), html = d.documentElement, hcs = w.getComputedStyle(html);
+        var htmlClips = clip(hcs.overflowX) || clip(hcs.overflowY), n = root.parentElement;
+        while (n && n !== html) {
+          var cs = w.getComputedStyle(n), isBody = n === d.body;
+          if ((!isBody || htmlClips) && (clip(cs.overflowX) || clip(cs.overflowY))) {
+            var real = (cs.overflowY === 'auto' || cs.overflowY === 'scroll') && n.scrollHeight > n.clientHeight + 2;
+            if (!real) { n.style.setProperty('overflow-x', canClip ? 'clip' : 'visible', 'important'); n.style.setProperty('overflow-y', 'visible', 'important'); }
+          }
+          n = n.parentElement;
+        }
+      } catch (e) { /* abaikan */ }
+    };
+
+    /* 4. Pantau section: tandai di luar layar (animasi dijeda) dan beri tahu skripnya agar berhenti bekerja */
+    A.watch = function (root, cb) {
+      if (!w.IntersectionObserver) { if (cb) cb(true); return; }
+      new IntersectionObserver(function (es) {
+        var on = es[es.length - 1].isIntersecting;
+        if (on) root.removeAttribute('data-asc-off'); else root.setAttribute('data-asc-off', '');
+        if (cb) cb(on);
+      }, { rootMargin: '100% 0px 100% 0px' }).observe(root);
+    };
+  })(window, document);
+</script>
 
 <script>
   (function () {
@@ -3928,13 +4068,7 @@ Cara pakai di WordPress (Elementor / Divi):
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { root.classList.add('sj-static'); return; }
 
-    /* Pastikan container WordPress tidak memblokir sticky */
-    var q = root.parentElement, w = 0;
-    while (q && q !== document.documentElement && w++ < 20) {
-      var cs = getComputedStyle(q);
-      if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) q.style.setProperty('overflow', 'visible', 'important');
-      q = q.parentElement;
-    }
+    ASC.unlock(root);
 
     var near = $('sjNear'), tk = $('sjTk'), svg = $('sjSvg'), base = $('sjBase'), prog = $('sjProg'), dots = $('sjDots'), mk = $('sjMk'),
       fill = $('sjFill'), lb = $('sjLb'), inEl = $('sjIn'), outEl = $('sjOut'), bg2 = $('sjBg2'), world = root.querySelector('.sj-world');
@@ -4004,7 +4138,8 @@ Cara pakai di WordPress (Elementor / Divi):
       return [SX[i] + (SX[i + 1] - SX[i]) * u, SY[i] + (SY[i + 1] - SY[i]) * u];
     }
 
-    var onCount = -1, aiLast = -1, offLast = -1, ovIn = -1, ovOut = -1;
+    var onCount = -1, aiLast = -1, offLast = -1, ovIn = -1, ovOut = -1,
+      woLast = -1;
     function draw(y) {
       var L = locate(y), f = L.f, len;
       if (L.pre !== undefined) len = nodeLen[0] * ease(clamp(L.pre));
@@ -4042,6 +4177,11 @@ Cara pakai di WordPress (Elementor / Divi):
       if (oi !== ovIn) { ovIn = oi; inEl.style.opacity = oi.toFixed(3); inEl.style.visibility = oi > 0 ? 'visible' : 'hidden'; }
       if (oo !== ovOut) { ovOut = oo; outEl.style.opacity = oo.toFixed(3); outEl.style.visibility = oo > 0 ? 'visible' : 'hidden'; }
 
+      var wo = (1 - .9 * oi) * (1 - .9 * oo);   /* jalur memudar saat judul pembuka/penutup tampil */
+
+      if (Math.abs(wo - woLast) > .004) { woLast = wo; world.style.opacity = wo.toFixed(3); }
+
+
       var ai = Math.round(f);
       if (ai !== aiLast) { aiLast = ai; lb.textContent = pad(ai + 1) + ' / ' + pad(N) + ' · ' + DATA[ai].c; rb.forEach(function (b, k) { b.classList.toggle('on', k === ai); b.classList.toggle('done', k < ai); }); }
       fill.style.transform = 'scaleX(' + (f / (N - 1)).toFixed(4) + ')';
@@ -4057,7 +4197,9 @@ Cara pakai di WordPress (Elementor / Divi):
       draw(cur);
       raf = cur === target ? 0 : requestAnimationFrame(loop);
     }
-    function onScroll() { target = read(); if (!raf) { last = performance.now(); raf = requestAnimationFrame(loop); } }
+    function onScroll() {
+      if (!awake) return; target = read(); if (!raf) { last = performance.now(); raf = requestAnimationFrame(loop); }
+    }
     function snapNow() { target = cur = read(); draw(cur); }
 
     /* Lompat halus ke tonggak tertentu */
@@ -4069,6 +4211,7 @@ Cara pakai di WordPress (Elementor / Divi):
     }
     rb.forEach(function (b, k) { b.addEventListener('click', function () { scrollToStep(k); }); });
 
+    var awake = true; ASC.watch(root, function (on) { awake = on; if (on) onScroll(); });
     window.addEventListener('scroll', onScroll, { passive: true });
     var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { build(); snapNow(); }, 120); }, { passive: true });
     window.addEventListener('load', function () { build(); snapNow(); });
@@ -4081,874 +4224,965 @@ Cara pakai di WordPress (Elementor / Divi):
 
 <!-- START COMPONENT: 03_struktur_organisasi.html -->
 <!-- =====================================================================
-  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 03: STRUKTUR ORGANISASI (SCROLL STORY)
-  Cara pakai di WordPress (Elementor / Divi):
-  1. Widget "Custom HTML" di container FULL WIDTH, paste seluruh file ini.
-  2. Elementor: Container > Advanced > Overflow = Default (agar efek "menempel" jalan).
-  3. Ganti isi: cari "DATA STRUKTUR" di bagian script (nama bidang, program, deskripsi).
+  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 07: FOLLOW US ON SOCIAL MEDIA (GRAND FINALE)
+  UI/UX CONCEPT: Plarium-Style Sticky Scroll-Flow Experience (Cinematic Ending)
+  AESTHETICS: Celestial Deep Sapphire & Sky Blue Aura Glassmorphism (Gen Z Modern)
+  
+  Panduan Penggunaan di WordPress (Elementor / Divi):
+  1. Di Divi: Tambahkan module "Code" atau "Fullwidth Code".
+     Di Elementor: Tambahkan widget "HTML" atau "Text Editor" (tab Text/Code).
+  2. Salin seluruh isi file ini (Ctrl+A -> Ctrl+C), lalu paste (Ctrl+V).
+  3. Desain 100% Self-Contained lengkap dengan Scoped CSS, HTML, & JS Parallax.
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-
-  #asc-struktur {
-    position: relative;
-    width: 100%;
-    height: 1000vh;
-    background: #0f172a;
-    color: #fff;
-    --ice: #e0f2fe;
-    --sky: #38bdf8;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* =========================================================================
+     FIX OVERFLOW UNTUK DIVI & ELEMENTOR WORDPRESS
+     ========================================================================= */
+  .et_pb_section,
+  .et_pb_fullwidth_section,
+  .et_pb_row,
+  .et_pb_column,
+  .et_pb_module,
+  .et_pb_code,
+  .et_pb_fullwidth_code,
+  .et_pb_code_inner,
+  .elementor-section,
+  .elementor-column,
+  .elementor-widget-wrap,
+  .elementor-widget {
+    overflow: visible !important;
   }
 
-  #asc-struktur * {
+  /* =========================================================================
+     1. SCOPED WRAPPER UTAMA
+     ========================================================================= */
+  #asc-kontak {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #f8fafc;
+    background: #061121;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+
+  #asc-kontak * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-font-smoothing: antialiased;
   }
 
-  #asc-struktur .st-pin {
+  /* =========================================================================
+     2. PLARIUM SCROLL TRACK (STICKY GRAND FINALE EXPERIENCE)
+     Tinggi track 220vh untuk memberikan jarak scroll yang mulus & sinematik.
+     Karena ini bagian terakhir website, saat scroll mentok (1.0),
+     posisi kartu tetap terkunci elegan sebagai penutup akhir website.
+     ========================================================================= */
+  #asc-kontak .asc-pl-track {
+    position: relative;
+    width: 100%;
+    height: 220vh;
+    background: linear-gradient(180deg, #050d1a 0%, #071527 25%, #081a33 55%, #061121 80%, #040914 100%);
+  }
+
+  /* STICKY STAGE (100vh) */
+  #asc-kontak .asc-pl-sticky {
     position: sticky;
     top: 0;
+    left: 0;
+    width: 100%;
     height: 100vh;
     height: 100svh;
-    overflow: clip;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    padding: 3.5vh 4vw 3vh;
-    background: radial-gradient(ellipse at 12% 0%, rgba(2, 132, 199, .3), transparent 55%);
-  }
-
-  /* Kepala + penunjuk alur */
-  #asc-struktur .st-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 24px;
-    flex: none;
-  }
-
-  #asc-struktur .st-tag {
-    display: inline-block;
-    padding: 5px 13px;
-    border: 1px solid rgba(186, 230, 253, .35);
-    border-radius: 999px;
-    background: rgba(2, 132, 199, .14);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: #bae6fd;
-    margin-bottom: 8px;
-  }
-
-  #asc-struktur h2 {
-    font-size: clamp(24px, 3vw, 46px);
-    font-weight: 600;
-    letter-spacing: -.035em;
-    line-height: 1;
-    color: var(--ice);
-  }
-
-  #asc-struktur .st-steps {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    width: min(680px, 52vw);
-    padding-bottom: 14px;
-  }
-
-  #asc-struktur .st-steps::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background: rgba(186, 230, 253, .16);
-  }
-
-  #asc-struktur .st-fill {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 2px;
-    width: 8%;
-    background: linear-gradient(90deg, #0284c7, #38bdf8);
-  }
-
-  #asc-struktur .st-s {
-    all: unset;
-    cursor: pointer;
-    position: relative;
-    text-align: center;
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: #64748b;
-    padding: 0 2px 12px;
-    transition: color .3s;
-  }
-
-  #asc-struktur .st-s::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -4px;
-    width: 9px;
-    height: 9px;
-    margin-left: -4.5px;
-    border-radius: 50%;
-    background: #0f172a;
-    border: 2px solid #475569;
-    transition: .3s;
-  }
-
-  #asc-struktur .st-s.on {
-    color: var(--ice);
-  }
-
-  #asc-struktur .st-s.on::after,
-  #asc-struktur .st-s.done::after {
-    background: var(--sky);
-    border-color: var(--sky);
-  }
-
-  #asc-struktur .st-s:focus-visible {
-    outline: 2px solid var(--sky);
-    outline-offset: 2px;
-  }
-
-  #asc-struktur .st-main {
-    position: relative;
-    flex: 1;
-    min-height: 0;
-    margin-top: 3vh;
-  }
-
-  /* Bagan */
-  #asc-struktur .st-cl {
-    position: absolute;
-    inset: 0;
-    will-change: transform, opacity;
-  }
-
-  #asc-struktur .st-chart {
-    position: absolute;
-    left: 50%;
-    top: 46%;
-    transform: translate(-50%, -50%);
-    width: min(100%, 1400px, calc((100svh - 26vh)*1000/385));
-    aspect-ratio: 1000/385;
-    container-type: inline-size;
-  }
-
-  #asc-struktur .st-n {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    text-align: center;
-    line-height: 1.15;
-    font-size: clamp(11px, 1.45cqw, 17px);
-    font-weight: 700;
-    border-radius: 9px;
-    padding: 0 6px;
-    will-change: transform, opacity;
+    align-items: center;
+    perspective: 1200px;
+    z-index: 10;
   }
 
-  #asc-struktur .st-n small {
-    font-size: .78em;
-    font-weight: 500;
-    opacity: .85;
-    margin-top: 2px;
-  }
-
-  #asc-struktur .n-pb {
-    background: var(--sky);
-    color: #0f172a;
-  }
-
-  #asc-struktur .n-core {
-    background: #0284c7;
-  }
-
-  #asc-struktur .n-mk {
-    border: 1.5px dashed #bae6fd;
-    color: #bae6fd;
-    background: rgba(186, 230, 253, .06);
-  }
-
-  #asc-struktur .n-dept {
-    background: #0369a1;
-    border: 1.5px solid var(--sky);
-  }
-
-  #asc-struktur .n-lso {
-    background: #475569;
-    border: 1.5px solid #94a3b8;
-  }
-
-  #asc-struktur .st-ln {
+  /* AMBIENT AURAS (CELESTIAL SKY BLUE, ROYAL SAPPHIRE & AMBER GOLD) */
+  #asc-kontak .asc-pl-aura {
     position: absolute;
-    background: var(--sky);
-    opacity: .85;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.7;
     will-change: transform;
   }
 
-  #asc-struktur .st-ln.dd {
-    background: repeating-linear-gradient(90deg, #bae6fd 0 6px, transparent 6px 11px);
+  #asc-kontak .asc-pl-aura-1 {
+    width: clamp(380px, 45vw, 650px);
+    height: clamp(380px, 45vw, 650px);
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.32) 0%, rgba(2, 132, 199, 0.1) 60%, transparent 80%);
+    top: -12%;
+    left: 12%;
+    animation: ascAuraFloat1 18s ease-in-out infinite alternate;
   }
 
-  #asc-struktur .st-leg {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 22px;
-    justify-content: center;
-    font-size: 11.5px;
-    color: #94a3b8;
+  #asc-kontak .asc-pl-aura-2 {
+    width: clamp(400px, 48vw, 700px);
+    height: clamp(400px, 48vw, 700px);
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.28) 0%, rgba(14, 165, 233, 0.08) 60%, transparent 80%);
+    bottom: -15%;
+    right: 8%;
+    animation: ascAuraFloat2 22s ease-in-out infinite alternate;
   }
 
-  #asc-struktur .st-leg i {
-    display: inline-block;
-    width: 22px;
-    height: 0;
-    border-top: 2px solid var(--sky);
-    vertical-align: middle;
-    margin-right: 7px;
+  #asc-kontak .asc-pl-aura-3 {
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 70%);
+    top: 35%;
+    left: 45%;
+    transform: translate(-50%, -50%);
   }
 
-  #asc-struktur .st-leg i.d {
-    border-top-style: dashed;
-    border-color: #bae6fd;
+  @keyframes ascAuraFloat1 {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+      transform: translate(45px, 55px) scale(1.15);
+    }
   }
 
-  /* Rincian departemen */
-  #asc-struktur .st-sc {
+  @keyframes ascAuraFloat2 {
+    0% {
+      transform: translate(0, 0) scale(1.1);
+    }
+
+    100% {
+      transform: translate(-55px, -45px) scale(0.95);
+    }
+  }
+
+  /* PARTICLES CANVAS (STARDUST / FIREFLIES) */
+  #asc-kontak #asc-pl-canvas {
     position: absolute;
     inset: 0;
-    display: grid;
-    grid-template-columns: 5fr 7fr;
-    gap: 4vw;
-    align-content: center;
-    align-items: center;
-    opacity: 0;
-    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
   }
 
-  #asc-struktur .st-ix {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--sky);
-    margin-bottom: 10px;
+  /* ISLAMIC GEOMETRIC STARDUST GRID */
+  #asc-kontak .asc-pl-geom {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(56, 189, 248, 0.14) 1.5px, transparent 1.5px);
+    background-size: 36px 36px;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 2;
   }
 
-  #asc-struktur .st-nm {
-    font-size: clamp(40px, 7.4vw, 124px);
-    font-weight: 500;
-    letter-spacing: -.05em;
-    line-height: .95;
-    color: var(--ice);
-  }
-
-  #asc-struktur .st-ds {
-    margin-top: 2.4vh;
-    max-width: 430px;
-    font-size: clamp(13px, 1.05vw, 16px);
-    line-height: 1.7;
-    color: #cbd5e1;
-  }
-
-  #asc-struktur .st-lb {
-    display: block;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--sky);
-    margin: 0 0 10px;
-  }
-
-  #asc-struktur .st-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 9px;
-    margin-bottom: 3vh;
-  }
-
-  #asc-struktur .st-chip {
-    padding: 10px 14px;
-    border-radius: 10px;
-    background: rgba(224, 242, 254, .07);
-    border: 1px solid rgba(186, 230, 253, .18);
-    font-size: clamp(12.5px, 1vw, 15px);
-    font-weight: 700;
-    line-height: 1.3;
-  }
-
-  #asc-struktur .st-chip small {
-    display: block;
-    margin-top: 2px;
-    font-size: .82em;
-    font-weight: 500;
-    color: #94a3b8;
-  }
-
-  #asc-struktur .st-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  #asc-struktur .st-pill {
-    padding: 7px 13px;
-    border-radius: 999px;
-    background: #0284c7;
-    font-size: clamp(11.5px, .92vw, 14px);
-    font-weight: 600;
-  }
-
-  #asc-struktur .st-ln.dv {
-    background: repeating-linear-gradient(180deg, #bae6fd 0 6px, transparent 6px 11px);
-  }
-
-  #asc-struktur .st-nm.long {
-    font-size: clamp(32px, 4.8vw, 80px);
-  }
-
-  #asc-struktur .st-chip {
-    padding: 7px 12px;
-    cursor: pointer;
-    transition: background .35s, border-color .35s, transform .35s;
-  }
-
-  #asc-struktur .st-chip.act {
-    background: linear-gradient(135deg, #0284c7, #0369a1);
-    border-color: #38bdf8;
-    transform: translateX(5px) !important;
-  }
-
-  #asc-struktur .st-chip.act small {
-    color: #e0f2fe;
-  }
-
-  #asc-struktur .st-grid {
-    gap: 7px;
-    margin-bottom: 2vh;
-  }
-
-  #asc-struktur .st-pill {
-    cursor: pointer;
-    background: rgba(2, 132, 199, .38);
-    transition: background .35s, color .35s;
-  }
-
-  #asc-struktur .st-pill.act {
-    background: #38bdf8;
-    color: #0f172a;
-  }
-
-  #asc-struktur .st-cd {
-    display: none;
-  }
-
-  #asc-struktur .st-dt {
-    position: relative;
-    padding: 16px 18px;
-    border-radius: 14px;
-    background: rgba(224, 242, 254, .08);
-    border: 1px solid rgba(186, 230, 253, .24);
-    min-height: 150px;
-    margin-bottom: 2vh;
+  /* =========================================================================
+     3. STAGE TITLE: "Follow us on social media"
+     Transisi halus: dari posisi tengah hero awal, naik ke atas sebagai header
+     yang anggun saat 4 kartu muncul sehingga tidak bertumpukan.
+     ========================================================================= */
+  #asc-kontak .asc-pl-headline {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 92%;
+    max-width: 1000px;
+    z-index: 4;
+    pointer-events: none;
     will-change: transform, opacity;
   }
 
-  #asc-struktur .st-dk {
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--sky);
-    margin-bottom: 6px;
-    font-variant-numeric: tabular-nums;
-  }
-
-  #asc-struktur .st-dt h4 {
-    font-size: clamp(17px, 1.5vw, 24px);
-    font-weight: 700;
-    letter-spacing: -.02em;
-    line-height: 1.2;
-    margin-bottom: 7px;
-    color: #fff;
-  }
-
-  #asc-struktur .st-dt p {
-    font-size: clamp(12.5px, .98vw, 15px);
-    line-height: 1.65;
-    color: #cbd5e1;
-  }
-
-  #asc-struktur .st-tg {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 10px;
-  }
-
-  #asc-struktur .st-tg span {
-    padding: 4px 10px;
+  #asc-kontak .asc-pl-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 18px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.32);
     border-radius: 999px;
-    border: 1px solid rgba(56, 189, 248, .55);
-    font-size: 11.5px;
-    font-weight: 600;
-    color: #bae6fd;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #38bdf8;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
   }
 
-  #asc-struktur .st-ph {
-    float: right;
-    width: 84px;
-    aspect-ratio: 4/5;
-    border-radius: 8px;
-    margin: 0 0 8px 14px;
-    background: center/cover no-repeat;
+  #asc-kontak .asc-pl-tag::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #38bdf8;
+    box-shadow: 0 0 10px #38bdf8;
   }
 
-  @media (max-width:700px) {
-    #asc-struktur .st-ds {
-      display: none;
+  #asc-kontak .asc-pl-title {
+    font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(40px, 6.8vw, 84px);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+    margin-bottom: 16px;
+    text-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+  }
+
+  #asc-kontak .asc-pl-title span {
+    background: linear-gradient(135deg, #ffffff 30%, #7dd3fc 75%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  #asc-kontak .asc-pl-sub {
+    font-size: clamp(14px, 1.25vw, 17.5px);
+    color: #94a3b8;
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.65;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    transition: opacity 0.3s ease;
+  }
+
+  /* HINT SCROLL DOWN INDICATOR */
+  #asc-kontak .asc-pl-scrolldown {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: #64748b;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    pointer-events: none;
+    z-index: 4;
+    transition: opacity 0.3s ease;
+  }
+
+  #asc-kontak .asc-pl-scrolldown svg {
+    animation: ascScrollBounce 2s infinite;
+  }
+
+  @keyframes ascScrollBounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
     }
 
-    #asc-struktur .st-nm.long {
-      font-size: clamp(30px, 10.5vw, 52px);
+    40% {
+      transform: translateY(6px);
     }
 
-    #asc-struktur .st-dt {
-      padding: 12px 14px;
-      min-height: 132px;
-      margin-bottom: 1.4vh;
-    }
-
-    #asc-struktur .st-dt p {
-      font-size: 12px;
-      line-height: 1.5;
-    }
-
-    #asc-struktur .st-chip {
-      padding: 5px 9px;
-      font-size: 11.5px;
-    }
-
-    #asc-struktur .st-chip small {
-      display: none;
-    }
-
-    #asc-struktur .st-grid {
-      gap: 5px;
-      margin-bottom: 1.2vh;
-    }
-
-    #asc-struktur .st-tg span {
-      font-size: 10.5px;
-      padding: 3px 8px;
-    }
-
-    #asc-struktur .st-ph {
-      width: 58px;
+    60% {
+      transform: translateY(3px);
     }
   }
 
-  @media (max-width:700px) {
-    #asc-struktur {
-      height: 1000vh;
-    }
+  /* =========================================================================
+     4. TALL PILL CARDS CONTAINER (PLARIUM 4 PILL LAYOUT - GRAND FINALE)
+     Muncul secara halus dari bawah dengan staggered timing, skala, & rotasi lembut.
+     ========================================================================= */
+  #asc-kontak .asc-pl-cards-wrap {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(14px, 2.2vw, 28px);
+    width: 100%;
+    max-width: 1180px;
+    padding: 0 20px;
+    pointer-events: auto;
+  }
 
-    #asc-struktur .st-pin {
-      padding: 3vh 5vw 2vh;
-    }
+  /* INDIVIDUAL PILL CARD */
+  #asc-kontak .asc-pill-card {
+    position: relative;
+    border-radius: 44px;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 16px 24px;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+    will-change: transform, opacity;
+    transition:
+      border-color 0.4s ease,
+      box-shadow 0.4s ease,
+      background 0.4s ease;
+  }
 
-    #asc-struktur .st-top {
-      flex-direction: column;
-      align-items: stretch;
+  /* Staggered Heights & Margins (Ritme Organis Plarium Games) */
+  #asc-kontak .asc-pill-card.card-ig {
+    width: clamp(140px, 17.5vw, 205px);
+    height: clamp(380px, 50vh, 480px);
+    margin-top: 15px;
+    --brand-color: #e1306c;
+    --brand-glow: rgba(225, 48, 108, 0.75);
+    --border-hover: rgba(244, 114, 182, 0.65);
+  }
+
+  #asc-kontak .asc-pill-card.card-yt {
+    width: clamp(140px, 17.5vw, 205px);
+    height: clamp(350px, 46vh, 440px);
+    margin-top: 55px;
+    --brand-color: #ff0000;
+    --brand-glow: rgba(255, 0, 0, 0.8);
+    --border-hover: rgba(239, 68, 68, 0.65);
+  }
+
+  #asc-kontak .asc-pill-card.card-tk {
+    width: clamp(140px, 17.5vw, 205px);
+    height: clamp(410px, 54vh, 510px);
+    margin-top: -15px;
+    --brand-color: #06b6d4;
+    --brand-glow: rgba(6, 182, 212, 0.8);
+    --border-hover: rgba(56, 189, 248, 0.65);
+  }
+
+  #asc-kontak .asc-pill-card.card-wa {
+    width: clamp(140px, 17.5vw, 205px);
+    height: clamp(365px, 48vh, 460px);
+    margin-top: 35px;
+    --brand-color: #10b981;
+    --brand-glow: rgba(16, 185, 129, 0.8);
+    --border-hover: rgba(52, 211, 153, 0.65);
+  }
+
+  /* CARD HOVER PHYSICS */
+  #asc-kontak .asc-pill-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.85), 0 0 35px var(--brand-glow);
+    background: rgba(15, 23, 42, 0.94);
+  }
+
+  /* CARD INNER SHEEN */
+  #asc-kontak .asc-pill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 100%);
+    border-radius: 44px 44px 0 0;
+    pointer-events: none;
+  }
+
+  /* CIRCULAR ICON BADGE (TOP) */
+  #asc-kontak .asc-pill-icon-badge {
+    width: clamp(58px, 5.8vw, 74px);
+    height: clamp(58px, 5.8vw, 74px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    box-shadow: 0 0 30px var(--brand-glow);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    flex-shrink: 0;
+    z-index: 2;
+  }
+
+  #asc-kontak .asc-pill-card:hover .asc-pill-icon-badge {
+    transform: scale(1.12) rotate(5deg);
+    box-shadow: 0 0 45px var(--brand-glow), 0 0 15px #fff;
+  }
+
+  /* BRAND SPECIFIC ICON GRADIENTS */
+  #asc-kontak .card-ig .asc-pill-icon-badge {
+    background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  }
+
+  #asc-kontak .card-yt .asc-pill-icon-badge {
+    background: linear-gradient(135deg, #ff1a1a 0%, #cc0000 100%);
+  }
+
+  #asc-kontak .card-tk .asc-pill-icon-badge {
+    background: linear-gradient(135deg, #06b6d4 0%, #000000 50%, #f43f5e 100%);
+  }
+
+  #asc-kontak .card-wa .asc-pill-icon-badge {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  }
+
+  /* VERTICAL TEXT IN CARD (MIDDLE) */
+  #asc-kontak .asc-pill-vtext {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-orientation: mixed;
+    font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(20px, 2.2vw, 30px);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    margin: 16px 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+    user-select: none;
+    z-index: 2;
+  }
+
+  #asc-kontak .asc-pill-card:hover .asc-pill-vtext {
+    color: #38bdf8;
+    letter-spacing: 0.08em;
+  }
+
+  /* BOTTOM HANDLE / PILL BUTTON */
+  #asc-kontak .asc-pill-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    font-size: 11px;
+    font-weight: 700;
+    color: #cbd5e1;
+    letter-spacing: 0.02em;
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+    white-space: nowrap;
+    z-index: 2;
+  }
+
+  #asc-kontak .asc-pill-card:hover .asc-pill-action {
+    background: #ffffff;
+    color: #0f172a;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.35);
+    border-color: #ffffff;
+  }
+
+  /* =========================================================================
+     5. ELEGANT BOTTOM SIGNATURE (MINIMALIST FINALE FOOTER)
+     ========================================================================= */
+  #asc-kontak .asc-pl-footer-signature {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(148, 163, 184, 0.65);
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    pointer-events: none;
+    z-index: 6;
+    transition: opacity 0.5s ease;
+  }
+
+  #asc-kontak .asc-pl-footer-signature b {
+    color: rgba(224, 242, 254, 0.85);
+    font-weight: 700;
+  }
+
+  /* =========================================================================
+     6. RESPONSIVE BREAKPOINTS (TABLET & MOBILE)
+     ========================================================================= */
+  @media (max-width: 992px) {
+    #asc-kontak .asc-pl-cards-wrap {
       gap: 14px;
     }
+  }
 
-    #asc-struktur .st-steps {
-      width: 100%;
+  @media (max-width: 680px) {
+    #asc-kontak .asc-pl-track {
+      height: 190vh;
     }
 
-    #asc-struktur .st-s {
-      font-size: 0;
-      padding-bottom: 8px;
+    #asc-kontak .asc-pl-title {
+      font-size: clamp(28px, 7vw, 38px);
+      line-height: 1.1;
     }
 
-    #asc-struktur .st-s.on {
+    #asc-kontak .asc-pl-sub {
+      font-size: 13px;
+      line-height: 1.55;
+      padding: 0 10px;
+    }
+
+    #asc-kontak .asc-pl-cards-wrap {
+      gap: 8px;
+      padding: 0 10px;
+      top: 55%;
+    }
+
+    #asc-kontak .asc-pill-card {
+      width: 23%;
+      padding: 18px 6px 14px;
+      border-radius: 24px;
+    }
+
+    #asc-kontak .asc-pill-card.card-ig {
+      height: 330px;
+      margin-top: 10px;
+    }
+
+    #asc-kontak .asc-pill-card.card-yt {
+      height: 300px;
+      margin-top: 35px;
+    }
+
+    #asc-kontak .asc-pill-card.card-tk {
+      height: 355px;
+      margin-top: -10px;
+    }
+
+    #asc-kontak .asc-pill-card.card-wa {
+      height: 310px;
+      margin-top: 25px;
+    }
+
+    #asc-kontak .asc-pill-icon-badge {
+      width: 44px;
+      height: 44px;
+    }
+
+    #asc-kontak .asc-pill-icon-badge svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    #asc-kontak .asc-pill-vtext {
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      margin: 10px 0;
+    }
+
+    #asc-kontak .asc-pill-action {
+      padding: 4px 8px;
       font-size: 10px;
     }
 
-    #asc-struktur .st-chart {
-      width: 100%;
-      top: 0;
-      transform: translateX(-50%);
-      aspect-ratio: 360/372;
+    #asc-kontak .asc-pill-action span {
+      display: none;
+      /* Sembunyikan label panjang di layar sangat kecil agar tetap rapi */
     }
 
-    #asc-struktur .st-n {
-      font-size: clamp(9.5px, 2.9cqw, 12px);
-      padding: 0 3px;
+    #asc-kontak .asc-pill-action svg {
+      width: 11px;
+      height: 11px;
     }
 
-    #asc-struktur .st-leg {
+    #asc-kontak .asc-pl-footer-signature {
       font-size: 10.5px;
-    }
-
-    #asc-struktur .st-sc {
-      grid-template-columns: 1fr;
-      gap: 2.2vh;
-      align-content: start;
-    }
-
-    #asc-struktur .st-nm {
-      font-size: clamp(36px, 13vw, 60px);
-    }
-
-    #asc-struktur .st-ds {
-      font-size: 12.5px;
-      margin-top: 1.2vh;
-      line-height: 1.55;
-    }
-
-    #asc-struktur .st-grid {
-      gap: 6px;
-      margin-bottom: 1.8vh;
-    }
-
-    #asc-struktur .st-chip {
-      padding: 7px 10px;
-      font-size: 12px;
-    }
-
-    #asc-struktur .st-pills {
-      gap: 6px;
-    }
-
-    #asc-struktur .st-pill {
-      padding: 5px 10px;
-      font-size: 11px;
+      bottom: 12px;
+      padding: 0 12px;
     }
   }
 
-  /* Gerak dikurangi: tampil statis */
-  #asc-struktur.st-static {
-    height: auto;
-  }
-
-  #asc-struktur.st-static .st-pin {
-    position: relative;
-    height: auto;
-    overflow: visible;
-    padding: 48px 4vw;
-  }
-
-  #asc-struktur.st-static .st-steps {
-    display: none;
-  }
-
-  #asc-struktur.st-static .st-main {
-    margin-top: 24px;
-  }
-
-  #asc-struktur.st-static .st-cl,
-  #asc-struktur.st-static .st-sc {
-    position: relative;
-    inset: auto;
-    opacity: 1;
-    visibility: visible;
-    margin-bottom: 56px;
-  }
-
-  #asc-struktur.st-static .st-cl {
-    height: auto;
-    padding-bottom: 40px;
-  }
-
-  #asc-struktur.st-static .st-chart {
-    position: relative;
-    left: auto;
-    top: auto;
-    transform: none;
-    margin: 0 auto;
-  }
-
-  #asc-struktur.st-static .st-leg {
-    position: relative;
-    margin-top: 16px;
-  }
-
-  #asc-struktur.st-static .st-dt {
-    display: none;
-  }
-
-  #asc-struktur.st-static .st-cd {
-    display: block;
-    margin-top: 6px;
-    font-size: 12px;
-    font-weight: 400;
-    color: #cbd5e1;
-    line-height: 1.55;
-  }
-
-  #asc-struktur.st-static .st-chip {
-    cursor: default;
-    transform: none !important;
-  }
-
-  #asc-struktur.st-static .st-grid {
-    grid-template-columns: 1fr;
+  /* Rapikan: cegah scroll horizontal tak sengaja */
+  #asc-kontak {
+    overflow-x: clip;
   }
 </style>
 
-<section id="asc-struktur" aria-label="Struktur Organisasi UKM ASC">
-  <div class="st-pin">
-    <div class="st-top">
-      <div><span class="st-tag">Kabinet Asy-Syauqi · UKM ASC UM</span>
-        <h2>Struktur Organisasi</h2>
+<!-- =========================================================================
+     STRUKTUR HTML SECTION 07: FOLLOW US ON SOCIAL MEDIA (GRAND FINALE)
+     ========================================================================= -->
+<div id="asc-kontak">
+  <span id="asc-medsos" style="position:relative;top:-90px;display:block;visibility:hidden;height:0;width:0;"></span>
+
+  <!-- STICKY SCROLL TRACK -->
+  <div class="asc-pl-track" id="asc-soc-track">
+    <div class="asc-pl-sticky" id="asc-soc-sticky">
+
+      <!-- AURA ORBS BACKGROUND -->
+      <div class="asc-pl-aura asc-pl-aura-1"></div>
+      <div class="asc-pl-aura asc-pl-aura-2"></div>
+      <div class="asc-pl-aura asc-pl-aura-3"></div>
+      <div class="asc-pl-geom"></div>
+
+      <!-- PARTICLES CANVAS (STARDUST / CELESTIAL GLOW) -->
+      <canvas id="asc-pl-canvas"></canvas>
+
+      <!-- HEADLINE CENTER: "Follow us on social media" -->
+      <div class="asc-pl-headline" id="asc-soc-title-box">
+        <div class="asc-pl-tag">
+
+          Berdiri di Atas dan Untuk Semua Golongan
+        </div>
+        <h2 class="asc-pl-title">
+          Follow us<br>
+          <span>on social media</span>
+        </h2>
+        <p class="asc-pl-sub" id="asc-soc-sub">
+          UKM Al-Qur'an
+          Study Club Universitas Negeri Malang.
+        </p>
       </div>
-      <nav class="st-steps" id="stSteps" aria-label="Alur struktur"><i class="st-fill" id="stFill"></i></nav>
-    </div>
-    <div class="st-main">
-      <div class="st-cl" id="stCl">
-        <div class="st-chart" id="stChart"></div>
-        <div class="st-leg"><span><i></i>Garis instruktif</span><span><i class="d"></i>Garis
-            koordinatif</span><span>Gulir untuk menelusuri tiap departemen ↓</span></div>
+
+      <!-- HINT SCROLL DOWN -->
+      <div class="asc-pl-scrolldown" id="asc-soc-hint">
+        <span>Scroll Down</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+        </svg>
       </div>
-      <div id="stScenes"></div>
+
+      <!-- 4 TALL PILL CARDS (SLIDE UP FROM BOTTOM - THE 4 MONOLITHS) -->
+      <div class="asc-pl-cards-wrap" id="asc-soc-cards">
+
+        <!-- CARD 1: INSTAGRAM -->
+        <a href="https://instagram.com/ukm_asc_um" target="_blank" rel="noopener noreferrer"
+          class="asc-pill-card card-ig" data-card-idx="0" title="Kunjungi Instagram UKM ASC UM">
+          <div class="asc-pill-icon-badge">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+          </div>
+          <div class="asc-pill-vtext">Instagram</div>
+          <div class="asc-pill-action">
+            <span>@ukm_asc_um</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M7 17L17 7M7 7h10v10" />
+            </svg>
+          </div>
+        </a>
+
+        <!-- CARD 2: YOUTUBE -->
+        <a href="https://www.youtube.com/@AlQuranStudyClub" target="_blank" rel="noopener noreferrer"
+          class="asc-pill-card card-yt" data-card-idx="1" title="Tonton Kanal YouTube UKM ASC UM">
+          <div class="asc-pill-icon-badge">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#ffffff" />
+            </svg>
+          </div>
+          <div class="asc-pill-vtext">YouTube</div>
+          <div class="asc-pill-action">
+            <span>Al-Qur'an Study Club
+
+            </span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M7 17L17 7M7 7h10v10" />
+            </svg>
+          </div>
+        </a>
+
+        <!-- CARD 3: TIKTOK -->
+        <a href="https://www.tiktok.com/@ukm_asc_um" target="_blank" rel="noopener noreferrer"
+          class="asc-pill-card card-tk" data-card-idx="2" title="Ikuti TikTok @ukm_asc_um">
+          <div class="asc-pill-icon-badge">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.35 0 .69.07 1 .19V9.07a6.29 6.29 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.33 6.34 6.34 0 0 0 9.34 21.67 6.34 6.34 0 0 0 15.68 15.33V8.89a8.18 8.18 0 0 0 4.81 1.55V7a4.86 4.86 0 0 1-.9-.31z" />
+            </svg>
+          </div>
+          <div class="asc-pill-vtext">TikTok</div>
+          <div class="asc-pill-action">
+            <span>@Al-Qur'an Study Club
+
+            </span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M7 17L17 7M7 7h10v10" />
+            </svg>
+          </div>
+        </a>
+
+        <!-- CARD 4: WHATSAPP CP -->
+        <a href="https://wa.me/6281284129092?text=Assalamu%27alaikum%2C%20halo%20Kak%20Rifqi%2C%20saya%20ingin%20bertanya%20mengenai%20UKM%20ASC%20UM"
+          target="_blank" rel="noopener noreferrer" class="asc-pill-card card-wa" data-card-idx="3"
+          title="Chat WhatsApp Narahubung Resmi">
+          <div class="asc-pill-icon-badge">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+          </div>
+          <div class="asc-pill-vtext">WhatsApp</div>
+          <div class="asc-pill-action">
+            <span>Chat Langsung</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M7 17L17 7M7 7h10v10" />
+            </svg>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- MINIMALIST CLOSING SIGNATURE FOOTER -->
+      <div class="asc-pl-footer-signature" id="asc-soc-footer-sig">
+        <b>UKM Al-Qur'an Study Club</b> &bull; Universitas Negeri Malang &copy; 2026 &bull; Developer by Publikasi Syiar
+      </div>
+
     </div>
   </div>
-</section>
+
+</div>
+
+<!-- =========================================================================
+     JAVASCRIPT: SCROLL-DRIVEN PARALLAX (SMOOTH EMERGENCE MOTION) & PARTICLES
+     ========================================================================= -->
+<!-- ASC CORE: blok ini IDENTIK di semua file. Hanya dijalankan sekali walau ditempel berkali-kali (tidak ada skrip ganda). -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v) return;
+    var A = w.ASC = { v: 1 };
+
+    /* 1. Satu pemuat font untuk seluruh halaman (tidak ada impor font per-section) */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. CSS bersama: animasi section yang di luar layar dijeda otomatis (hemat CPU/GPU) */
+    var st = d.createElement('style'); st.id = 'asc-core-css';
+    st.textContent = '[data-asc-off] *,[data-asc-off] *::before,[data-asc-off] *::after{animation-play-state:paused!important}';
+    d.head.appendChild(st);
+
+    /* 3. Buka overflow milik container/tema yang membuat position:sticky gagal */
+    function clip(v) { return v === 'hidden' || v === 'auto' || v === 'scroll'; }
+    A.unlock = function (root) {
+      try {
+        var canClip = !!(w.CSS && CSS.supports && CSS.supports('overflow-x', 'clip')), html = d.documentElement, hcs = w.getComputedStyle(html);
+        var htmlClips = clip(hcs.overflowX) || clip(hcs.overflowY), n = root.parentElement;
+        while (n && n !== html) {
+          var cs = w.getComputedStyle(n), isBody = n === d.body;
+          if ((!isBody || htmlClips) && (clip(cs.overflowX) || clip(cs.overflowY))) {
+            var real = (cs.overflowY === 'auto' || cs.overflowY === 'scroll') && n.scrollHeight > n.clientHeight + 2;
+            if (!real) { n.style.setProperty('overflow-x', canClip ? 'clip' : 'visible', 'important'); n.style.setProperty('overflow-y', 'visible', 'important'); }
+          }
+          n = n.parentElement;
+        }
+      } catch (e) { /* abaikan */ }
+    };
+
+    /* 4. Pantau section: tandai di luar layar (animasi dijeda) dan beri tahu skripnya agar berhenti bekerja */
+    A.watch = function (root, cb) {
+      if (!w.IntersectionObserver) { if (cb) cb(true); return; }
+      new IntersectionObserver(function (es) {
+        var on = es[es.length - 1].isIntersecting;
+        if (on) root.removeAttribute('data-asc-off'); else root.setAttribute('data-asc-off', '');
+        if (cb) cb(on);
+      }, { rootMargin: '100% 0px 100% 0px' }).observe(root);
+    };
+  })(window, document);
+</script>
 
 <script>
   (function () {
-    /* ============ DATA STRUKTUR (sumber: PPT UKM ASC, Kabinet Asy-Syauqi) ============
-       b = bidang/lembaga {n:nama, s:singkatan, d:deskripsi, p:[program], img:URL foto opsional}
-       e = event          {n:nama, d:deskripsi, img:URL foto opsional}                        */
-    var D = [
-      {
-        k: 'Kaderisasi', ds: 'Menyiapkan dan mengembangkan kader ASC lewat pembinaan, pendataan, penempatan, dan kegiatan kaderisasi.',
-        b: [{ n: 'HRD', s: 'Human Resource Development', d: 'Berfokus pada pembinaan kader melalui berbagai program seperti pelatihan, monitoring, dan evaluasi kader, terutama Khudama’ dan Khudama’ Muda. HRD juga berperan dalam pendataan dan penempatan kader sesuai potensi dan kebutuhan organisasi, serta menyediakan wadah diskusi dan solusi terhadap berbagai permasalahan.' },
-        { n: 'EO', s: 'Event Organizer', d: 'Berperan dalam memetakan potensi dan minat kepanitiaan para Khudama’ dan Khudama’ Muda, serta memastikan keterlibatan mereka dalam struktur kepanitiaan yang sesuai dengan kemampuan dan kebutuhan organisasi. Selain itu, EO juga melakukan monitoring terhadap jalannya setiap event, memberikan arahan, serta melakukan evaluasi.' }],
-        e: [{ n: 'Ta’aruf Qur’ani (TAQUR)', d: 'Memperkenalkan organisasi, nilai spiritual keislaman, serta mempererat ukhuwah antar anggota.' },
-        { n: 'LPQMO-TM', d: 'Latihan Pendidikan Al-Qur’an & Manajemen Organisasi Tingkat Menengah: pelatihan lanjutan untuk membekali anggota dengan kemampuan kepemimpinan (qudwah) dan manajerial organisasi.' },
-        { n: 'LKMO', d: 'Latihan Kepemimpinan & Manajemen Organisasi: kegiatan intensif yang mencakup simulasi kepengurusan, studi kasus, dan pembekalan teknis.' }]
-      },
-      {
-        k: 'Pembinaan', ds: 'Pusat pembinaan Al-Qur’an dengan sepuluh bidang: dari bacaan, hafalan, dan seni, hingga karya ilmiah, shalawat, dan inovasi digital.',
-        b: [{ n: 'Tahsinil Qiro’ah', d: 'Pembinaan yang berfokus pada kualitas bacaan Al-Qur’an sesuai tajwid dan makhraj. Program ini meliputi praktik intensif, bimbingan mentor berpengalaman, dan menanamkan kecintaan pada Al-Qur’an.' },
-        { n: 'Tartilil Qur’an', d: 'Program yang memberikan pelatihan dalam penguasaan makhraj huruf, disertai pemahaman dan praktik irama murattal. Peserta belajar mengatur tempo dan intonasi untuk bacaan yang merdu.' },
-        { n: 'Tilawatil Qur’an', d: 'Pembinaan dalam penguasaan irama maqamat Al-Qur’an, pembenahan kualitas suara dan intonasi untuk bacaan merdu dan menyentuh hati.' },
-        { n: 'Tahfidhil Qur’an', d: 'Wadah mahasiswa penghafal Al-Qur’an dengan metode yang efektif untuk ziyadah & murajaah (setoran harian), halaqah atau semaan setiap pekan, ujian, dan wisuda tahfidh.' },
-        { n: 'Fahmil Qur’an', d: 'Berfokus pada penguasaan isi kandungan Al-Qur’an secara mendalam, termasuk tafsir, hadis, dan sejarah Islam.' },
-        { n: 'Syarhil Qur’an', d: 'Berfokus pada kemampuan mahasiswa menyampaikan pesan Al-Qur’an secara kreatif dan inspiratif, meliputi pendalaman tafsir, kerja sama tim, dan integrasi seni tilawah serta dakwah.' },
-        { n: 'Khaththil Qur’an', d: 'Seni menulis Al-Qur’an dengan indah, yang mengedepankan kebenaran isi dan keindahan tulisan melalui kaligrafi serta estetika dan makna setiap ayat, sebagai media menyebarkan pesan-pesan Al-Qur’an.' },
-        { n: 'Karya Tulis Ilmiah Al-Qur’an', s: 'KTIA', d: 'Karya ilmiah yang dikaitkan dengan kandungan ayat-ayat Al-Qur’an dan merujuk pada pemahaman ilmiah di dalamnya. Digunakan untuk mendalami kepenulisan ilmiah seperti KTI, esai, dan sebagainya.' },
-        { n: 'Maulidin Nabi', d: 'Upaya membumikan sholawat di Universitas Negeri Malang, sekaligus wadah mengembangkan bakat dan minat di bidang banjari dan juga vokal.' },
-        { n: 'Desain Aplikasi Al-Qur’an', s: 'DAQ', d: 'Pembinaan untuk pembuatan desain, pengembangan website, dan aplikasi guna menciptakan platform yang memudahkan akses dalam pemahaman terhadap berbagai hal tentang Islam.' }],
-        e: [{ n: 'Grand Opening', d: 'Kegiatan untuk memperkenalkan sepuluh bidang pembinaan yang dapat diikuti oleh mahasiswa dan masyarakat umum.' },
-        { n: 'Wisuda Tahfidh', d: 'Apresiasi untuk mahasiswa setelah menyelesaikan target hafalan Al-Qur’an, ujian tahfidh oleh tim penguji bersanad, penyetoran hafalan mutqin, evaluasi adab dan konsistensi proses menghafal.' },
-        { n: 'MTQ Internal Pembinaan', d: 'Perlombaan internal semua bidang yang diadakan oleh departemen pembinaan UKM ASC dan diikuti oleh seluruh peserta pembinaan.' }]
-      },
-      {
-        k: 'Kesejahteraan', ds: 'Mengurus kebutuhan internal dan usaha ASC: dari jadwal dan inventaris, penjualan produk, hingga kaligrafi dan bimbel.',
-        b: [{ n: 'Rumah Tangga', s: 'RT', d: 'Bertugas membuat jadwal piket sekretariat, khataman, dan peminjaman inventaris. Bidang RT juga bertugas menyiapkan perlengkapan pembinaan UKM ASC.' },
-        { n: 'Maliyah', d: 'Menangani penjualan produk-produk guna memperoleh profit untuk keperluan UKM ASC ke depannya.' },
-        { n: 'ASC Kaligrafi', s: 'ASC-Kal', d: 'Melayani pre order cinderamata kaligrafi dalam berbagai macam kata, hiasan, dan tema hiasan sesuai dengan kaidah kebahasaan dalam seni kaligrafi.' },
-        { n: 'After School Program Plus', s: 'ASPP', d: 'Jasa kursus bimbel sekolah SD–SMA sesuai yang diperlukan oleh para siswa yang memerlukan kursus di bidang akademik.' }],
-        e: [{ n: 'Milad UKM ASC', d: 'Acara tahunan dalam rangka memperingati Milad UKM ASC dan mengingat kembali terbentuknya UKM ASC, diisi kegiatan lomba-lomba, santunan anak yatim, dan buka bersama.' }]
-      },
-      {
-        k: 'Syiar', ds: 'Menyebarkan dakwah dan informasi ASC lewat media dan publikasi, serta menjalin silaturahmi internal dan eksternal.',
-        b: [{ n: 'Publikasi', p: ['ASC Info', 'ASC Stream', 'ASC Web'], d: 'Wadah informasi dan kabar terbaru seputar UKM ASC, mencakup kegiatan, program, perkembangan, serta konten edukatif yang disebarluaskan melalui YouTube, Instagram, dan TikTok. Juga menghadirkan siaran langsung event besar dan dokumentasi digital yang dapat diakses kapan saja.' },
-        { n: 'Dakwah', p: ['Microblog', 'Quotes', 'Podcast', 'Reminder', 'Komik', 'TELUSUR: Telaah Ulumul Qur’an'], d: 'Sarana dakwah digital yang menyampaikan informasi, motivasi, dan wawasan islami secara menarik dan mudah dipahami, dengan pendekatan kreatif untuk meningkatkan kesadaran dan konsistensi mengamalkan ajaran Islam serta memperkuat hubungan dengan Al-Qur’an dan sunnah.' },
-        { n: 'Humas Internal', p: ['SAMAWA', 'Milad Card', 'SIASAT'], d: 'SAMAWA (Sambang Ormawa) menciptakan kebersamaan dalam satu naungan kampus. Milad Card adalah kartu ucapan ulang tahun dari seluruh keluarga ASC. SIASAT (Silaturahmi ASC Pusat) mempererat silaturahmi dengan jajaran petinggi kampus, takmir Masjid Al-Hikmah, dan seluruh masyarakat UKM ASC.' },
-        { n: 'Humas Eksternal', p: ['SiDiah', 'SULAM', 'SILUK'], d: 'SiDiah (Sinergi Media Dakwah) meningkatkan wawasan desain grafis dan videografi lewat studi banding. SULAM (Sambang Lembaga) membangun hubungan dengan komunitas dan lembaga eksternal UM. SILUK (Silaturahmi UKM) membuka peluang kolaborasi berkelanjutan dengan UKM yang relevan.' }],
-        e: []
-      },
-      {
-        k: 'LSO', ds: 'Lembaga semi otonom yang menjalankan program khusus di bawah naungan ASC.',
-        b: [{ n: 'TDI', s: 'Tafaqquh fii Diinil Islam', d: 'Mata kuliah 1 SKS bagi mahasiswa baru di Masjid Al-Hikmah UM. Selain kuliah umum, mahasiswa mengikuti Bimbingan Baca Al-Qur’an dan Bina Ibadah dengan mentor mahasiswa yang berkompetensi di bidang fiqih dan Al-Qur’an. Bidang TDI: Kurikulum, Humas, IT, Administrasi, dan Kesejahteraan.' },
-        { n: 'LSO Kampus 2', s: 'PP2', d: 'Memperkenalkan UKM ASC kepada mahasiswa Kampus 2 UM, meliputi pembinaan tahfidh dan tahsin untuk mahasiswa umum.' },
-        { n: 'LSO Kampus 3', s: 'PP3', d: 'Memperkenalkan UKM ASC kepada mahasiswa Kampus 3 UM, meliputi pembinaan Khaththil, Fahmil, Hadrah, dan Tahsinil Qiro’ah.' }],
-        e: [{ n: 'Festival Qur’ani Nasional', d: 'Event perlombaan bagi siswa SD/MI untuk menjaring anak-anak yang berkompeten di bidang Dai, Ghina, dan Tartil.' },
-        { n: 'Gathering ASC PP3', d: 'Kegiatan perkenalan UKM ASC kepada mahasiswa Kampus 3 UM.' },
-        { n: 'Open House PP2', d: 'Kegiatan perkenalan UKM ASC kepada mahasiswa Kampus 2 UM.' },
-        { n: 'Grand Opening TDI', d: 'Pembukaan program Tafaqquh fii Diinil Islam bagi mahasiswa baru.' },
-        { n: 'Pelatihan Pengajar Mentor TDI', d: 'Pelatihan pengajar guna mempersiapkan para mentor pada kegiatan mentoring.' },
-        { n: 'Refleksi dan Evaluasi TDI', d: 'Dilakukan pada akhir periode mentoring sebagai evaluasi para mentor selama satu semester mentoring mahasiswa.' }]
+    // 1. PARTICLES ENGINE (Stardust & Floating Celestial Sparkles)
+    const canvas = document.getElementById('asc-pl-canvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = canvas.offsetWidth;
+      let height = canvas.height = canvas.offsetHeight;
+
+      window.addEventListener('resize', () => {
+        if (canvas && canvas.offsetWidth > 0) {
+          width = canvas.width = canvas.offsetWidth;
+          height = canvas.height = canvas.offsetHeight;
+        }
+      });
+
+      const particles = [];
+      const count = 32;
+      const colors = [
+        'rgba(56, 189, 248, ',  // Sky Blue
+        'rgba(14, 165, 233, ',  // Ocean Cyan
+        'rgba(245, 158, 11, ',  // Amber Gold
+        'rgba(255, 255, 255, '  // Pure Star White
+      ];
+
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 2.2 + 0.8,
+          colorPrefix: colors[Math.floor(Math.random() * colors.length)],
+          baseAlpha: Math.random() * 0.5 + 0.2,
+          speedX: (Math.random() - 0.5) * 0.45,
+          speedY: -(Math.random() * 0.55 + 0.2), // gentle upwards drift
+          pulseSpeed: Math.random() * 0.02 + 0.01,
+          pulseOffset: Math.random() * Math.PI * 2
+        });
       }
+
+      let pTime = 0, pOn = false, pRaf = 0, pLast = 0;
+      function renderParticles(now) {
+        if (!pOn) { pRaf = 0; return; }
+        pRaf = requestAnimationFrame(renderParticles);
+        if (now - pLast < 33) return;                       /* ~30 fps cukup untuk debu bintang */
+        pLast = now;
+        ctx.clearRect(0, 0, width, height);
+        pTime += 0.04;
+
+        for (let i = 0; i < count; i++) {
+          const p = particles[i];
+          p.x += p.speedX * 2;
+          p.y += p.speedY * 2;
+
+          if (p.y < 0) { p.y = height; p.x = Math.random() * width; }
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+
+          const a = Math.max(0.05, Math.min(0.9, p.baseAlpha + Math.sin(pTime + p.pulseOffset) * 0.2));
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 3.2, 0, 6.2832); ctx.fillStyle = p.colorPrefix + (a * 0.14) + ')'; ctx.fill();   /* halo lembut */
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832); ctx.fillStyle = p.colorPrefix + a + ')'; ctx.fill();
+        }
+      }
+      ASC.particles = function (on) { pOn = on && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches); if (pOn && !pRaf) pRaf = requestAnimationFrame(renderParticles); };
+    }
+
+    // 2. SCROLL-DRIVEN GRAND FINALE MOTION
+    const track = document.getElementById('asc-soc-track');
+    const titleBox = document.getElementById('asc-soc-title-box');
+    const subTitle = document.getElementById('asc-soc-sub');
+    const cardsWrap = document.getElementById('asc-soc-cards');
+    const hint = document.getElementById('asc-soc-hint');
+    const footerSig = document.getElementById('asc-soc-footer-sig');
+    const cards = cardsWrap ? cardsWrap.querySelectorAll('.asc-pill-card') : [];
+
+    // Staggered emergence parameters (Cascading smooth entrance)
+    const cardConfigs = [
+      { startP: 0.08, endP: 0.68, startY: 110, startScale: 0.88, startRot: -3 }, // Instagram
+      { startP: 0.16, endP: 0.74, startY: 122, startScale: 0.86, startRot: -1 }, // YouTube
+      { startP: 0.12, endP: 0.70, startY: 114, startScale: 0.88, startRot: 1 },  // TikTok
+      { startP: 0.20, endP: 0.78, startY: 126, startScale: 0.86, startRot: 3 }   // WhatsApp
     ];
-    /* =============================================================================== */
 
-    var root = document.getElementById('asc-struktur'); if (!root) return;
-    var chart = document.getElementById('stChart'), cl = document.getElementById('stCl'), steps = document.getElementById('stSteps'), fill = document.getElementById('stFill'), scWrap = document.getElementById('stScenes');
-    function esc(s) { return String(s).replace(/&/g, '&').replace(/</g, '<'); }
-    function pad(n) { return ('0' + n).slice(-2); }
-    function clamp(x) { return Math.max(0, Math.min(1, x)); }
-    function ease(t) { return 1 - Math.pow(1 - t, 3); }
+    function updatePlariumScroll() {
+      if (!track) return;
+      const rect = track.getBoundingClientRect();
+      const trackH = track.offsetHeight;
+      const winH = window.innerHeight;
+      const totalDist = trackH - winH;
 
-    /* --- node bagan: id, label, sub, kelas, waktu muncul (0-1 fase bangun) --- */
-    var NODES = [['pb', 'Pembina UKM ASC', '', 'n-pb', 0, .08], ['kt', 'Ketua Umum', '', 'n-core', .16, .22], ['ses', 'Sesepuh', '', 'n-mk', .30, .36], ['mk', 'Majelis Kehormatan', '', 'n-mk', .32, .38],
-    ['wk', 'Wakil Ketua Umum', '', 'n-core', .28, .34], ['bn', 'Bendahara Umum', '', 'n-core', .42, .48], ['sk', 'Sekretaris Umum', '', 'n-core', .42, .48]]
-      .concat(D.map(function (d, i) { return ['d' + i, d.k, i < 4 ? d.b.length + ' bidang' : 'Lembaga Semi Otonom', i < 4 ? 'n-dept' : 'n-lso', .70 + i * .04, .78 + i * .04]; }));
-    var el = {}; NODES.forEach(function (n) { var d = document.createElement('div'); d.className = 'st-n ' + n[3]; d.innerHTML = esc(n[1]) + (n[2] ? '<small>' + esc(n[2]) + '</small>' : ''); chart.appendChild(d); el[n[0]] = d; });
+      if (totalDist <= 0) return;
 
-    var LAY = {
-      d: {
-        W: 1000, H: 385, bus: 250, pb: [500, 34, 180, 40], kt: [500, 106, 190, 40], ses: [835, 72, 170, 34], mk: [835, 128, 170, 34], wk: [500, 178, 190, 40], bn: [220, 178, 180, 40], sk: [780, 178, 180, 40],
-        d0: [100, 320, 170, 70], d1: [300, 320, 170, 70], d2: [500, 320, 170, 70], d3: [700, 320, 170, 70], d4: [900, 320, 170, 70]
-      },
-      m: {
-        W: 360, H: 372, bus: 196, pb: [180, 24, 150, 36], kt: [180, 80, 130, 36], ses: [310, 58, 84, 32], mk: [310, 94, 84, 32], wk: [180, 138, 116, 36], bn: [62, 138, 108, 36], sk: [298, 138, 108, 36],
-        d0: [62, 238, 108, 46], d1: [180, 238, 108, 46], d2: [298, 238, 108, 46], d3: [120, 318, 108, 46], d4: [240, 318, 108, 46]
+      // Progress 0.0 (awal masuk) -> 1.0 (kartu berhenti sempurna di tengah layar penutup)
+      let progress = -rect.top / totalDist;
+      progress = Math.max(0, Math.min(1, progress));
+
+      // A. SCROLL HINT: Memudar saat mulai scroll
+      if (hint) {
+        hint.style.opacity = Math.max(0, 1 - progress * 4.5);
       }
-    };
-    var lines = [], mode = '';
-    function layout() {
-      var m = window.innerWidth <= 700 ? 'm' : 'd'; if (m === mode) return; mode = m;
-      var L = LAY[m], W = L.W, H = L.H;
-      chart.style.aspectRatio = W + '/' + H;
-      NODES.forEach(function (n) {
-        var g = L[n[0]], e = el[n[0]];
-        e.style.left = g[0] / W * 100 + '%'; e.style.top = g[1] / H * 100 + '%'; e.style.width = g[2] / W * 100 + '%'; e.style.height = g[3] / H * 100 + '%';
-      });
-      lines.forEach(function (l) { l.e.remove(); }); lines = [];
-      function T(n) { return L[n][1] - L[n][3] / 2; } function B(n) { return L[n][1] + L[n][3] / 2; } function Lf(n) { return L[n][0] - L[n][2] / 2; } function R(n) { return L[n][0] + L[n][2] / 2; }
-      function V(x, y1, y2, a, b, dash) { add('v', x, y1, y2, a, b, dash); }
-      function Hh(y, x1, x2, a, b, dash, rev) { add('h', y, x1, x2, a, b, dash, rev); }
-      function add(t, p, s, e, a, b, dash, rev) {
-        var d = document.createElement('i'); d.className = 'st-ln' + (dash ? (t === 'v' ? ' dv' : ' dd') : '');
-        if (t === 'v') { d.style.cssText = 'left:calc(' + p / W * 100 + '% - 1px);top:' + Math.min(s, e) / H * 100 + '%;height:' + Math.abs(e - s) / H * 100 + '%;width:2px;transform-origin:50% 0'; }
-        else { d.style.cssText = 'top:calc(' + p / H * 100 + '% - 1px);left:' + Math.min(s, e) / W * 100 + '%;width:' + Math.abs(e - s) / W * 100 + '%;height:2px;transform-origin:' + (rev ? '100%' : '0') + ' 50%'; }
-        chart.appendChild(d); lines.push({ e: d, t: t, a: a, b: b });
+
+      // B. TITLE BOX MOTION:
+      // Naik secara halus ke area atas (header) agar memberikan ruang lega bagi 4 kartu
+      if (titleBox) {
+        const titleY = -progress * (winH * 0.32);
+        const titleScale = 1 - progress * 0.22;
+        titleBox.style.transform = `translate(-50%, calc(-50% + ${titleY}px)) scale(${titleScale})`;
+
+        if (subTitle) {
+          subTitle.style.opacity = Math.max(0.65, 1 - progress * 0.35);
+        }
       }
-      V(L.pb[0], B('pb'), T('kt'), .08, .16);
-      var mx = (R('kt') + Lf('ses')) / 2;                                   /* garis koordinatif ke Sesepuh & Majelis */
-      Hh(L.kt[1], R('kt'), mx, .22, .28, 1); V(mx, L.ses[1], L.mk[1], .26, .32, 1); Hh(L.ses[1], mx, Lf('ses'), .30, .34, 1); Hh(L.mk[1], mx, Lf('mk'), .30, .34, 1);
-      V(L.kt[0], B('kt'), T('wk'), .22, .28);
-      Hh(L.wk[1], R('bn'), Lf('wk'), .34, .42, 0, 1); Hh(L.wk[1], R('wk'), Lf('sk'), .34, .42);
-      V(L.wk[0], B('wk'), L.bus, .48, .54);
-      var xs = [0, 1, 2, 3, 4].map(function (i) { return L['d' + i][0]; }), cx = L.wk[0];
-      Hh(L.bus, Math.min.apply(0, xs), cx, .54, .64, 0, 1); Hh(L.bus, cx, Math.max.apply(0, xs), .54, .64);
-      for (var i = 0; i < 5; i++) V(xs[i], L.bus, T('d' + i), .64, .72);
-      if (root._c !== undefined) draw(root._c);
-    }
-    function draw(c) {
-      NODES.forEach(function (nd) {
-        var v = ease(clamp((c - nd[4]) / (nd[5] - nd[4]))), e = el[nd[0]];
-        e.style.opacity = v.toFixed(3); e.style.transform = 'translate(-50%,-50%) scale(' + (.85 + .15 * v).toFixed(3) + ')';
+
+      // C. 4 PILL CARDS EMERGENCE: Muncul halus dengan easing quartik
+      cards.forEach((card, i) => {
+        const cfg = cardConfigs[i] || { startP: 0.1, endP: 0.72, startY: 115, startScale: 0.88, startRot: 0 };
+
+        // Hitung progress lokal kartu
+        let localP = (progress - cfg.startP) / (cfg.endP - cfg.startP);
+        localP = Math.max(0, Math.min(1, localP));
+
+        // Quartic Ease-Out (Sangat halus, terasa melayang dan elegan)
+        const eased = 1 - Math.pow(1 - localP, 4);
+
+        const currentY = (1 - eased) * cfg.startY; // in vh
+        const currentScale = cfg.startScale + (1 - cfg.startScale) * eased;
+        const currentRot = (1 - eased) * cfg.startRot;
+        const currentOpacity = Math.min(1, Math.pow(eased, 1.3));
+
+
+        card.style.transform = `translate3d(0, ${currentY}vh, 0) scale(${currentScale}) rotate(${currentRot}deg)`;
+        card.style.opacity = currentOpacity.toFixed(3);
       });
-      lines.forEach(function (l) { var v = clamp((c - l.a) / (l.b - l.a)); l.e.style.transform = l.t === 'v' ? 'scaleY(' + v + ')' : 'scaleX(' + v + ')'; });
+
+      // D. MINIMALIST FOOTER SIGNATURE
+      if (footerSig) {
+        const sigOpacity = Math.max(0, Math.min(1, (progress - 0.70) / 0.25));
+        footerSig.style.opacity = sigOpacity.toFixed(3);
+      }
     }
 
-    /* --- stepper + rincian departemen --- */
-    var LB = ['Struktur', 'Kaderisasi', 'Pembinaan', 'Kesejahteraan', 'Syiar', 'LSO'], sbtn = [];
-    LB.forEach(function (t, i) { var b = document.createElement('button'); b.type = 'button'; b.className = 'st-s'; b.textContent = t; b.setAttribute('aria-label', 'Menuju ' + t); steps.appendChild(b); sbtn.push(b); });
-    var scs = [];
-    D.forEach(function (d, i) {
-      var items = d.b.map(function (x) { return x; }).concat(d.e.map(function (x) { x.ev = 1; return x; }));
-      var s = document.createElement('div'); s.className = 'st-sc';
-      var ix = i < 4 ? 'Departemen 0' + (i + 1) + ' / 04' : 'Lembaga Semi Otonom';
-      s.innerHTML = '<div><span class="st-ix st-it">' + esc(ix) + '</span><h3 class="st-nm st-it' + (d.k.length > 9 ? ' long' : '') + '">' + esc(d.k) + '</h3><p class="st-ds st-it">' + esc(d.ds) + '</p></div>' +
-        '<div><span class="st-lb st-it">' + (i < 4 ? 'Bidang' : 'Lembaga') + '</span><div class="st-grid">' +
-        d.b.map(function (b) { return '<div class="st-chip st-it" tabindex="0">' + esc(b.n) + (b.s ? '<small>' + esc(b.s) + '</small>' : '') + '<p class="st-cd">' + esc(b.d || '') + '</p></div>'; }).join('') + '</div>' +
-        '<div class="st-dt"></div>' +
-        (d.e.length ? '<span class="st-lb st-it">Event</span><div class="st-pills">' + d.e.map(function (x) { return '<span class="st-pill st-it" tabindex="0">' + esc(x.n) + '</span>'; }).join('') + '</div>' : '') + '</div>';
-      scWrap.appendChild(s);
-      var chips = [].slice.call(s.querySelectorAll('.st-chip')), pills = [].slice.call(s.querySelectorAll('.st-pill'));
-      scs.push({ el: s, i: i, it: [].slice.call(s.querySelectorAll('.st-it')), dt: s.querySelector('.st-dt'), items: items, nb: d.b.length, n: items.length, chips: chips, all: chips.concat(pills), cur: -1, act: -2, lb: i < 4 ? 'Bidang' : 'Lembaga' });
+    // Scroll listener with requestAnimationFrame
+    const asckRoot = document.getElementById('asc-kontak') || document.body;
+    ASC.unlock(asckRoot);
+    let ticking = false, awake = true;
+    function onScroll() {
+      if (!awake || ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { ticking = false; updatePlariumScroll(); });
+    }
+    ASC.watch(asckRoot, (on) => {
+      awake = on;
+      if (ASC.particles) ASC.particles(on);
+      if (on) onScroll();
     });
-
-    layout();
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { root.classList.add('st-static'); window.addEventListener('resize', layout); return; }
-
-    /* Pastikan parent WordPress tidak memblokir position: sticky */
-    var q = root.parentElement, n = 0;
-    while (q && q !== document.documentElement && n++ < 20) {
-      var cs = getComputedStyle(q);
-      if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) q.style.setProperty('overflow', 'visible', 'important'); q = q.parentElement;
-    }
-
-    /* Garis waktu scroll (satuan U = 1vh): bagan 170, tiap departemen = 20 masuk + 24 per butir + 12 keluar */
-    var U = 0, CL = 0, total = 0;
-    function geom() {
-      U = window.innerHeight / 100; CL = 170 * U; var c = CL;
-      scs.forEach(function (s) { s.start = c; s.ent = 20 * U; s.step = 24 * U; s.len = (20 + 24 * s.n + 12) * U; c += s.len; });
-      total = c; root.style.height = (window.innerHeight + total) + 'px';
-    }
-    function card(s, a) {
-      var it = s.items[a];
-      s.dt.innerHTML = '<div class="st-dk"><span>' + (it.ev ? 'Event' : s.lb) + '</span><span>' + pad(a + 1) + ' / ' + pad(s.n) + '</span></div>' +
-        (it.img ? '<div class="st-ph" style="background-image:url(\'' + it.img + '\')"></div>' : '') + '<h4>' + esc(it.n) + (it.s ? ' · ' + esc(it.s) : '') + '</h4>' + (it.d ? '<p>' + esc(it.d) + '</p>' : '') +
-        (it.p ? '<div class="st-tg">' + it.p.map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('') + '</div>' : '');
-    }
-    var ticking = false;
-    function render() {
-      ticking = false;
-      var r = root.getBoundingClientRect(), y = Math.max(0, Math.min(total, -r.top));
-      root._c = clamp(y / (110 * U)); draw(root._c);
-      var co = 1 - clamp((y - (CL - 10 * U)) / (10 * U));
-      cl.style.opacity = co.toFixed(3); cl.style.transform = 'scale(' + (1 - (1 - co) * .05).toFixed(3) + ')'; cl.style.visibility = co <= 0 ? 'hidden' : 'visible';
-
-      var idx = y < CL ? 0 : 5, pos = y < CL ? clamp(y / CL) * .6 : 5;
-      scs.forEach(function (s, i) {
-        var lp = y - s.start, last = i === scs.length - 1, vis = lp > -2 * U && (last || lp < s.len + 2 * U);
-        if (lp >= 0 && (last || lp < s.len)) { idx = i + 1; pos = i + 1 + clamp(lp / s.len); }
-        s.el.style.visibility = vis ? 'visible' : 'hidden'; if (!vis) return;
-        s.el.style.opacity = (clamp(lp / (6 * U)) * (last ? 1 : 1 - clamp((lp - (s.len - 8 * U)) / (8 * U)))).toFixed(3);
-        s.it.forEach(function (it, k) { var v = clamp((lp - .8 * U * k) / (7 * U)); it.style.opacity = v.toFixed(3); it.style.transform = 'translate3d(0,' + ((1 - v) * 16).toFixed(1) + 'px,0)'; });
-        var f = (lp - s.ent) / s.step, a = Math.max(0, Math.min(s.n - 1, Math.floor(f))), t = f < 0 ? 0 : Math.min(1, f - a);
-        if (f >= s.n) { a = s.n - 1; t = 1; }
-        var o = f < 0 ? 0 : clamp(t / .2) * ((last && a === s.n - 1) ? 1 : 1 - clamp((t - .8) / .2));
-        if (s.cur !== a) { s.cur = a; card(s, a); }
-        s.dt.style.opacity = o.toFixed(3); s.dt.style.transform = 'translate3d(0,' + ((1 - clamp(t / .2)) * 14).toFixed(1) + 'px,0)';
-        var act = f < 0 ? -1 : a; if (s.act !== act) { s.act = act; s.all.forEach(function (c, k) { c.classList.toggle('act', k === act); }); }
-      });
-      sbtn.forEach(function (b, k) { b.classList.toggle('on', k === idx); b.classList.toggle('done', k < idx); });
-      fill.style.width = ((Math.min(pos, 5) + .5) / 6 * 100).toFixed(2) + '%';
-    }
-    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(render); } }
-    function go(yy) { var r = root.getBoundingClientRect(); window.scrollTo({ top: window.pageYOffset + r.top + yy, behavior: 'smooth' }); }
-
-    /* Klik langkah / bidang / event = lompat ke bagian itu */
-    sbtn.forEach(function (b, i) { b.addEventListener('click', function () { go(i === 0 ? 125 * U : scs[i - 1].start + scs[i - 1].ent + .3 * scs[i - 1].step); }); });
-    scs.forEach(function (s) {
-      s.all.forEach(function (c, k) {
-        function jump() { go(s.start + s.ent + k * s.step + .4 * s.step); }
-        c.addEventListener('click', jump); c.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); jump(); } });
-      });
-    });
-
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', function () { layout(); geom(); onScroll(); }, { passive: true });
-    window.addEventListener('load', function () { geom(); render(); });
-    geom(); render();
+    window.addEventListener('resize', onScroll, { passive: true });
+
+    // Initial render
+    updatePlariumScroll();
+
+    // 3. 3D TILT PHYSICS ON MOUSE HOVER (KARTU MENGIKUTI KURSOR SAAT DOCKED)
+    cards.forEach(card => {
+      card.addEventListener('mousemove', e => {
+        // Hanya aktif saat kartu sudah muncul (docked)
+        if (parseFloat(card.style.opacity || '0') < 0.85) return;
+
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const rotX = -(y / rect.height) * 12;
+        const rotY = (x / rect.width) * 12;
+
+        card.style.transform = `translate3d(0, 0, 0) perspective(600px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.045)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        updatePlariumScroll();
+      });
+    });
+
   })();
 </script>
 <!-- END COMPONENT: 03_struktur_organisasi.html -->
 
 
-<!-- START COMPONENT: 04_pengumuman_agenda.html -->
+<!-- START COMPONENT: 04_pembinaan.html -->
 <!-- =====================================================================
 UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 05: 10 PEMBINAAN (SCROLL STORY)
 Cara pakai di WordPress (Elementor / Divi):
@@ -4960,8 +5194,6 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-
   #asc-pb {
     --blue: #0284c7;
     --royal: #2563eb;
@@ -5246,9 +5478,72 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
       font-size: 13px;
     }
   }
+
+  /* Rapikan: cegah scroll horizontal tak sengaja */
+  #asc-pb {
+    overflow-x: clip;
+  }
+
+  /* Beri ruang untuk header yang menempel di atas */
+  #asc-pb .pb-head {
+    top: max(15vh, calc(var(--asc-hh, 0px) + 24px));
+  }
+
+  @media (max-width: 640px) {
+    #asc-pb .pb-head {
+      top: max(11vh, calc(var(--asc-hh, 0px) + 20px));
+    }
+
+    /* kartu & penghitung tidak lagi terpotong / bertumpuk di layar HP yang pendek */
+    #asc-pb .pb-track {
+      top: 40vh;
+    }
+
+    #asc-pb .pb-img {
+      aspect-ratio: 16 / 9;
+    }
+
+    #asc-pb .pb-card h3 {
+      margin-top: 12px;
+    }
+
+    #asc-pb .pb-card p {
+      min-height: 0;
+      margin-bottom: 12px;
+      font-size: 12.5px;
+      line-height: 1.55;
+    }
+
+    #asc-pb .pb-prog {
+      bottom: 1.6vh;
+    }
+  }
+
+  @media (max-width: 640px) and (max-height: 700px) {
+    #asc-pb .pb-sub {
+      display: none;
+    }
+
+    #asc-pb .pb-track {
+      top: 35vh;
+    }
+
+    #asc-pb .pb-img {
+      aspect-ratio: 16 / 7.5;
+    }
+
+    #asc-pb .pb-card p {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
 </style>
 
 <section id="asc-pb" aria-label="10 Bidang Pembinaan UKM ASC">
+  <span id="asc-pembinaan" style="position:relative;top:-90px;display:block;visibility:hidden;height:0;width:0;"></span>
   <div class="pb-stage">
     <div class="pb-wash"></div>
     <div class="pb-head">
@@ -5267,6 +5562,53 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     </div>
   </div>
 </section>
+
+<!-- ASC CORE: blok ini IDENTIK di semua file. Hanya dijalankan sekali walau ditempel berkali-kali (tidak ada skrip ganda). -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v) return;
+    var A = w.ASC = { v: 1 };
+
+    /* 1. Satu pemuat font untuk seluruh halaman (tidak ada impor font per-section) */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. CSS bersama: animasi section yang di luar layar dijeda otomatis (hemat CPU/GPU) */
+    var st = d.createElement('style'); st.id = 'asc-core-css';
+    st.textContent = '[data-asc-off] *,[data-asc-off] *::before,[data-asc-off] *::after{animation-play-state:paused!important}';
+    d.head.appendChild(st);
+
+    /* 3. Buka overflow milik container/tema yang membuat position:sticky gagal */
+    function clip(v) { return v === 'hidden' || v === 'auto' || v === 'scroll'; }
+    A.unlock = function (root) {
+      try {
+        var canClip = !!(w.CSS && CSS.supports && CSS.supports('overflow-x', 'clip')), html = d.documentElement, hcs = w.getComputedStyle(html);
+        var htmlClips = clip(hcs.overflowX) || clip(hcs.overflowY), n = root.parentElement;
+        while (n && n !== html) {
+          var cs = w.getComputedStyle(n), isBody = n === d.body;
+          if ((!isBody || htmlClips) && (clip(cs.overflowX) || clip(cs.overflowY))) {
+            var real = (cs.overflowY === 'auto' || cs.overflowY === 'scroll') && n.scrollHeight > n.clientHeight + 2;
+            if (!real) { n.style.setProperty('overflow-x', canClip ? 'clip' : 'visible', 'important'); n.style.setProperty('overflow-y', 'visible', 'important'); }
+          }
+          n = n.parentElement;
+        }
+      } catch (e) { /* abaikan */ }
+    };
+
+    /* 4. Pantau section: tandai di luar layar (animasi dijeda) dan beri tahu skripnya agar berhenti bekerja */
+    A.watch = function (root, cb) {
+      if (!w.IntersectionObserver) { if (cb) cb(true); return; }
+      new IntersectionObserver(function (es) {
+        var on = es[es.length - 1].isIntersecting;
+        if (on) root.removeAttribute('data-asc-off'); else root.setAttribute('data-asc-off', '');
+        if (cb) cb(on);
+      }, { rootMargin: '100% 0px 100% 0px' }).observe(root);
+    };
+  })(window, document);
+</script>
 
 <script>
   (function () {
@@ -5294,12 +5636,14 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
         '<h3>' + x.t + '</h3><p>' + x.d + '</p><div class="pb-row"><a class="pb-btn" href="' + x.link + '">Selengkapnya</a><a class="pb-go" href="' + x.link + '" aria-label="Buka ' + x.t + '">→</a></div></article>';
     });
     track.innerHTML = h;
-    var cards = [].slice.call(track.children), vw, vh, trackW, startX, endX, ticking = false;
+    ASC.unlock(root);
+    var cards = [].slice.call(track.children), lefts = [], vw, vh, trackW, startX, endX, ticking = false;
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { root.classList.add('pb-static'); return; }
 
     function measure() {
       vw = window.innerWidth; vh = window.innerHeight; trackW = track.scrollWidth;
+      lefts = cards.map(function (c) { return c.offsetLeft + c.offsetWidth / 2; });   /* posisi tengah kartu disimpan sekali: tanpa baca layout tiap frame */
       startX = vw * 0.92; endX = -(trackW - vw * 0.78);
       root.style.height = (vh + (startX - endX) * 0.85) + 'px';
       update();
@@ -5317,21 +5661,22 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
       line.style.stroke = 'rgb(' + Math.round(lerp(186, 15, c)) + ',' + Math.round(lerp(224, 23, c)) + ',' + Math.round(lerp(247, 42, c)) + ')';
       var best = 0, bd = 1e9;
       cards.forEach(function (el, i) {
-        var b = el.getBoundingClientRect(), cx = b.left + b.width / 2, off = (cx - vw / 2) / vw;
+        var cx = x + lefts[i], off = (cx - vw / 2) / vw;
         var rot = (i % 2 ? 1 : -1) * 2.6 + off * 5, y = Math.sin(i * 1.7) * 14 + Math.abs(off) * 18;
         el.style.transform = 'translate3d(0,' + y + 'px,0) rotate(' + rot + 'deg)';
         var d = Math.abs(off); if (d < bd) { bd = d; best = i; }
       });
       countEl.textContent = (best + 1) + ' dari ' + cards.length;
     }
-    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    function onScroll() { if (!awake) return; if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    var awake = true; ASC.watch(root, function (on) { awake = on; if (on) onScroll(); });
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', measure);
     window.addEventListener('load', measure);
     measure();
   })();
 </script>
-<!-- END COMPONENT: 04_pengumuman_agenda.html -->
+<!-- END COMPONENT: 04_pembinaan.html -->
 
 
 <!-- START COMPONENT: 05_prestasi.html -->
@@ -5347,8 +5692,6 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-
   #asc-pr {
     --ink: #0f172a;
     --mut: #64748b;
@@ -5563,7 +5906,6 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
 
   #asc-pr .pr-ob {
     border-radius: 50%;
-    filter: blur(50px);
     background: radial-gradient(circle, rgba(56, 189, 248, .5), transparent 70%);
     pointer-events: none;
   }
@@ -5856,8 +6198,7 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
   #asc-pr .pr-chip {
     padding: 6px 13px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, .16);
-    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, .22);
     border: 1px solid rgba(255, 255, 255, .28);
     font-size: 11.5px;
     font-weight: 700;
@@ -6438,6 +6779,16 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     min-height: auto;
     padding: 80px 0;
   }
+
+  /* Rapikan: cegah scroll horizontal tak sengaja */
+  #asc-pr {
+    overflow-x: clip;
+  }
+
+  /* Beri ruang untuk header yang menempel di atas */
+  #asc-pr .pr-top {
+    top: calc(4.5vh + var(--asc-hh, 0px));
+  }
 </style>
 
 <section id="asc-pr" aria-label="Prestasi UKM ASC">
@@ -6554,6 +6905,53 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     </div>
   </div>
 </section>
+
+<!-- ASC CORE: blok ini IDENTIK di semua file. Hanya dijalankan sekali walau ditempel berkali-kali (tidak ada skrip ganda). -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v) return;
+    var A = w.ASC = { v: 1 };
+
+    /* 1. Satu pemuat font untuk seluruh halaman (tidak ada impor font per-section) */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. CSS bersama: animasi section yang di luar layar dijeda otomatis (hemat CPU/GPU) */
+    var st = d.createElement('style'); st.id = 'asc-core-css';
+    st.textContent = '[data-asc-off] *,[data-asc-off] *::before,[data-asc-off] *::after{animation-play-state:paused!important}';
+    d.head.appendChild(st);
+
+    /* 3. Buka overflow milik container/tema yang membuat position:sticky gagal */
+    function clip(v) { return v === 'hidden' || v === 'auto' || v === 'scroll'; }
+    A.unlock = function (root) {
+      try {
+        var canClip = !!(w.CSS && CSS.supports && CSS.supports('overflow-x', 'clip')), html = d.documentElement, hcs = w.getComputedStyle(html);
+        var htmlClips = clip(hcs.overflowX) || clip(hcs.overflowY), n = root.parentElement;
+        while (n && n !== html) {
+          var cs = w.getComputedStyle(n), isBody = n === d.body;
+          if ((!isBody || htmlClips) && (clip(cs.overflowX) || clip(cs.overflowY))) {
+            var real = (cs.overflowY === 'auto' || cs.overflowY === 'scroll') && n.scrollHeight > n.clientHeight + 2;
+            if (!real) { n.style.setProperty('overflow-x', canClip ? 'clip' : 'visible', 'important'); n.style.setProperty('overflow-y', 'visible', 'important'); }
+          }
+          n = n.parentElement;
+        }
+      } catch (e) { /* abaikan */ }
+    };
+
+    /* 4. Pantau section: tandai di luar layar (animasi dijeda) dan beri tahu skripnya agar berhenti bekerja */
+    A.watch = function (root, cb) {
+      if (!w.IntersectionObserver) { if (cb) cb(true); return; }
+      new IntersectionObserver(function (es) {
+        var on = es[es.length - 1].isIntersecting;
+        if (on) root.removeAttribute('data-asc-off'); else root.setAttribute('data-asc-off', '');
+        if (cb) cb(on);
+      }, { rootMargin: '100% 0px 100% 0px' }).observe(root);
+    };
+  })(window, document);
+</script>
 
 <script>
   (function () {
@@ -6950,10 +7348,11 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     /* --- baris daftar: masuk dari kiri/kanan, medali berputar, mengikuti posisi gulir --- */
     function rowsFx() {
       if (reduce) return;
-      var vh = window.innerHeight;
-      [].forEach.call($('prList').children, function (li, i) {
-        if (li._d || li.classList.contains('pr-empty')) return;
-        var r = li.getBoundingClientRect(), t = clamp((vh * .96 - r.top) / (vh * .26)), e = ease(t), md = li.querySelector('.pr-md');
+      var vh = window.innerHeight, all = [].slice.call($('prList').children);
+      var lis = all.filter(function (li) { return !li._d && !li.classList.contains('pr-empty'); });
+      var rs = lis.map(function (li) { return li.getBoundingClientRect(); });          /* baca semua dulu, baru menulis */
+      lis.forEach(function (li, k) {
+        var i = all.indexOf(li), t = clamp((vh * .96 - rs[k].top) / (vh * .26)), e = ease(t), md = li.querySelector('.pr-md');
         if (t >= 1) { li.style.transform = ''; li.style.opacity = ''; if (md) md.style.transform = ''; li._d = 1; return; }
         li.style.opacity = e.toFixed(3); li.style.transform = 'translate3d(' + ((i % 2 ? 1 : -1) * (1 - e) * 80).toFixed(1) + 'px,' + ((1 - e) * 30).toFixed(1) + 'px,0)';
         if (md) md.style.transform = 'rotateY(' + ((1 - e) * 180).toFixed(1) + 'deg)';
@@ -6975,24 +7374,26 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     /* --- mesin gerak (semua dihitung dari posisi gulir) --- */
     var pxs = [].slice.call(root.querySelectorAll('.pr-px')), lines = [].slice.call(root.querySelectorAll('.pr-hl'));
     pxs.forEach(function (e) { e._sp = +e.dataset.sp || 0; e._rt = +e.dataset.rt || 0; });
+    var pgroups = []; pxs.forEach(function (e) { var g = null; for (var q = 0; q < pgroups.length; q++) if (pgroups[q].el === e.parentNode) g = pgroups[q]; if (!g) { g = { el: e.parentNode, kids: [], r: null }; pgroups.push(g); } g.kids.push(e); });
     var hero = $('prHero'), s1 = $('prS1'), s2 = $('prS2'), cta = $('prCta'), cw = $('prCw'), ghEl = $('prGh'), ticking = false;
 
     function render() {
       ticking = false;
       var vh = window.innerHeight, vw = window.innerWidth, small = vw < 700;
+      var hr = hero.getBoundingClientRect(), r1 = s1.getBoundingClientRect(), r2 = s2.getBoundingClientRect(), rc = cta.getBoundingClientRect();
+      for (var gi = 0; gi < pgroups.length; gi++) pgroups[gi].r = pgroups[gi].el.getBoundingClientRect();
 
       /* 1) benda melayang (parallax berbeda-beda) */
-      pxs.forEach(function (el) {
-        var pr = el.parentNode.getBoundingClientRect(); if (pr.bottom < -300 || pr.top > vh + 300) return;
-        var off = pr.top + pr.height / 2 - vh / 2; el.style.transform = 'translate3d(0,' + (off * el._sp).toFixed(1) + 'px,0) rotate(' + (off * el._rt).toFixed(2) + 'deg)';
+      pgroups.forEach(function (g) {
+        var pr = g.r; if (pr.bottom < -300 || pr.top > vh + 300) return;
+        var off = pr.top + pr.height / 2 - vh / 2;
+        g.kids.forEach(function (el) { el.style.transform = 'translate3d(0,' + (off * el._sp).toFixed(1) + 'px,0) rotate(' + (off * el._rt).toFixed(2) + 'deg)'; });
       });
 
       /* 2) judul hero bergeser berlawanan arah */
-      var hr = hero.getBoundingClientRect();
       if (hr.bottom > 0) { var hp = clamp(-hr.top / hr.height); lines.forEach(function (l, i) { l.style.transform = 'translate3d(' + ((i ? 1 : -1) * hp * 90).toFixed(1) + 'px,0,0)'; }); }
 
       /* 3) adegan angka: angka menghitung, medali mengorbit */
-      var r1 = s1.getBoundingClientRect();
       if (r1.top < vh && r1.bottom > 0) {
         var j = clamp(-r1.top / (r1.height - vh)), n = ST.length, f = j * n;
         bgs.forEach(function (b, i) {
@@ -7012,12 +7413,13 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
       }
 
       /* 4) adegan sorotan: kartu terbang melintas dengan kemiringan 3D */
-      var r2 = s2.getBoundingClientRect();
       if (r2.top < vh && r2.bottom > 0 && tcs.length) {
         var j2 = clamp(-r2.top / (r2.height - vh)), n2 = tcs.length, raw = -.35 + j2 * (n2 - 1 + .7), k = Math.floor(raw), f2 = k + hold(raw - k);
         var w = tcs[0].offsetWidth, sp = w * (small ? 1.06 : 1.14);
         tcs.forEach(function (t, i) {
           var d = i - f2, ad = Math.abs(d), m = Math.min(1, ad);
+          if (ad > 3.2) { if (!t._h) { t._h = 1; t.style.visibility = 'hidden'; } return; }
+          if (t._h) { t._h = 0; t.style.visibility = ''; }
           t.style.transform = 'translate3d(' + (vw / 2 - w / 2 + d * sp).toFixed(1) + 'px,' + (m * 30).toFixed(1) + 'px,0) rotateY(' + (-d * (small ? 20 : 30)).toFixed(2) + 'deg) rotateZ(' + (d * 2.4).toFixed(2) + 'deg) scale(' + (1 - m * .2).toFixed(3) + ')';
           t.style.opacity = (1 - m * .5).toFixed(3); t.style.zIndex = Math.round(50 - ad * 10);
         });
@@ -7026,21 +7428,18 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
 
       /* 5) baris daftar & penutup */
       rowsFx();
-      var rc = cta.getBoundingClientRect();
       if (rc.top < vh) { var e = ease(clamp((vh - rc.top) / (vh * .85))); cw.style.opacity = e.toFixed(3); cw.style.transform = 'translate3d(0,' + ((1 - e) * 60).toFixed(1) + 'px,0) scale(' + (.9 + .1 * e).toFixed(3) + ')'; }
     }
 
     if (reduce) {
       root.classList.add('pr-static'); bgs.forEach(function (b, i) { b.firstChild.textContent = ST[i][0]; });
     } else {
-      /* Pastikan parent WordPress tidak memblokir position: sticky */
-      var q = root.parentElement, wn = 0;
-      while (q && q !== document.documentElement && wn++ < 20) {
-        var cs = getComputedStyle(q);
-        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) q.style.setProperty('overflow', 'visible', 'important'); q = q.parentElement;
-      }
-      window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(render); } }, { passive: true });
-      window.addEventListener('resize', function () { if (!ticking) { ticking = true; requestAnimationFrame(render); } }, { passive: true });
+      ASC.unlock(root);
+      var awake = true;
+      function onScroll() { if (!awake) return; if (!ticking) { ticking = true; requestAnimationFrame(render); } }
+      ASC.watch(root, function (on) { awake = on; if (on) onScroll(); });
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
       window.addEventListener('load', render);
       render();
     }
@@ -7063,8 +7462,6 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
 ====================================================================== -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap');
-
   /* =========================================================================
      FIX OVERFLOW UNTUK DIVI & ELEMENTOR WORDPRESS
      ========================================================================= */
@@ -7140,7 +7537,6 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     position: absolute;
     border-radius: 50%;
     pointer-events: none;
-    filter: blur(100px);
     z-index: 1;
     opacity: 0.7;
     will-change: transform;
@@ -7246,7 +7642,6 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     text-transform: uppercase;
     color: #38bdf8;
     margin-bottom: 18px;
-    backdrop-filter: blur(12px);
     box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
   }
 
@@ -7355,9 +7750,7 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
   #asc-kontak .asc-pill-card {
     position: relative;
     border-radius: 44px;
-    background: rgba(15, 23, 42, 0.82);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    background: rgba(15, 23, 42, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.13);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.15);
     display: flex;
@@ -7368,7 +7761,7 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     text-decoration: none;
     cursor: pointer;
     overflow: hidden;
-    will-change: transform, opacity, filter;
+    will-change: transform, opacity;
     transition:
       border-color 0.4s ease,
       box-shadow 0.4s ease,
@@ -7507,7 +7900,7 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     font-weight: 700;
     color: #cbd5e1;
     letter-spacing: 0.02em;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
     white-space: nowrap;
     z-index: 2;
   }
@@ -7635,6 +8028,11 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
       bottom: 12px;
       padding: 0 12px;
     }
+  }
+
+  /* Rapikan: cegah scroll horizontal tak sengaja */
+  #asc-kontak {
+    overflow-x: clip;
   }
 </style>
 
@@ -7778,6 +8176,53 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
 <!-- =========================================================================
      JAVASCRIPT: SCROLL-DRIVEN PARALLAX (SMOOTH EMERGENCE MOTION) & PARTICLES
      ========================================================================= -->
+<!-- ASC CORE: blok ini IDENTIK di semua file. Hanya dijalankan sekali walau ditempel berkali-kali (tidak ada skrip ganda). -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v) return;
+    var A = w.ASC = { v: 1 };
+
+    /* 1. Satu pemuat font untuk seluruh halaman (tidak ada impor font per-section) */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. CSS bersama: animasi section yang di luar layar dijeda otomatis (hemat CPU/GPU) */
+    var st = d.createElement('style'); st.id = 'asc-core-css';
+    st.textContent = '[data-asc-off] *,[data-asc-off] *::before,[data-asc-off] *::after{animation-play-state:paused!important}';
+    d.head.appendChild(st);
+
+    /* 3. Buka overflow milik container/tema yang membuat position:sticky gagal */
+    function clip(v) { return v === 'hidden' || v === 'auto' || v === 'scroll'; }
+    A.unlock = function (root) {
+      try {
+        var canClip = !!(w.CSS && CSS.supports && CSS.supports('overflow-x', 'clip')), html = d.documentElement, hcs = w.getComputedStyle(html);
+        var htmlClips = clip(hcs.overflowX) || clip(hcs.overflowY), n = root.parentElement;
+        while (n && n !== html) {
+          var cs = w.getComputedStyle(n), isBody = n === d.body;
+          if ((!isBody || htmlClips) && (clip(cs.overflowX) || clip(cs.overflowY))) {
+            var real = (cs.overflowY === 'auto' || cs.overflowY === 'scroll') && n.scrollHeight > n.clientHeight + 2;
+            if (!real) { n.style.setProperty('overflow-x', canClip ? 'clip' : 'visible', 'important'); n.style.setProperty('overflow-y', 'visible', 'important'); }
+          }
+          n = n.parentElement;
+        }
+      } catch (e) { /* abaikan */ }
+    };
+
+    /* 4. Pantau section: tandai di luar layar (animasi dijeda) dan beri tahu skripnya agar berhenti bekerja */
+    A.watch = function (root, cb) {
+      if (!w.IntersectionObserver) { if (cb) cb(true); return; }
+      new IntersectionObserver(function (es) {
+        var on = es[es.length - 1].isIntersecting;
+        if (on) root.removeAttribute('data-asc-off'); else root.setAttribute('data-asc-off', '');
+        if (cb) cb(on);
+      }, { rootMargin: '100% 0px 100% 0px' }).observe(root);
+    };
+  })(window, document);
+</script>
+
 <script>
   (function () {
     // 1. PARTICLES ENGINE (Stardust & Floating Celestial Sparkles)
@@ -7795,7 +8240,7 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
       });
 
       const particles = [];
-      const count = 48;
+      const count = 32;
       const colors = [
         'rgba(56, 189, 248, ',  // Sky Blue
         'rgba(14, 165, 233, ',  // Ocean Cyan
@@ -7817,34 +8262,30 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
         });
       }
 
-      let pTime = 0;
-      function renderParticles() {
+      let pTime = 0, pOn = false, pRaf = 0, pLast = 0;
+      function renderParticles(now) {
+        if (!pOn) { pRaf = 0; return; }
+        pRaf = requestAnimationFrame(renderParticles);
+        if (now - pLast < 33) return;                       /* ~30 fps cukup untuk debu bintang */
+        pLast = now;
         ctx.clearRect(0, 0, width, height);
-        pTime += 0.02;
+        pTime += 0.04;
 
         for (let i = 0; i < count; i++) {
           const p = particles[i];
-          p.x += p.speedX;
-          p.y += p.speedY;
+          p.x += p.speedX * 2;
+          p.y += p.speedY * 2;
 
-          // Wrap around bounds
           if (p.y < 0) { p.y = height; p.x = Math.random() * width; }
           if (p.x < 0) p.x = width;
           if (p.x > width) p.x = 0;
 
-          const currentAlpha = p.baseAlpha + Math.sin(pTime + p.pulseOffset) * 0.2;
-          const safeAlpha = Math.max(0.05, Math.min(0.9, currentAlpha));
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = p.colorPrefix + safeAlpha + ')';
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = p.colorPrefix + '0.8)';
-          ctx.fill();
+          const a = Math.max(0.05, Math.min(0.9, p.baseAlpha + Math.sin(pTime + p.pulseOffset) * 0.2));
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 3.2, 0, 6.2832); ctx.fillStyle = p.colorPrefix + (a * 0.14) + ')'; ctx.fill();   /* halo lembut */
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832); ctx.fillStyle = p.colorPrefix + a + ')'; ctx.fill();
         }
-        requestAnimationFrame(renderParticles);
       }
-      renderParticles();
+      ASC.particles = function (on) { pOn = on && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches); if (pOn && !pRaf) pRaf = requestAnimationFrame(renderParticles); };
     }
 
     // 2. SCROLL-DRIVEN GRAND FINALE MOTION
@@ -7909,11 +8350,10 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
         const currentScale = cfg.startScale + (1 - cfg.startScale) * eased;
         const currentRot = (1 - eased) * cfg.startRot;
         const currentOpacity = Math.min(1, Math.pow(eased, 1.3));
-        const currentBlur = (1 - eased) * 10;
+
 
         card.style.transform = `translate3d(0, ${currentY}vh, 0) scale(${currentScale}) rotate(${currentRot}deg)`;
         card.style.opacity = currentOpacity.toFixed(3);
-        card.style.filter = currentBlur > 0.4 ? `blur(${currentBlur.toFixed(1)}px)` : 'none';
       });
 
       // D. MINIMALIST FOOTER SIGNATURE
@@ -7924,9 +8364,21 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     }
 
     // Scroll listener with requestAnimationFrame
-    window.addEventListener('scroll', () => {
-      requestAnimationFrame(updatePlariumScroll);
-    }, { passive: true });
+    const asckRoot = document.getElementById('asc-kontak') || document.body;
+    ASC.unlock(asckRoot);
+    let ticking = false, awake = true;
+    function onScroll() {
+      if (!awake || ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { ticking = false; updatePlariumScroll(); });
+    }
+    ASC.watch(asckRoot, (on) => {
+      awake = on;
+      if (ASC.particles) ASC.particles(on);
+      if (on) onScroll();
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
 
     // Initial render
     updatePlariumScroll();
