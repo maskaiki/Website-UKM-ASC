@@ -384,14 +384,21 @@ Default (tanpa JS / reduced motion) = tampilan statis tanpa pin.
   }
 
   #asc-hero-profil.asc-js:not(.asc-static) .asc-track {
-    height: 400vh;
+    position: relative !important;
+    width: 100% !important;
+    height: 400vh !important;
+    overflow: visible !important;
   }
 
   #asc-hero-profil.asc-js:not(.asc-static) .asc-stage {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    height: 100vh;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    overflow: hidden !important;
   }
 
   #asc-hero-profil .asc-stage .asc-cloud-s1 {
@@ -630,9 +637,20 @@ RESPONSIVE
     }
   }
 
+  @media (max-width: 1024px) {
+    #asc-hero-profil .asc-reveal-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    #asc-hero-profil .asc-stats {
+      gap: 36px;
+    }
+  }
+
   @media (max-width: 768px) {
     #asc-hero-profil.asc-js:not(.asc-static) .asc-track {
-      height: 270vh;
+      height: 270vh !important;
     }
 
     #asc-hero-profil .asc-intro {
@@ -891,15 +909,20 @@ RESPONSIVE
     /* ---------- 1. Buka overflow milik container/tema (penyebab sticky gagal) ---------- */
     function unlockAncestors() {
       try {
-        var n = root.parentElement;
-        while (n && n !== document.documentElement) {
-          var cs = window.getComputedStyle(n);
-          if (/hidden|auto|scroll|clip/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
-            n.style.setProperty('overflow', 'visible', 'important');
-            n.style.setProperty('overflow-x', 'visible', 'important');
-            n.style.setProperty('overflow-y', 'visible', 'important');
+        var el = root;
+        var p = el.parentElement, n = 0;
+        while (p && p !== document.documentElement && n++ < 25) {
+          var cs = window.getComputedStyle(p);
+          if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+            p.style.setProperty('overflow', 'visible', 'important');
           }
-          n = n.parentElement;
+          p = p.parentElement;
+        }
+        if (document.documentElement) {
+          document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+        }
+        if (document.body) {
+          document.body.style.setProperty('overflow-x', 'visible', 'important');
         }
       } catch (e) { /* abaikan */ }
     }
@@ -1064,13 +1087,27 @@ RESPONSIVE
       applyMode();
 
       window.addEventListener('scroll', schedule, { passive: true });
-      window.addEventListener('resize', function () { measure(); schedule(); });
-      window.addEventListener('orientationchange', function () { window.setTimeout(function () { measure(); update(true); }, 250); });
+      window.addEventListener('resize', function () { unlockAncestors(); measure(); schedule(); });
+      window.addEventListener('orientationchange', function () { window.setTimeout(function () { unlockAncestors(); measure(); update(true); }, 250); });
       window.addEventListener('load', function () { unlockAncestors(); measure(); update(true); });
-      window.addEventListener('pageshow', function () { measure(); update(true); });
+      window.addEventListener('pageshow', function () { unlockAncestors(); measure(); update(true); });
       if (window.ResizeObserver) {
         new ResizeObserver(function () { measure(); schedule(); }).observe(stage);
       }
+      var unCount = 0, unTimer = setInterval(function () {
+        unlockAncestors();
+        measure();
+        if (++unCount >= 25) clearInterval(unTimer);
+      }, 150);
+      // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak perlu zoom in/out
+      [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+        setTimeout(function () {
+          unlockAncestors();
+          measure();
+          schedule();
+          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+        }, ms);
+      });
       if (mqReduce) {
         if (mqReduce.addEventListener) { mqReduce.addEventListener('change', applyMode); }
         else if (mqReduce.addListener) { mqReduce.addListener(applyMode); }

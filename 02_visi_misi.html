@@ -27,9 +27,10 @@ Cara pakai di WordPress (Elementor / Divi):
   }
 
   #asc-vm {
-    position: relative;
-    height: 1300vh;
-    width: 100%;
+    position: relative !important;
+    height: 1300vh !important;
+    width: 100% !important;
+    overflow: visible !important;
     background: linear-gradient(180deg, #e0f2fe, #f0f9ff 60%, #e0f2fe);
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --p: 0;
@@ -44,13 +45,15 @@ Cara pakai di WordPress (Elementor / Divi):
   #asc-vm .vm-pin {
     padding-top: var(--asc-hh, 0px);
     box-sizing: border-box;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    height: 100svh;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
     display: grid;
     place-items: center;
-    overflow: clip;
+    overflow: hidden !important;
   }
 
   /* Frame 16:9 ala video, skala semua isi pakai satuan cqw */
@@ -552,6 +555,18 @@ Cara pakai di WordPress (Elementor / Divi):
     background: var(--hl);
   }
 
+  /* Tablet (701px - 1024px) */
+  @media (max-width: 1024px) {
+    #asc-vm .vm-frame {
+      width: min(94vw, calc((100svh - 40px - var(--asc-hh, 0px))*16/9));
+      border-radius: 16px;
+    }
+    #asc-vm .vm-txt {
+      left: 5cqw;
+      right: 5cqw;
+    }
+  }
+
   /* Mobile: frame potret */
   @media (max-width:700px) {
     #asc-vm .vm-frame {
@@ -995,7 +1010,8 @@ Cara pakai di WordPress (Elementor / Divi):
     function geom() {
       U = window.innerHeight / 100; var c = 0;
       scenes.forEach(function (s) { s._st = c; s._ln = s._w * U; c += s._ln; });
-      total = c; root.style.height = (window.innerHeight + total) + 'px';
+      total = c;
+      root.style.setProperty('height', Math.round(window.innerHeight + total) + 'px', 'important');
     }
     var target = 0, cur = 0, raf = 0, last = 0, lastTheme = '';
     function read() { var r = root.getBoundingClientRect(); return Math.max(0, Math.min(total, -r.top)); }
@@ -1045,10 +1061,77 @@ Cara pakai di WordPress (Elementor / Divi):
       target = read(); if (!raf) { last = performance.now(); raf = requestAnimationFrame(frameLoop); }
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', function () { geom(); target = cur = read(); render(cur); }, { passive: true });
-    window.addEventListener('load', function () { ASC.unlock(root); geom(); target = cur = read(); render(cur); });
-    ASC.unlock(root);
-    geom(); target = cur = read(); render(cur);
+    /* Perbaiki overflow parent WordPress (Divi/Elementor) agar position: sticky hidup */
+    function fixParents(el) {
+      if (!el) return;
+      var p = el.parentElement, n = 0;
+      while (p && p !== document.documentElement && n++ < 25) {
+        var cs = window.getComputedStyle(p);
+        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+          p.style.setProperty('overflow', 'visible', 'important');
+        }
+        p = p.parentElement;
+      }
+      if (document.documentElement) {
+        document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+      }
+      if (document.body) {
+        document.body.style.setProperty('overflow-x', 'visible', 'important');
+      }
+    }
+
+    function init() {
+      if (!root) return false;
+      if (root.dataset.ready) return true;
+      root.dataset.ready = '1';
+      fixParents(root);
+      geom();
+      target = cur = read();
+      render(cur);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function () {
+        fixParents(root);
+        geom();
+        target = cur = read();
+        render(cur);
+      }, { passive: true });
+      window.addEventListener('load', function () {
+        fixParents(root);
+        geom();
+        target = cur = read();
+        render(cur);
+      });
+      if (window.ResizeObserver) {
+        new ResizeObserver(function () {
+          fixParents(root);
+          geom();
+          target = cur = read();
+          render(cur);
+        }).observe(root);
+      }
+      // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak perlu zoom in/out
+      [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+        setTimeout(function () {
+          fixParents(root);
+          geom();
+          target = cur = read();
+          render(cur);
+          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+        }, ms);
+      });
+      return true;
+    }
+
+    function run() {
+      if (init()) return;
+      var n = 0, t = setInterval(function () {
+        if (init() || ++n >= 25) clearInterval(t);
+      }, 150);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run);
+    } else {
+      run();
+    }
   })();
 </script>

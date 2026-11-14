@@ -68,7 +68,8 @@
   .elementor-section,
   .elementor-column,
   .elementor-widget-wrap,
-  .elementor-widget {
+  .elementor-widget,
+  .elementor-element {
     overflow: visible !important;
   }
 
@@ -90,27 +91,66 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* WRAPPER NAVBAR: FLOATING STICKY DENGAN Z-INDEX MAKSIMAL */
+  /* =========================================================================
+     2. WRAPPER NAVBAR: DUAL-STATE HYBRID (RELATIVE DI ATAS -> FIXED FLOATING SAAT SCROLL)
+     WordPress seringkali memaksa margin pada ul, li, dan header. Reset di bawah
+     menjamin tampilan tetap ramping, rapi, dan presisi di semua tema WordPress.
+     ========================================================================= */
+  /* Placeholder pengisi ruang agar halaman tidak meloncat saat navbar floating */
+  .asc-nav-placeholder {
+    display: none;
+    width: 100%;
+    height: 76px;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+  .asc-nav-placeholder.active {
+    display: block;
+  }
+
+  /* Default State (Saat di posisi paling atas halaman): Relative di bawah header tema WP */
   #asc-header-navbar {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
-    position: sticky !important;
-    top: 16px !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
     z-index: 999999 !important;
     width: 100% !important;
     max-width: 1220px !important;
-    margin: 14px auto 0 !important;
+    margin: 16px auto 20px !important;
     padding: 0 16px !important;
     pointer-events: none;
-    /* Biarkan klik di area luar navbar tembus ke bawah */
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease !important;
+    transform: translate3d(0, 0, 0) !important;
+    opacity: 1 !important;
+  }
+
+  /* Floating State (Saat halaman digulir melewati posisi awal): Melayang fixed */
+  #asc-header-navbar.asc-is-floating {
+    position: fixed !important;
+    top: 16px !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 auto !important;
+  }
+
+  /* Kondisi saat scroll turun dalam mode floating: Slide up halus ke atas & fade out */
+  #asc-header-navbar.asc-is-floating.asc-nav-hidden {
+    transform: translate3d(0, -140%, 0) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
 
   /* Penyesuaian jarak saat Admin login ke WordPress (ada toolbar hitam #wpadminbar) */
-  body.admin-bar #asc-header-navbar {
+  body.admin-bar #asc-header-navbar.asc-is-floating {
     top: 48px !important;
   }
 
   @media screen and (max-width: 782px) {
-    body.admin-bar #asc-header-navbar {
+    body.admin-bar #asc-header-navbar.asc-is-floating {
       top: 60px !important;
     }
   }
@@ -489,8 +529,16 @@
 
   @media (max-width: 640px) {
     #asc-header-navbar {
-      top: 10px !important;
+      margin: 10px auto 14px !important;
       padding: 0 10px !important;
+    }
+
+    #asc-header-navbar.asc-is-floating {
+      top: 10px !important;
+    }
+
+    .asc-nav-placeholder {
+      height: 66px !important;
     }
 
     #asc-header-navbar .asc-brand-sub {
@@ -512,7 +560,10 @@
 <!-- =========================================================================
      STRUKTUR HTML SECTION 00: HEADER & FLOATING NAVBAR
      ========================================================================= -->
-<div id="asc-header-navbar">
+<!-- Placeholder pengisi ruang agar konten tidak meloncat saat navbar floating -->
+<div class="asc-nav-placeholder" id="ascNavPlaceholder"></div>
+
+<div id="asc-header-navbar" role="banner">
 
   <!-- THE FLOATING CAPSULE BAR (COMPACT 56PX) -->
   <div class="asc-nav-capsule" id="ascNavCapsule">
@@ -724,17 +775,14 @@
     /* 2. Buka overflow milik container Divi/Elementor/tema WordPress yang memblokir position: sticky */
     A.unlock = function (root) {
       try {
-        var n = root;
-        while (n && n !== d) {
-          if (n.nodeType === 1) {
-            var cs = w.getComputedStyle(n);
-            if (/hidden|auto|scroll|clip/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
-              n.style.setProperty('overflow', 'visible', 'important');
-              n.style.setProperty('overflow-x', 'visible', 'important');
-              n.style.setProperty('overflow-y', 'visible', 'important');
-            }
+        var el = root || d.getElementById('asc-header-navbar') || d.body;
+        var p = el.parentElement, n = 0;
+        while (p && p !== d.documentElement && n++ < 25) {
+          var cs = w.getComputedStyle(p);
+          if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+            p.style.setProperty('overflow', 'visible', 'important');
           }
-          n = n.parentElement;
+          p = p.parentElement;
         }
         if (d.documentElement) {
           d.documentElement.style.setProperty('overflow-x', 'visible', 'important');
@@ -744,6 +792,13 @@
         }
       } catch (e) { /* abaikan */ }
     };
+
+    /* Jalankan pembebas overflow secara berulang untuk mengatasi inject asinkron Divi */
+    A.unlock();
+    var unCount = 0, unTimer = setInterval(function () {
+      A.unlock();
+      if (++unCount >= 25) clearInterval(unTimer);
+    }, 150);
   })(window, document);
 </script>
 
@@ -754,9 +809,12 @@
     if (A.hdrOff) A.hdrOff();
     var dup = document.querySelectorAll('#asc-header-navbar');
     for (var i = 0; i < dup.length - 1; i++) dup[i].remove();
+    var dupPh = document.querySelectorAll('#ascNavPlaceholder');
+    for (var j = 0; j < dupPh.length - 1; j++) dupPh[j].remove();
     document.querySelectorAll('.asc-nav-main').forEach(function (el) { if (!el.querySelector('#asc-header-navbar') && !el.id) el.remove(); });
     var nav = document.getElementById('asc-header-navbar');
     if (!nav) return;
+    var placeholder = document.getElementById('ascNavPlaceholder');
     var capsule = document.getElementById('ascNavCapsule') || nav.querySelector('.asc-nav-capsule');
     var btn = document.getElementById('ascHamburgerBtn'), drawer = document.getElementById('ascMobileDrawer');
     var OFFSET = 88;                                           /* jarak berhenti di bawah header saat menggulir */
@@ -788,13 +846,54 @@
       });
     }
 
-    /* Satu pengendali scroll (dibatasi rAF): morph kapsul, menu aktif, dan tinggi header untuk section lain */
-    var ticking = false, scrolled = null, activeKey = null, hhLast = -1;
+    /* Ukur posisi awal navbar pada dokumen untuk menentukan kapan harus mulai melayang */
+    var initialTop = 0, isFloating = false, isHidden = false, lastY = 0, ticking = false, scrolled = null, activeKey = null, hhLast = -1;
+    function measureInitialTop() {
+      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      if (!isFloating) {
+        var nr = nav.getBoundingClientRect();
+        if (nr.top + y > 0) initialTop = nr.top + y;
+      } else if (placeholder) {
+        var pr = placeholder.getBoundingClientRect();
+        if (pr.top + y > 0) initialTop = pr.top + y;
+      }
+    }
+
+    /* Satu pengendali scroll (dibatasi rAF): hybrid float, morph kapsul, menu aktif, dan smart auto-hide */
     function tick() {
       ticking = false;
-      var y = window.pageYOffset || 0;
-      var s = y > 24;
+      var y = Math.max(0, window.pageYOffset || document.documentElement.scrollTop || 0);
+
+      /* Tentukan batas float: saat navbar menyentuh batas atas layar */
+      var threshold = initialTop > 30 ? Math.max(20, initialTop - 16) : 60;
+      var shouldFloat = y > threshold;
+
+      if (shouldFloat !== isFloating) {
+        isFloating = shouldFloat;
+        nav.classList.toggle('asc-is-floating', isFloating);
+        if (placeholder) placeholder.classList.toggle('active', isFloating);
+        if (!isFloating) {
+          isHidden = false;
+          nav.classList.remove('asc-nav-hidden');
+        }
+      }
+
+      var s = y > (threshold + 10);
       if (s !== scrolled && capsule) { scrolled = s; capsule.classList.toggle('asc-scrolled', s); }
+
+      /* Smart Auto-Hide saat mode floating: Scroll turun sembunyi, scroll naik muncul */
+      var isDrawerOpen = drawer && drawer.classList.contains('asc-open');
+      if (isFloating && !isDrawerOpen) {
+        var diff = y - lastY;
+        if (diff > 8 && y > threshold + 50) {
+          if (!isHidden) { isHidden = true; nav.classList.add('asc-nav-hidden'); }
+        } else if (diff < -6) {
+          if (isHidden) { isHidden = false; nav.classList.remove('asc-nav-hidden'); }
+        }
+      } else if (!isFloating) {
+        if (isHidden) { isHidden = false; nav.classList.remove('asc-nav-hidden'); }
+      }
+      lastY = y;
 
       var best = null, bestTop = -1e9;
       for (var i = 0; i < groups.length; i++) {
@@ -810,7 +909,8 @@
       }
 
       /* Beri tahu section yang menempel (pinned) berapa tinggi header yang sedang menutupi layar */
-      var r = (capsule || nav).getBoundingClientRect(), hh = r.bottom > 0 ? Math.round(r.bottom + 8) : 0;
+      var r = (capsule || nav).getBoundingClientRect();
+      var hh = (isFloating && !isHidden && r.bottom > 0) ? Math.round(r.bottom + 8) : 0;
       if (Math.abs(hh - hhLast) > 1) { hhLast = hh; document.documentElement.style.setProperty('--asc-hh', hh + 'px'); }
     }
     function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(tick); } }
@@ -821,6 +921,7 @@
       if (ev) ev.preventDefault();
       var el = els[els.length - 1];
       var top = el.getBoundingClientRect().top + (window.pageYOffset || 0) - OFFSET;
+      if (isHidden) { isHidden = false; nav.classList.remove('asc-nav-hidden'); }
       window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
       try { history.replaceState(null, '', key.split(',')[0].trim()); } catch (e) { }
       closeMenu();
@@ -829,7 +930,13 @@
     nav.addEventListener('click', onNavClick);
 
     /* Drawer mobile */
-    function setMenu(open) { if (!btn || !drawer) return; btn.classList.toggle('asc-open', open); drawer.classList.toggle('asc-open', open); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    function setMenu(open) {
+      if (!btn || !drawer) return;
+      if (open && isHidden) { isHidden = false; nav.classList.remove('asc-nav-hidden'); }
+      btn.classList.toggle('asc-open', open);
+      drawer.classList.toggle('asc-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
     function closeMenu() { setMenu(false); }
     function onBtn(e) { e.stopPropagation(); setMenu(!(drawer && drawer.classList.contains('asc-open'))); }
     function onDoc(e) { if (!nav.contains(e.target)) closeMenu(); }
@@ -838,16 +945,35 @@
     document.addEventListener('click', onDoc);
     document.addEventListener('keydown', onKey);
 
-    function onLoad() { prune(); tick(); }
+    function onLoad() {
+      if (A && A.unlock) A.unlock(nav);
+      measureInitialTop();
+      prune();
+      tick();
+    }
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
+    window.addEventListener('resize', function () {
+      if (A && A.unlock) A.unlock(nav);
+      measureInitialTop();
+      onScroll();
+    }, { passive: true });
     window.addEventListener('load', onLoad);
     document.addEventListener('DOMContentLoaded', onLoad);
     A.hdrOff = function () {
       window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); window.removeEventListener('load', onLoad);
       document.removeEventListener('DOMContentLoaded', onLoad); document.removeEventListener('click', onDoc); document.removeEventListener('keydown', onKey);
     };
-    prune(); tick();
+
+    /* Inisialisasi awal & berkala untuk menangkap rendering dinamis Divi/WordPress */
+    measureInitialTop();
+    prune();
+    tick();
+    [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+      setTimeout(function () {
+        measureInitialTop();
+        tick();
+      }, ms);
+    });
   })();
 </script>
 <!-- END COMPONENT: 00_header.html -->
@@ -1240,14 +1366,21 @@ Default (tanpa JS / reduced motion) = tampilan statis tanpa pin.
   }
 
   #asc-hero-profil.asc-js:not(.asc-static) .asc-track {
-    height: 400vh;
+    position: relative !important;
+    width: 100% !important;
+    height: 400vh !important;
+    overflow: visible !important;
   }
 
   #asc-hero-profil.asc-js:not(.asc-static) .asc-stage {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    height: 100vh;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    overflow: hidden !important;
   }
 
   #asc-hero-profil .asc-stage .asc-cloud-s1 {
@@ -1486,9 +1619,20 @@ RESPONSIVE
     }
   }
 
+  @media (max-width: 1024px) {
+    #asc-hero-profil .asc-reveal-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    #asc-hero-profil .asc-stats {
+      gap: 36px;
+    }
+  }
+
   @media (max-width: 768px) {
     #asc-hero-profil.asc-js:not(.asc-static) .asc-track {
-      height: 270vh;
+      height: 270vh !important;
     }
 
     #asc-hero-profil .asc-intro {
@@ -1747,15 +1891,20 @@ RESPONSIVE
     /* ---------- 1. Buka overflow milik container/tema (penyebab sticky gagal) ---------- */
     function unlockAncestors() {
       try {
-        var n = root.parentElement;
-        while (n && n !== document.documentElement) {
-          var cs = window.getComputedStyle(n);
-          if (/hidden|auto|scroll|clip/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
-            n.style.setProperty('overflow', 'visible', 'important');
-            n.style.setProperty('overflow-x', 'visible', 'important');
-            n.style.setProperty('overflow-y', 'visible', 'important');
+        var el = root;
+        var p = el.parentElement, n = 0;
+        while (p && p !== document.documentElement && n++ < 25) {
+          var cs = window.getComputedStyle(p);
+          if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+            p.style.setProperty('overflow', 'visible', 'important');
           }
-          n = n.parentElement;
+          p = p.parentElement;
+        }
+        if (document.documentElement) {
+          document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+        }
+        if (document.body) {
+          document.body.style.setProperty('overflow-x', 'visible', 'important');
         }
       } catch (e) { /* abaikan */ }
     }
@@ -1920,13 +2069,27 @@ RESPONSIVE
       applyMode();
 
       window.addEventListener('scroll', schedule, { passive: true });
-      window.addEventListener('resize', function () { measure(); schedule(); });
-      window.addEventListener('orientationchange', function () { window.setTimeout(function () { measure(); update(true); }, 250); });
+      window.addEventListener('resize', function () { unlockAncestors(); measure(); schedule(); });
+      window.addEventListener('orientationchange', function () { window.setTimeout(function () { unlockAncestors(); measure(); update(true); }, 250); });
       window.addEventListener('load', function () { unlockAncestors(); measure(); update(true); });
-      window.addEventListener('pageshow', function () { measure(); update(true); });
+      window.addEventListener('pageshow', function () { unlockAncestors(); measure(); update(true); });
       if (window.ResizeObserver) {
         new ResizeObserver(function () { measure(); schedule(); }).observe(stage);
       }
+      var unCount = 0, unTimer = setInterval(function () {
+        unlockAncestors();
+        measure();
+        if (++unCount >= 25) clearInterval(unTimer);
+      }, 150);
+      // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak perlu zoom in/out
+      [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+        setTimeout(function () {
+          unlockAncestors();
+          measure();
+          schedule();
+          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+        }, ms);
+      });
       if (mqReduce) {
         if (mqReduce.addEventListener) { mqReduce.addEventListener('change', applyMode); }
         else if (mqReduce.addListener) { mqReduce.addListener(applyMode); }
@@ -1976,9 +2139,10 @@ Cara pakai di WordPress (Elementor / Divi):
   }
 
   #asc-vm {
-    position: relative;
-    height: 1300vh;
-    width: 100%;
+    position: relative !important;
+    height: 1300vh !important;
+    width: 100% !important;
+    overflow: visible !important;
     background: linear-gradient(180deg, #e0f2fe, #f0f9ff 60%, #e0f2fe);
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --p: 0;
@@ -1993,13 +2157,15 @@ Cara pakai di WordPress (Elementor / Divi):
   #asc-vm .vm-pin {
     padding-top: var(--asc-hh, 0px);
     box-sizing: border-box;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    height: 100svh;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
     display: grid;
     place-items: center;
-    overflow: clip;
+    overflow: hidden !important;
   }
 
   /* Frame 16:9 ala video, skala semua isi pakai satuan cqw */
@@ -2501,6 +2667,18 @@ Cara pakai di WordPress (Elementor / Divi):
     background: var(--hl);
   }
 
+  /* Tablet (701px - 1024px) */
+  @media (max-width: 1024px) {
+    #asc-vm .vm-frame {
+      width: min(94vw, calc((100svh - 40px - var(--asc-hh, 0px))*16/9));
+      border-radius: 16px;
+    }
+    #asc-vm .vm-txt {
+      left: 5cqw;
+      right: 5cqw;
+    }
+  }
+
   /* Mobile: frame potret */
   @media (max-width:700px) {
     #asc-vm .vm-frame {
@@ -2944,7 +3122,8 @@ Cara pakai di WordPress (Elementor / Divi):
     function geom() {
       U = window.innerHeight / 100; var c = 0;
       scenes.forEach(function (s) { s._st = c; s._ln = s._w * U; c += s._ln; });
-      total = c; root.style.height = (window.innerHeight + total) + 'px';
+      total = c;
+      root.style.setProperty('height', Math.round(window.innerHeight + total) + 'px', 'important');
     }
     var target = 0, cur = 0, raf = 0, last = 0, lastTheme = '';
     function read() { var r = root.getBoundingClientRect(); return Math.max(0, Math.min(total, -r.top)); }
@@ -2994,11 +3173,78 @@ Cara pakai di WordPress (Elementor / Divi):
       target = read(); if (!raf) { last = performance.now(); raf = requestAnimationFrame(frameLoop); }
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', function () { geom(); target = cur = read(); render(cur); }, { passive: true });
-    window.addEventListener('load', function () { ASC.unlock(root); geom(); target = cur = read(); render(cur); });
-    ASC.unlock(root);
-    geom(); target = cur = read(); render(cur);
+    /* Perbaiki overflow parent WordPress (Divi/Elementor) agar position: sticky hidup */
+    function fixParents(el) {
+      if (!el) return;
+      var p = el.parentElement, n = 0;
+      while (p && p !== document.documentElement && n++ < 25) {
+        var cs = window.getComputedStyle(p);
+        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+          p.style.setProperty('overflow', 'visible', 'important');
+        }
+        p = p.parentElement;
+      }
+      if (document.documentElement) {
+        document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+      }
+      if (document.body) {
+        document.body.style.setProperty('overflow-x', 'visible', 'important');
+      }
+    }
+
+    function init() {
+      if (!root) return false;
+      if (root.dataset.ready) return true;
+      root.dataset.ready = '1';
+      fixParents(root);
+      geom();
+      target = cur = read();
+      render(cur);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function () {
+        fixParents(root);
+        geom();
+        target = cur = read();
+        render(cur);
+      }, { passive: true });
+      window.addEventListener('load', function () {
+        fixParents(root);
+        geom();
+        target = cur = read();
+        render(cur);
+      });
+      if (window.ResizeObserver) {
+        new ResizeObserver(function () {
+          fixParents(root);
+          geom();
+          target = cur = read();
+          render(cur);
+        }).observe(root);
+      }
+      // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak perlu zoom in/out
+      [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+        setTimeout(function () {
+          fixParents(root);
+          geom();
+          target = cur = read();
+          render(cur);
+          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+        }, ms);
+      });
+      return true;
+    }
+
+    function run() {
+      if (init()) return;
+      var n = 0, t = setInterval(function () {
+        if (init() || ++n >= 25) clearInterval(t);
+      }, 150);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run);
+    } else {
+      run();
+    }
   })();
 </script>
 <!-- END COMPONENT: 02_visi_misi.html -->
@@ -3041,9 +3287,10 @@ Cara pakai di WordPress (Elementor / Divi):
     --sky: #38bdf8;
     --sky-glow: rgba(56, 189, 248, 0.4);
     --m: .35;
-    position: relative;
-    width: 100%;
-    height: 1400vh;
+    position: relative !important;
+    width: 100% !important;
+    height: 1400vh !important;
+    overflow: visible !important;
     background: #0b1220;
     color: #fff;
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -3057,11 +3304,13 @@ Cara pakai di WordPress (Elementor / Divi):
   }
 
   #asc-sj .sj-st {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    height: 100svh;
-    overflow: clip;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    overflow: hidden !important;
   }
 
   /* Header & Rangka Penunjuk Alur */
@@ -3552,17 +3801,34 @@ Cara pakai di WordPress (Elementor / Divi):
     font-size: 13.5px;
   }
 
-  /* Responsif Mobile & Layar Kecil */
-  @media (max-width: 768px) {
-    #asc-sj {
-      height: 1450vh;
+  /* Responsif Tablet (769px - 1024px) */
+  @media (max-width: 1024px) {
+    #asc-sj .sj-top {
+      gap: 16px;
     }
+    #asc-sj .sj-nav {
+      width: min(440px, 48vw);
+    }
+    #asc-sj .sj-p {
+      grid-template-columns: 200px 1fr;
+      gap: 24px;
+    }
+    #asc-sj .sj-panel {
+      bottom: 3.5vh;
+    }
+  }
 
+  /* Responsif Mobile & Layar Kecil (< 768px) */
+  @media (max-width: 768px) {
     #asc-sj .sj-top {
       flex-direction: column;
       align-items: stretch;
-      gap: 12px;
-      top: 2.2vh;
+      gap: 10px;
+      top: max(2vh, calc(var(--asc-hh, 0px) + 8px));
+    }
+
+    #asc-sj h2 {
+      font-size: clamp(20px, 5.5vw, 28px);
     }
 
     #asc-sj .sj-nav {
@@ -3575,18 +3841,26 @@ Cara pakai di WordPress (Elementor / Divi):
     }
 
     #asc-sj .sj-world {
-      top: 18%;
+      top: calc(20% + var(--asc-hh, 0px) * .3);
       height: 18%;
     }
 
     #asc-sj .sj-panel {
-      top: 38%;
-      bottom: 2.5vh;
+      top: calc(39% + var(--asc-hh, 0px) * .4);
+      bottom: 2vh;
+      left: 4vw;
+      right: 4vw;
     }
 
     #asc-sj .sj-p {
       grid-template-columns: 1fr;
       gap: 8px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56, 189, 248, 0.4) transparent;
+      padding-right: 4px;
+      max-height: 100%;
     }
 
     #asc-sj .sj-left-col {
@@ -3597,30 +3871,30 @@ Cara pakai di WordPress (Elementor / Divi):
     }
 
     #asc-sj .sj-big {
-      font-size: calc(var(--k)*clamp(28px, 8vw, 42px));
+      font-size: calc(var(--k)*clamp(26px, 7.5vw, 36px));
       line-height: 1;
     }
 
     #asc-sj .sj-ix {
       margin-top: 0;
-      padding: 4px 10px;
-      font-size: 10.5px;
+      padding: 3px 8px;
+      font-size: 10px;
     }
 
     #asc-sj .sj-info h3 {
-      font-size: calc(var(--k)*clamp(18px, 4.8vw, 22px));
-      margin-bottom: calc(var(--k)*8px);
+      font-size: calc(var(--k)*clamp(16px, 4.4vw, 20px));
+      margin-bottom: calc(var(--k)*6px);
     }
 
     #asc-sj .sj-info p {
-      font-size: calc(var(--k)*clamp(13.5px, 3.6vw, 15.5px));
-      line-height: 1.58;
+      font-size: calc(var(--k)*clamp(12.5px, 3.4vw, 14.5px));
+      line-height: 1.55;
     }
 
     #asc-sj .sj-q {
-      font-size: calc(var(--k)*clamp(14px, 3.8vw, 16.5px));
-      padding: 10px 14px;
-      margin-top: 10px;
+      font-size: calc(var(--k)*clamp(13px, 3.5vw, 15px));
+      padding: 8px 12px;
+      margin-top: 8px;
     }
 
     #asc-sj .sj-chip {
@@ -3632,7 +3906,7 @@ Cara pakai di WordPress (Elementor / Divi):
     }
 
     #asc-sj .sj-ov p {
-      font-size: 14.5px;
+      font-size: 14px;
     }
   }
 
@@ -4094,8 +4368,9 @@ Cara pakai di WordPress (Elementor / Divi):
 
     /* Jalur kurva halus melewati semua tonggak. Titiknya disampel sekali, jadi saat digulir tinggal dibaca (ringan). */
     function build() {
-      vw = window.innerWidth; ZH = world.clientHeight;
-      var dx = Math.max(300, Math.min(520, vw * .42)), x0 = vw * .2, pts = [[x0 - dx * .9, ZH * .8]];
+      vw = Math.min(window.innerWidth, document.documentElement.clientWidth || window.innerWidth);
+      ZH = world.clientHeight || Math.round(window.innerHeight * (vw <= 768 ? 0.18 : 0.24));
+      var dx = Math.max(280, Math.min(520, vw * .42)), x0 = vw * .2, pts = [[x0 - dx * .9, ZH * .8]];
       X = [];
       DATA.forEach(function (d, i) { X.push(x0 + i * dx); pts.push([X[i], ZH * d.y]); });
       pts.push([X[N - 1] + dx * .9, ZH * .08]);
@@ -4130,7 +4405,7 @@ Cara pakai di WordPress (Elementor / Divi):
       U = window.innerHeight / 100; INTRO = 55 * U; TRAVEL = 28 * U; OUT = 70 * U;
       DW = DATA.map(function (d) { return (58 + .55 * words(d)) * U; });
       TOT = INTRO + OUT + (N - 1) * TRAVEL + DW.reduce(function (a, b) { return a + b; }, 0);
-      root.style.height = (window.innerHeight + TOT) + 'px';
+      root.style.setProperty('height', Math.round(window.innerHeight + TOT) + 'px', 'important');
     }
     function locate(y) {
       if (y < INTRO) return { f: 0, pre: y / INTRO };
@@ -4220,12 +4495,79 @@ Cara pakai di WordPress (Elementor / Divi):
     }
     rb.forEach(function (b, k) { b.addEventListener('click', function () { scrollToStep(k); }); });
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { build(); snapNow(); }, 120); }, { passive: true });
-    window.addEventListener('load', function () { ASC.unlock(root); build(); snapNow(); });
-    ASC.unlock(root);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fit(); });
-    build(); snapNow();
+    /* Perbaiki overflow parent WordPress (Divi/Elementor) agar position: sticky hidup */
+    function fixParents(el) {
+      if (!el) return;
+      var p = el.parentElement, n = 0;
+      while (p && p !== document.documentElement && n++ < 25) {
+        var cs = window.getComputedStyle(p);
+        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+          p.style.setProperty('overflow', 'visible', 'important');
+        }
+        p = p.parentElement;
+      }
+      if (document.documentElement) {
+        document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+      }
+      if (document.body) {
+        document.body.style.setProperty('overflow-x', 'visible', 'important');
+      }
+    }
+
+    function init() {
+      if (!root) return false;
+      if (root.dataset.ready) return true;
+      root.dataset.ready = '1';
+      fixParents(root);
+      build();
+      snapNow();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function () {
+        clearTimeout(rt);
+        rt = setTimeout(function () {
+          fixParents(root);
+          build();
+          snapNow();
+        }, 120);
+      }, { passive: true });
+      window.addEventListener('load', function () {
+        fixParents(root);
+        build();
+        snapNow();
+      });
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () { fit(); snapNow(); });
+      }
+      if (window.ResizeObserver) {
+        new ResizeObserver(function () {
+          fixParents(root);
+          build();
+          snapNow();
+        }).observe(root);
+      }
+      // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak perlu zoom in/out
+      [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+        setTimeout(function () {
+          fixParents(root);
+          build();
+          snapNow();
+          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+        }, ms);
+      });
+      return true;
+    }
+
+    function run() {
+      if (init()) return;
+      var n = 0, t = setInterval(function () {
+        if (init() || ++n >= 25) clearInterval(t);
+      }, 150);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run);
+    } else {
+      run();
+    }
   })();
 </script>
 <!-- END COMPONENT: 03_sejarah.html -->
@@ -4261,9 +4603,10 @@ Cara pakai di WordPress (Elementor / Divi):
   }
 
   #asc-struktur {
-    position: relative;
-    width: 100%;
-    height: 1000vh;
+    position: relative !important;
+    width: 100% !important;
+    height: 1000vh !important;
+    overflow: visible !important;
     background: #0f172a;
     color: #fff;
     --ice: #e0f2fe;
@@ -4278,11 +4621,13 @@ Cara pakai di WordPress (Elementor / Divi):
   }
 
   #asc-struktur .st-pin {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    height: 100svh;
-    overflow: clip;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    overflow: hidden !important;
     display: flex;
     flex-direction: column;
     padding: 3.5vh 4vw 3vh;
@@ -4695,6 +5040,19 @@ Cara pakai di WordPress (Elementor / Divi):
     background: center/cover no-repeat;
   }
 
+  /* Tablet (701px - 1024px) */
+  @media (max-width: 1024px) {
+    #asc-struktur .st-pin {
+      padding: 3vh 3vw 2.5vh;
+    }
+    #asc-struktur .st-top {
+      gap: 16px;
+    }
+    #asc-struktur .st-dt {
+      min-height: 120px;
+    }
+  }
+
   @media (max-width:700px) {
     #asc-struktur .st-ds {
       display: none;
@@ -4736,6 +5094,19 @@ Cara pakai di WordPress (Elementor / Divi):
 
     #asc-struktur .st-ph {
       width: 58px;
+    }
+  }
+
+  /* Tablet (701px - 1024px) */
+  @media (max-width: 1024px) {
+    #asc-struktur .st-pin {
+      padding: 3vh 3vw 2.5vh;
+    }
+    #asc-struktur .st-top {
+      gap: 16px;
+    }
+    #asc-struktur .st-dt {
+      min-height: 120px;
     }
   }
 
@@ -5111,7 +5482,8 @@ Cara pakai di WordPress (Elementor / Divi):
     function geom() {
       U = window.innerHeight / 100; CL = 170 * U; var c = CL;
       scs.forEach(function (s) { s.start = c; s.ent = 20 * U; s.step = 24 * U; s.len = (20 + 24 * s.n + 12) * U; c += s.len; });
-      total = c; root.style.height = (window.innerHeight + total) + 'px';
+      total = c;
+      root.style.setProperty('height', Math.round(window.innerHeight + total) + 'px', 'important');
     }
     function card(s, a) {
       var it = s.items[a];
@@ -5158,10 +5530,78 @@ Cara pakai di WordPress (Elementor / Divi):
       });
     });
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', function () { layout(); geom(); onScroll(); }, { passive: true });
-    window.addEventListener('load', function () { ASC.unlock(root); geom(); render(); });
-    geom(); render();
+    /* Perbaiki overflow parent WordPress (Divi/Elementor) agar position: sticky hidup */
+    function fixParents(el) {
+      if (!el) return;
+      var p = el.parentElement, n = 0;
+      while (p && p !== document.documentElement && n++ < 25) {
+        var cs = window.getComputedStyle(p);
+        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+          p.style.setProperty('overflow', 'visible', 'important');
+        }
+        p = p.parentElement;
+      }
+      if (document.documentElement) {
+        document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+      }
+      if (document.body) {
+        document.body.style.setProperty('overflow-x', 'visible', 'important');
+      }
+    }
+
+    function init() {
+      if (!root) return false;
+      if (root.dataset.ready) return true;
+      root.dataset.ready = '1';
+      fixParents(root);
+      layout();
+      geom();
+      render();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function () {
+        fixParents(root);
+        layout();
+        geom();
+        onScroll();
+      }, { passive: true });
+      window.addEventListener('load', function () {
+        fixParents(root);
+        layout();
+        geom();
+        render();
+      });
+      if (window.ResizeObserver) {
+        new ResizeObserver(function () {
+          fixParents(root);
+          layout();
+          geom();
+          render();
+        }).observe(root);
+      }
+      // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak perlu zoom in/out
+      [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+        setTimeout(function () {
+          fixParents(root);
+          layout();
+          geom();
+          render();
+          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+        }, ms);
+      });
+      return true;
+    }
+
+    function run() {
+      if (init()) return;
+      var n = 0, t = setInterval(function () {
+        if (init() || ++n >= 25) clearInterval(t);
+      }, 150);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run);
+    } else {
+      run();
+    }
   })();
 </script>
 <!-- END COMPONENT: 03_struktur_organisasi.html -->
@@ -5206,9 +5646,10 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     --p: 0;
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     color: var(--ink);
-    position: relative;
-    height: 520vh;
-    width: 100%;
+    position: relative !important;
+    height: 520vh !important;
+    width: 100% !important;
+    overflow: visible !important;
   }
 
   #asc-pb * {
@@ -5218,10 +5659,14 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
   }
 
   #asc-pb .pb-stage {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow: clip;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    overflow: hidden !important;
     background: #fff;
   }
 
@@ -5460,9 +5905,34 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     display: none;
   }
 
-  @media (max-width:640px) {
+  /* Beri ruang dinamis untuk header yang menempel di atas */
+  #asc-pb .pb-head {
+    top: max(14vh, calc(var(--asc-hh, 0px) + 22px));
+  }
+
+  /* Tablet (641px - 1024px) */
+  @media (max-width: 1024px) {
     #asc-pb .pb-head {
-      top: 11vh;
+      top: max(12vh, calc(var(--asc-hh, 0px) + 16px));
+      left: 4vw;
+      right: 4vw;
+    }
+
+    #asc-pb .pb-track {
+      top: 42vh;
+      gap: 20px;
+    }
+
+    #asc-pb .pb-card {
+      flex-basis: min(340px, 60vw);
+    }
+  }
+
+  /* Mobile (<= 640px) */
+  @media (max-width: 640px) {
+    #asc-pb .pb-head {
+      top: max(11vh, calc(var(--asc-hh, 0px) + 18px));
+      padding: 0 16px;
     }
 
     #asc-pb .pb-sub {
@@ -5470,34 +5940,13 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     }
 
     #asc-pb .pb-track {
-      top: 46vh;
-      gap: 18px;
+      top: 40vh;
+      gap: 16px;
     }
 
     #asc-pb .pb-card {
-      flex-basis: 76vw;
-    }
-
-    #asc-pb .pb-card p {
-      font-size: 13px;
-    }
-  }
-
-  /* Scoped overflow: visible agar position: sticky di container induk berfungsi */
-
-  /* Beri ruang untuk header yang menempel di atas */
-  #asc-pb .pb-head {
-    top: max(15vh, calc(var(--asc-hh, 0px) + 24px));
-  }
-
-  @media (max-width: 640px) {
-    #asc-pb .pb-head {
-      top: max(11vh, calc(var(--asc-hh, 0px) + 20px));
-    }
-
-    /* kartu & penghitung tidak lagi terpotong / bertumpuk di layar HP yang pendek */
-    #asc-pb .pb-track {
-      top: 40vh;
+      flex-basis: 78vw;
+      padding: 10px 10px 16px;
     }
 
     #asc-pb .pb-img {
@@ -5621,53 +6070,147 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     ];
     /* ======================================================================================================== */
 
-    var root = document.getElementById('asc-pb'), track = document.getElementById('pbTrack'),
-      countEl = document.getElementById('pbCount'), wash = root.querySelector('.pb-wash'), line = root.querySelector('.pb-uline path');
+    var root = document.getElementById('asc-pb');
+    if (!root) return;
+    var track = document.getElementById('pbTrack');
+    var countEl = document.getElementById('pbCount');
+    var wash = root.querySelector('.pb-wash');
+    var line = root.querySelector('.pb-uline path');
+    var stage = root.querySelector('.pb-stage');
+
     var h = '';
     DATA.forEach(function (x, i) {
       var n = ('0' + (i + 1)).slice(-2), bg = x.img ? ' style="background-image:url(\'' + x.img + '\')"' : '', ph = x.img ? '' : ' pb-ph';
       h += '<article class="pb-card"><div class="pb-img' + ph + '" data-n="' + n + '" role="img" aria-label="' + x.t + '"' + bg + '><span class="pb-badge">Pembinaan rutin</span></div>' +
         '<h3>' + x.t + '</h3><p>' + x.d + '</p><div class="pb-row"><a class="pb-btn" href="' + x.link + '">Selengkapnya</a><a class="pb-go" href="' + x.link + '" aria-label="Buka ' + x.t + '">→</a></div></article>';
     });
-    track.innerHTML = h;
-    ASC.unlock(root);
-    var cards = [].slice.call(track.children), lefts = [], vw, vh, trackW, startX, endX, ticking = false;
+    if (track) track.innerHTML = h;
+
+    var cards = track ? [].slice.call(track.children) : [];
+    var lefts = [], vw = 1200, vh = 800, trackW = 0, startX = 0, endX = 0, ticking = false;
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { root.classList.add('pb-static'); return; }
 
-    function measure() {
-      vw = window.innerWidth; vh = window.innerHeight; trackW = track.scrollWidth;
-      lefts = cards.map(function (c) { return c.offsetLeft + c.offsetWidth / 2; });   /* posisi tengah kartu disimpan sekali: tanpa baca layout tiap frame */
-      startX = vw * 0.92; endX = -(trackW - vw * 0.78);
-      root.style.height = (vh + (startX - endX) * 0.85) + 'px';
-      update();
-    }
     function lerp(a, b, t) { return a + (b - a) * t; }
+
     function update() {
       ticking = false;
+      if (!root) return;
       var r = root.getBoundingClientRect(), total = root.offsetHeight - vh;
+      if (total <= 0) total = 1;
       var p = Math.min(1, Math.max(0, -r.top / total));
       root.style.setProperty('--p', p);
       var x = lerp(startX, endX, p);
-      track.style.transform = 'translate3d(' + x + 'px,0,0)';
-      wash.style.opacity = Math.min(1, Math.sin(Math.PI * Math.min(1, p * 1.08)) * 1.25);
+      if (track) track.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
+      if (wash) wash.style.opacity = Math.min(1, Math.sin(Math.PI * Math.min(1, p * 1.08)) * 1.25);
       var c = Math.min(1, p * 6);
-      line.style.stroke = 'rgb(' + Math.round(lerp(186, 15, c)) + ',' + Math.round(lerp(224, 23, c)) + ',' + Math.round(lerp(247, 42, c)) + ')';
+      if (line) line.style.stroke = 'rgb(' + Math.round(lerp(186, 15, c)) + ',' + Math.round(lerp(224, 23, c)) + ',' + Math.round(lerp(247, 42, c)) + ')';
       var best = 0, bd = 1e9;
       cards.forEach(function (el, i) {
-        var cx = x + lefts[i], off = (cx - vw / 2) / vw;
+        var cx = x + (lefts[i] || 0), off = (cx - vw / 2) / vw;
         var rot = (i % 2 ? 1 : -1) * 2.6 + off * 5, y = Math.sin(i * 1.7) * 14 + Math.abs(off) * 18;
-        el.style.transform = 'translate3d(0,' + y + 'px,0) rotate(' + rot + 'deg)';
+        el.style.transform = 'translate3d(0,' + y.toFixed(2) + 'px,0) rotate(' + rot.toFixed(2) + 'deg)';
         var d = Math.abs(off); if (d < bd) { bd = d; best = i; }
       });
-      countEl.textContent = (best + 1) + ' dari ' + cards.length;
+      if (countEl) countEl.textContent = (best + 1) + ' dari ' + cards.length;
     }
-    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', measure);
-    window.addEventListener('load', function () { ASC.unlock(root); measure(); });
-    ASC.unlock(root);
-    measure();
+
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }
+
+    function measure() {
+      if (!root || !track) return;
+      vw = Math.min(window.innerWidth, document.documentElement.clientWidth || window.innerWidth);
+      vh = window.innerHeight;
+      trackW = track.scrollWidth || 3200;
+      cards = [].slice.call(track.children);
+      lefts = cards.map(function (c) { return c.offsetLeft + c.offsetWidth / 2; });
+      startX = vw * 0.92;
+      endX = -(trackW - vw * 0.78);
+      root.style.setProperty('height', Math.round(vh + (startX - endX) * 0.85) + 'px', 'important');
+      update();
+    }
+
+    /* Perbaiki overflow parent WordPress (Divi/Elementor) agar position: sticky hidup */
+    function fixParents(el) {
+      if (!el) return;
+      var p = el.parentElement, n = 0;
+      while (p && p !== document.documentElement && n++ < 25) {
+        var cs = window.getComputedStyle(p);
+        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+          p.style.setProperty('overflow', 'visible', 'important');
+        }
+        p = p.parentElement;
+      }
+      if (document.documentElement && document.documentElement.style) {
+        document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+      }
+      if (document.body && document.body.style) {
+        document.body.style.setProperty('overflow-x', 'visible', 'important');
+      }
+    }
+
+    function init() {
+      if (!root) root = document.getElementById('asc-pb');
+      if (!root) return false;
+      if (root.dataset.ready === '1') return true;
+      root.dataset.ready = '1';
+      if (!track) track = document.getElementById('pbTrack');
+      if (!countEl) countEl = document.getElementById('pbCount');
+      if (!wash && root) wash = root.querySelector('.pb-wash');
+      if (!line && root) line = root.querySelector('.pb-uline path');
+      if (!stage && root) stage = root.querySelector('.pb-stage');
+
+      fixParents(root);
+      measure();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function () {
+        fixParents(root);
+        measure();
+      }, { passive: true });
+      window.addEventListener('orientationchange', function () {
+        setTimeout(function () { fixParents(root); measure(); }, 200);
+      });
+      window.addEventListener('load', function () {
+        fixParents(root);
+        measure();
+      });
+      window.addEventListener('pageshow', function () {
+        fixParents(root);
+        measure();
+      });
+      if (window.ResizeObserver && stage) {
+        new ResizeObserver(function () {
+          fixParents(root);
+          measure();
+        }).observe(stage);
+      }
+      // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak perlu zoom in/out
+      [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+        setTimeout(function () {
+          fixParents(root);
+          measure();
+          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+        }, ms);
+      });
+      return true;
+    }
+
+    function run() {
+      if (init()) return;
+      var n = 0, t = setInterval(function () {
+        if (init() || ++n >= 25) clearInterval(t);
+      }, 150);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run);
+    } else {
+      run();
+    }
   })();
 </script>
 <!-- END COMPONENT: 04_pembinaan.html -->
@@ -5996,19 +6539,27 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
   }
 
   #asc-pr #prS1 {
-    height: 400vh;
+    position: relative !important;
+    width: 100% !important;
+    height: 400vh !important;
+    overflow: visible !important;
   }
 
   #asc-pr #prS2 {
-    height: 390vh;
+    position: relative !important;
+    width: 100% !important;
+    height: 390vh !important;
+    overflow: visible !important;
   }
 
   #asc-pr .pr-stg {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    height: 100svh;
-    overflow: clip;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    overflow: hidden !important;
   }
 
   #asc-pr .pr-stg.dk {
@@ -6661,6 +7212,13 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     color: #fff;
   }
 
+  @media (max-width: 1024px) {
+    #asc-pr .pr-trk {
+      --cw: min(420px, 68vw);
+      --ch: min(56vh, 480px);
+    }
+  }
+
   @media (max-width:900px) {
     #asc-pr .pr-head {
       grid-template-columns: 1fr;
@@ -6680,11 +7238,11 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     }
 
     #asc-pr #prS1 {
-      height: 380vh;
+      height: 380vh !important;
     }
 
     #asc-pr #prS2 {
-      height: 360vh;
+      height: 360vh !important;
     }
 
     #asc-pr .pr-hero .pr-head {
@@ -7434,15 +7992,72 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
       if (rc.top < vh) { var e = ease(clamp((vh - rc.top) / (vh * .85))); cw.style.opacity = e.toFixed(3); cw.style.transform = 'translate3d(0,' + ((1 - e) * 60).toFixed(1) + 'px,0) scale(' + (.9 + .1 * e).toFixed(3) + ')'; }
     }
 
+    /* Perbaiki overflow parent WordPress (Divi/Elementor) agar position: sticky hidup */
+    function fixParents(el) {
+      if (!el) return;
+      var p = el.parentElement, n = 0;
+      while (p && p !== document.documentElement && n++ < 25) {
+        var cs = window.getComputedStyle(p);
+        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+          p.style.setProperty('overflow', 'visible', 'important');
+        }
+        p = p.parentElement;
+      }
+      if (document.documentElement) {
+        document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+      }
+      if (document.body) {
+        document.body.style.setProperty('overflow-x', 'visible', 'important');
+      }
+    }
+
     if (reduce) {
       root.classList.add('pr-static'); bgs.forEach(function (b, i) { b.firstChild.textContent = ST[i][0]; });
     } else {
-      ASC.unlock(root);
       function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(render); } }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll, { passive: true });
-      window.addEventListener('load', function () { ASC.unlock(root); render(); });
-      render();
+      function init() {
+        if (!root) return false;
+        if (root.dataset.ready) return true;
+        root.dataset.ready = '1';
+        fixParents(root);
+        render();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', function () {
+          fixParents(root);
+          onScroll();
+        }, { passive: true });
+        window.addEventListener('load', function () {
+          fixParents(root);
+          render();
+        });
+        if (window.ResizeObserver) {
+          new ResizeObserver(function () {
+            fixParents(root);
+            render();
+          }).observe(root);
+        }
+        // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak perlu zoom in/out
+        [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+          setTimeout(function () {
+            fixParents(root);
+            render();
+            try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+          }, ms);
+        });
+        return true;
+      }
+
+      function run() {
+        if (init()) return;
+        var n = 0, t = setInterval(function () {
+          if (init() || ++n >= 25) clearInterval(t);
+        }, 150);
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', run);
+      } else {
+        run();
+      }
     }
   })();
 </script>
@@ -7510,21 +8125,22 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
      posisi kartu tetap terkunci elegan sebagai penutup akhir website.
      ========================================================================= */
   #asc-kontak .asc-pl-track {
-    position: relative;
-    width: 100%;
-    height: 220vh;
+    position: relative !important;
+    width: 100% !important;
+    height: 220vh !important;
+    overflow: visible !important;
     background: linear-gradient(180deg, #050d1a 0%, #071527 25%, #081a33 55%, #061121 80%, #040914 100%);
   }
 
   /* STICKY STAGE (100vh) */
   #asc-kontak .asc-pl-sticky {
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    height: 100svh;
-    overflow: hidden;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    overflow: hidden !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7939,6 +8555,17 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
   /* =========================================================================
      6. RESPONSIVE BREAKPOINTS (TABLET & MOBILE)
      ========================================================================= */
+  @media (max-width: 1024px) {
+    #asc-kontak .asc-pl-cards-wrap {
+      gap: 12px;
+      padding: 0 16px;
+    }
+
+    #asc-kontak .asc-pill-card {
+      width: clamp(140px, 21vw, 200px);
+    }
+  }
+
   @media (max-width: 992px) {
     #asc-kontak .asc-pl-cards-wrap {
       gap: 14px;
@@ -7947,7 +8574,7 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
 
   @media (max-width: 680px) {
     #asc-kontak .asc-pl-track {
-      height: 190vh;
+      height: 190vh !important;
     }
 
     #asc-kontak .asc-pl-title {
@@ -8354,22 +8981,78 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
       }
     }
 
+    // Perbaiki overflow parent WordPress (Divi/Elementor) agar position: sticky hidup
+    function fixParents(el) {
+      if (!el) return;
+      var p = el.parentElement, n = 0;
+      while (p && p !== document.documentElement && n++ < 25) {
+        var cs = window.getComputedStyle(p);
+        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+          p.style.setProperty('overflow', 'visible', 'important');
+        }
+        p = p.parentElement;
+      }
+      if (document.documentElement) {
+        document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+      }
+      if (document.body) {
+        document.body.style.setProperty('overflow-x', 'visible', 'important');
+      }
+    }
+
     // Scroll listener with requestAnimationFrame
     const asckRoot = document.getElementById('asc-kontak') || document.body;
-    ASC.unlock(asckRoot);
     let ticking = false;
     function onScroll() {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => { ticking = false; updatePlariumScroll(); });
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    window.addEventListener('load', () => { ASC.unlock(asckRoot); onScroll(); });
-    if (ASC.particles) ASC.particles(true);
 
-    // Initial render
-    updatePlariumScroll();
+    function init() {
+      if (!track) return false;
+      if (track.dataset.ready) return true;
+      track.dataset.ready = '1';
+      fixParents(asckRoot);
+      updatePlariumScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function () {
+        fixParents(asckRoot);
+        onScroll();
+      }, { passive: true });
+      window.addEventListener('load', function () {
+        fixParents(asckRoot);
+        onScroll();
+      });
+      if (ASC.particles) ASC.particles(true);
+      if (window.ResizeObserver) {
+        new ResizeObserver(function () {
+          fixParents(asckRoot);
+          onScroll();
+        }).observe(track);
+      }
+      // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak perlu zoom in/out
+      [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+        setTimeout(function () {
+          fixParents(asckRoot);
+          onScroll();
+          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+        }, ms);
+      });
+      return true;
+    }
+
+    function run() {
+      if (init()) return;
+      var n = 0, t = setInterval(function () {
+        if (init() || ++n >= 25) clearInterval(t);
+      }, 150);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run);
+    } else {
+      run();
+    }
 
     // 3. 3D TILT PHYSICS ON MOUSE HOVER (KARTU MENGIKUTI KURSOR SAAT DOCKED)
     cards.forEach(card => {

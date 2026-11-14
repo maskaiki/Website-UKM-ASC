@@ -27,9 +27,10 @@
   }
 
   #asc-struktur {
-    position: relative;
-    width: 100%;
-    height: 1000vh;
+    position: relative !important;
+    width: 100% !important;
+    height: 1000vh !important;
+    overflow: visible !important;
     background: #0f172a;
     color: #fff;
     --ice: #e0f2fe;
@@ -44,11 +45,13 @@
   }
 
   #asc-struktur .st-pin {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    height: 100svh;
-    overflow: clip;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    overflow: hidden !important;
     display: flex;
     flex-direction: column;
     padding: 3.5vh 4vw 3vh;
@@ -461,6 +464,19 @@
     background: center/cover no-repeat;
   }
 
+  /* Tablet (701px - 1024px) */
+  @media (max-width: 1024px) {
+    #asc-struktur .st-pin {
+      padding: 3vh 3vw 2.5vh;
+    }
+    #asc-struktur .st-top {
+      gap: 16px;
+    }
+    #asc-struktur .st-dt {
+      min-height: 120px;
+    }
+  }
+
   @media (max-width:700px) {
     #asc-struktur .st-ds {
       display: none;
@@ -502,6 +518,19 @@
 
     #asc-struktur .st-ph {
       width: 58px;
+    }
+  }
+
+  /* Tablet (701px - 1024px) */
+  @media (max-width: 1024px) {
+    #asc-struktur .st-pin {
+      padding: 3vh 3vw 2.5vh;
+    }
+    #asc-struktur .st-top {
+      gap: 16px;
+    }
+    #asc-struktur .st-dt {
+      min-height: 120px;
     }
   }
 
@@ -877,7 +906,8 @@
     function geom() {
       U = window.innerHeight / 100; CL = 170 * U; var c = CL;
       scs.forEach(function (s) { s.start = c; s.ent = 20 * U; s.step = 24 * U; s.len = (20 + 24 * s.n + 12) * U; c += s.len; });
-      total = c; root.style.height = (window.innerHeight + total) + 'px';
+      total = c;
+      root.style.setProperty('height', Math.round(window.innerHeight + total) + 'px', 'important');
     }
     function card(s, a) {
       var it = s.items[a];
@@ -924,9 +954,77 @@
       });
     });
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', function () { layout(); geom(); onScroll(); }, { passive: true });
-    window.addEventListener('load', function () { ASC.unlock(root); geom(); render(); });
-    geom(); render();
+    /* Perbaiki overflow parent WordPress (Divi/Elementor) agar position: sticky hidup */
+    function fixParents(el) {
+      if (!el) return;
+      var p = el.parentElement, n = 0;
+      while (p && p !== document.documentElement && n++ < 25) {
+        var cs = window.getComputedStyle(p);
+        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+          p.style.setProperty('overflow', 'visible', 'important');
+        }
+        p = p.parentElement;
+      }
+      if (document.documentElement) {
+        document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+      }
+      if (document.body) {
+        document.body.style.setProperty('overflow-x', 'visible', 'important');
+      }
+    }
+
+    function init() {
+      if (!root) return false;
+      if (root.dataset.ready) return true;
+      root.dataset.ready = '1';
+      fixParents(root);
+      layout();
+      geom();
+      render();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function () {
+        fixParents(root);
+        layout();
+        geom();
+        onScroll();
+      }, { passive: true });
+      window.addEventListener('load', function () {
+        fixParents(root);
+        layout();
+        geom();
+        render();
+      });
+      if (window.ResizeObserver) {
+        new ResizeObserver(function () {
+          fixParents(root);
+          layout();
+          geom();
+          render();
+        }).observe(root);
+      }
+      // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak perlu zoom in/out
+      [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+        setTimeout(function () {
+          fixParents(root);
+          layout();
+          geom();
+          render();
+          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+        }, ms);
+      });
+      return true;
+    }
+
+    function run() {
+      if (init()) return;
+      var n = 0, t = setInterval(function () {
+        if (init() || ++n >= 25) clearInterval(t);
+      }, 150);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run);
+    } else {
+      run();
+    }
   })();
 </script>

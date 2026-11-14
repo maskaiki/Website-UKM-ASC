@@ -34,9 +34,10 @@
     --sky: #38bdf8;
     --sky-glow: rgba(56, 189, 248, 0.4);
     --m: .35;
-    position: relative;
-    width: 100%;
-    height: 1400vh;
+    position: relative !important;
+    width: 100% !important;
+    height: 1400vh !important;
+    overflow: visible !important;
     background: #0b1220;
     color: #fff;
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -50,11 +51,13 @@
   }
 
   #asc-sj .sj-st {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    height: 100svh;
-    overflow: clip;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    overflow: hidden !important;
   }
 
   /* Header & Rangka Penunjuk Alur */
@@ -545,17 +548,34 @@
     font-size: 13.5px;
   }
 
-  /* Responsif Mobile & Layar Kecil */
-  @media (max-width: 768px) {
-    #asc-sj {
-      height: 1450vh;
+  /* Responsif Tablet (769px - 1024px) */
+  @media (max-width: 1024px) {
+    #asc-sj .sj-top {
+      gap: 16px;
     }
+    #asc-sj .sj-nav {
+      width: min(440px, 48vw);
+    }
+    #asc-sj .sj-p {
+      grid-template-columns: 200px 1fr;
+      gap: 24px;
+    }
+    #asc-sj .sj-panel {
+      bottom: 3.5vh;
+    }
+  }
 
+  /* Responsif Mobile & Layar Kecil (< 768px) */
+  @media (max-width: 768px) {
     #asc-sj .sj-top {
       flex-direction: column;
       align-items: stretch;
-      gap: 12px;
-      top: 2.2vh;
+      gap: 10px;
+      top: max(2vh, calc(var(--asc-hh, 0px) + 8px));
+    }
+
+    #asc-sj h2 {
+      font-size: clamp(20px, 5.5vw, 28px);
     }
 
     #asc-sj .sj-nav {
@@ -568,18 +588,26 @@
     }
 
     #asc-sj .sj-world {
-      top: 18%;
+      top: calc(20% + var(--asc-hh, 0px) * .3);
       height: 18%;
     }
 
     #asc-sj .sj-panel {
-      top: 38%;
-      bottom: 2.5vh;
+      top: calc(39% + var(--asc-hh, 0px) * .4);
+      bottom: 2vh;
+      left: 4vw;
+      right: 4vw;
     }
 
     #asc-sj .sj-p {
       grid-template-columns: 1fr;
       gap: 8px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56, 189, 248, 0.4) transparent;
+      padding-right: 4px;
+      max-height: 100%;
     }
 
     #asc-sj .sj-left-col {
@@ -590,30 +618,30 @@
     }
 
     #asc-sj .sj-big {
-      font-size: calc(var(--k)*clamp(28px, 8vw, 42px));
+      font-size: calc(var(--k)*clamp(26px, 7.5vw, 36px));
       line-height: 1;
     }
 
     #asc-sj .sj-ix {
       margin-top: 0;
-      padding: 4px 10px;
-      font-size: 10.5px;
+      padding: 3px 8px;
+      font-size: 10px;
     }
 
     #asc-sj .sj-info h3 {
-      font-size: calc(var(--k)*clamp(18px, 4.8vw, 22px));
-      margin-bottom: calc(var(--k)*8px);
+      font-size: calc(var(--k)*clamp(16px, 4.4vw, 20px));
+      margin-bottom: calc(var(--k)*6px);
     }
 
     #asc-sj .sj-info p {
-      font-size: calc(var(--k)*clamp(13.5px, 3.6vw, 15.5px));
-      line-height: 1.58;
+      font-size: calc(var(--k)*clamp(12.5px, 3.4vw, 14.5px));
+      line-height: 1.55;
     }
 
     #asc-sj .sj-q {
-      font-size: calc(var(--k)*clamp(14px, 3.8vw, 16.5px));
-      padding: 10px 14px;
-      margin-top: 10px;
+      font-size: calc(var(--k)*clamp(13px, 3.5vw, 15px));
+      padding: 8px 12px;
+      margin-top: 8px;
     }
 
     #asc-sj .sj-chip {
@@ -625,7 +653,7 @@
     }
 
     #asc-sj .sj-ov p {
-      font-size: 14.5px;
+      font-size: 14px;
     }
   }
 
@@ -1087,8 +1115,9 @@
 
     /* Jalur kurva halus melewati semua tonggak. Titiknya disampel sekali, jadi saat digulir tinggal dibaca (ringan). */
     function build() {
-      vw = window.innerWidth; ZH = world.clientHeight;
-      var dx = Math.max(300, Math.min(520, vw * .42)), x0 = vw * .2, pts = [[x0 - dx * .9, ZH * .8]];
+      vw = Math.min(window.innerWidth, document.documentElement.clientWidth || window.innerWidth);
+      ZH = world.clientHeight || Math.round(window.innerHeight * (vw <= 768 ? 0.18 : 0.24));
+      var dx = Math.max(280, Math.min(520, vw * .42)), x0 = vw * .2, pts = [[x0 - dx * .9, ZH * .8]];
       X = [];
       DATA.forEach(function (d, i) { X.push(x0 + i * dx); pts.push([X[i], ZH * d.y]); });
       pts.push([X[N - 1] + dx * .9, ZH * .08]);
@@ -1123,7 +1152,7 @@
       U = window.innerHeight / 100; INTRO = 55 * U; TRAVEL = 28 * U; OUT = 70 * U;
       DW = DATA.map(function (d) { return (58 + .55 * words(d)) * U; });
       TOT = INTRO + OUT + (N - 1) * TRAVEL + DW.reduce(function (a, b) { return a + b; }, 0);
-      root.style.height = (window.innerHeight + TOT) + 'px';
+      root.style.setProperty('height', Math.round(window.innerHeight + TOT) + 'px', 'important');
     }
     function locate(y) {
       if (y < INTRO) return { f: 0, pre: y / INTRO };
@@ -1213,11 +1242,78 @@
     }
     rb.forEach(function (b, k) { b.addEventListener('click', function () { scrollToStep(k); }); });
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { build(); snapNow(); }, 120); }, { passive: true });
-    window.addEventListener('load', function () { ASC.unlock(root); build(); snapNow(); });
-    ASC.unlock(root);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fit(); });
-    build(); snapNow();
+    /* Perbaiki overflow parent WordPress (Divi/Elementor) agar position: sticky hidup */
+    function fixParents(el) {
+      if (!el) return;
+      var p = el.parentElement, n = 0;
+      while (p && p !== document.documentElement && n++ < 25) {
+        var cs = window.getComputedStyle(p);
+        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+          p.style.setProperty('overflow', 'visible', 'important');
+        }
+        p = p.parentElement;
+      }
+      if (document.documentElement) {
+        document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+      }
+      if (document.body) {
+        document.body.style.setProperty('overflow-x', 'visible', 'important');
+      }
+    }
+
+    function init() {
+      if (!root) return false;
+      if (root.dataset.ready) return true;
+      root.dataset.ready = '1';
+      fixParents(root);
+      build();
+      snapNow();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function () {
+        clearTimeout(rt);
+        rt = setTimeout(function () {
+          fixParents(root);
+          build();
+          snapNow();
+        }, 120);
+      }, { passive: true });
+      window.addEventListener('load', function () {
+        fixParents(root);
+        build();
+        snapNow();
+      });
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () { fit(); snapNow(); });
+      }
+      if (window.ResizeObserver) {
+        new ResizeObserver(function () {
+          fixParents(root);
+          build();
+          snapNow();
+        }).observe(root);
+      }
+      // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak perlu zoom in/out
+      [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+        setTimeout(function () {
+          fixParents(root);
+          build();
+          snapNow();
+          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+        }, ms);
+      });
+      return true;
+    }
+
+    function run() {
+      if (init()) return;
+      var n = 0, t = setInterval(function () {
+        if (init() || ++n >= 25) clearInterval(t);
+      }, 150);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run);
+    } else {
+      run();
+    }
   })();
 </script>
