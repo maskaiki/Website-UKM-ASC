@@ -79,7 +79,6 @@ def build_standalone():
       background-color: #f8fafc;
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       color: #0f172a;
-      overflow-x: hidden;
     }}
   </style>
 </head>

@@ -9,6 +9,25 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
 ====================================================================== -->
 
 <style>
+  /* =========================================================================
+     FIX OVERFLOW UNTUK DIVI & ELEMENTOR WORDPRESS (AGAR POSITION:STICKY BERFUNGSI)
+     ========================================================================= */
+  .et_pb_section,
+  .et_pb_fullwidth_section,
+  .et_pb_row,
+  .et_pb_column,
+  .et_pb_module,
+  .et_pb_code,
+  .et_pb_fullwidth_code,
+  .et_pb_code_inner,
+  .elementor-section,
+  .elementor-column,
+  .elementor-widget-wrap,
+  .elementor-widget,
+  .elementor-element {
+    overflow: visible !important;
+  }
+
   #asc-pb {
     --blue: #0284c7;
     --royal: #2563eb;
@@ -294,10 +313,7 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     }
   }
 
-  /* Rapikan: cegah scroll horizontal tak sengaja */
-  #asc-pb {
-    overflow-x: clip;
-  }
+  /* Scoped overflow: visible agar position: sticky di container induk berfungsi */
 
   /* Beri ruang untuk header yang menempel di atas */
   #asc-pb .pb-head {
@@ -378,49 +394,42 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
   </div>
 </section>
 
-<!-- ASC CORE: blok ini IDENTIK di semua file. Hanya dijalankan sekali walau ditempel berkali-kali (tidak ada skrip ganda). -->
+<!-- ASC CORE: Satu loader font & pembersih overflow WordPress (Idempoten / Aman digabung) -->
 <script>
   (function (w, d) {
-    if (w.ASC && w.ASC.v) return;
-    var A = w.ASC = { v: 1 };
+    if (w.ASC && w.ASC.v && w.ASC.v >= 3) return;
+    var A = w.ASC = (w.ASC || {});
+    A.v = 3;
 
-    /* 1. Satu pemuat font untuk seluruh halaman (tidak ada impor font per-section) */
+    /* 1. Satu pemuat font untuk seluruh halaman */
     if (!d.getElementById('asc-fonts')) {
       var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
       l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap';
       d.head.appendChild(l);
     }
 
-    /* 2. CSS bersama: animasi section yang di luar layar dijeda otomatis (hemat CPU/GPU) */
-    var st = d.createElement('style'); st.id = 'asc-core-css';
-    st.textContent = '[data-asc-off] *,[data-asc-off] *::before,[data-asc-off] *::after{animation-play-state:paused!important}';
-    d.head.appendChild(st);
-
-    /* 3. Buka overflow milik container/tema yang membuat position:sticky gagal */
-    function clip(v) { return v === 'hidden' || v === 'auto' || v === 'scroll'; }
+    /* 2. Buka overflow milik container Divi/Elementor/tema WordPress yang memblokir position: sticky */
     A.unlock = function (root) {
       try {
-        var canClip = !!(w.CSS && CSS.supports && CSS.supports('overflow-x', 'clip')), html = d.documentElement, hcs = w.getComputedStyle(html);
-        var htmlClips = clip(hcs.overflowX) || clip(hcs.overflowY), n = root.parentElement;
-        while (n && n !== html) {
-          var cs = w.getComputedStyle(n), isBody = n === d.body;
-          if ((!isBody || htmlClips) && (clip(cs.overflowX) || clip(cs.overflowY))) {
-            var real = (cs.overflowY === 'auto' || cs.overflowY === 'scroll') && n.scrollHeight > n.clientHeight + 2;
-            if (!real) { n.style.setProperty('overflow-x', canClip ? 'clip' : 'visible', 'important'); n.style.setProperty('overflow-y', 'visible', 'important'); }
+        var n = root;
+        while (n && n !== d) {
+          if (n.nodeType === 1) {
+            var cs = w.getComputedStyle(n);
+            if (/hidden|auto|scroll|clip/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+              n.style.setProperty('overflow', 'visible', 'important');
+              n.style.setProperty('overflow-x', 'visible', 'important');
+              n.style.setProperty('overflow-y', 'visible', 'important');
+            }
           }
           n = n.parentElement;
         }
+        if (d.documentElement) {
+          d.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+        }
+        if (d.body) {
+          d.body.style.setProperty('overflow-x', 'visible', 'important');
+        }
       } catch (e) { /* abaikan */ }
-    };
-
-    /* 4. Pantau section: tandai di luar layar (animasi dijeda) dan beri tahu skripnya agar berhenti bekerja */
-    A.watch = function (root, cb) {
-      if (!w.IntersectionObserver) { if (cb) cb(true); return; }
-      new IntersectionObserver(function (es) {
-        var on = es[es.length - 1].isIntersecting;
-        if (on) root.removeAttribute('data-asc-off'); else root.setAttribute('data-asc-off', '');
-        if (cb) cb(on);
-      }, { rootMargin: '100% 0px 100% 0px' }).observe(root);
     };
   })(window, document);
 </script>
@@ -483,11 +492,11 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
       });
       countEl.textContent = (best + 1) + ' dari ' + cards.length;
     }
-    function onScroll() { if (!awake) return; if (!ticking) { ticking = true; requestAnimationFrame(update); } }
-    var awake = true; ASC.watch(root, function (on) { awake = on; if (on) onScroll(); });
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', measure);
-    window.addEventListener('load', measure);
+    window.addEventListener('load', function () { ASC.unlock(root); measure(); });
+    ASC.unlock(root);
     measure();
   })();
 </script>
