@@ -1,5 +1,5 @@
 # Mesin Riset Taste & Auto-Improve UKM ASC (Maksimal 10 Iterasi)
-Current_Iteration: 6
+Current_Iteration: 7
 Max_Iteration: 10
 
 ## Aturan Kunci (Guardrails — DILARANG DILANGGAR)
@@ -34,7 +34,7 @@ Max_Iteration: 10
 - [x] **Iterasi 6 (Riset Light-Mode Bento Grid untuk Metrik & Prestasi)**
   - *Eksplorasi*: Cari referensi "Bento grid light mode UI Stripe Press Linear".
   - *Terapkan ke ASC*: Tampilan bento grid modern untuk metrik (4x Juara Umum MTQMN, 11 Bidang, dsb) dengan subtle inset shadows dan typography hierarchy.
-- [ ] **Iterasi 7 (Riset Filter & View Switcher [GRID] / [LIST])**
+- [x] **Iterasi 7 (Riset Filter & View Switcher [GRID] / [LIST])**
   - *Eksplorasi*: Filter bar interaktif modern dengan layout switch animatif.
   - *Terapkan ke ASC*: Sempurnakan filter Program Kerja dan Galeri dengan smooth layout transition.
 - [ ] **Iterasi 8 (Riset Horizontal Accordion & Team Slices)**
@@ -79,3 +79,8 @@ Max_Iteration: 10
 - **Temuan 1 (Asymmetrical Column Spans — Linear/Stripe Press)**: Mengubah grid metrik yang sebelumnya datar 4 kolom rata menjadi Bento Grid asimetris 12 kolom (`span 7` untuk kartu hero supremasi MTQMN, `span 5` untuk ekosistem 11 bidang, dan 2x `span 6` untuk penghargaan Ormawa of The Year serta sejarah 2013).
 - **Temuan 2 (Subtle Multi-Layered Shadows & Inset Glow)**: Menggantikan bayangan pekat dengan lapisan ganda sangat halus (`0 1px 3px rgba(11,10,15,0.02), 0 6px 18px rgba(11,10,15,0.03)`) dengan border hairline `1px solid var(--border)` yang berubah menjadi biru sapphire saat disentuh kursor.
 - **Temuan 3 (Micro Pill Badges & Record Anchors)**: Setiap kartu bento dilengkapi badge kategori monospace (`🏆 Supremasi Nasional`, `🎯 Ekosistem Belajar`, `🌟 Ormawa of The Year`) dan metadata tahun rekor, menciptakan hierarki informasi yang sangat solid dan kredibel.
+
+### Iterasi 7 — Filter & View Switcher [GRID] / [LIST]
+- **Temuan 1 (Graceful Exit/Entry Scale Transition)**: Menggantikan penghilangan elemen seketika (`display: none`) dengan animasi dua tahap: elemen yang difilter keluar terlebih dahulu mengecil halus (`scale(0.95) translateY(8px); opacity: 0`) selama 280ms sebelum di-hide, sementara elemen baru bertransisi masuk secara elastis.
+- **Temuan 2 (Layout Viewport Dissolve `viewFadeIn`)**: Pergantian tampilan antara Grid kartu gambar dan List tabel baris memicu transisi dissolve `0.35s cubic-bezier(0.16, 1, 0.3, 1)`, mencegah layout jump yang mengganggu kenyamanan baca.
+- **Temuan 3 (Tabular Directional Indicator)**: Baris list dilengkapi penanda arah `↗` (`.row-arrow`) dan styling monospace terformat yang sejajar vertikal rapi, memudahkan pemindaian cepat di monitor desktop.

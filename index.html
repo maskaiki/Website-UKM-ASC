@@ -1122,6 +1122,36 @@
       color: var(--ink);
     }
 
+    
+    /* Filter & View Switcher Animation (Gobo x Effica) */
+    .program-card,
+    .gallery-card {
+      transition: opacity 0.3s var(--ease-gobo), transform 0.35s var(--ease-gobo), box-shadow 0.3s ease;
+      will-change: opacity, transform;
+    }
+    .program-card.is-filtered-out,
+    .gallery-card.is-filtered-out {
+      opacity: 0 !important;
+      transform: scale(0.95) translateY(8px) !important;
+      pointer-events: none !important;
+    }
+
+    .program-list-row {
+      position: relative;
+    }
+    .row-arrow {
+      font-size: 14px;
+      color: var(--accent);
+      opacity: 0;
+      transform: translate(-4px, 4px);
+      transition: opacity 0.25s var(--ease-gobo), transform 0.25s var(--ease-gobo);
+      justify-self: end;
+    }
+    .program-list-row:hover .row-arrow {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
     /* Grid View & List View (Gobo Style) */
     .program-grid {
       display: grid;
@@ -3269,10 +3299,24 @@
           const cat = btn.getAttribute('data-filter');
           filterBtns.forEach((b) => b.classList.toggle('is-active', b === btn));
           cards.forEach((c) => {
-            c.hidden = !(cat === 'all' || c.getAttribute('data-cat') === cat);
+            const matches = (cat === 'all' || c.getAttribute('data-cat') === cat);
+            if (matches) {
+              c.hidden = false;
+              requestAnimationFrame(() => c.classList.remove('is-filtered-out'));
+            } else {
+              c.classList.add('is-filtered-out');
+              setTimeout(() => { if (c.classList.contains('is-filtered-out')) c.hidden = true; }, 280);
+            }
           });
           rows.forEach((r) => {
-            r.hidden = !(cat === 'all' || r.getAttribute('data-cat') === cat);
+            const matches = (cat === 'all' || r.getAttribute('data-cat') === cat);
+            if (matches) {
+              r.hidden = false;
+              requestAnimationFrame(() => r.classList.remove('is-filtered-out'));
+            } else {
+              r.classList.add('is-filtered-out');
+              setTimeout(() => { if (r.classList.contains('is-filtered-out')) r.hidden = true; }, 280);
+            }
           });
         });
       });
