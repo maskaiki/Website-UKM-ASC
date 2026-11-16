@@ -1,5 +1,5 @@
 # Mesin Riset Taste & Auto-Improve UKM ASC (Maksimal 10 Iterasi)
-Current_Iteration: 5
+Current_Iteration: 6
 Max_Iteration: 10
 
 ## Aturan Kunci (Guardrails — DILARANG DILANGGAR)
@@ -31,7 +31,7 @@ Max_Iteration: 10
 - [x] **Iterasi 5 (Riset Interactive Directory & Sticky Preview)**
   - *Eksplorasi*: Amati table directory interaktif ala editorial portfolio.
   - *Terapkan ke ASC*: 11 Bidang Pembinaan dengan interactive active marker line, preview crossfade, badge jumlah anggota/kategori.
-- [ ] **Iterasi 6 (Riset Light-Mode Bento Grid untuk Metrik & Prestasi)**
+- [x] **Iterasi 6 (Riset Light-Mode Bento Grid untuk Metrik & Prestasi)**
   - *Eksplorasi*: Cari referensi "Bento grid light mode UI Stripe Press Linear".
   - *Terapkan ke ASC*: Tampilan bento grid modern untuk metrik (4x Juara Umum MTQMN, 11 Bidang, dsb) dengan subtle inset shadows dan typography hierarchy.
 - [ ] **Iterasi 7 (Riset Filter & View Switcher [GRID] / [LIST])**
@@ -74,3 +74,8 @@ Max_Iteration: 10
 - **Temuan 1 (Vertical Indicator Bar)**: Menambahkan penanda vertikal mikro (`.bidang-row::before`) beraksen sapphire `#143b66` yang memanjang halus dengan `scaleY(1)` ketika baris di-hover atau aktif, mempertegas baris mana yang sedang ditinjau.
 - **Temuan 2 (Dynamic Directional Arrow `↗`)**: Setiap baris memiliki ikon panah diagonal (`.bidang-arrow`) yang bergeser dari translasi diagonal tersembunyi (`translate(-6px, 6px); opacity: 0;`) menjadi tajam (`translate(0, 0); opacity: 1;`) saat di-hover ala direktori agensi kelas dunia.
 - **Temuan 3 (Subtle Tint Backdrop)**: Baris aktif menerima latar belakang transparan tipis (`rgba(20, 59, 102, 0.035)`) dan border radius 6px sehingga pembaca tetap fokus tanpa kontras yang menyilaukan.
+
+### Iterasi 6 — Light-Mode Bento Grid untuk Metrik & Prestasi
+- **Temuan 1 (Asymmetrical Column Spans — Linear/Stripe Press)**: Mengubah grid metrik yang sebelumnya datar 4 kolom rata menjadi Bento Grid asimetris 12 kolom (`span 7` untuk kartu hero supremasi MTQMN, `span 5` untuk ekosistem 11 bidang, dan 2x `span 6` untuk penghargaan Ormawa of The Year serta sejarah 2013).
+- **Temuan 2 (Subtle Multi-Layered Shadows & Inset Glow)**: Menggantikan bayangan pekat dengan lapisan ganda sangat halus (`0 1px 3px rgba(11,10,15,0.02), 0 6px 18px rgba(11,10,15,0.03)`) dengan border hairline `1px solid var(--border)` yang berubah menjadi biru sapphire saat disentuh kursor.
+- **Temuan 3 (Micro Pill Badges & Record Anchors)**: Setiap kartu bento dilengkapi badge kategori monospace (`🏆 Supremasi Nasional`, `🎯 Ekosistem Belajar`, `🌟 Ormawa of The Year`) dan metadata tahun rekor, menciptakan hierarki informasi yang sangat solid dan kredibel.

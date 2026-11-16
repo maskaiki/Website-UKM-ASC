@@ -805,30 +805,85 @@
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
       margin-top: 48px;
     }
     .stat-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px 20px;
-      transition: border-color 0.3s, transform 0.45s var(--ease-gobo);
+      border-radius: 12px;
+      padding: 26px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(11, 10, 15, 0.02), 0 6px 18px rgba(11, 10, 15, 0.03);
+      transition: border-color 0.3s, box-shadow 0.35s var(--ease-gobo), transform 0.35s var(--ease-gobo);
+      position: relative;
+      overflow: hidden;
     }
     .stat-card:hover {
-      border-color: var(--border-strong);
+      border-color: rgba(20, 59, 102, 0.28);
+      box-shadow: 0 4px 10px rgba(11, 10, 15, 0.04), 0 14px 28px rgba(20, 59, 102, 0.08);
       transform: translateY(-3px);
     }
+    .stat-card.bento-hero {
+      grid-column: span 7;
+      background: linear-gradient(145deg, #ffffff 0%, #f7f7f5 100%);
+      border: 1px solid rgba(20, 59, 102, 0.16);
+    }
+    .stat-card.bento-side {
+      grid-column: span 5;
+    }
+    .stat-card.bento-third {
+      grid-column: span 6;
+    }
+    .stat-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(20, 59, 102, 0.06);
+      padding: 4px 10px;
+      border-radius: 999px;
+      width: fit-content;
+      margin-bottom: 14px;
+    }
     .stat-num {
-      font-size: clamp(32px, 3.6vw, 48px);
-      font-weight: 700;
+      font-size: clamp(34px, 3.8vw, 52px);
+      font-weight: 750;
       letter-spacing: -0.05em;
       line-height: 1;
       color: var(--ink);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .stat-num span { color: var(--accent); }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .stat-desc {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+    @media (max-width: 900px) {
+      .stat-card.bento-hero,
+      .stat-card.bento-side,
+      .stat-card.bento-third {
+        grid-column: span 12;
+      }
+    }
 
     /* ==========================================================================
        8. 11 BIDANG PEMBINAAN (GOBO STUDIO ROW-TO-PANE INTERACTION)
@@ -2177,25 +2232,60 @@
         </div>
 
         <div class="stats-grid" data-reveal>
-          <div class="stat-card">
-            <div class="stat-num"><span data-counter="11">11</span></div>
-            <div class="mono">Bidang Pembinaan Aktif</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num"><span data-counter="4">4</span>×</div>
-            <div class="mono">Juara Umum MTQMN UM</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">2013</div>
-            <div class="mono">Tahun Berdiri Resmi</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">#1</div>
-            <div class="mono">Media &amp; Sosmed OTY 2026</div>
+            <!-- Bento Card 1: Supremasi Prestasi MTQMN (Hero Span 7) -->
+            <div class="stat-card bento-hero">
+              <div>
+                <span class="stat-card-badge">🏆 Supremasi Nasional</span>
+                <div class="stat-num"><span data-counter="4">4</span>× Juara Umum</div>
+                <div class="stat-label">Musabaqah Tilawatil Qur'an Mahasiswa Nasional</div>
+                <p class="stat-desc">Rekam jejak kafilah Universitas Negeri Malang membina generasi qur'ani berdaya saing tinggi di kancah perguruan tinggi se-Indonesia.</p>
+              </div>
+              <div class="mono" style="margin-top:16px;font-size:10.5px;color:var(--mono-muted);">
+                [ REKOR: 2017 · 2019 · 2021 · 2023 ]
+              </div>
+            </div>
+
+            <!-- Bento Card 2: 11 Bidang Pembinaan (Side Span 5) -->
+            <div class="stat-card bento-side">
+              <div>
+                <span class="stat-card-badge">🎯 Ekosistem Belajar</span>
+                <div class="stat-num"><span data-counter="11">11</span> Bidang</div>
+                <div class="stat-label">Cabang Pembinaan Aktif</div>
+                <p class="stat-desc">Mewadahi tartil, tilawah, tahfidz, kaligrafi, syarhil, karya tulis ilmiah hingga aplikasi teknologi (DAQ).</p>
+              </div>
+              <div class="mono" style="margin-top:16px;font-size:10.5px;color:var(--accent);">
+                ↗ Terbuka Untuk Semua Mahasiswa UM
+              </div>
+            </div>
+
+            <!-- Bento Card 3: Ormawa of the Year (Third Span 6) -->
+            <div class="stat-card bento-third">
+              <div>
+                <span class="stat-card-badge">🌟 Ormawa of The Year</span>
+                <div class="stat-num">#1 Terbaik</div>
+                <div class="stat-label">Kategori Media &amp; Sosial Media (OTY 2026)</div>
+                <p class="stat-desc">Penghargaan resmi kemahasiswaan UM atas keaktifan publikasi syiar, transparansi program, dan desain digital inspiratif.</p>
+              </div>
+              <div class="mono" style="margin-top:14px;font-size:10.5px;color:var(--mono-muted);">
+                [ DITMAWA UM AWARD · 2026 ]
+              </div>
+            </div>
+
+            <!-- Bento Card 4: Satu Dekade Khidmat (Third Span 6) -->
+            <div class="stat-card bento-third">
+              <div>
+                <span class="stat-card-badge">🏛️ Sejarah &amp; Komitmen</span>
+                <div class="stat-num">2013</div>
+                <div class="stat-label">Tahun Berdiri Resmi di UM</div>
+                <p class="stat-desc">Lebih dari satu dekade menjadi rumah ukhuwah dan inkubator prestasi insan cendekia Qur'ani di Malang Raya.</p>
+              </div>
+              <div class="mono" style="margin-top:14px;font-size:10.5px;color:var(--mono-muted);">
+                [ 9 AGUSTUS 2013 — KINI ]
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
     <!-- ======================== 11 BIDANG PEMBINAAN (GOBO ROW-TO-PANE) ======================== -->
     <section class="section section-hairline-bound" id="bidang" style="border-top:1px solid var(--border);">
