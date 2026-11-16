@@ -86,7 +86,14 @@
       cursor: pointer;
     }
 
-    img {
+    
+        /* Global SVG Safety Guard */
+        svg:not([width]):not([class]) {
+            max-width: 100%;
+            height: auto;
+        }
+
+        img {
       display: block;
       max-width: 100%;
     }
@@ -575,7 +582,14 @@
     }
 
     /* Foto Cutout 2 Orang PDH — Terkunci Presisi di Tengah Huruf S */
-    .hero-cutout- stage-img {
+    .hero-cutout- stage-
+        /* Global SVG Safety Guard */
+        svg:not([width]):not([class]) {
+            max-width: 100%;
+            height: auto;
+        }
+
+        img {
       position: absolute;
     }
 
@@ -592,7 +606,14 @@
       pointer-events: none;
     }
 
-    .hero-cutout-container img {
+    .hero-cutout-container 
+        /* Global SVG Safety Guard */
+        svg:not([width]):not([class]) {
+            max-width: 100%;
+            height: auto;
+        }
+
+        img {
       width: 100%;
       max-height: clamp(320px, 56vh, 560px);
       object-fit: contain;
@@ -614,29 +635,25 @@
     }
 
     .hero-bottom-left {
-      max-width: 360px;
-    }
+            pointer-events: auto;
+            max-width: 235px;
+            z-index: 10;
+        }
 
     .hero-bottom-left p {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--ink-secondary);
-      line-height: 1.5;
-      margin-bottom: 16px;
-    }
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--ink-mid);
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
 
     .hero-bottom-center {
-      font-family: var(--font-main);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-secondary);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding-bottom: 8px;
-    }
+            pointer-events: auto;
+            text-align: center;
+            display: none; /* Hidden on desktop so it is not obscured behind student leaders cutout */
+        }
+        
 
     .hero-bottom-center .star-icon {
       color: var(--emerald);
@@ -1081,14 +1098,28 @@
       position: relative;
     }
 
-    .gallery-img-wrap img {
+    .gallery-img-wrap 
+        /* Global SVG Safety Guard */
+        svg:not([width]):not([class]) {
+            max-width: 100%;
+            height: auto;
+        }
+
+        img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.6s var(--ease-out-expo);
     }
 
-    .gallery-card:hover .gallery-img-wrap img {
+    .gallery-card:hover .gallery-img-wrap 
+        /* Global SVG Safety Guard */
+        svg:not([width]):not([class]) {
+            max-width: 100%;
+            height: auto;
+        }
+
+        img {
       transform: scale(1.08);
     }
 
@@ -2153,7 +2184,14 @@
         letter-spacing: -0.06em;
       }
 
-      .hero-cutout-container img {
+      .hero-cutout-container 
+        /* Global SVG Safety Guard */
+        svg:not([width]):not([class]) {
+            max-width: 100%;
+            height: auto;
+        }
+
+        img {
         max-height: 40vh !important;
       }
 
@@ -2229,7 +2267,176 @@
         grid-template-columns: 1fr;
       }
     }
-  </style>
+  
+        /* --- GOBO SIGNATURE BUTTONS & BRACKET INTERACTIONS --- */
+        @keyframes goboBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .btn-bracket {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--ink);
+            color: #ffffff !important;
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-radius: 999px;
+            border: 1.5px solid var(--ink);
+            transition: all 0.35s cubic-bezier(0.22, 0.31, 0, 1);
+            box-shadow: 0 4px 16px rgba(9, 19, 28, 0.12);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-bracket .bracket-char {
+            color: var(--emerald-500);
+            font-family: var(--font-mono);
+            font-weight: 800;
+            transition: transform 0.35s cubic-bezier(0.22, 0.31, 0, 1);
+            display: inline-block;
+        }
+
+        .btn-bracket:hover .bracket-l {
+            transform: translateX(-4px);
+        }
+
+        .btn-bracket:hover .bracket-r {
+            transform: translateX(4px);
+        }
+
+        .btn-bracket:hover {
+            background: var(--emerald-800);
+            border-color: var(--emerald-800);
+            box-shadow: 0 8px 24px rgba(13, 92, 63, 0.28);
+            transform: translateY(-2px);
+        }
+
+        .btn-bracket .cursor-blink {
+            display: inline-block;
+            width: 7px;
+            height: 14px;
+            background: var(--gold);
+            margin-left: 5px;
+            vertical-align: middle;
+            animation: goboBlink 1s infinite steps(2, start);
+        }
+
+        .btn-primary-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            background: var(--ink);
+            color: #ffffff !important;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            border-radius: 999px;
+            border: 1.5px solid var(--ink);
+            transition: all 0.35s cubic-bezier(0.22, 0.31, 0, 1);
+            box-shadow: 0 6px 18px rgba(9, 19, 28, 0.12);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-primary-pill .circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--emerald-600);
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+            transition: transform 0.35s cubic-bezier(0.22, 0.31, 0, 1), background 0.35s;
+        }
+
+        .btn-primary-pill:hover {
+            background: var(--emerald-700);
+            border-color: var(--emerald-700);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 26px rgba(13, 92, 63, 0.28);
+        }
+
+        .btn-primary-pill:hover .circle {
+            transform: translate(2px, -2px) rotate(45deg);
+            background: var(--gold);
+            color: var(--ink);
+        }
+
+        .btn-header-cta {
+            transition: all 0.35s cubic-bezier(0.22, 0.31, 0, 1);
+        }
+
+        .btn-header-cta:hover {
+            background: var(--emerald-700);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(13, 92, 63, 0.24);
+        }
+    
+    
+        /* --- MOBILE AUDIT (390px - 992px) POLISH --- */
+        @media (max-width: 992px) {
+            .btn-header-cta {
+                display: none !important;
+            }
+            .hero-bottom-bar {
+                position: absolute;
+                bottom: 20px;
+                left: 0;
+                right: 0;
+                padding: 0 16px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-end;
+                z-index: 10;
+                pointer-events: none;
+            }
+            .hero-bottom-left {
+                pointer-events: auto;
+                max-width: 100%;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+            }
+            .hero-bottom-left p {
+                display: none !important;
+            }
+            .hero-bottom-left .btn-bracket {
+                font-size: 13px;
+                padding: 11px 22px;
+                box-shadow: 0 8px 24px rgba(9, 19, 28, 0.28);
+            }
+            .hero-bottom-center {
+                display: none !important;
+            }
+            .hero-bottom-right {
+                display: none !important;
+            }
+            .hero-top-grid {
+                padding-top: 12px;
+            }
+            .hero-top-left h1 {
+                font-size: clamp(24px, 6vw, 36px);
+                line-height: 1.15;
+            }
+            .hero-top-right .hero-pillars {
+                font-size: clamp(22px, 5.5vw, 32px);
+                line-height: 1.15;
+            }
+        }
+    
+    </style>
 </head>
 
 <body>
@@ -2401,18 +2608,8 @@
     <!-- ======================== TENTANG & BENTO PRESTASI ======================== -->
     <section class="section" id="tentang">
       <!-- Partikel Geometri Islami Sudut (Rub el Hizb 8-Pointed Star) -->
-      <svg class="section-islamic-corner top-left" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-        <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="2" />
-        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor"
-          stroke-width="2" />
-        <circle cx="50" cy="50" r="10" stroke="currentColor" stroke-width="1.5" />
-      </svg>
-      <svg class="section-islamic-corner top-right" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-        <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="2" />
-        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor"
-          stroke-width="2" />
-        <circle cx="50" cy="50" r="10" stroke="currentColor" stroke-width="1.5" />
-      </svg>
+      
+      
       <div class="section-header-row" data-reveal>
         <div>
           <span class="label-kicker">۞ 01 · Jejak &amp; Identitas</span>
@@ -2474,18 +2671,8 @@
     <!-- ======================== PROGRAM UNGGULAN (3D TILT + SPOTLIGHT) ======================== -->
     <section class="section" id="program">
       <!-- Partikel Geometri Islami Sudut (Rub el Hizb 8-Pointed Star) -->
-      <svg class="section-islamic-corner top-left" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-        <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="2" />
-        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor"
-          stroke-width="2" />
-        <circle cx="50" cy="50" r="10" stroke="currentColor" stroke-width="1.5" />
-      </svg>
-      <svg class="section-islamic-corner top-right" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-        <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="2" />
-        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor"
-          stroke-width="2" />
-        <circle cx="50" cy="50" r="10" stroke="currentColor" stroke-width="1.5" />
-      </svg>
+      
+      
       <div class="section-header-row" data-reveal>
         <div>
           <span class="label-kicker">🌿 02 · Karya &amp; Aktualisasi</span>
@@ -2603,18 +2790,8 @@
     <!-- ======================== 11 BIDANG PEMBINAAN (MIHRAB PREVIEW) ======================== -->
     <section class="section" id="bidang">
       <!-- Partikel Geometri Islami Sudut (Rub el Hizb 8-Pointed Star) -->
-      <svg class="section-islamic-corner top-left" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-        <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="2" />
-        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor"
-          stroke-width="2" />
-        <circle cx="50" cy="50" r="10" stroke="currentColor" stroke-width="1.5" />
-      </svg>
-      <svg class="section-islamic-corner top-right" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-        <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="2" />
-        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor"
-          stroke-width="2" />
-        <circle cx="50" cy="50" r="10" stroke="currentColor" stroke-width="1.5" />
-      </svg>
+      
+      
       <div class="section-header-row" data-reveal>
         <div>
           <span class="label-kicker">۞ 03 · Kurikulum Pembinaan</span>
@@ -2650,12 +2827,7 @@
     </section>
     <!-- ======================== GALERI DOKUMENTASI KEGIATAN ======================== -->
     <section class="section" id="galeri">
-      <!-- Partikel Geometri Islami Sudut -->
-      <svg class="section-islamic-corner top-left" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-        <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="2" />
-        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor" stroke-width="2" />
-        <circle cx="50" cy="50" r="10" stroke="currentColor" stroke-width="1.5" />
-      </svg>
+      
       <div class="section-header-row" data-reveal>
         <div>
           <span class="label-kicker">۞ 04 · Rekam Jejak Visual</span>
@@ -2868,13 +3040,7 @@
 
     <!-- ======================== STRUKTUR KEPENGURUSAN (ACCORDION SLICES) ======================== -->
     <section class="section" id="pengurus">
-      <!-- Partikel Geometri Islami Sudut -->
-      <svg class="section-islamic-corner top-left" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-        <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="2" />
-        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor"
-          stroke-width="2" />
-        <circle cx="50" cy="50" r="10" stroke="currentColor" stroke-width="1.5" />
-      </svg>
+      
       <div class="section-header-row" data-reveal>
         <div>
           <span class="label-kicker">۞ 05 · Struktur Penggerak</span>
@@ -2971,13 +3137,7 @@
 
     <!-- ======================== KUTIPAN KAFILAH & FAQ ACCORDION ======================== -->
     <section class="section" id="faq">
-      <!-- Partikel Geometri Islami Sudut -->
-      <svg class="section-islamic-corner top-left" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-        <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="2" />
-        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor"
-          stroke-width="2" />
-        <circle cx="50" cy="50" r="10" stroke="currentColor" stroke-width="1.5" />
-      </svg>
+      
       <div class="quote-band" data-reveal>
         <div class="quote-content">
           <p class="quote-text">
@@ -3057,13 +3217,7 @@
 
     <!-- ======================== FORMULIR PENDAFTARAN ANGGOTA BARU ======================== -->
     <section class="section" id="gabung">
-      <!-- Partikel Geometri Islami Sudut -->
-      <svg class="section-islamic-corner top-left" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-        <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="2" />
-        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor"
-          stroke-width="2" />
-        <circle cx="50" cy="50" r="10" stroke="currentColor" stroke-width="1.5" />
-      </svg>
+      
       <div class="section-header-row" data-reveal>
         <div>
           <span class="label-kicker">🌿 07 · Gabung Keluarga ASC</span>
