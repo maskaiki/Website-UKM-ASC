@@ -206,6 +206,40 @@
       transform: scale(1);
     }
 
+    
+    /* Kinetic Staggered Word Reveal (Gobo x Effica) */
+    .kinetic-title {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0.28ch 0.32ch;
+      align-items: baseline;
+    }
+    .kinetic-word {
+      display: inline-block;
+      opacity: 0;
+      filter: blur(8px);
+      transform: translateY(14px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: calc(var(--i, 0) * 75ms);
+      will-change: opacity, filter, transform;
+    }
+    .is-in .kinetic-word,
+    .is-in.kinetic-word {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .kinetic-word {
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
     /* ==========================================================================
        3. TYPOGRAPHY UTILITIES & GOBO BRACKET BUTTONS
        ========================================================================== */
@@ -2073,10 +2107,10 @@
         <div class="about-grid" data-reveal>
           <div>
             <span class="mono" style="display:block;margin-bottom:14px;">01 · Identitas Lembaga</span>
-            <h2 class="about-statement">
-              Bukan sekadar belajar membaca.<br />
-              <span class="muted">Menghidupkan nilai Al-Qur'an di ruang kampus.</span>
-            </h2>
+            <h2 class="about-statement kinetic-title">
+                <span class="kinetic-word" style="--i:0;">Bukan</span> <span class="kinetic-word" style="--i:1;">sekadar</span> <span class="kinetic-word" style="--i:2;">belajar</span> <span class="kinetic-word" style="--i:3;">membaca.</span><br />
+                <span class="kinetic-word muted" style="--i:4;">Menghidupkan</span> <span class="kinetic-word muted" style="--i:5;">nilai</span> <span class="kinetic-word muted" style="--i:6;">Al-Qur'an</span> <span class="kinetic-word muted" style="--i:7;">di ruang kampus.</span>
+              </h2>
           </div>
 
           <div>
@@ -2118,7 +2152,7 @@
         <div class="section-head" data-reveal>
           <div>
             <span class="mono" style="display:block;margin-bottom:12px;">02 · Pembinaan Terarah</span>
-            <h2 class="section-title">Sebelas cabang <span class="muted">keahlian.</span></h2>
+            <h2 class="section-title kinetic-title"><span class="kinetic-word" style="--i:0;">Sebelas</span> <span class="kinetic-word" style="--i:1;">cabang</span> <span class="kinetic-word muted" style="--i:2;">keahlian.</span></h2>
           </div>
           <p class="mono" style="max-width:320px;line-height:1.5;">
             Arahkan kursor atau klik bidang di kiri untuk melihat fokus pembinaan &amp; jadwal rutin.
@@ -2160,7 +2194,7 @@
         <div class="section-head" data-reveal>
           <div>
             <span class="mono" style="display:block;margin-bottom:12px;">03 · Agenda &amp; Karya</span>
-            <h2 class="section-title">Program <span class="muted">unggulan.</span></h2>
+            <h2 class="section-title kinetic-title"><span class="kinetic-word" style="--i:0;">Program</span> <span class="kinetic-word muted" style="--i:1;">unggulan.</span></h2>
           </div>
         </div>
 
@@ -2337,7 +2371,7 @@
             <span class="mono-badge">[ ARSIP & DINAMIKA / 04 ]</span>
             <span>Jejak Langkah & Karya Nyata</span>
           </div>
-          <h2 class="sec-title">Galeri Rekam Jejak Insan Cendekia Qur'ani</h2>
+          <h2 class="sec-title kinetic-title"><span class="kinetic-word" style="--i:0;">Galeri</span> <span class="kinetic-word" style="--i:1;">Rekam</span> <span class="kinetic-word" style="--i:2;">Jejak</span> <span class="kinetic-word muted" style="--i:3;">Insan Cendekia Qur'ani</span></h2>
           <p class="sec-desc">
             Dokumentasi visual perjalanan mahasiswa intelektual muslim Universitas Negeri Malang dalam memadukan kedalaman spiritual, riset ilmiah, dan prestasi membanggakan.
           </p>
@@ -2647,7 +2681,7 @@
         <div class="section-head" data-reveal>
           <div>
             <span class="mono" style="display:block;margin-bottom:12px;">04 · Struktur Penggerak</span>
-            <h2 class="section-title">Kabinet &amp; <span class="muted">departemen.</span></h2>
+            <h2 class="section-title kinetic-title"><span class="kinetic-word" style="--i:0;">Kabinet</span> <span class="kinetic-word" style="--i:1;">&amp;</span> <span class="kinetic-word muted" style="--i:2;">departemen.</span></h2>
           </div>
           <p class="mono" style="max-width:320px;line-height:1.5;">
             Arahkan kursor pada tiap kartu departemen untuk memperluas tampilan.
@@ -2730,7 +2764,7 @@
         <div class="section-head" data-reveal>
           <div>
             <span class="mono" style="display:block;margin-bottom:12px;">05 · Pertanyaan Umum</span>
-            <h2 class="section-title">Sebelum <span class="muted">bergabung.</span></h2>
+            <h2 class="section-title kinetic-title"><span class="kinetic-word" style="--i:0;">Sebelum</span> <span class="kinetic-word muted" style="--i:1;">bergabung.</span></h2>
           </div>
         </div>
 
@@ -2774,8 +2808,8 @@
         <div class="contact-grid">
           <div data-reveal>
             <span class="mono" style="display:block;margin-bottom:14px;">06 · Mulai Langkahmu</span>
-            <h2 class="section-title" style="margin-bottom:24px;">
-              Mari bertumbuh<br /><span class="muted">bersama kami.</span>
+            <h2 class="section-title kinetic-title" style="margin-bottom:24px;">
+              <span class="kinetic-word" style="--i:0;">Mari</span> <span class="kinetic-word" style="--i:1;">bertumbuh</span><br /><span class="kinetic-word muted" style="--i:2;">bersama kami.</span>
             </h2>
             <p style="font-size:16px;color:var(--ink-soft);max-width:460px;margin-bottom:28px;">
               Ingin mendaftar pembinaan, menjalin kerja sama media/sponsorship, atau mengundang studi banding? Kirim pesan langsung ke sekretariat kami.

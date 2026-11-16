@@ -1,5 +1,5 @@
 # Mesin Riset Taste & Auto-Improve UKM ASC (Maksimal 10 Iterasi)
-Current_Iteration: 2
+Current_Iteration: 3
 Max_Iteration: 10
 
 ## Aturan Kunci (Guardrails — DILARANG DILANGGAR)
@@ -22,7 +22,7 @@ Max_Iteration: 10
 - [x] **Iterasi 2 (Riset Hero Depth & Cutout Layering)**
   - *Eksplorasi*: Cari referensi "editorial typography behind subject cutout hero web design".
   - *Terapkan ke ASC*: Sempurnakan proporsi teks raksasa `ASC` di belakang foto dua pengurus berjaket PDH, tambahkan bayangan lembut dan efek mengambang saat mouse bergerak.
-- [ ] **Iterasi 3 (Riset Kinetic Typography & Staggered Word Reveal)**
+- [x] **Iterasi 3 (Riset Kinetic Typography & Staggered Word Reveal)**
   - *Eksplorasi*: Cari referensi animasi kinetic typography ala studio Gobo / Effica.
   - *Terapkan ke ASC*: Efek word-by-word reveal dengan blur dan subtle translateY pada judul-judul utama.
 - [ ] **Iterasi 4 (Riset Tactile Bracket Button & Micro-Interactions)**
@@ -59,3 +59,8 @@ Max_Iteration: 10
 - **Temuan 1 (Dual-Tone Text Degradé Behind Subject)**: Teks raksasa `ASC` di latar belakang ditingkatkan dengan gradien vertikal halus (`#0b0a0f` ke `#56555c`) dengan `-webkit-background-clip: text` dan bayangan lembut, memberi kedalaman atmosferik di belakang foto cutout pengurus.
 - **Temuan 2 (Pedestal Ground Occlusion Shadow)**: Menambahkan layer kontak lantai (`.hero-stage::after`) berupa radial gradient elips ber-filter blur (`blur(8px)`) dengan sentuhan warna cokelat jaket PDH (`rgba(92, 58, 40, 0.08)`), membuat siluet pengurus terasa menapak kokoh di panggung.
 - **Temuan 3 (Differential 3D Parallax with Yaw Rotation)**: Menghitung perpindahan kursor mouse secara asinkron dengan easing lerp (RAF). Teks bergeser berlawanan arah (`-28px`), sedangkan cutout bergeser searah (`+22px`) disertai sedikit rotasi yaw 3D (`rotateY(3.5deg)`), menghasilkan ilusi kedalaman fisik nyata.
+
+### Iterasi 3 — Kinetic Typography & Staggered Word Blur Reveal
+- **Temuan 1 (Optical Blur-to-Sharp Transition)**: Meniru animasi teks Gobo & Framer Motion di mana setiap kata muncul dari keadaan buram (`filter: blur(8px); opacity: 0; transform: translateY(14px);`) menuju fokus tajam (`blur(0); opacity: 1; transform: translateY(0);`).
+- **Temuan 2 (Calculated Delay Stagger `--i`)**: Menggunakan CSS variable `--i` per kata dengan offset `75ms` (`calc(var(--i) * 75ms)`) dipadu kurva akselerasi `cubic-bezier(0.16, 1, 0.3, 1)` menghasilkan cascaded typography yang lentur dan sangat berkelas.
+- **Temuan 3 (IntersectionObserver Triggering)**: Teks terpicu otomatis saat container masuk ke dalam viewport (`.is-in`), sekaligus dilengkapi `@media (prefers-reduced-motion: reduce)` demi standar aksesibilitas web modern.
