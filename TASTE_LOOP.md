@@ -1,5 +1,5 @@
 # Mesin Riset Taste & Auto-Improve UKM ASC (Maksimal 10 Iterasi)
-Current_Iteration: 3
+Current_Iteration: 4
 Max_Iteration: 10
 
 ## Aturan Kunci (Guardrails — DILARANG DILANGGAR)
@@ -25,7 +25,7 @@ Max_Iteration: 10
 - [x] **Iterasi 3 (Riset Kinetic Typography & Staggered Word Reveal)**
   - *Eksplorasi*: Cari referensi animasi kinetic typography ala studio Gobo / Effica.
   - *Terapkan ke ASC*: Efek word-by-word reveal dengan blur dan subtle translateY pada judul-judul utama.
-- [ ] **Iterasi 4 (Riset Tactile Bracket Button & Micro-Interactions)**
+- [x] **Iterasi 4 (Riset Tactile Bracket Button & Micro-Interactions)**
   - *Eksplorasi*: Cari referensi tombol bracket hover ala Gobo `[ START A PROJECT ]` dan magnetic cursor.
   - *Terapkan ke ASC*: Micro-interaction tactile hover pada tombol bracket `[ DAFTAR SEKARANG ]`, `[ LIHAT SEMUA ]`, cursor hover badge.
 - [ ] **Iterasi 5 (Riset Interactive Directory & Sticky Preview)**
@@ -64,3 +64,8 @@ Max_Iteration: 10
 - **Temuan 1 (Optical Blur-to-Sharp Transition)**: Meniru animasi teks Gobo & Framer Motion di mana setiap kata muncul dari keadaan buram (`filter: blur(8px); opacity: 0; transform: translateY(14px);`) menuju fokus tajam (`blur(0); opacity: 1; transform: translateY(0);`).
 - **Temuan 2 (Calculated Delay Stagger `--i`)**: Menggunakan CSS variable `--i` per kata dengan offset `75ms` (`calc(var(--i) * 75ms)`) dipadu kurva akselerasi `cubic-bezier(0.16, 1, 0.3, 1)` menghasilkan cascaded typography yang lentur dan sangat berkelas.
 - **Temuan 3 (IntersectionObserver Triggering)**: Teks terpicu otomatis saat container masuk ke dalam viewport (`.is-in`), sekaligus dilengkapi `@media (prefers-reduced-motion: reduce)` demi standar aksesibilitas web modern.
+
+### Iterasi 4 — Tactile Bracket Button & Micro-Interactions
+- **Temuan 1 (Dynamic Bracket Expansion)**: Tombol bracket Gobo (`.bracket-btn`) mengekspansi tanda kurung siku `[` dan `]` secara elastis ke samping (`translateX(-6px)` dan `+6px`) disertai peningkatan letter-spacing saat di-hover, memberi sensasi klik mekanis yang sangat memuaskan.
+- **Temuan 2 (Magnetic Mouse Snapping)**: Menambahkan micro-interaction magnetik pada desktop (`mousemove` listener dengan offset `0.18x` dan `0.22y`) yang menarik tombol secara halus mengikuti ujung kursor pengguna sebelum kembali ke titik semula pada `mouseleave`.
+- **Temuan 3 (Luminescent Blinker Accent)**: Blok kursor terminal `█` (`.cursor-block`) di dalam tombol menyala dengan `box-shadow: 0 0 8px currentColor` saat di-hover, memadukan identitas teknikal modern dengan estetika minimalis.

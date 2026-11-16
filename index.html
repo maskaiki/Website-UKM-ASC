@@ -272,15 +272,19 @@
       font-weight: 500;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      padding: 12px 20px;
+      padding: 12px 22px;
       border-radius: 6px;
-      transition: background 0.35s var(--ease-gobo), color 0.35s var(--ease-gobo), border-color 0.35s var(--ease-gobo), transform 0.2s var(--ease-gobo);
+      transition: background 0.3s var(--ease-gobo), color 0.3s var(--ease-gobo), border-color 0.3s var(--ease-gobo), transform 0.18s var(--ease-gobo), letter-spacing 0.3s var(--ease-gobo), box-shadow 0.3s var(--ease-gobo);
       white-space: nowrap;
       cursor: pointer;
+      position: relative;
+      user-select: none;
+      will-change: transform;
     }
 
     .bracket-btn:active {
-      transform: scale(0.975);
+      transform: scale(0.955) !important;
+      transition-duration: 0.08s;
     }
 
     .bracket-btn--dark {
@@ -291,7 +295,8 @@
     .bracket-btn--dark:hover {
       background: var(--accent);
       color: #ffffff;
-      box-shadow: 0 6px 20px rgba(20, 59, 102, 0.25);
+      box-shadow: 0 8px 26px rgba(20, 59, 102, 0.28);
+      letter-spacing: 0.085em;
     }
 
     .bracket-btn--ghost {
@@ -302,16 +307,20 @@
     .bracket-btn--ghost:hover {
       border-color: var(--ink);
       background: var(--surface);
+      letter-spacing: 0.085em;
     }
 
     .bracket-btn .br {
       color: var(--mono-muted);
       display: inline-block;
-      transition: transform 0.45s var(--ease-gobo), color 0.35s var(--ease-gobo);
+      transition: transform 0.4s var(--ease-gobo), color 0.3s var(--ease-gobo);
     }
-    .bracket-btn--dark .br { color: rgba(255, 255, 255, 0.55); }
-    .bracket-btn:hover .br-l { transform: translateX(-5px); color: currentColor; }
-    .bracket-btn:hover .br-r { transform: translateX(5px); color: currentColor; }
+    .bracket-btn--dark .br { color: rgba(255, 255, 255, 0.6); }
+    .bracket-btn:hover .br-l { transform: translateX(-6px); color: currentColor; }
+    .bracket-btn:hover .br-r { transform: translateX(6px); color: currentColor; }
+    .bracket-btn:hover .cursor-block {
+      box-shadow: 0 0 8px currentColor;
+    }
 
     .cursor-block {
       width: 7px;
@@ -2938,6 +2947,22 @@
           requestAnimationFrame(updateParallax);
         }
         requestAnimationFrame(updateParallax);
+      }
+
+      
+      // Magnetic Hover for Gobo Bracket Buttons
+      if (window.matchMedia('(hover: hover)').matches) {
+        document.querySelectorAll('.bracket-btn').forEach((btn) => {
+          btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            btn.style.transform = `translate3d(${(x * 0.18).toFixed(1)}px, ${(y * 0.22).toFixed(1)}px, 0)`;
+          });
+          btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate3d(0, 0, 0)';
+          });
+        });
       }
 
       // 3. Mobile Drawer
