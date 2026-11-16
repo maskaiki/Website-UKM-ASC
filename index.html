@@ -1639,15 +1639,37 @@
       }
     }
 
+    /* Mobile Touch Ergonomics (390px Viewport Audit & 60fps Composite) */
+    button, a, input, textarea, select {
+      touch-action: manipulation;
+    }
+
     @media (max-width: 420px) {
       .hero {
         padding-top: 80px;
+        min-height: 92svh;
       }
       .hero-giant-type {
-        font-size: clamp(100px, 25vw, 150px);
+        font-size: clamp(80px, 23vw, 130px);
       }
       .hero-cutout-wrap img {
         max-height: 38vh;
+      }
+      .menu-toggle {
+        min-height: 44px;
+        min-width: 44px;
+        justify-content: center;
+      }
+      .bracket-btn {
+        min-height: 46px;
+        padding-inline: 18px;
+      }
+      .field {
+        min-height: 48px;
+        font-size: 16px; /* Prevents auto-zoom on iOS Safari */
+      }
+      .gobo-workstrip-container {
+        height: clamp(380px, 56vh, 460px);
       }
       .gallery-modal-dialog {
         padding: 0;
@@ -1665,6 +1687,12 @@
       .footer-main {
         grid-template-columns: 1fr;
         gap: 28px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
       }
     }
 
