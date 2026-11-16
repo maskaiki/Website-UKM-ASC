@@ -1420,33 +1420,40 @@
 
     .faq-item {
       border-top: 1px solid var(--border);
+      transition: background 0.25s ease;
     }
     .faq-item:last-child { border-bottom: 1px solid var(--border); }
     .faq-trigger {
       width: 100%;
-      padding: 22px 0;
+      padding: 24px 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 16px;
       text-align: left;
-      font-size: clamp(18px, 2vw, 24px);
+      font-size: clamp(18px, 2.1vw, 24px);
       font-weight: 600;
       letter-spacing: -0.03em;
-    }
-    .faq-plus {
-      font-family: var(--font-mono);
-      font-size: 20px;
-      color: var(--muted);
-      display: inline-block;
-      transition: transform 0.45s var(--ease-gobo), color 0.3s;
-    }
-    .faq-trigger {
       cursor: pointer;
-      transition: color 0.25s var(--ease-gobo);
+      border-radius: 6px;
+      transition: color 0.25s var(--ease-gobo), padding-left 0.3s var(--ease-gobo), background 0.25s ease;
     }
     .faq-trigger:hover {
       color: var(--accent);
+      padding-left: 14px;
+      background: rgba(20, 59, 102, 0.025);
+    }
+    .faq-plus {
+      font-family: var(--font-mono);
+      font-size: 22px;
+      color: var(--muted);
+      display: inline-block;
+      transition: transform 0.45s var(--ease-gobo), color 0.3s;
+      flex-shrink: 0;
+    }
+    .faq-item.is-open .faq-trigger {
+      color: var(--accent);
+      padding-left: 14px;
     }
     .faq-item.is-open .faq-plus {
       transform: rotate(45deg);
@@ -1458,13 +1465,14 @@
       transition: max-height 0.45s var(--ease-gobo);
     }
     .faq-body p {
-      padding-bottom: 22px;
+      padding: 0 14px 24px 14px;
       color: var(--ink-soft);
-      font-size: 15px;
-      max-width: 720px;
+      font-size: 15.5px;
+      line-height: 1.65;
+      max-width: 740px;
     }
 
-    /* Contact / Join Section */
+    /* Contact / Join Section Form */
     .contact-grid {
       display: grid;
       grid-template-columns: 6fr 6fr;
@@ -1474,22 +1482,24 @@
     .contact-form {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
     .field {
       width: 100%;
       padding: 18px 20px;
       background: var(--surface);
       border: 1px solid var(--border);
+      border-radius: 8px;
       font-family: var(--font-sans);
-      font-size: 16px;
+      font-size: 15.5px;
       color: var(--ink);
       outline: none;
-      transition: border-color 0.25s, background 0.25s;
+      transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
     }
     .field:focus {
       background: #ffffff;
-      border-color: var(--ink);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(20, 59, 102, 0.08);
     }
     textarea.field {
       min-height: 140px;
@@ -1497,13 +1507,40 @@
     }
     .form-toast {
       display: none;
-      padding: 14px 16px;
-      background: var(--accent-soft);
+      padding: 14px 18px;
+      border-radius: 8px;
+      background: rgba(20, 59, 102, 0.08);
       border: 1px solid var(--accent);
       color: var(--accent);
       font-family: var(--font-mono);
       font-size: 12px;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
+    }
+
+    /* Footer Live Clock Badge with Tabular Numbers */
+    .footer-clock-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--ink);
+    }
+    .footer-clock-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+      display: inline-block;
     }
 
     /* ==========================================================================
@@ -3063,7 +3100,7 @@
 
       <div class="footer-bottom">
         <span class="mono">Malang, Jawa Timur</span>
-        <span class="mono" id="wibClock">Waktu Lokal --:-- WIB</span>
+        <span class="footer-clock-badge"><span class="footer-clock-dot"></span><span id="wibClock">Waktu Lokal --:--:-- WIB · Malang</span></span>
         <span class="mono">© 2026 UKM Al-Qur'an Study Club UM</span>
       </div>
     </div>
@@ -3373,15 +3410,16 @@
       // 9. Live Malang Time (WIB) in Footer
       const clockEl = document.getElementById('wibClock');
       function updateClock() {
-        const now = new Date();
-        const opts = { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', hour12: false };
-        const str = new Intl.DateTimeFormat('id-ID', opts).format(now);
-        const parts = str.split(/[.:]/);
-        const h = (parts[0] || '00').padStart(2, '0');
-        const m = (parts[1] || '00').padStart(2, '0');
-        const blink = now.getSeconds() % 2 === 0 ? '1' : '0.2';
-        clockEl.innerHTML = `Waktu Lokal ${h}<span style="opacity:${blink}">:</span>${m} WIB · Malang`;
-      }
+          const now = new Date();
+          const opts = { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+          const str = new Intl.DateTimeFormat('id-ID', opts).format(now);
+          const parts = str.split(/[.:]/);
+          const h = (parts[0] || '00').padStart(2, '0');
+          const m = (parts[1] || '00').padStart(2, '0');
+          const s = (parts[2] || '00').padStart(2, '0');
+          const blink = now.getSeconds() % 2 === 0 ? '1' : '0.2';
+          clockEl.innerHTML = `Waktu Lokal ${h}<span style="opacity:${blink}">:</span>${m}:${s} WIB · Malang`;
+        }
       updateClock();
       setInterval(updateClock, 1000);
     })();

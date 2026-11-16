@@ -1,5 +1,5 @@
 # Mesin Riset Taste & Auto-Improve UKM ASC (Maksimal 10 Iterasi)
-Current_Iteration: 8
+Current_Iteration: 9
 Max_Iteration: 10
 
 ## Aturan Kunci (Guardrails — DILARANG DILANGGAR)
@@ -40,7 +40,7 @@ Max_Iteration: 10
 - [x] **Iterasi 8 (Riset Horizontal Accordion & Team Slices)**
   - *Eksplorasi*: Desain slice accordion pengurus/tim interaktif ala editorial studio.
   - *Terapkan ke ASC*: Sempurnakan flex-grow accordion kartu struktur kepengurusan dengan info reveal yang elegan.
-- [ ] **Iterasi 9 (Riset Editorial FAQ, Testimoni, Form & Footer WIB Clock)**
+- [x] **Iterasi 9 (Riset Editorial FAQ, Testimoni, Form & Footer WIB Clock)**
   - *Eksplorasi*: Modern clean FAQ accordion, marquee/quote testimonial cards, form floating focus, live time clock.
   - *Terapkan ke ASC*: Polish visual FAQ, Testimoni, Form Hubungi Kami, dan live WIB digital clock di footer.
 - [ ] **Iterasi 10 (Final 60fps Polish, Standalone Export & Verification)**
@@ -89,3 +89,8 @@ Max_Iteration: 10
 - **Temuan 1 (Spring Elastic Flex-Ratio `flex: 0.65` vs `flex: 3.2`)**: Menggunakan rasio pemuaian kartu (`flex 0.65s cubic-bezier(0.25, 1, 0.5, 1)`) di mana kartu yang tidak di-hover meredup dan menyusut ke `0.65`, sementara kartu yang di-hover melebar dramatis ke `3.2` dengan zoom halus latar belakang (`scale(1.08)`).
 - **Temuan 2 (Department Color Gradient Signatures)**: Masing-masing dari 6 departemen pengurus (BPH, Pembinaan, Syiar, Medkom, Kesra, PP3 Blitar) memiliki gradien atmosferik yang berbeda dan harmonis, mempertahankan kontras teks putih yang terbaca tajam di atas overlay.
 - **Temuan 3 (Desktop Elegance to Mobile Grid Stacking)**: Menjamin transisi mulus pada layar kecil di mana layout kartu otomatis beralih menjadi kartu vertikal fleksibel tanpa overflow horizontal.
+
+### Iterasi 9 — Editorial FAQ, Testimoni, Form & Footer WIB Clock
+- **Temuan 1 (Anti-Jitter Tabular Digital Clock `font-variant-numeric: tabular-nums`)**: Jam digital lokal Malang WIB (`Asia/Jakarta`) di footer dilengkapi styling tabular monospaced pill dengan live emerald pulsing indicator (`.footer-clock-dot`), mencegah layout shift setiap detiknya.
+- **Temuan 2 (Subtle Shift & Rotating Glyph FAQ)**: Accordion FAQ memberikan feedback sentuhan kursor dengan padding shift halus (`padding-left: 14px`) dan latar belakang aksen transparan, sementara ikon `+` berputar 45 derajat menjadi `×` berwarna sapphire.
+- **Temuan 3 (Tactile Focus Ring Form Fields)**: Input formulir kontak mengusung sudut modern `border-radius: 8px` dengan highlight cincin lembut `box-shadow: 0 0 0 3px rgba(20, 59, 102, 0.08)` saat fokus, memberikan kepastian ergonomis saat calon anggota mengetik.
