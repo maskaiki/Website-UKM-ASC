@@ -1,5 +1,5 @@
 # Mesin Riset Taste & Auto-Improve UKM ASC (Maksimal 10 Iterasi)
-Current_Iteration: 7
+Current_Iteration: 8
 Max_Iteration: 10
 
 ## Aturan Kunci (Guardrails — DILARANG DILANGGAR)
@@ -37,7 +37,7 @@ Max_Iteration: 10
 - [x] **Iterasi 7 (Riset Filter & View Switcher [GRID] / [LIST])**
   - *Eksplorasi*: Filter bar interaktif modern dengan layout switch animatif.
   - *Terapkan ke ASC*: Sempurnakan filter Program Kerja dan Galeri dengan smooth layout transition.
-- [ ] **Iterasi 8 (Riset Horizontal Accordion & Team Slices)**
+- [x] **Iterasi 8 (Riset Horizontal Accordion & Team Slices)**
   - *Eksplorasi*: Desain slice accordion pengurus/tim interaktif ala editorial studio.
   - *Terapkan ke ASC*: Sempurnakan flex-grow accordion kartu struktur kepengurusan dengan info reveal yang elegan.
 - [ ] **Iterasi 9 (Riset Editorial FAQ, Testimoni, Form & Footer WIB Clock)**
@@ -84,3 +84,8 @@ Max_Iteration: 10
 - **Temuan 1 (Graceful Exit/Entry Scale Transition)**: Menggantikan penghilangan elemen seketika (`display: none`) dengan animasi dua tahap: elemen yang difilter keluar terlebih dahulu mengecil halus (`scale(0.95) translateY(8px); opacity: 0`) selama 280ms sebelum di-hide, sementara elemen baru bertransisi masuk secara elastis.
 - **Temuan 2 (Layout Viewport Dissolve `viewFadeIn`)**: Pergantian tampilan antara Grid kartu gambar dan List tabel baris memicu transisi dissolve `0.35s cubic-bezier(0.16, 1, 0.3, 1)`, mencegah layout jump yang mengganggu kenyamanan baca.
 - **Temuan 3 (Tabular Directional Indicator)**: Baris list dilengkapi penanda arah `↗` (`.row-arrow`) dan styling monospace terformat yang sejajar vertikal rapi, memudahkan pemindaian cepat di monitor desktop.
+
+### Iterasi 8 — Horizontal Accordion & Team Slices
+- **Temuan 1 (Spring Elastic Flex-Ratio `flex: 0.65` vs `flex: 3.2`)**: Menggunakan rasio pemuaian kartu (`flex 0.65s cubic-bezier(0.25, 1, 0.5, 1)`) di mana kartu yang tidak di-hover meredup dan menyusut ke `0.65`, sementara kartu yang di-hover melebar dramatis ke `3.2` dengan zoom halus latar belakang (`scale(1.08)`).
+- **Temuan 2 (Department Color Gradient Signatures)**: Masing-masing dari 6 departemen pengurus (BPH, Pembinaan, Syiar, Medkom, Kesra, PP3 Blitar) memiliki gradien atmosferik yang berbeda dan harmonis, mempertahankan kontras teks putih yang terbaca tajam di atas overlay.
+- **Temuan 3 (Desktop Elegance to Mobile Grid Stacking)**: Menjamin transisi mulus pada layar kecil di mana layout kartu otomatis beralih menjadi kartu vertikal fleksibel tanpa overflow horizontal.
