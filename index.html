@@ -1093,7 +1093,7 @@
     }
 
     /* ==========================================================================
-       GOBO 3D KINETIC RIBBON & INTERACTIVE SHOWCASE STAGE
+       GOBO 3D KINETIC RIBBON & INTERACTIVE SHOWCASE STAGE (WHITE-FIRST EDITORIAL)
        ========================================================================== */
     .gallery-view-controls {
       display: flex;
@@ -1104,8 +1104,8 @@
 
     .view-switch-group {
       display: inline-flex;
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: var(--surface, #f3f7f4);
+      border: 1.5px solid var(--border, rgba(9, 19, 28, 0.12));
       border-radius: 999px;
       padding: 3px;
     }
@@ -1113,14 +1113,14 @@
     .view-switch-btn {
       background: transparent;
       border: none;
-      padding: 6px 14px;
-      font-size: 12.5px;
+      padding: 7px 16px;
+      font-size: 13px;
       font-weight: 600;
       font-family: inherit;
-      color: var(--ink-secondary);
+      color: var(--ink-secondary, #1e2d3b);
       border-radius: 999px;
       cursor: pointer;
-      transition: all 0.25s var(--ease-out-expo);
+      transition: all 0.25s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -1128,18 +1128,18 @@
 
     .view-switch-btn.is-active {
       background: #ffffff;
-      color: var(--ink);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      color: var(--ink, #09131c);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
     .ribbon-nav-btn {
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      border: 1px solid var(--border);
+      border: 1.5px solid var(--border, rgba(9, 19, 28, 0.12));
       background: #ffffff;
-      color: var(--ink);
-      font-size: 15px;
+      color: var(--ink, #09131c);
+      font-size: 16px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -1148,11 +1148,12 @@
     }
 
     .ribbon-nav-btn:hover {
-      border-color: var(--emerald);
-      color: var(--emerald);
+      border-color: var(--emerald, #15803d);
+      color: var(--emerald, #15803d);
       transform: scale(1.06);
     }
 
+    /* 3D WebGL Ribbon Stage - White Canvas & Refined Border */
     .gobo-ribbon-stage {
       position: relative;
       width: 100%;
@@ -1161,9 +1162,9 @@
       margin-top: 24px;
       border-radius: 24px;
       overflow: hidden;
-      background: #080e0b;
-      border: 1px solid rgba(21, 128, 61, 0.25);
-      box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.04);
+      background: #ffffff;
+      border: 1.5px solid rgba(9, 19, 28, 0.12);
+      box-shadow: 0 16px 45px -12px rgba(9, 19, 28, 0.08), 0 0 0 1px rgba(9, 19, 28, 0.03);
       cursor: grab;
       touch-action: none;
       user-select: none;
@@ -1197,22 +1198,24 @@
     .gobo-hud-pill {
       font-family: var(--font-mono, monospace);
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.7);
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(8px);
-      padding: 5px 12px;
+      color: #0d5c3f;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      padding: 6px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1.5px solid rgba(9, 19, 28, 0.12);
+      box-shadow: 0 2px 10px rgba(9, 19, 28, 0.04);
     }
 
     .gobo-hud-hint {
       font-family: var(--font-mono, monospace);
       font-size: 11px;
+      font-weight: 600;
       letter-spacing: 0.06em;
-      color: rgba(255, 255, 255, 0.5);
+      color: #475569;
     }
 
     .gobo-hud-bottom {
@@ -1230,21 +1233,22 @@
     .gobo-active-slot {
       font-family: var(--font-mono, monospace);
       font-size: 13px;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.75);
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(8px);
-      padding: 4px 10px;
-      border-radius: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-weight: 700;
+      color: #09131c;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(10px);
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(9, 19, 28, 0.12);
+      box-shadow: 0 2px 8px rgba(9, 19, 28, 0.04);
     }
 
     .gobo-scrub-rail {
       pointer-events: auto;
       cursor: pointer;
-      width: 160px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.2);
+      width: 170px;
+      height: 5px;
+      background: rgba(9, 19, 28, 0.12);
       border-radius: 999px;
       position: relative;
       overflow: hidden;
@@ -1252,7 +1256,7 @@
     }
 
     .gobo-scrub-rail:hover {
-      height: 6px;
+      height: 7px;
     }
 
     .gobo-scrub-thumb {
@@ -1261,18 +1265,17 @@
       top: 0;
       height: 100%;
       width: 25%;
-      background: #22c55e;
+      background: #0d5c3f;
       border-radius: 999px;
-      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+      box-shadow: 0 0 10px rgba(13, 92, 63, 0.4);
       transform: translateX(0%);
     }
 
     .gobo-active-title {
       font-family: var(--font-mono, monospace);
       font-size: 14px;
-      font-weight: 700;
-      color: #ffffff;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+      font-weight: 800;
+      color: #09131c;
       max-width: 380px;
       text-align: right;
       white-space: nowrap;
@@ -1284,7 +1287,7 @@
     .gobo-active-detail-card {
       margin-top: 18px;
       background: #ffffff;
-      border: 1px solid var(--border);
+      border: 1.5px solid rgba(9, 19, 28, 0.12);
       border-radius: 18px;
       padding: 22px 28px;
       display: flex;
@@ -1305,13 +1308,13 @@
     .gobo-detail-left h3 {
       font-size: 18px;
       font-weight: 700;
-      color: var(--ink);
+      color: var(--ink, #09131c);
       line-height: 1.3;
     }
 
     .gobo-detail-left p {
       font-size: 14px;
-      color: var(--ink-secondary);
+      color: var(--ink-secondary, #1e2d3b);
       line-height: 1.5;
     }
 
@@ -1323,30 +1326,152 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 18px;
+      padding: 10px 20px;
       border-radius: 999px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--ink);
+      background: var(--surface, #f3f7f4);
+      border: 1.5px solid rgba(9, 19, 28, 0.12);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink, #09131c);
       cursor: pointer;
-      transition: all 0.25s var(--ease-out-expo);
+      transition: all 0.25s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
       text-decoration: none;
     }
 
     .btn-open-detail:hover {
-      background: var(--ink);
+      background: var(--ink, #09131c);
       color: #ffffff;
-      border-color: var(--ink);
+      border-color: var(--ink, #09131c);
       transform: translateY(-2px);
     }
 
-    /* Lightbox Modal */
+    /* Grid Visual Mode - Rich Multi-layer Blur Gradient Cards */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 24px;
+    }
+
+    .gallery-card {
+      background: #ffffff;
+      border: 1.5px solid rgba(9, 19, 28, 0.12);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(11, 19, 30, 0.04);
+      transition: all 0.35s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+      cursor: pointer;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(13, 92, 63, 0.35);
+      box-shadow: 0 20px 40px -15px rgba(13, 92, 63, 0.14);
+    }
+
+    .gallery-gradient-card {
+      width: 100%;
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #ffffff;
+    }
+
+    .gradient-watermark-wrap {
+      position: absolute;
+      right: -15px;
+      top: 15px;
+      width: 150px;
+      height: 150px;
+      opacity: 0.22;
+      pointer-events: none;
+      transform: rotate(15deg);
+    }
+
+    .gradient-watermark {
+      width: 100%;
+      height: 100%;
+    }
+
+    .gradient-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .gradient-card-badge {
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(8px);
+      color: #ffffff;
+    }
+
+    .gradient-card-num {
+      font-family: var(--font-asc, 'Geist', sans-serif);
+      font-size: 32px;
+      font-weight: 900;
+      opacity: 0.45;
+      line-height: 1;
+    }
+
+    .gradient-card-bottom {
+      position: relative;
+      z-index: 2;
+    }
+
+    .gradient-card-bottom h4 {
+      font-family: inherit;
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .gradient-card-bottom p {
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.88);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    .gallery-body {
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .gallery-body h4 {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--ink, #09131c);
+      line-height: 1.35;
+    }
+
+    .gallery-body p {
+      font-size: 13.5px;
+      color: var(--ink-secondary, #1e2d3b);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* Lightbox Modal with Blur Gradient Showcase */
     .gallery-modal {
       position: fixed;
       inset: 0;
-      background: rgba(11, 15, 13, 0.85);
+      background: rgba(9, 19, 28, 0.85);
       backdrop-filter: blur(12px);
       z-index: 9999;
       display: none;
@@ -1364,12 +1489,12 @@
     .gallery-modal-dialog {
       background: #ffffff;
       border-radius: 24px;
-      max-width: 820px;
+      max-width: 780px;
       width: 100%;
       overflow: hidden;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 32px 70px rgba(0, 0, 0, 0.45);
       position: relative;
-      animation: modalPop 0.35s var(--ease-out-expo);
+      animation: modalPop 0.35s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
     }
 
     @keyframes modalPop {
@@ -1381,93 +1506,103 @@
       position: absolute;
       top: 16px;
       right: 16px;
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.55);
       color: #ffffff;
       border: none;
-      font-size: 20px;
+      font-size: 22px;
       cursor: pointer;
       display: grid;
       place-items: center;
       z-index: 10;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.2s;
     }
 
     .gallery-modal-close:hover {
       background: rgba(0, 0, 0, 0.9);
+      transform: scale(1.08);
     }
 
-    .gallery-modal-img {
+    .gallery-modal-visual {
       width: 100%;
-      max-height: 480px;
-      object-fit: cover;
-      display: block;
+      height: 260px;
+      position: relative;
+      overflow: hidden;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #ffffff;
+      transition: background 0.4s ease;
+    }
+
+    .modal-visual-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .modal-visual-badge {
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.24);
+      backdrop-filter: blur(8px);
+      color: #ffffff;
+    }
+
+    .modal-visual-num {
+      font-family: var(--font-asc, 'Geist', sans-serif);
+      font-size: 44px;
+      font-weight: 900;
+      opacity: 0.45;
+      line-height: 1;
+    }
+
+    .modal-visual-bottom {
+      position: relative;
+      z-index: 2;
+    }
+
+    .modal-visual-bottom h3 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+      line-height: 1.25;
+    }
+
+    .modal-visual-bottom span {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.88);
     }
 
     .gallery-modal-content {
-      padding: 24px 28px;
+      padding: 26px 30px;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    @media (max-width: 768px) {
-      .gobo-ribbon-stage {
-        height: 400px;
-      }
-      .gobo-hud-hint {
-        display: none;
-      }
-      .gobo-active-title {
-        font-size: 12px;
-        max-width: 180px;
-      }
-      .gobo-active-detail-card {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 18px 20px;
+    @media (max-width: 810px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
       }
     }
 
-
-    .gallery-body {
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    @media (max-width: 580px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .gallery-body h4 {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.3;
-    }
-
-    .gallery-body p {
-      font-size: 13.5px;
-      color: var(--ink-secondary);
-      line-height: 1.5;
-    }
-
-    /* RevealImage with clip-path transition */
-    [data-reveal-img] {
-      clip-path: inset(14% 0 0 0 round 18px);
-      opacity: 0;
-      transform: scale(1.04);
-      transition: clip-path 0.9s var(--ease-out-expo), opacity 0.8s ease, transform 0.9s var(--ease-out-expo);
-    }
-
-    [data-reveal-img].is-in {
-      clip-path: inset(0 0 0 0 round 18px);
-      opacity: 1;
-      transform: scale(1);
-    }
-
-
-    /* ==========================================================================
+        /* ==========================================================================
        STRUKTUR KABINET (ACCORDION SLICES + PUCUK DAUN + AKbrowserSEN EMAS ISLAMI)
        ========================================================================== */
     .kabinet-slices-wrap {
@@ -2518,8 +2653,7 @@
       <!-- Partikel Geometri Islami Sudut -->
       <svg class="section-islamic-corner top-left" viewBox="0 0 100 100" fill="none" aria-hidden="true">
         <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="2" />
-        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor"
-          stroke-width="2" />
+        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor" stroke-width="2" />
         <circle cx="50" cy="50" r="10" stroke="currentColor" stroke-width="1.5" />
       </svg>
       <div class="section-header-row" data-reveal>
@@ -2546,7 +2680,7 @@
         </div>
       </div>
 
-      <!-- GOBO 3D CURVED RIBBON STAGE -->
+      <!-- GOBO 3D CURVED RIBBON STAGE (WHITE-FIRST EDITORIAL) -->
       <div class="gobo-ribbon-stage" id="goboRibbonStage" role="region" aria-label="3D Curved Ribbon Galeri Visual UKM ASC">
         <div class="gobo-hud-top">
           <span class="gobo-hud-pill">۞ KINETIC 3D RIBBON · GOBO SHADER ENGINE</span>
@@ -2562,7 +2696,7 @@
         </div>
       </div>
 
-      <!-- DYNAMIC DETAIL SYNC CARD (Preserves All Original Texts) -->
+      <!-- Sync Detail Story Card Below 3D Stage -->
       <div class="gobo-active-detail-card" id="goboActiveDetailCard">
         <div class="gobo-detail-left">
           <span class="label-kicker" id="detailKicker">🌿 Kaderisasi</span>
@@ -2571,15 +2705,27 @@
         </div>
         <div class="gobo-detail-right">
           <button type="button" class="btn-open-detail" id="btnOpenModalFromDetail">
-            Lihat Foto &amp; Info Lengkap ↗
+            <span>Buka Detail Lengkap</span>
+            <span>→</span>
           </button>
         </div>
       </div>
 
-      <div class="gallery-grid">
-        <article class="gallery-card" data-reveal-img>
-          <div class="gallery-img-wrap">
-            <img src="galeri/Screenshot (2971).png" alt="Al-Qur'an Camp & Grand Opening" loading="lazy" />
+      <!-- GRID VISUAL MODE (BLUR GRADIENT MULTI-STOP CARDS) -->
+      <div class="gallery-grid" style="display:none;">
+        <article class="gallery-card" data-idx="0" data-cursor-hover>
+          <div class="gallery-gradient-card" style="background: linear-gradient(145deg, #063726, #0d5c3f, #127852);">
+            <div class="gradient-watermark-wrap">
+              <svg viewBox="0 0 100 100" fill="none" class="gradient-watermark"><rect x="25" y="25" width="50" height="50" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/><rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/><circle cx="50" cy="50" r="14" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/></svg>
+            </div>
+            <div class="gradient-card-top">
+              <span class="gradient-card-badge">🌿 Kaderisasi</span>
+              <span class="gradient-card-num">01</span>
+            </div>
+            <div class="gradient-card-bottom">
+              <h4>Al-Qur'an Camp &amp; Grand Opening</h4>
+              <p>Pekan Orientasi &amp; Tadabbur Alam Mahasiswa Baru</p>
+            </div>
           </div>
           <div class="gallery-body">
             <span class="label-kicker">🌿 Kaderisasi</span>
@@ -2588,67 +2734,129 @@
           </div>
         </article>
 
-        <article class="gallery-card" data-reveal-img>
-          <div class="gallery-img-wrap">
-            <img src="galeri/Screenshot (2972).png" alt="MTQ Internal Pembinaan" loading="lazy" />
+        <article class="gallery-card" data-idx="1" data-cursor-hover>
+          <div class="gallery-gradient-card" style="background: linear-gradient(145deg, #09131c, #143b66, #1e3a5f);">
+            <div class="gradient-watermark-wrap">
+              <svg viewBox="0 0 100 100" fill="none" class="gradient-watermark"><rect x="25" y="25" width="50" height="50" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/><rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/><circle cx="50" cy="50" r="14" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/></svg>
+            </div>
+            <div class="gradient-card-top">
+              <span class="gradient-card-badge">🏆 Prestasi</span>
+              <span class="gradient-card-num">02</span>
+            </div>
+            <div class="gradient-card-bottom">
+              <h4>Kafilah MTQ Mahasiswa Nasional</h4>
+              <p>Pusat Prestasi Nasional 11 Cabang Qur'ani</p>
+            </div>
           </div>
           <div class="gallery-body">
-            <span class="label-kicker">🏆 Kompetisi</span>
-            <h4>MTQ Internal Pembinaan (MTQ-IP)</h4>
-            <p>Penjaringan bibit unggul kafilah universitas dalam 11 cabang perlombaan seni Qur'ani.</p>
+            <span class="label-kicker">🏆 Prestasi</span>
+            <h4>Kafilah MTQ Mahasiswa Nasional</h4>
+            <p>Delegasi UM berlaga di ajang MTQMN dengan torehan medali pada cabang Tilawah, Hifzhil, dan Khath.</p>
           </div>
         </article>
 
-        <article class="gallery-card" data-reveal-img>
-          <div class="gallery-img-wrap">
-            <img src="galeri/Screenshot (2973).png" alt="Ujian & Wisuda Tahfidz UM" loading="lazy" />
+        <article class="gallery-card" data-idx="2" data-cursor-hover>
+          <div class="gallery-gradient-card" style="background: linear-gradient(145deg, #451a03, #78350f, #b45309);">
+            <div class="gradient-watermark-wrap">
+              <svg viewBox="0 0 100 100" fill="none" class="gradient-watermark"><rect x="25" y="25" width="50" height="50" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/><rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/><circle cx="50" cy="50" r="14" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/></svg>
+            </div>
+            <div class="gradient-card-top">
+              <span class="gradient-card-badge">✨ Syiar Kampus</span>
+              <span class="gradient-card-num">03</span>
+            </div>
+            <div class="gradient-card-bottom">
+              <h4>Festival Semarak Al-Qur'an (SAQ)</h4>
+              <p>Pekan Syiar &amp; Musabaqah Nasional Tahunan</p>
+            </div>
           </div>
           <div class="gallery-body">
-            <span class="label-kicker">۞ Tahfidz</span>
-            <h4>Ujian &amp; Wisuda Tahfidz Al-Qur'an</h4>
-            <p>Momen penganugerahan bagi hafizh dan hafizhah mahasiswa Universitas Negeri Malang.</p>
+            <span class="label-kicker">✨ Syiar Kampus</span>
+            <h4>Festival Semarak Al-Qur'an (SAQ)</h4>
+            <p>Pekan perlombaan Al-Qur'an nasional tingkat pelajar &amp; mahasiswa yang dihadiri ratusan kontingen.</p>
           </div>
         </article>
 
-        <article class="gallery-card" data-reveal-img>
-          <div class="gallery-img-wrap">
-            <img src="galeri/Screenshot (2974).png" alt="Festival Qur'ani Nasional" loading="lazy" />
+        <article class="gallery-card" data-idx="3" data-cursor-hover>
+          <div class="gallery-gradient-card" style="background: linear-gradient(145deg, #3b1d11, #5c3a28, #7c4d2b);">
+            <div class="gradient-watermark-wrap">
+              <svg viewBox="0 0 100 100" fill="none" class="gradient-watermark"><rect x="25" y="25" width="50" height="50" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/><rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/><circle cx="50" cy="50" r="14" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/></svg>
+            </div>
+            <div class="gradient-card-top">
+              <span class="gradient-card-badge">🧭 Jejak Peradaban</span>
+              <span class="gradient-card-num">04</span>
+            </div>
+            <div class="gradient-card-bottom">
+              <h4>Studi Ekskursi &amp; Safari Religi</h4>
+              <p>Silaturahmi Peradaban &amp; Khazanah Islam</p>
+            </div>
           </div>
           <div class="gallery-body">
-            <span class="label-kicker">🌟 Event Akbar</span>
-            <h4>Festival Qur'ani Tingkat Nasional</h4>
-            <p>Panggung syiar dan temu kreativitas insan Qur'ani antarmahasiswa se-Indonesia di UM.</p>
+            <span class="label-kicker">🧭 Jejak Peradaban</span>
+            <h4>Studi Ekskursi &amp; Safari Religi</h4>
+            <p>Kunjungan studi peradaban Islam dan silaturahmi ke institusi Al-Qur'an terkemuka.</p>
           </div>
         </article>
 
-        <article class="gallery-card" data-reveal-img>
-          <div class="gallery-img-wrap">
-            <img src="galeri/Screenshot (2975).png" alt="PPK Ormawa Desa Binaan" loading="lazy" />
+        <article class="gallery-card" data-idx="4" data-cursor-hover>
+          <div class="gallery-gradient-card" style="background: linear-gradient(145deg, #042f2e, #0f766e, #115e59);">
+            <div class="gradient-watermark-wrap">
+              <svg viewBox="0 0 100 100" fill="none" class="gradient-watermark"><rect x="25" y="25" width="50" height="50" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/><rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/><circle cx="50" cy="50" r="14" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/></svg>
+            </div>
+            <div class="gradient-card-top">
+              <span class="gradient-card-badge">🤝 Pengabdian</span>
+              <span class="gradient-card-num">05</span>
+            </div>
+            <div class="gradient-card-bottom">
+              <h4>Bakti Dakwah &amp; Social Care</h4>
+              <p>Distribusi Mushaf &amp; Pemberdayaan Desa</p>
+            </div>
           </div>
           <div class="gallery-body">
             <span class="label-kicker">🤝 Pengabdian</span>
-            <h4>PPK Ormawa Kampung Tepa Salira</h4>
-            <p>Pemberdayaan masyarakat desa melalui literasi Al-Qur'an dan penguatan ekonomi kreatif halal.</p>
+            <h4>Bakti Dakwah &amp; Qur'anic Social Care</h4>
+            <p>Distribusi mushaf, wakaf Al-Qur'an, dan pembinaan TPA bagi anak-anak di daerah pelosok Malang Raya.</p>
           </div>
         </article>
 
-        <article class="gallery-card" data-reveal-img>
-          <div class="gallery-img-wrap">
-            <img src="galeri/Screenshot (2976).png" alt="Kajian & Syiar Rutin" loading="lazy" />
+        <article class="gallery-card" data-idx="5" data-cursor-hover>
+          <div class="gallery-gradient-card" style="background: linear-gradient(145deg, #4c0519, #881337, #9f1239);">
+            <div class="gradient-watermark-wrap">
+              <svg viewBox="0 0 100 100" fill="none" class="gradient-watermark"><rect x="25" y="25" width="50" height="50" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/><rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/><circle cx="50" cy="50" r="14" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/></svg>
+            </div>
+            <div class="gradient-card-top">
+              <span class="gradient-card-badge">🎓 Tasyakuran Sanad</span>
+              <span class="gradient-card-num">06</span>
+            </div>
+            <div class="gradient-card-bottom">
+              <h4>Wisuda Tahfidz &amp; Purna Kader</h4>
+              <p>Pengukuhan Hafizh &amp; Penganugerahan Sanad</p>
+            </div>
           </div>
           <div class="gallery-body">
-            <span class="label-kicker">🌿 Ruang Ukhuwah</span>
-            <h4>Kajian &amp; Tadabbur Masjid Al-Hikmah</h4>
-            <p>Menghidupkan atmosfer spiritual kampus melalui tadabbur ayat dan persaudaraan lintas jurusan.</p>
+            <span class="label-kicker">🎓 Tasyakuran</span>
+            <h4>Wisuda Tahfidz &amp; Purna Kader</h4>
+            <p>Momen sakral penganugerahan sanad tahfidz dan pelepasan wisudawan kader pejuang Al-Qur'an.</p>
           </div>
         </article>
       </div>
 
-      <!-- LIGHTBOX / DETAIL MODAL (No text lost) -->
+      <!-- LIGHTBOX / DETAIL MODAL (BLUR GRADIENT SHOWCASE) -->
       <div class="gallery-modal" id="galleryModal" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="gallery-modal-dialog">
           <button type="button" class="gallery-modal-close" id="modalCloseBtn" aria-label="Tutup Detail">&times;</button>
-          <img src="" alt="" class="gallery-modal-img" id="modalImg" />
+          <div class="gallery-modal-visual" id="modalVisual">
+            <div class="gradient-watermark-wrap" style="top:25px;right:0px;opacity:0.25;">
+              <svg viewBox="0 0 100 100" fill="none" class="gradient-watermark"><rect x="25" y="25" width="50" height="50" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/><rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/><circle cx="50" cy="50" r="14" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/></svg>
+            </div>
+            <div class="modal-visual-top">
+              <span class="modal-visual-badge" id="modalVisualBadge">🌿 KADERISASI</span>
+              <span class="modal-visual-num" id="modalVisualNum">01</span>
+            </div>
+            <div class="modal-visual-bottom">
+              <h3 id="modalVisualTitle">Al-Qur'an Camp &amp; Grand Opening</h3>
+              <span id="modalVisualTag">Pekan Orientasi &amp; Tadabbur Alam Mahasiswa Baru</span>
+            </div>
+          </div>
           <div class="gallery-modal-content">
             <span class="label-kicker" id="modalKicker"></span>
             <h3 id="modalHeading" style="font-size:20px;font-weight:700;color:var(--ink);"></h3>
@@ -3209,203 +3417,140 @@
         // Modal Elements
         const modal = document.getElementById('galleryModal');
         const modalClose = document.getElementById('modalCloseBtn');
-        const modalImg = document.getElementById('modalImg');
+        const modalVisual = document.getElementById('modalVisual');
+        const modalVisualBadge = document.getElementById('modalVisualBadge');
+        const modalVisualNum = document.getElementById('modalVisualNum');
+        const modalVisualTitle = document.getElementById('modalVisualTitle');
+        const modalVisualTag = document.getElementById('modalVisualTag');
         const modalKicker = document.getElementById('modalKicker');
         const modalHeading = document.getElementById('modalHeading');
         const modalDesc = document.getElementById('modalDesc');
 
         if (!stage || !canvas) return;
 
-        // 6 Activities Data
+        // 6 Activities Data - Rich Multi-Stop Blur Gradient Colorways
         const list = [
           {
             n: "01",
             client: "Al-Qur'an Camp & GO",
             kicker: "🌿 Kaderisasi",
             heading: "Al-Qur'an Camp & Grand Opening",
+            sub: "Pekan Orientasi & Tadabbur Alam Mahasiswa Baru",
             desc: "Pengenalan ekosistem Qur'ani dan pembekalan nilai bagi mahasiswa baru di kawasan alam terbuka.",
-            cover: "galeri/Screenshot (2971).png",
             year: "2024",
-            tint: [0.08, 0.50, 0.24]
+            bgCss: "linear-gradient(145deg, #063726, #0d5c3f, #127852)",
+            baseStops: [[0, "#063726"], [0.5, "#0d5c3f"], [1, "#127852"]],
+            orb1: { x: 0.82, y: 0.22, r: 0.65, c: "#10b981" },
+            orb2: { x: 0.18, y: 0.85, r: 0.45, c: "#d97706" }
           },
           {
             n: "02",
-            client: "MTQ Internal Pembinaan",
-            kicker: "🏆 Kompetisi",
-            heading: "MTQ Internal Pembinaan (MTQ-IP)",
-            desc: "Penjaringan bibit unggul kafilah universitas dalam 11 cabang perlombaan seni Qur'ani.",
-            cover: "galeri/Screenshot (2972).png",
-            year: "2024",
-            tint: [0.85, 0.55, 0.10]
+            client: "MTQ Mahasiswa Nasional",
+            kicker: "🏆 Prestasi",
+            heading: "Kafilah MTQ Mahasiswa Nasional",
+            sub: "Pusat Prestasi Nasional 11 Cabang Qur'ani",
+            desc: "Delegasi UM berlaga di ajang MTQMN dengan torehan medali pada cabang Tilawah, Hifzhil, dan Khath.",
+            year: "2023",
+            bgCss: "linear-gradient(145deg, #09131c, #143b66, #1e3a5f)",
+            baseStops: [[0, "#09131c"], [0.5, "#143b66"], [1, "#1e3a5f"]],
+            orb1: { x: 0.85, y: 0.18, r: 0.55, c: "#38bdf8" },
+            orb2: { x: 0.2, y: 0.82, r: 0.45, c: "#f59e0b" }
           },
           {
             n: "03",
-            client: "Wisuda Tahfidz Al-Qur'an",
-            kicker: "۞ Tahfidz",
-            heading: "Ujian & Wisuda Tahfidz Al-Qur'an",
-            desc: "Momen penganugerahan bagi hafizh dan hafizhah mahasiswa Universitas Negeri Malang.",
-            cover: "galeri/Screenshot (2973).png",
+            client: "Semarak Al-Qur'an (SAQ)",
+            kicker: "✨ Syiar Kampus",
+            heading: "Festival Semarak Al-Qur'an (SAQ)",
+            sub: "Pekan Syiar & Musabaqah Nasional Tahunan",
+            desc: "Pekan perlombaan Al-Qur'an nasional tingkat pelajar & mahasiswa yang dihadiri ratusan kontingen.",
             year: "2024",
-            tint: [0.12, 0.35, 0.75]
+            bgCss: "linear-gradient(145deg, #451a03, #78350f, #b45309)",
+            baseStops: [[0, "#451a03"], [0.5, "#78350f"], [1, "#b45309"]],
+            orb1: { x: 0.8, y: 0.2, r: 0.6, c: "#fbbf24" },
+            orb2: { x: 0.18, y: 0.88, r: 0.45, c: "#0d5c3f" }
           },
           {
             n: "04",
-            client: "Festival Qur'ani Nasional",
-            kicker: "🌟 Event Akbar",
-            heading: "Festival Qur'ani Tingkat Nasional",
-            desc: "Panggung syiar dan temu kreativitas insan Qur'ani antarmahasiswa se-Indonesia di UM.",
-            cover: "galeri/Screenshot (2974).png",
-            year: "2024",
-            tint: [0.75, 0.15, 0.35]
+            client: "Studi Ekskursi Dakwah",
+            kicker: "🧭 Jejak Peradaban",
+            heading: "Studi Ekskursi & Safari Religi",
+            sub: "Silaturahmi Peradaban & Khazanah Islam",
+            desc: "Kunjungan studi peradaban Islam dan silaturahmi ke institusi Al-Qur'an terkemuka.",
+            year: "2023",
+            bgCss: "linear-gradient(145deg, #3b1d11, #5c3a28, #7c4d2b)",
+            baseStops: [[0, "#3b1d11"], [0.5, "#5c3a28"], [1, "#7c4d2b"]],
+            orb1: { x: 0.85, y: 0.25, r: 0.52, c: "#d97706" },
+            orb2: { x: 0.15, y: 0.85, r: 0.42, c: "#0f766e" }
           },
           {
             n: "05",
-            client: "PPK Ormawa Tepa Salira",
+            client: "Bakti Dakwah Qur'ani",
             kicker: "🤝 Pengabdian",
-            heading: "PPK Ormawa Kampung Tepa Salira",
-            desc: "Pemberdayaan masyarakat desa melalui literasi Al-Qur'an dan penguatan ekonomi kreatif halal.",
-            cover: "galeri/Screenshot (2975).png",
+            heading: "Bakti Dakwah & Social Care",
+            sub: "Distribusi Mushaf & Pemberdayaan Desa",
+            desc: "Distribusi mushaf, wakaf Al-Qur'an, dan pembinaan TPA bagi anak-anak di daerah pelosok Malang Raya.",
             year: "2024",
-            tint: [0.10, 0.60, 0.45]
+            bgCss: "linear-gradient(145deg, #042f2e, #0f766e, #115e59)",
+            baseStops: [[0, "#042f2e"], [0.5, "#0f766e"], [1, "#115e59"]],
+            orb1: { x: 0.85, y: 0.2, r: 0.55, c: "#2dd4bf" },
+            orb2: { x: 0.2, y: 0.85, r: 0.45, c: "#15803d" }
           },
           {
             n: "06",
-            client: "Kajian Masjid Al-Hikmah",
-            kicker: "🌿 Ruang Ukhuwah",
-            heading: "Kajian & Tadabbur Masjid Al-Hikmah",
-            desc: "Menghidupkan atmosfer spiritual kampus melalui tadabbur ayat dan persaudaraan lintas jurusan.",
-            cover: "galeri/Screenshot (2976).png",
+            client: "Wisuda & Purna Kader",
+            kicker: "🎓 Tasyakuran Sanad",
+            heading: "Wisuda Tahfidz & Purna Kader",
+            sub: "Pengukuhan Hafizh & Penganugerahan Sanad",
+            desc: "Momen sakral penganugerahan sanad tahfidz dan pelepasan wisudawan kader pejuang Al-Qur'an.",
             year: "2024",
-            tint: [0.20, 0.40, 0.60]
+            bgCss: "linear-gradient(145deg, #4c0519, #881337, #9f1239)",
+            baseStops: [[0, "#4c0519"], [0.5, "#881337"], [1, "#9f1239"]],
+            orb1: { x: 0.8, y: 0.15, r: 0.55, c: "#fb7185" },
+            orb2: { x: 0.15, y: 0.85, r: 0.45, c: "#f59e0b" }
           }
         ];
 
         const N = list.length;
-        const BENDS = {
-          desk: { e0: 0.6, mag: 0.45, lift: 0.42, vmag: 0.36 },
-          col:  { e0: 0.5, mag: 0.45, lift: 0.22, vmag: 0.3 }
-        };
+        let activeIndex = 0;
+        let autoDrift = true;
+        const BASE = 40; // Ambient drift speed px/sec
+        let pos = 0, target = 0, boost = 0, dragVel = 0;
+        let dragging = false, moved = 0, lastX = 0, lastY = 0, lastMoveT = 0;
+        let prevPos = 0, speedE = 0, shrinkE = 0;
+        let mouse = null;
 
-        let W = 0, H = 0, DPR = 1, S = 280, GAP = 16, CY = 0, LABH = 35;
+        // Texture Atlas Specs (1 row, N cards: each 512x512 with 64px header label)
+        const CW = 512, CH = 512, LH = 64;
+        const GX = N, GY = 1;
+        const atlasCv = document.createElement('canvas');
+        atlasCv.width = CW * GX;
+        atlasCv.height = (CH + LH) * GY;
+        const actx = atlasCv.getContext('2d');
+
+        // Geometri Layout Constants
+        let W = 0, H = 0, DPR = 1, S = 280, GAP = 24, CY = 0, LABH = 34;
         let A0 = 0, C0 = 0, LO = 0, HI = 0, FADE = [-2, -1, 1e6, 1e6 + 1], VERT = false;
-        let BEND = { ...BENDS.desk };
+        const BEND = { e0: 0.55, mag: 0.42, lift: 0.38, vmag: 0.32 };
+        const stride = () => S + GAP;
 
-        function deskGeo(w, h) {
-          const s = Math.round(Math.max(200, Math.min(320, w * 0.23, h * 0.56)));
-          return { S: s, CY: Math.round(h * 0.5) };
-        }
-
-        const stride = () => VERT ? S + LABH + GAP : S + GAP;
-
-        function resize() {
+        function geom() {
           W = stage.clientWidth;
           H = stage.clientHeight;
           if (!W || !H) return;
           DPR = Math.min(2, window.devicePixelRatio || 1);
-          VERT = W < 768;
-          Object.assign(BEND, VERT ? BENDS.col : BENDS.desk);
-
-          canvas.width = Math.round(W * DPR);
-          canvas.height = Math.round(H * DPR);
-
-          if (!VERT) {
-            GAP = 16;
-            const g = deskGeo(W, H);
-            S = g.S;
-            CY = g.CY;
-            LABH = S * 64 / 512;
-            A0 = W / 2;
-            C0 = CY;
-            LO = 0;
-            HI = W;
-            FADE = [-2, -1, 1e6, 1e6 + 1];
-          } else {
-            GAP = 18;
-            S = Math.round(Math.max(160, Math.min(W * 0.72, 320, H * 0.52)));
-            LABH = S * 64 / 512;
-            A0 = Math.round(H / 2);
-            C0 = Math.round(W / 2);
-            LO = 20;
-            HI = H - 20;
-            CY = A0;
-            FADE = [10, 60, H - 60, H - 10];
-          }
-          if (atlasDone) uploadAtlas();
+          VERT = W < 640;
+          S = Math.min(320, Math.max(220, W * 0.28));
+          GAP = 20;
+          LABH = 34;
+          A0 = W * 0.5;
+          C0 = H * 0.52;
+          LO = 0;
+          HI = W;
+          FADE = [-10, 0, H, H + 10];
         }
 
-        /* Atlas Generation */
-        const CW = 512, LH = 64, CH = CW + LH;
-        const GX = N, GY = 1;
-        const atlas = document.createElement("canvas");
-        atlas.width = CW * GX;
-        atlas.height = CH * GY;
-        const actx = atlas.getContext("2d", { willReadFrequently: true });
-        let atlasDone = false;
-
-        function drawAtlasLabels() {
-          actx.textBaseline = "alphabetic";
-          list.forEach((w, i) => {
-            const x = i * CW, y = 0;
-            actx.clearRect(x, y, CW, LH);
-            actx.fillStyle = "#ffffff";
-            actx.font = "600 24px 'Geist Mono', monospace";
-            actx.textAlign = "right";
-            actx.fillText(w.year, x + CW - 14, y + 42);
-            actx.textAlign = "left";
-            actx.fillText(`(${w.n}) ${w.client.toUpperCase()}`, x + 14, y + 42);
-          });
-        }
-
-        function loadImages() {
-          drawAtlasLabels();
-          // Pre-draw rich gradient and fallback so cards render immediately even before images load
-          list.forEach((w, i) => {
-            const x = i * CW, y = LH;
-            const grad = actx.createLinearGradient(x, y, x + CW, y + CW);
-            grad.addColorStop(0, "rgba(21, 128, 61, 0.45)");
-            grad.addColorStop(1, "rgba(11, 20, 15, 0.95)");
-            actx.fillStyle = grad;
-            actx.fillRect(x, y, CW, CW);
-
-            // Subtle inner border
-            actx.strokeStyle = "rgba(255, 255, 255, 0.15)";
-            actx.lineWidth = 4;
-            actx.strokeRect(x + 2, y + 2, CW - 4, CW - 4);
-          });
-          atlasDone = true;
-          uploadAtlas();
-
-          // Now asynchronously load each cover photo
-          list.forEach((w, i) => {
-            const x = i * CW, y = LH;
-            const img = new Image();
-            img.crossOrigin = "anonymous";
-            img.onload = () => {
-              const r = Math.max(CW / img.naturalWidth, CW / img.naturalHeight);
-              const dw = img.naturalWidth * r, dh = img.naturalHeight * r;
-              actx.drawImage(img, x + (CW - dw) / 2, y + (CW - dh) / 2, dw, dh);
-
-              // Cinematic vignetting + emerald glint
-              const g = actx.createLinearGradient(x, y, x + CW, y + CW);
-              g.addColorStop(0, "rgba(255,255,255,0.08)");
-              g.addColorStop(0.5, "rgba(21, 128, 61, 0.05)");
-              g.addColorStop(1, "rgba(0,0,0,0.38)");
-              actx.fillStyle = g;
-              actx.fillRect(x, y, CW, CW);
-
-              // Border outline
-              actx.strokeStyle = "rgba(255, 255, 255, 0.2)";
-              actx.lineWidth = 3;
-              actx.strokeRect(x + 2, y + 2, CW - 4, CW - 4);
-
-              uploadAtlas();
-            };
-            img.src = w.cover;
-          });
-        }
-
-        /* WebGL Setup */
-        const VSRC = `attribute vec2 aPos; varying vec2 vUv; void main(){ vUv = aPos * 0.5 + 0.5; gl_Position = vec4(aPos, 0.0, 1.0); }`;
+        /* --- WebGL 3D Bend Shader (WHITE-FIRST EDITORIAL COMPOSITING) --- */
+        const VERT_SRC = `attribute vec2 aPos; varying vec2 vUv; void main(){ vUv = aPos * 0.5 + 0.5; gl_Position = vec4(aPos, 0.0, 1.0); }`;
 
         const FRAG = `
 precision highp float;
@@ -3426,12 +3571,13 @@ float oval(vec2 uv, vec2 c, vec2 r, float fall){ return pow(clamp(1.0 - length((
 vec3 bg(vec2 p){
   vec2 uv = p / uRes;
   float t = uTime;
-  vec2 w = uv + 0.02 * vec2(sin(uv.y * 3.1 + t * 0.2), cos(uv.x * 2.6 - t * 0.15));
-  vec3 col = mix(vec3(0.035, 0.055, 0.045), vec3(0.015, 0.025, 0.02), uv.y);
-  vec3 emerald = vec3(0.08, 0.50, 0.24), sapphire = vec3(0.08, 0.23, 0.40);
-  col += sapphire * oval(w, vec2(0.5, -0.1), vec2(0.9, 0.45), 1.6) * 0.4;
-  col += emerald * oval(w, vec2(0.85, 1.05), vec2(0.6, 0.45), 1.8) * 0.35;
-  col += mix(sapphire, emerald, 0.5) * oval(w, vec2(0.15, 1.05), vec2(0.6, 0.45), 1.8) * 0.25;
+  vec2 w = uv + 0.015 * vec2(sin(uv.y * 3.1 + t * 0.15), cos(uv.x * 2.6 - t * 0.12));
+  // Clean white base
+  vec3 col = vec3(0.992, 0.995, 0.993);
+  vec3 emeraldGlow = vec3(0.93, 0.97, 0.94);
+  vec3 goldGlow = vec3(0.98, 0.96, 0.92);
+  col = mix(col, emeraldGlow, oval(w, vec2(0.85, 0.9), vec2(0.7, 0.5), 1.8) * 0.55);
+  col = mix(col, goldGlow, oval(w, vec2(0.15, 0.1), vec2(0.6, 0.4), 1.8) * 0.45);
   return col;
 }
 
@@ -3470,8 +3616,9 @@ vec4 strip(vec2 p){
   if (ly >= 0.0 && ly < uLabH && abs(c.x) < sz * 0.5) {
     vec2 luv = vec2(c.x / sz + 0.5, ly / uLabH);
     vec2 auv2 = vec2((ci + clamp(luv.x, 0.004, 0.996)) / uGrid.x, (ri + clamp(luv.y * 64.0, 1.5, 58.0) / 576.0) / uGrid.y);
-    float a = texture2D(uAtlas, auv2).a;
-    col = vec4(uLabel * a, a) + col * (1.0 - a);
+    vec4 lab = texture2D(uAtlas, auv2);
+    // Dark label alpha composited:
+    col = mix(col, vec4(lab.rgb, 1.0), lab.a);
   }
   return col;
 }
@@ -3502,7 +3649,8 @@ void main(){
   float t, sg;
   vec2 q = bendMap(p, t, sg);
   if (t < 0.002) {
-    s = strip(q); col = s.rgb + base * (1.0 - s.a);
+    s = strip(q);
+    col = mix(base, s.rgb, s.a);
   } else {
     vec2 dd = vec2(sg * 18.0, -sg * 6.0) * t * t;
     if (uVert > 0.5) dd = dd.yx;
@@ -3511,64 +3659,79 @@ void main(){
       float k = float(i) / 6.0;
       vec3 w = vec3(exp(-pow(k / 0.38, 2.0)), exp(-pow((k - 0.5) / 0.38, 2.0)), exp(-pow((k - 1.0) / 0.38, 2.0)));
       s = strip(q + dd * (k - 0.5));
-      acc += (s.rgb + base * (1.0 - s.a)) * w; ws += w; al += s.a;
+      acc += mix(base, s.rgb, s.a) * w;
+      ws += w;
+      al += s.a;
     }
     col = acc / ws;
     al /= 7.0;
     float hl = smoothstep(0.03, 0.2, t) * (1.0 - smoothstep(0.2, 0.5, t));
-    col = mix(col, col * (1.0 - 0.3 * t * t) + vec3(0.08) * hl, al);
+    col = mix(col, col * (1.0 - 0.06 * t * t) - vec3(0.02) * hl, al);
   }
   col = mix(base, col, smoothstep(uFade.x, uFade.y, p.y) * (1.0 - smoothstep(uFade.z, uFade.w, p.y)));
-  col += (hash(p * uDpr + fract(uTime) * 61.0) - 0.5) * 0.02;
+  col += (hash(p * uDpr + fract(uTime) * 61.0) - 0.5) * 0.008;
   gl_FragColor = vec4(col, 1.0);
 }
 `;
 
         let gl = null, tex = null;
         const U = {};
-        const UNIFORMS = ["uRes","uDpr","uAtlas","uGrid","uN","uOffset","uS","uGap","uLabH","uVert","uA0","uC0","uLo","uHi","uStride","uFade","uRad","uShrink","uTime","uIntro","uWob","uE0","uMag","uLift","uVMag","uBendAmt","uCube","uLabel","uTint","uTintAmt","uHover","uHoverT","uSeed"];
+        const UNIFORMS = ["uRes","uDpr","uAtlas","uGrid","uN","uOffset","uS","uGap","uLabH",
+                          "uRad","uVert","uA0","uC0","uLo","uHi","uStride","uFade","uShrink",
+                          "uTime","uIntro","uWob","uE0","uMag","uLift","uVMag","uBendAmt",
+                          "uCube","uLabel","uTint","uTintAmt","uHover","uHoverT","uSeed"];
 
         function initGL() {
-          try {
-            gl = canvas.getContext("webgl", { antialias: false, alpha: false });
-          } catch (e) { return false; }
+          gl = canvas.getContext('webgl', { antialias: true, alpha: false, depth: false }) ||
+               canvas.getContext('experimental-webgl');
           if (!gl) return false;
 
-          const sh = (type, src) => {
-            const s = gl.createShader(type);
-            gl.shaderSource(s, src);
-            gl.compileShader(s);
-            if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) return null;
-            return s;
-          };
+          // Pure white clear color
+          gl.clearColor(1.0, 1.0, 1.0, 1.0);
 
-          const v = sh(gl.VERTEX_SHADER, VSRC);
-          const f = sh(gl.FRAGMENT_SHADER, FRAG);
-          if (!v || !f) return false;
+          function compile(type, src) {
+            const sh = gl.createShader(type);
+            gl.shaderSource(sh, src);
+            gl.compileShader(sh);
+            if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+              console.error(gl.getShaderInfoLog(sh));
+              return null;
+            }
+            return sh;
+          }
+
+          const vs = compile(gl.VERTEX_SHADER, VERT_SRC);
+          const fs = compile(gl.FRAGMENT_SHADER, FRAG);
+          if (!vs || !fs) return false;
 
           const prog = gl.createProgram();
-          gl.attachShader(prog, v);
-          gl.attachShader(prog, f);
+          gl.attachShader(prog, vs);
+          gl.attachShader(prog, fs);
           gl.linkProgram(prog);
-          if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return false;
+          if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+            console.error(gl.getProgramInfoLog(prog));
+            return false;
+          }
           gl.useProgram(prog);
 
+          UNIFORMS.forEach(name => {
+            U[name] = gl.getUniformLocation(prog, name);
+          });
+
+          // Single full-screen triangle buffer
           const buf = gl.createBuffer();
           gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-          gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
-          const loc = gl.getAttribLocation(prog, "aPos");
-          gl.enableVertexAttribArray(loc);
-          gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-
-          UNIFORMS.forEach(n => U[n] = gl.getUniformLocation(prog, n));
+          gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+          const aPos = gl.getAttribLocation(prog, "aPos");
+          gl.enableVertexAttribArray(aPos);
+          gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
 
           tex = gl.createTexture();
           gl.bindTexture(gl.TEXTURE_2D, tex);
-          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
           gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
           gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([18, 18, 22, 255]));
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
 
           return true;
         }
@@ -3576,34 +3739,138 @@ void main(){
         function uploadAtlas() {
           if (!gl || !tex) return;
           gl.bindTexture(gl.TEXTURE_2D, tex);
-          gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
-          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, atlas);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, atlasCv);
         }
 
-        /* Physics & Interactions */
-        let BASE = 28; // drift speed
-        let autoDrift = true;
-        let pos = 0, target = 0, boost = 0, dragVel = 0, dragging = false;
-        let moved = 0, lastX = 0, lastY = 0, lastMoveT = 0;
-        let speedE = 0, shrinkE = 0, prevPos = 0;
-        let hoverSlot = null, hoverT = 0, mouse = null;
-        let activeIndex = 0;
+        function generateAtlas() {
+          // 1. Draw Top Labels on Atlas (Region y: 0 to LH)
+          actx.textBaseline = "alphabetic";
+          list.forEach((w, i) => {
+            const x = i * CW, y = 0;
+            actx.clearRect(x, y, CW, LH);
+
+            // Crisp dark label text for white background
+            actx.font = "700 24px 'Poppins', 'Geist Mono', sans-serif";
+            actx.textAlign = "left";
+            actx.fillStyle = "#09131c";
+            actx.fillText(`(${w.n}) ${w.client.toUpperCase()}`, x + 16, y + 42);
+
+            actx.textAlign = "right";
+            actx.fillStyle = "#0d5c3f";
+            actx.fillText(w.year, x + CW - 16, y + 42);
+          });
+
+          // 2. Draw 6 Multi-Layer Blur Gradient Cards (Region y: LH to LH + CW)
+          list.forEach((w, i) => {
+            const x = i * CW, y = LH;
+            actx.save();
+
+            // Multi-stop base linear gradient
+            const bgGrad = actx.createLinearGradient(x, y, x + CW, y + CW);
+            w.baseStops.forEach(s => bgGrad.addColorStop(s[0], s[1]));
+            actx.fillStyle = bgGrad;
+            actx.fillRect(x, y, CW, CW);
+
+            // Multi-layer Radial Mesh Glow Orbs
+            const o1 = actx.createRadialGradient(x + CW * w.orb1.x, y + CW * w.orb1.y, 0, x + CW * w.orb1.x, y + CW * w.orb1.y, CW * w.orb1.r);
+            o1.addColorStop(0, w.orb1.c);
+            o1.addColorStop(1, "transparent");
+            actx.fillStyle = o1;
+            actx.fillRect(x, y, CW, CW);
+
+            const o2 = actx.createRadialGradient(x + CW * w.orb2.x, y + CW * w.orb2.y, 0, x + CW * w.orb2.x, y + CW * w.orb2.y, CW * w.orb2.r);
+            o2.addColorStop(0, w.orb2.c);
+            o2.addColorStop(1, "transparent");
+            actx.fillStyle = o2;
+            actx.fillRect(x, y, CW, CW);
+
+            // Islamic Geometric Star Watermark
+            actx.save();
+            actx.translate(x + CW * 0.76, y + CW * 0.44);
+            actx.strokeStyle = "rgba(255, 255, 255, 0.16)";
+            actx.lineWidth = 3;
+            actx.strokeRect(-88, -88, 176, 176);
+            actx.rotate(Math.PI / 4);
+            actx.strokeRect(-88, -88, 176, 176);
+            actx.beginPath();
+            actx.arc(0, 0, 52, 0, Math.PI * 2);
+            actx.stroke();
+            actx.restore();
+
+            // Kicker Badge & Giant Number
+            actx.fillStyle = "rgba(255, 255, 255, 0.95)";
+            actx.font = "800 22px 'Poppins', sans-serif";
+            actx.textAlign = "left";
+            actx.fillText(w.kicker, x + 38, y + 58);
+
+            actx.font = "900 52px 'Geist', 'Poppins', sans-serif";
+            actx.fillStyle = "rgba(255, 255, 255, 0.45)";
+            actx.textAlign = "right";
+            actx.fillText(w.n, x + CW - 38, y + 70);
+
+            // Card Title (2 lines max)
+            actx.textAlign = "left";
+            actx.fillStyle = "#ffffff";
+            actx.font = "800 32px 'Poppins', sans-serif";
+            const words = w.heading.split(" ");
+            let line1 = "", line2 = "";
+            for (let word of words) {
+              if ((line1 + word).length < 22 && !line2) {
+                line1 += (line1 ? " " : "") + word;
+              } else {
+                line2 += (line2 ? " " : "") + word;
+              }
+            }
+            if (line2) {
+              actx.fillText(line1, x + 38, y + CW - 130);
+              actx.fillText(line2, x + 38, y + CW - 88);
+            } else {
+              actx.fillText(line1, x + 38, y + CW - 100);
+            }
+
+            actx.fillStyle = "rgba(255, 255, 255, 0.88)";
+            actx.font = "600 17px 'Poppins', sans-serif";
+            actx.fillText(w.sub, x + 38, y + CW - 42);
+
+            // Delicate Inner Border
+            actx.strokeStyle = "rgba(255, 255, 255, 0.24)";
+            actx.lineWidth = 2.5;
+            actx.strokeRect(x + 14, y + 14, CW - 28, CW - 28);
+
+            actx.restore();
+          });
+
+          uploadAtlas();
+        }
+
+        function resize() {
+          geom();
+          canvas.width = Math.round(W * DPR);
+          canvas.height = Math.round(H * DPR);
+        }
 
         function openModalForIndex(idx) {
+          if (!modal || idx < 0 || idx >= list.length) return;
           const item = list[idx];
-          if (!item) return;
-          modalImg.src = item.cover;
-          modalImg.alt = item.heading;
-          modalKicker.textContent = item.kicker;
-          modalHeading.textContent = item.heading;
-          modalDesc.textContent = item.desc;
+          if (modalVisual) modalVisual.style.background = item.bgCss;
+          if (modalVisualBadge) modalVisualBadge.textContent = item.kicker;
+          if (modalVisualNum) modalVisualNum.textContent = item.n;
+          if (modalVisualTitle) modalVisualTitle.textContent = item.heading;
+          if (modalVisualTag) modalVisualTag.textContent = item.sub;
+
+          if (modalKicker) modalKicker.textContent = item.kicker;
+          if (modalHeading) modalHeading.textContent = item.heading;
+          if (modalDesc) modalDesc.textContent = item.desc;
           modal.classList.add('is-open');
           modal.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
+          if (!modal) return;
           modal.classList.remove('is-open');
           modal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
         }
 
         if (modalClose) modalClose.addEventListener('click', closeModal);
@@ -3618,10 +3885,11 @@ void main(){
           });
         }
 
-        // Also allow clicking grid cards to open modal
-        document.querySelectorAll('.gallery-card').forEach((card, idx) => {
+        // Connect grid cards click
+        document.querySelectorAll('.gallery-card').forEach((card) => {
           card.addEventListener('click', () => {
-            if (idx < list.length) openModalForIndex(idx);
+            const idx = parseInt(card.getAttribute('data-idx') || '0', 10);
+            openModalForIndex(idx);
           });
         });
 
@@ -3679,7 +3947,6 @@ void main(){
           if (!dragging) return;
           dragging = false;
           boost = (performance.now() - lastMoveT < 90) ? Math.max(-5000, Math.min(5000, dragVel)) : 0;
-          // If clicked without dragging, open modal
           if (moved < 6 && e.type === "pointerup") {
             openModalForIndex(activeIndex);
           }
@@ -3788,7 +4055,7 @@ void main(){
             gl.uniform1f(U.uS, S);
             gl.uniform1f(U.uGap, GAP);
             gl.uniform1f(U.uLabH, LABH);
-            gl.uniform1f(U.uRad, 12);
+            gl.uniform1f(U.uRad, 14);
             gl.uniform1f(U.uVert, VERT ? 1 : 0);
             gl.uniform1f(U.uA0, A0);
             gl.uniform1f(U.uC0, C0);
@@ -3799,16 +4066,16 @@ void main(){
             gl.uniform1f(U.uShrink, shrinkE);
             gl.uniform1f(U.uTime, time);
             gl.uniform1f(U.uIntro, 99.0);
-            gl.uniform1f(U.uWob, 1.6 + 9 * speedE);
+            gl.uniform1f(U.uWob, 1.4 + 7 * speedE);
             gl.uniform1f(U.uE0, BEND.e0);
             gl.uniform1f(U.uMag, BEND.mag);
             gl.uniform1f(U.uLift, BEND.lift * S);
             gl.uniform1f(U.uVMag, BEND.vmag);
             gl.uniform1f(U.uBendAmt, 1.0);
-            gl.uniform3f(U.uCube, 0.95, 0.95, 0.94);
-            gl.uniform3f(U.uLabel, 0.88, 0.88, 0.86);
-            gl.uniform3f(U.uTint, 0.08, 0.50, 0.24);
-            gl.uniform1f(U.uTintAmt, 0.4);
+            gl.uniform3f(U.uCube, 0.05, 0.08, 0.1);
+            gl.uniform3f(U.uLabel, 0.035, 0.075, 0.11);
+            gl.uniform3f(U.uTint, 0.05, 0.36, 0.24);
+            gl.uniform1f(U.uTintAmt, 0.3);
             gl.uniform1f(U.uHover, -10000);
             gl.uniform1f(U.uHoverT, 0);
             gl.uniform1f(U.uSeed, 0);
@@ -3819,7 +4086,7 @@ void main(){
 
         if (initGL()) {
           resize();
-          loadImages();
+          generateAtlas();
           requestAnimationFrame(loop);
         } else {
           // WebGL fallback
