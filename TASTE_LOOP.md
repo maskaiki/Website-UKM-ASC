@@ -1,5 +1,5 @@
 # Mesin Riset Taste & Auto-Improve UKM ASC (Maksimal 10 Iterasi)
-Current_Iteration: 1
+Current_Iteration: 2
 Max_Iteration: 10
 
 ## Aturan Kunci (Guardrails — DILARANG DILANGGAR)
@@ -19,7 +19,7 @@ Max_Iteration: 10
 - [x] **Iterasi 1 (Riset Architectural Grid & Hairline Borders)**
   - *Eksplorasi*: Cari pola "Swiss editorial web design grid hairline border" atau amati gaya garis tipis Vercel/Geist.
   - *Terapkan ke ASC*: Buat garis pemisah antar seksi (`1px solid rgba(11,10,15,0.08)`) dan tanda tambah (`+`) halus di sudut-sudut perpotongan grid.
-- [ ] **Iterasi 2 (Riset Hero Depth & Cutout Layering)**
+- [x] **Iterasi 2 (Riset Hero Depth & Cutout Layering)**
   - *Eksplorasi*: Cari referensi "editorial typography behind subject cutout hero web design".
   - *Terapkan ke ASC*: Sempurnakan proporsi teks raksasa `ASC` di belakang foto dua pengurus berjaket PDH, tambahkan bayangan lembut dan efek mengambang saat mouse bergerak.
 - [ ] **Iterasi 3 (Riset Kinetic Typography & Staggered Word Reveal)**
@@ -54,3 +54,8 @@ Max_Iteration: 10
 - **Temuan 1 (Corner Crosses `+` Architecture)**: Vercel & Swiss International Typographic Style menggunakan penanda perpotongan grid berupa tanda tambah (`+`) halus berukuran 11px monospace di titik batas seksi (`.section-hairline-bound::before` dan `::after`). Ini memberikan jangkar visual arsitektural yang presisi tanpa memberatkan halaman.
 - **Temuan 2 (Hairline Guide Divider)**: Garis pemisah antar seksi dipertahankan presisi pada `1px solid var(--border)` (`rgba(11, 10, 15, 0.09)`) pada kanvas putih bersih `#FFFFFF`, menciptakan ritme spasial vertikal yang konsisten antara header seksi dan konten.
 - **Temuan 3 (Technical Metadata Coordinate)**: Tag monospace indeks teknikal (`01 · PROFIL`, `02 · PEMBINAAN`, dsb.) melengkapi grid layout dengan aksen identitas terstruktur ala publikasi desain modern.
+
+### Iterasi 2 — Hero Depth & Cutout Layering
+- **Temuan 1 (Dual-Tone Text Degradé Behind Subject)**: Teks raksasa `ASC` di latar belakang ditingkatkan dengan gradien vertikal halus (`#0b0a0f` ke `#56555c`) dengan `-webkit-background-clip: text` dan bayangan lembut, memberi kedalaman atmosferik di belakang foto cutout pengurus.
+- **Temuan 2 (Pedestal Ground Occlusion Shadow)**: Menambahkan layer kontak lantai (`.hero-stage::after`) berupa radial gradient elips ber-filter blur (`blur(8px)`) dengan sentuhan warna cokelat jaket PDH (`rgba(92, 58, 40, 0.08)`), membuat siluet pengurus terasa menapak kokoh di panggung.
+- **Temuan 3 (Differential 3D Parallax with Yaw Rotation)**: Menghitung perpindahan kursor mouse secara asinkron dengan easing lerp (RAF). Teks bergeser berlawanan arah (`-28px`), sedangkan cutout bergeser searah (`+22px`) disertai sedikit rotasi yaw 3D (`rotateY(3.5deg)`), menghasilkan ilusi kedalaman fisik nyata.
