@@ -55,7 +55,59 @@
       --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-      /* Gobo Signature Easing */
+      
+    /* ==========================================================================
+       SWISS EDITORIAL ARCHITECTURAL GRID & CORNER CROSSES (VERCEL / GEIST)
+       ========================================================================== */
+    .section-hairline-bound {
+      position: relative;
+    }
+    .section-hairline-bound::before,
+    .section-hairline-bound::after {
+      content: '+';
+      position: absolute;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1;
+      color: rgba(11, 10, 15, 0.32);
+      pointer-events: none;
+      user-select: none;
+      z-index: 5;
+    }
+    .section-hairline-bound::before {
+      top: -6px;
+      left: 0;
+    }
+    .section-hairline-bound::after {
+      top: -6px;
+      right: 0;
+    }
+
+    .corner-cross {
+      position: absolute;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1;
+      color: rgba(11, 10, 15, 0.28);
+      user-select: none;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .corner-cross.tl { top: -6px; left: -6px; }
+    .corner-cross.tr { top: -6px; right: -6px; }
+    .corner-cross.bl { bottom: -6px; left: -6px; }
+    .corner-cross.br { bottom: -6px; right: -6px; }
+
+    .section-coord {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mono-muted);
+      margin-left: 8px;
+    }
+
+    /* Gobo Signature Easing */
       --ease-gobo: cubic-bezier(0.22, 0.31, 0, 1);
       --container: 1320px;
       --gutter: clamp(20px, 4vw, 40px);
@@ -1998,7 +2050,7 @@
     </div>
 
     <!-- ======================== TENTANG & METRICS ======================== -->
-    <section class="section" id="tentang">
+    <section class="section section-hairline-bound" id="tentang" style="border-top:1px solid var(--border);">
       <div class="container">
         <div class="about-grid" data-reveal>
           <div>
@@ -2043,7 +2095,7 @@
     </section>
 
     <!-- ======================== 11 BIDANG PEMBINAAN (GOBO ROW-TO-PANE) ======================== -->
-    <section class="section" id="bidang" style="border-top:1px solid var(--border);">
+    <section class="section section-hairline-bound" id="bidang" style="border-top:1px solid var(--border);">
       <div class="container">
         <div class="section-head" data-reveal>
           <div>
@@ -2085,7 +2137,7 @@
     </section>
 
     <!-- ======================== PROGRAM UNGGULAN (GOBO FILTER + GRID/LIST) ======================== -->
-    <section class="section" id="program" style="border-top:1px solid var(--border);">
+    <section class="section section-hairline-bound" id="program" style="border-top:1px solid var(--border);">
       <div class="container">
         <div class="section-head" data-reveal>
           <div>
@@ -2260,7 +2312,7 @@
     <!-- ======================================================================
          7. GALERI KEGIATAN (SCHEME ENGINE x WHITE-FIRST EDITORIAL)
          ====================================================================== -->
-    <section class="section" id="galeri" style="border-top:1px solid var(--border);">
+    <section class="section section-hairline-bound" id="galeri" style="border-top:1px solid var(--border);">
       <div class="container">
         <div class="sec-head">
           <div class="sec-label">
@@ -2572,7 +2624,7 @@
       </div>
     </div>
 
-    <section class="section" id="pengurus" style="border-top:1px solid var(--border);">
+    <section class="section section-hairline-bound" id="pengurus" style="border-top:1px solid var(--border);">
       <div class="container">
         <div class="section-head" data-reveal>
           <div>
@@ -2699,7 +2751,7 @@
     </section>
 
     <!-- ======================== GABUNG / KONTAK (GOBO CONTACT) ======================== -->
-    <section class="section" id="gabung" style="border-top:1px solid var(--border);">
+    <section class="section section-hairline-bound" id="gabung" style="border-top:1px solid var(--border);">
       <div class="container">
         <div class="contact-grid">
           <div data-reveal>
