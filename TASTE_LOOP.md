@@ -1,5 +1,5 @@
 # Mesin Riset Taste & Auto-Improve UKM ASC (Maksimal 10 Iterasi)
-Current_Iteration: 4
+Current_Iteration: 5
 Max_Iteration: 10
 
 ## Aturan Kunci (Guardrails — DILARANG DILANGGAR)
@@ -28,7 +28,7 @@ Max_Iteration: 10
 - [x] **Iterasi 4 (Riset Tactile Bracket Button & Micro-Interactions)**
   - *Eksplorasi*: Cari referensi tombol bracket hover ala Gobo `[ START A PROJECT ]` dan magnetic cursor.
   - *Terapkan ke ASC*: Micro-interaction tactile hover pada tombol bracket `[ DAFTAR SEKARANG ]`, `[ LIHAT SEMUA ]`, cursor hover badge.
-- [ ] **Iterasi 5 (Riset Interactive Directory & Sticky Preview)**
+- [x] **Iterasi 5 (Riset Interactive Directory & Sticky Preview)**
   - *Eksplorasi*: Amati table directory interaktif ala editorial portfolio.
   - *Terapkan ke ASC*: 11 Bidang Pembinaan dengan interactive active marker line, preview crossfade, badge jumlah anggota/kategori.
 - [ ] **Iterasi 6 (Riset Light-Mode Bento Grid untuk Metrik & Prestasi)**
@@ -69,3 +69,8 @@ Max_Iteration: 10
 - **Temuan 1 (Dynamic Bracket Expansion)**: Tombol bracket Gobo (`.bracket-btn`) mengekspansi tanda kurung siku `[` dan `]` secara elastis ke samping (`translateX(-6px)` dan `+6px`) disertai peningkatan letter-spacing saat di-hover, memberi sensasi klik mekanis yang sangat memuaskan.
 - **Temuan 2 (Magnetic Mouse Snapping)**: Menambahkan micro-interaction magnetik pada desktop (`mousemove` listener dengan offset `0.18x` dan `0.22y`) yang menarik tombol secara halus mengikuti ujung kursor pengguna sebelum kembali ke titik semula pada `mouseleave`.
 - **Temuan 3 (Luminescent Blinker Accent)**: Blok kursor terminal `█` (`.cursor-block`) di dalam tombol menyala dengan `box-shadow: 0 0 8px currentColor` saat di-hover, memadukan identitas teknikal modern dengan estetika minimalis.
+
+### Iterasi 5 — Interactive Directory & Sticky Preview
+- **Temuan 1 (Vertical Indicator Bar)**: Menambahkan penanda vertikal mikro (`.bidang-row::before`) beraksen sapphire `#143b66` yang memanjang halus dengan `scaleY(1)` ketika baris di-hover atau aktif, mempertegas baris mana yang sedang ditinjau.
+- **Temuan 2 (Dynamic Directional Arrow `↗`)**: Setiap baris memiliki ikon panah diagonal (`.bidang-arrow`) yang bergeser dari translasi diagonal tersembunyi (`translate(-6px, 6px); opacity: 0;`) menjadi tajam (`translate(0, 0); opacity: 1;`) saat di-hover ala direktori agensi kelas dunia.
+- **Temuan 3 (Subtle Tint Backdrop)**: Baris aktif menerima latar belakang transparan tipis (`rgba(20, 59, 102, 0.035)`) dan border radius 6px sehingga pembaca tetap fokus tanpa kontras yang menyilaukan.

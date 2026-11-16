@@ -845,14 +845,30 @@
     }
 
     .bidang-row {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 18px 4px;
+      padding: 18px 12px 18px 16px;
       border-bottom: 1px solid var(--border);
       cursor: pointer;
-      transition: opacity 0.35s var(--ease-gobo), border-color 0.25s, padding-inline 0.35s var(--ease-gobo);
+      border-radius: 6px;
+      transition: opacity 0.35s var(--ease-gobo), background 0.3s var(--ease-gobo), border-color 0.25s, padding-inline 0.35s var(--ease-gobo);
+    }
+
+    /* Left active vertical indicator bar */
+    .bidang-row::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) scaleY(0);
+      width: 3px;
+      height: 60%;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: transform 0.35s var(--ease-gobo), background 0.3s;
     }
 
     .bidang-list:hover .bidang-row:not(:hover):not(.is-active) {
@@ -862,6 +878,12 @@
     .bidang-row.is-active,
     .bidang-row:hover {
       border-color: var(--border-strong);
+      background: rgba(20, 59, 102, 0.035);
+    }
+
+    .bidang-row.is-active::before,
+    .bidang-row:hover::before {
+      transform: translateY(-50%) scaleY(1);
     }
 
     .bidang-row-left {
@@ -881,12 +903,18 @@
 
     .bidang-row.is-active .bidang-row-left,
     .bidang-row:hover .bidang-row-left {
-      transform: translateX(14px);
+      transform: translateX(10px);
     }
 
     .bidang-row.is-active .bidang-name,
     .bidang-row:hover .bidang-name {
       color: var(--ink);
+    }
+
+    .bidang-row-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .bidang-tag {
@@ -896,6 +924,20 @@
       letter-spacing: 0.04em;
       color: var(--muted);
       text-align: right;
+    }
+
+    .bidang-arrow {
+      font-size: 14px;
+      color: var(--accent);
+      opacity: 0;
+      transform: translate(-6px, 6px);
+      transition: opacity 0.3s var(--ease-gobo), transform 0.3s var(--ease-gobo);
+    }
+
+    .bidang-row.is-active .bidang-arrow,
+    .bidang-row:hover .bidang-arrow {
+      opacity: 1;
+      transform: translate(0, 0);
     }
 
     /* Sticky Preview Pane */
@@ -3107,7 +3149,10 @@
             <span class="mono">${String(idx + 1).padStart(2, '0')}</span>
             <span class="bidang-name">${b.name}</span>
           </div>
-          <span class="bidang-tag">${b.tag}</span>
+          <div class="bidang-row-right">
+            <span class="bidang-tag">${b.tag}</span>
+            <span class="bidang-arrow" aria-hidden="true">↗</span>
+          </div>
         `;
         row.addEventListener('mouseenter', () => activateBidang(idx));
         row.addEventListener('click', () => activateBidang(idx));
