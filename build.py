@@ -1,10 +1,14 @@
 """
-UKM ASC UM - Build & Development Tool
-====================================
-Fitur:
-1. python build.py          -> Menghasilkan index.standalone.html (dengan foto hero embedded Base64 WebP untuk Elementor Canvas)
-2. python build.py --serve  -> Menjalankan server HTTP lokal di port 8000 dan membuka browser otomatis
-3. python build.py --check  -> Validasi kelengkapan berkas, ukuran aset, dan integritas HTML
+=============================================================================
+UKM ASC UNIVERSITAS NEGERI MALANG - MASTER BUILD TOOL (MODULAR EDITION)
+=============================================================================
+Fungsi:
+1. python build.py          -> Mengompilasi seluruh file di folder 'sections/'
+                               menjadi file statis utuh 'index.html' untuk GitHub Pages
+                               dan 'index.standalone.html' (embedded assets).
+2. python build.py --check  -> Memeriksa kelengkapan file komponen dan integritas HTML.
+3. python build.py --serve  -> Menjalankan server lokal di port 8000.
+=============================================================================
 """
 
 import os
@@ -16,140 +20,193 @@ import webbrowser
 from pathlib import Path
 
 # Ensure UTF-8 output on Windows
-if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
-    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if sys.stdout.encoding and sys.stdout.encoding.lower() != 'utf-8':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
 
 BASE_DIR = Path(__file__).resolve().parent
-INDEX_HTML = BASE_DIR / "index.html"
-STANDALONE_HTML = BASE_DIR / "index.standalone.html"
-CUTOUT_WEBP = BASE_DIR / "assets" / "hero-asc-cutout.webp"
-CUTOUT_PNG = BASE_DIR / "assets" / "hero-asc-cutout.png"
+SECTIONS_DIR = BASE_DIR / "sections"
 
-GITHUB_RAW_WEBP = "https://maskaiki.github.io/Website-UKM-ASC/assets/hero-asc-cutout.webp"
-GITHUB_RAW_PNG = "https://maskaiki.github.io/Website-UKM-ASC/assets/hero-asc-cutout.png"
-
-
-def get_cutout_b64():
-    """Mengambil base64 dari WebP jika ada, fallback ke PNG jika diperlukan."""
-    if CUTOUT_WEBP.exists():
-        data = CUTOUT_WEBP.read_bytes()
-        mime = "image/webp"
-        print(f"  + Memuat aset WebP: {CUTOUT_WEBP.name} ({len(data):,} bytes)")
-        b64 = base64.b64encode(data).decode("ascii")
-        return f"data:{mime};base64,{b64}"
-    elif CUTOUT_PNG.exists():
-        data = CUTOUT_PNG.read_bytes()
-        mime = "image/png"
-        print(f"  + Memuat aset PNG: {CUTOUT_PNG.name} ({len(data):,} bytes)")
-        b64 = base64.b64encode(data).decode("ascii")
-        return f"data:{mime};base64,{b64}"
-    else:
-        print("  ⚠️ Aset cutout lokal tidak ditemukan di folder assets/")
-        return None
-
-
-def build_standalone():
-    print("🔨 Mengompilasi index.standalone.html (White-First Editorial Edition)...")
-    if not INDEX_HTML.exists():
-        print(f"❌ Error: {INDEX_HTML.name} tidak ditemukan!")
-        sys.exit(1)
-
-    html = INDEX_HTML.read_text(encoding="utf-8")
-    b64_uri = get_cutout_b64()
-
-    if b64_uri:
-        # Ganti tag picture di index.html dengan data URI mandiri
-        # Gambar langsung ter-embed tanpa perlu hosting eksternal
-        old_picture_pattern = (
-            '<source srcset="assets/hero-asc-cutout.webp" type="image/webp" />'
-        )
-        if old_picture_pattern in html:
-            html = html.replace(
-                old_picture_pattern,
-                f'<source srcset="{b64_uri}" type="image/webp" />'
-            )
-            html = html.replace(
-                'src="assets/hero-asc-cutout.png"',
-                f'src="{b64_uri}"'
-            )
-            print("  + Meng-embed foto hero cutout sebagai Base64 Data URI (100% standalone untuk WordPress Elementor)")
-        else:
-            # Fallback jika pattern berbeda
-            html = html.replace("assets/hero-asc-cutout.webp", b64_uri)
-            html = html.replace("assets/hero-asc-cutout.png", b64_uri)
-    else:
-        # Fallback ke CDN GitHub Pages
-        print("  ℹ️ Menggunakan fallback URL GitHub Pages untuk aset hero cutout")
-        html = html.replace("assets/hero-asc-cutout.webp", GITHUB_RAW_WEBP)
-        html = html.replace("assets/hero-asc-cutout.png", GITHUB_RAW_PNG)
-
-    # Tambahkan komentar panduan Elementor di bagian atas file standalone
-    banner = f"""<!--
-================================================================================
- UKM AL-QUR'AN STUDY CLUB (ASC) - UNIVERSITAS NEGERI MALANG
- DESAIN: WHITE-FIRST EDITORIAL (GOBO KINETIC x EFFICA CONVERSION)
- TIPE: STANDALONE SINGLE-FILE HTML (SIAP COPAS KE ELEMENTOR CANVAS)
-================================================================================
- CARA PEMASANGAN DI WORDPRESS ELEMENTOR (ormawa.um.ac.id):
- 1. Login ke Dashboard WordPress ormawa.um.ac.id/wp-admin
- 2. Buat / Edit Halaman (Pages -> Edit with Elementor)
- 3. Pada Settings (ikon gear kiri bawah) -> Ubah 'Page Layout' menjadi 'Elementor Canvas'
- 4. Tarik widget 'HTML' (Custom HTML) ke dalam canvas halaman
- 5. Salin (copy) SELURUH isi file index.standalone.html ini
- 6. Tempel (paste) ke dalam widget HTML tersebut
- 7. Klik 'Publish' / 'Update' -> Website UKM ASC langsung live!
-================================================================================
--->
-"""
-    standalone_output = banner + html
-
-    STANDALONE_HTML.write_text(standalone_output, encoding="utf-8")
-    print(f"✅ Selesai! File tersimpan di {STANDALONE_HTML.name} ({STANDALONE_HTML.stat().st_size:,} bytes)")
-    print(f"   Lokasi: {STANDALONE_HTML.resolve()}")
-
+SECTION_FILES = [
+    "00_navbar_drawer.html",
+    "01_home.html",
+    "02_transisi.html",
+    "03_visi_misi.html",
+    "04_pembinaan.html",
+    "05_prestasi.html",
+    "06_kabinet.html",
+    "07_footer.html"
+]
 
 def check_integrity():
     print("🔍 Menjalankan pemeriksaan integritas proyek...")
     errors = 0
     warnings = 0
 
-    if not INDEX_HTML.exists():
-        print(f"❌ Error: {INDEX_HTML.name} tidak ada!")
-        errors += 1
-    else:
-        print(f"✅ {INDEX_HTML.name} ada ({INDEX_HTML.stat().st_size:,} bytes)")
+    if not SECTIONS_DIR.exists():
+        print("❌ Error: Folder 'sections/' tidak ditemukan!")
+        return 1
 
-    if not CUTOUT_WEBP.exists():
-        print(f"⚠️ Warning: {CUTOUT_WEBP.name} tidak ada!")
+    for s in SECTION_FILES:
+        sp = SECTIONS_DIR / s
+        if not sp.exists():
+            print(f"❌ Error: Komponen {s} tidak ditemukan di sections/!")
+            errors += 1
+        else:
+            print(f"  ✅ {s} ({sp.stat().st_size:,} bytes)")
+
+    cutout = BASE_DIR / "assets" / "hero-asc-cutout.webp"
+    if not cutout.exists():
+        cutout = BASE_DIR / "hero-asc-cutout.webp"
+    if not cutout.exists():
+        print("⚠️ Warning: hero-asc-cutout.webp tidak ditemukan.")
         warnings += 1
     else:
-        print(f"✅ {CUTOUT_WEBP.name} ada ({CUTOUT_WEBP.stat().st_size:,} bytes)")
-
-    if not CUTOUT_PNG.exists():
-        print(f"⚠️ Warning: {CUTOUT_PNG.name} tidak ada!")
-        warnings += 1
-    else:
-        print(f"✅ {CUTOUT_PNG.name} ada ({CUTOUT_PNG.stat().st_size:,} bytes)")
-
-    if not STANDALONE_HTML.exists():
-        print(f"⚠️ Warning: {STANDALONE_HTML.name} belum di-compile! Jalankan 'python build.py'")
-        warnings += 1
-    else:
-        print(f"✅ {STANDALONE_HTML.name} ada ({STANDALONE_HTML.stat().st_size:,} bytes)")
+        print(f"  ✅ hero-asc-cutout.webp ({cutout.stat().st_size:,} bytes)")
 
     print(f"\nHasil: {errors} error, {warnings} warning.")
+    return errors
+
+
+def build_pages():
+    print("🔨 Mengompilasi komponen modular menjadi index.html untuk GitHub Pages...")
+    parts = []
+
+    for s in SECTION_FILES:
+        sp = SECTIONS_DIR / s
+        if not sp.exists():
+            print(f"⚠️ Peringatan: {s} tidak ditemukan, dilewati.")
+            continue
+        print(f"  + Menyertakan {s} ({sp.stat().st_size:,} bytes)")
+        content = sp.read_text(encoding="utf-8")
+        parts.append(f"\n<!-- START COMPONENT: {s} -->\n{content}\n<!-- END COMPONENT: {s} -->\n")
+
+    body_content = "\n".join(parts)
+
+    master_html = f"""<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>UKM Al-Qur'an Study Club (ASC) - Universitas Negeri Malang</title>
+  
+  <!-- SEO & Meta Tags -->
+  <meta name="description" content="Website Resmi UKM Al-Qur'an Study Club (ASC) Universitas Negeri Malang. Wadah pembinaan Al-Qur'an, tilawah, tahfidz, kaligrafi, syiar, dan prestasi mahasiswa UM." />
+  <meta name="keywords" content="UKM ASC, ASC UM, Al-Qur'an Study Club, Universitas Negeri Malang, MTQMN, Mahasiswa UM, Generasi Qurani" />
+  <meta name="author" content="UKM ASC Universitas Negeri Malang" />
+  <meta name="theme-color" content="#0d5c3f" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="UKM Al-Qur'an Study Club (ASC) - Universitas Negeri Malang" />
+  <meta property="og:description" content="Membina Generasi Qur'ani yang Berkarakter, Berprestasi, dan Berkontribusi Nyata." />
+  <meta property="og:image" content="https://ormawa.um.ac.id/wp-content/uploads/2020/09/cropped-logo-um-32x32.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://ormawa.um.ac.id/wp-content/uploads/2020/09/cropped-logo-um-32x32.png" type="image/png" />
+
+  <!-- Preconnect Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@500;700;800&family=Geist:wght@800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================================
+       GLOBAL DESIGN SYSTEM & RESET (WHITE-FIRST EDITORIAL)
+       ========================================================================= */
+    :root {{
+      --bg: #ffffff;
+      --surface: #f7f7f5;
+      --ink: #09131c;
+      --ink-mid: #1e2d3b;
+      --ink-muted: #5a6876;
+      --emerald-500: #10b981;
+      --emerald-600: #0d5c3f;
+      --emerald-700: #0a4731;
+      --emerald-900: #063726;
+      --pdh-brown: #5c3a28;
+      --gold: #b8860b;
+      --border: rgba(9, 19, 28, 0.08);
+      --pad-x: clamp(20px, 4vw, 48px);
+      --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'Geist', sans-serif;
+      --font-mono: 'Geist Mono', monospace;
+    }}
+
+    *, *::before, *::after {{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }}
+
+    html {{
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      background-color: var(--bg);
+      color: var(--ink);
+    }}
+
+    body {{
+      min-height: 100vh;
+      background-color: var(--bg);
+      font-family: var(--font-body);
+      color: var(--ink);
+      overflow-x: hidden;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }}
+
+    img {{
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }}
+
+    a {{
+      color: inherit;
+    }}
+
+    /* Global SVG Safety Guard */
+    svg:not([width]):not([class]) {{
+      max-width: 100%;
+      height: auto;
+    }}
+  </style>
+</head>
+<body>
+
+  {body_content}
+
+</body>
+</html>
+"""
+    out_file = BASE_DIR / "index.html"
+    out_file.write_text(master_html, encoding="utf-8")
+    print(f"✅ Selesai! File statis tersimpan di {out_file.name} ({out_file.stat().st_size:,} bytes)")
+
+    # Buat juga index.standalone.html
+    cutout = BASE_DIR / "assets" / "hero-asc-cutout.webp"
+    if not cutout.exists():
+        cutout = BASE_DIR / "hero-asc-cutout.webp"
+    if cutout.exists():
+        cutout_b64 = base64.b64encode(cutout.read_bytes()).decode("ascii")
+        standalone_html = master_html.replace('src="assets/hero-asc-cutout.webp"', f'src="data:image/webp;base64,{cutout_b64}"')
+        standalone_html = standalone_html.replace('src="hero-asc-cutout.webp"', f'src="data:image/webp;base64,{cutout_b64}"')
+        out_standalone = BASE_DIR / "index.standalone.html"
+        out_standalone.write_text(standalone_html, encoding="utf-8")
+        print(f"✅ Versi standalone tersimpan di {out_standalone.name} ({out_standalone.stat().st_size:,} bytes)")
 
 
 def serve_local(port=8000):
     os.chdir(BASE_DIR)
-    socketserver.TCPServer.allow_reuse_address = True
     handler = http.server.SimpleHTTPRequestHandler
     with socketserver.TCPServer(("", port), handler) as httpd:
         url = f"http://localhost:{port}/index.html"
         print(f"\n🚀 Server lokal aktif di {url}")
-        print(f"📂 Direktori root: {BASE_DIR}")
-        print("🌐 Membuka browser default...")
-        print("Tekan Ctrl+C untuk menghentikan server.\n")
+        print("Tekan Ctrl+C untuk menghentikan server.")
         try:
             webbrowser.open(url)
         except Exception:
@@ -161,9 +218,12 @@ def serve_local(port=8000):
 
 
 if __name__ == "__main__":
-    if "--serve" in sys.argv or "-s" in sys.argv:
+    if "--check" in sys.argv or "-c" in sys.argv:
+        err = check_integrity()
+        sys.exit(err)
+    elif "--serve" in sys.argv or "-s" in sys.argv:
         serve_local()
-    elif "--check" in sys.argv or "-c" in sys.argv:
-        check_integrity()
     else:
-        build_standalone()
+        build_pages()
+"""
+"""

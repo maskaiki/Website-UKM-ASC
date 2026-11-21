@@ -1,0 +1,351 @@
+<!-- =====================================================================
+  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 04: PEMBINAAN RUTIN (ASYAM & KAIKI)
+  Fungsi: Direktori Kurikulum 11 Cabang Keahlian Al-Qur'an di Masjid Al-Hikmah UM
+  
+  Cara Pakai di WordPress (Elementor / Divi):
+  1. Widget "Custom HTML" pada container Section 4 (Full Width).
+  2. Paste seluruh isi file ini.
+====================================================================== -->
+
+<style>
+  #pembinaan {
+    position: relative;
+    padding: 100px var(--pad-x, 32px);
+    background: #ffffff;
+    border-top: 1px solid rgba(9, 19, 28, 0.08);
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #09131c;
+  }
+
+  #pembinaan * {
+    box-sizing: border-box;
+  }
+
+  .pb-head {
+    max-width: 1200px;
+    margin: 0 auto 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+  }
+
+  .pb-kicker {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0d5c3f;
+    margin-bottom: 8px;
+  }
+
+  .pb-h2 {
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: #09131c;
+    margin: 0;
+  }
+
+  .pb-h2 span {
+    color: #0d5c3f;
+  }
+
+  .pb-lead {
+    font-size: 16px;
+    color: #5a6876;
+    max-width: 480px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* 11 Cards Grid */
+  .pb-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .pb-card {
+    background: #f7f7f5;
+    border: 1.5px solid rgba(9, 19, 28, 0.08);
+    border-radius: 22px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 270px;
+    transition: all 0.35s cubic-bezier(0.22, 0.31, 0, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pb-card:hover {
+    background: #ffffff;
+    border-color: #0d5c3f;
+    transform: translateY(-6px);
+    box-shadow: 0 20px 44px rgba(13, 92, 63, 0.12);
+  }
+
+  .pb-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+
+  .pb-card-num {
+    font-family: 'Geist Mono', monospace;
+    font-size: 14px;
+    font-weight: 800;
+    color: #0d5c3f;
+  }
+
+  .pb-badge {
+    padding: 4px 10px;
+    background: rgba(13, 92, 63, 0.1);
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #0d5c3f;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .pb-card h3 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #09131c;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+
+  .pb-card p {
+    font-size: 14px;
+    color: #5a6876;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .pb-card-foot {
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(9, 19, 28, 0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #09131c;
+  }
+
+  .pb-card-foot span.loc {
+    color: #5a6876;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  @media (max-width: 992px) {
+    .pb-grid { grid-template-columns: repeat(2, 1fr); }
+    .pb-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+
+  @media (max-width: 640px) {
+    .pb-grid { grid-template-columns: 1fr; }
+    #pembinaan { padding: 60px 16px; }
+  }
+</style>
+
+<section id="pembinaan">
+  <div class="pb-head">
+    <div>
+      <div class="pb-kicker">✦ 04 · Kurikulum Ekosistem Pembinaan</div>
+      <h2 class="pb-h2">Sebelas Cabang <span>Keahlian.</span></h2>
+    </div>
+    <p class="pb-lead">
+      Wadah pembinaan rutin mingguan di Kompleks Masjid Al-Hikmah UM. Terbuka bagi seluruh mahasiswa UM dari tingkat pemula hingga persiapan kafilah MTQ Mahasiswa Nasional.
+    </p>
+  </div>
+
+  <div class="pb-grid">
+    <!-- 01 -->
+    <article class="pb-card">
+      <div>
+        <div class="pb-card-meta">
+          <span class="pb-card-num">01 / 11</span>
+          <span class="pb-badge">Dasar &amp; Tajwid</span>
+        </div>
+        <h3>Tahsinil Qiro'ah</h3>
+        <p>Perbaikan pelafalan makharijul huruf, sifatul huruf, dan hukum tajwid membaca Al-Qur'an secara tartil dari tingkat dasar.</p>
+      </div>
+      <div class="pb-card-foot">
+        <span class="loc">📍 Masjid Al-Hikmah</span>
+        <span>Rutin Mingguan →</span>
+      </div>
+    </article>
+
+    <!-- 02 -->
+    <article class="pb-card">
+      <div>
+        <div class="pb-card-meta">
+          <span class="pb-card-num">02 / 11</span>
+          <span class="pb-badge">Kefasihan &amp; Irama</span>
+        </div>
+        <h3>Tartilul Qur'an</h3>
+        <p>Membaca Al-Qur'an secara perlahan, teratur, memperhatikan waqaf wal ibtida', serta penghayatan makna kalam ilahi.</p>
+      </div>
+      <div class="pb-card-foot">
+        <span class="loc">📍 Masjid Al-Hikmah</span>
+        <span>Rutin Mingguan →</span>
+      </div>
+    </article>
+
+    <!-- 03 -->
+    <article class="pb-card">
+      <div>
+        <div class="pb-card-meta">
+          <span class="pb-card-num">03 / 11</span>
+          <span class="pb-badge">Seni Nagham</span>
+        </div>
+        <h3>Tilawatil Qur'an</h3>
+        <p>Penguasaan 7 maqamat lagu Al-Qur'an (Bayati, Shaba, Hijaz, Nahawand, Rast, Sika, Jiharka) dan olah pernapasan nada tinggi.</p>
+      </div>
+      <div class="pb-card-foot">
+        <span class="loc">📍 Masjid Al-Hikmah</span>
+        <span>Rutin Mingguan →</span>
+      </div>
+    </article>
+
+    <!-- 04 -->
+    <article class="pb-card">
+      <div>
+        <div class="pb-card-meta">
+          <span class="pb-card-num">04 / 11</span>
+          <span class="pb-badge">Hafalan 1–30 Juz</span>
+        </div>
+        <h3>Tahfidzul Qur'an</h3>
+        <p>Bimbingan setoran hafalan (tasmi'), muraja'ah mutqin, dan pembinaan kafilah Hifdzil Qur'an 1 Juz, 5 Juz, 10 Juz, 20 Juz, &amp; 30 Juz.</p>
+      </div>
+      <div class="pb-card-foot">
+        <span class="loc">📍 Masjid Al-Hikmah</span>
+        <span>Rutin Mingguan →</span>
+      </div>
+    </article>
+
+    <!-- 05 -->
+    <article class="pb-card">
+      <div>
+        <div class="pb-card-meta">
+          <span class="pb-card-num">05 / 11</span>
+          <span class="pb-badge">Seni Kaligrafi</span>
+        </div>
+        <h3>Khaththil Qur'an</h3>
+        <p>Kajian dan praktik seni khat kaligrafi Arab naskhi, tsuluts, diwani, riq'ah, serta pembuatan kaligrafi mushaf dan kontemporer.</p>
+      </div>
+      <div class="pb-card-foot">
+        <span class="loc">📍 Lab Bahasa Arab UM</span>
+        <span>Rutin Mingguan →</span>
+      </div>
+    </article>
+
+    <!-- 06 -->
+    <article class="pb-card">
+      <div>
+        <div class="pb-card-meta">
+          <span class="pb-card-num">06 / 11</span>
+          <span class="pb-badge">Cerdas Cermat</span>
+        </div>
+        <h3>Fahmil Qur'an</h3>
+        <p>Penguasaan wawasan Al-Qur'an, ilmu tafsir, asbabun nuzul, hafalan terjemah ayat, dan ketangkasan cerdas cermat beregu.</p>
+      </div>
+      <div class="pb-card-foot">
+        <span class="loc">📍 Masjid Al-Hikmah</span>
+        <span>Rutin Mingguan →</span>
+      </div>
+    </article>
+
+    <!-- 07 -->
+    <article class="pb-card">
+      <div>
+        <div class="pb-card-meta">
+          <span class="pb-card-num">07 / 11</span>
+          <span class="pb-badge">Seni Orasi &amp; Syiar</span>
+        </div>
+        <h3>Syarhil Qur'an</h3>
+        <p>Seni penyampaian pesan dakwah Al-Qur'an dalam format trio pensyarah, qari'/qari'ah tilawah, dan penerjemah sari tilawah.</p>
+      </div>
+      <div class="pb-card-foot">
+        <span class="loc">📍 Masjid Al-Hikmah</span>
+        <span>Rutin Mingguan →</span>
+      </div>
+    </article>
+
+    <!-- 08 -->
+    <article class="pb-card">
+      <div>
+        <div class="pb-card-meta">
+          <span class="pb-card-num">08 / 11</span>
+          <span class="pb-badge">Riset Ilmiah</span>
+        </div>
+        <h3>Karya Tulis Ilmiah Al-Qur'an (KTIA)</h3>
+        <p>Penulisan karya ilmiah dan eksplorasi sains, teknologi, serta sosial humaniora berlandaskan nilai-nilai Al-Qur'an.</p>
+      </div>
+      <div class="pb-card-foot">
+        <span class="loc">📍 Sekretariat ASC</span>
+        <span>Rutin Mingguan →</span>
+      </div>
+    </article>
+
+    <!-- 09 -->
+    <article class="pb-card">
+      <div>
+        <div class="pb-card-meta">
+          <span class="pb-card-num">09 / 11</span>
+          <span class="pb-badge">Inovasi Digital</span>
+        </div>
+        <h3>Desain Aplikasi Al-Qur'an (DAQ)</h3>
+        <p>Pengembangan website, aplikasi seluler, dan desain UI/UX media interaktif untuk mempermudah akses umat terhadap Al-Qur'an.</p>
+      </div>
+      <div class="pb-card-foot">
+        <span class="loc">📍 Lab Komputer UM</span>
+        <span>Rutin Mingguan →</span>
+      </div>
+    </article>
+
+    <!-- 10 -->
+    <article class="pb-card">
+      <div>
+        <div class="pb-card-meta">
+          <span class="pb-card-num">10 / 11</span>
+          <span class="pb-badge">Seni Hadrah</span>
+        </div>
+        <h3>Rebana &amp; Hadrah Shalawat</h3>
+        <p>Pengembangan seni musik rebana klasik dan modern untuk semarak syiar shalawat dalam peringatan hari besar Islam di kampus.</p>
+      </div>
+      <div class="pb-card-foot">
+        <span class="loc">📍 Masjid Al-Hikmah</span>
+        <span>Rutin Mingguan →</span>
+      </div>
+    </article>
+
+    <!-- 11 -->
+    <article class="pb-card">
+      <div>
+        <div class="pb-card-meta">
+          <span class="pb-card-num">11 / 11</span>
+          <span class="pb-badge">Ragam Bacaan</span>
+        </div>
+        <h3>Qira'at Sab'ah</h3>
+        <p>Kajian mendalam terhadap 7 ragam riwayat bacaan Al-Qur'an mutawatir yang dinisbatkan kepada para imam qira'at terkemuka.</p>
+      </div>
+      <div class="pb-card-foot">
+        <span class="loc">📍 Masjid Al-Hikmah</span>
+        <span>Rutin Mingguan →</span>
+      </div>
+    </article>
+  </div>
+</section>

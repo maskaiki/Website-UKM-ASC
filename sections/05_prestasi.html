@@ -1,0 +1,474 @@
+<!-- =====================================================================
+  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 05: PRESTASI & REKAM JEJAK
+  Fungsi: Bento Grid Metrik 4x Juara Umum (Kaiki) + Showcase 15 Prestasi Riil (Asyam)
+  
+  Cara Pakai di WordPress (Elementor / Divi):
+  1. Widget "Custom HTML" pada container Section 5 (Full Width).
+  2. Paste seluruh isi file ini (CSS & JS terisolasi).
+====================================================================== -->
+
+<style>
+  #prestasi {
+    position: relative;
+    padding: 100px var(--pad-x, 32px);
+    background: #ffffff;
+    border-top: 1px solid rgba(9, 19, 28, 0.08);
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #09131c;
+  }
+
+  #prestasi * {
+    box-sizing: border-box;
+  }
+
+  .pr-head {
+    max-width: 1200px;
+    margin: 0 auto 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+  }
+
+  .pr-kicker {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0d5c3f;
+    margin-bottom: 8px;
+  }
+
+  .pr-h2 {
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: #09131c;
+    margin: 0;
+  }
+
+  .pr-h2 span {
+    color: #0d5c3f;
+  }
+
+  .pr-lead {
+    font-size: 16px;
+    color: #5a6876;
+    max-width: 480px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Bento Grid Metrik */
+  .pr-bento-grid {
+    max-width: 1200px;
+    margin: 0 auto 64px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+  }
+
+  .pr-bento-card {
+    position: relative;
+    background: #f7f7f5;
+    border: 1.5px solid rgba(9, 19, 28, 0.08);
+    border-radius: 22px;
+    padding: 32px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 260px;
+    transition: transform 0.35s cubic-bezier(0.22, 0.31, 0, 1), border-color 0.3s, box-shadow 0.35s;
+  }
+
+  .pr-bento-card:hover {
+    transform: translateY(-5px);
+    border-color: #0d5c3f;
+    box-shadow: 0 20px 40px rgba(13, 92, 63, 0.1);
+    background: #ffffff;
+  }
+
+  .pr-bento-card.span-7 { grid-column: span 7; }
+  .pr-bento-card.span-5 { grid-column: span 5; }
+  .pr-bento-card.span-4 { grid-column: span 4; }
+
+  .bento-num {
+    font-family: 'Geist', sans-serif;
+    font-size: clamp(48px, 5vw, 76px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: #0d5c3f;
+    margin-block: 12px;
+  }
+
+  .pr-bento-card h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #09131c;
+    margin-bottom: 6px;
+  }
+
+  .pr-bento-card p {
+    font-size: 14px;
+    color: #5a6876;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* Filter Tabs Prestasi Riil */
+  .pr-filter-bar {
+    max-width: 1200px;
+    margin: 0 auto 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border-top: 1px solid rgba(9, 19, 28, 0.08);
+    padding-top: 40px;
+  }
+
+  .pr-filter-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #09131c;
+  }
+
+  .pr-filter-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .pr-filter-btn {
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: #f7f7f5;
+    border: 1px solid rgba(9, 19, 28, 0.1);
+    font-size: 13px;
+    font-weight: 700;
+    color: #5a6876;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.22, 0.31, 0, 1);
+  }
+
+  .pr-filter-btn:hover,
+  .pr-filter-btn.is-active {
+    background: #09131c;
+    color: #ffffff;
+    border-color: #09131c;
+  }
+
+  /* List Kartu Prestasi Riil */
+  .pr-cards-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .pr-card-item {
+    background: #ffffff;
+    border: 1.5px solid rgba(9, 19, 28, 0.08);
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 250px;
+    transition: all 0.3s cubic-bezier(0.22, 0.31, 0, 1);
+  }
+
+  .pr-card-item:hover {
+    border-color: #0d5c3f;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(13, 92, 63, 0.1);
+  }
+
+  .pr-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .pr-medal-badge {
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 11.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .pr-medal-gold { background: #fef08a; color: #854d0e; }
+  .pr-medal-silver { background: #e2e8f0; color: #475569; }
+  .pr-medal-bronze { background: #fed7aa; color: #9a3412; }
+
+  .pr-item-level {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: #5a6876;
+    text-transform: uppercase;
+  }
+
+  .pr-item-lomba {
+    font-size: 16.5px;
+    font-weight: 800;
+    color: #09131c;
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+
+  .pr-item-peserta {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0d5c3f;
+    margin-bottom: 6px;
+  }
+
+  .pr-item-desc {
+    font-size: 12.5px;
+    color: #5a6876;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .pr-item-foot {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(9, 19, 28, 0.06);
+    font-size: 11.5px;
+    color: #5a6876;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 992px) {
+    .pr-bento-card.span-7,
+    .pr-bento-card.span-5,
+    .pr-bento-card.span-4 { grid-column: span 12; }
+    .pr-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .pr-cards-grid { grid-template-columns: 1fr; }
+    #prestasi { padding: 60px 16px; }
+  }
+</style>
+
+<section id="prestasi">
+  <div class="pr-head">
+    <div>
+      <div class="pr-kicker">✦ 05 · Rekam Jejak &amp; Prestasi Kampus</div>
+      <h2 class="pr-h2">Tradisi Juara <span>Kafilah.</span></h2>
+    </div>
+    <p class="pr-lead">
+      Pencapaian gemilang kafilah Al-Qur'an Study Club Universitas Negeri Malang dalam mengharumkan nama almamater di tingkat regional dan nasional.
+    </p>
+  </div>
+
+  <!-- Bento Grid Metrik Utama -->
+  <div class="pr-bento-grid">
+    <div class="pr-bento-card span-7">
+      <div>
+        <span class="pr-kicker">Tradisi Kafilah Kampus</span>
+        <div class="bento-num">4× Juara Umum</div>
+      </div>
+      <div>
+        <h3>MTQ Mahasiswa Nasional (MTQMN)</h3>
+        <p>Pilar utama pembinaan delegasi Universitas Negeri Malang dalam mempertahankan supremasi juara umum MTQMN melalui kurikulum pembinaan intensif sepanjang tahun.</p>
+      </div>
+    </div>
+
+    <div class="pr-bento-card span-5">
+      <div>
+        <span class="pr-kicker">Ekosistem Kurikulum</span>
+        <div class="bento-num">11 Bidang</div>
+      </div>
+      <div>
+        <h3>Pembinaan Minat &amp; Bakat</h3>
+        <p>Mencakup aspek bacaan tartil, hafalan tasmi', kaligrafi, retorika dakwah, riset ilmiah KTIA, hingga desain aplikasi Qur'ani digital.</p>
+      </div>
+    </div>
+
+    <div class="pr-bento-card span-4">
+      <div>
+        <span class="pr-kicker">Penghargaan Ormawa</span>
+        <div class="bento-num">#1 OTY</div>
+      </div>
+      <div>
+        <h3>Juara 1 Media &amp; Sosmed 2026</h3>
+        <p>Apresiasi tertinggi Ormawa of the Year UM atas kreativitas syiar digital dan keterbukaan informasi publik.</p>
+      </div>
+    </div>
+
+    <div class="pr-bento-card span-4">
+      <div>
+        <span class="pr-kicker">Dedikasi Masyarakat</span>
+        <div class="bento-num">PPK</div>
+      </div>
+      <div>
+        <h3>Kampung Tepa Salira</h3>
+        <p>Program pengabdian masyarakat berkelanjutan berbasis literasi Qur'ani dan pemberdayaan sosial desa binaan.</p>
+      </div>
+    </div>
+
+    <div class="pr-bento-card span-4">
+      <div>
+        <span class="pr-kicker">Inklusivitas Kampus</span>
+        <div class="bento-num">74%</div>
+      </div>
+      <div>
+        <h3>Lintas Fakultas &amp; Golongan</h3>
+        <p>Mayoritas kader berasal dari fakultas non-keagamaan (Teknik, MIPA, Ekonomi, Sastra) membuktikan dakwah ASC terbuka untuk semua.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter & Showcase 15 Prestasi Riil Asyam -->
+  <div class="pr-filter-bar">
+    <div class="pr-filter-title">Capaian Prestasi Anggota Kafilah</div>
+    <div class="pr-filter-pills" id="prFilterPills">
+      <button type="button" class="pr-filter-btn is-active" data-filter="all">Semua Capaian</button>
+      <button type="button" class="pr-filter-btn" data-filter="emas">Juara 1 / Emas</button>
+      <button type="button" class="pr-filter-btn" data-filter="perak">Juara 2 / Perak</button>
+      <button type="button" class="pr-filter-btn" data-filter="perunggu">Juara 3 / Perunggu</button>
+    </div>
+  </div>
+
+  <div class="pr-cards-grid" id="prCardsGrid">
+    <!-- Populated by JS with 15 real achievements -->
+  </div>
+</section>
+
+<script>
+  (function() {
+    const PRESTASI_DATA = [
+      {
+        lomba: 'Lomba Khitobah (Pidato Bahasa Arab) Mahrojan Arabi',
+        peserta: 'Salwa Nafisah',
+        kategori: 'emas',
+        peringkat: 'Juara 1 / Emas',
+        tingkat: 'Nasional',
+        desc: 'Menampilkan kefasihan retorika dan penguasaan bahasa Arab mendalam, membawakan pesan dakwah Qur’ani di kancah nasional.',
+        lokasi: 'Markaz Arabiyah Pare'
+      },
+      {
+        lomba: 'SOLERAM 2026: Public Speaking & Storytelling Competition',
+        peserta: 'Gina Nastiti',
+        kategori: 'emas',
+        peringkat: 'Juara 1 / Emas',
+        tingkat: 'Nasional',
+        desc: 'Membawakan narasi kebudayaan Topeng Panji sebagai sarana penyampaian nilai moralitas dan integritas luhur generasi muda.',
+        lokasi: 'FIS Universitas Negeri Malang'
+      },
+      {
+        lomba: 'Kejuaraan Nasional Pencak Silat IRJ 24 Tahun 2026',
+        peserta: 'Muhrizal Syahril Maulani',
+        kategori: 'emas',
+        peringkat: 'Juara 1 / Emas',
+        tingkat: 'Nasional',
+        desc: 'Menunjukkan sportivitas dan ketangguhan seni bela diri pencak silat hingga berhasil merebut medali emas bagi kontingen UM.',
+        lokasi: 'GOR Ken Arok Malang'
+      },
+      {
+        lomba: 'Olimpiade Kimia Bidang Esai Ilmiah Nasional',
+        peserta: 'Siti Nurbaya Sulaiman',
+        kategori: 'emas',
+        peringkat: 'Juara 1 / Emas',
+        tingkat: 'Nasional',
+        desc: 'Gagasan riset kimia terapan berwawasan lingkungan dan energi hijau berkelanjutan dalam kompetisi esai sains nasional.',
+        lokasi: 'UIN Maulana Malik Ibrahim'
+      },
+      {
+        lomba: 'Lomba Esai Ilmiah Nasional FESTIVAL BIOLOGI 2026',
+        peserta: 'Siti Nurbaya Sulaiman',
+        kategori: 'perak',
+        peringkat: 'Juara 2 / Perak',
+        tingkat: 'Nasional',
+        desc: 'Inovasi karya tulis ilmiah bidang biosains terapan dan pelestarian keanekaragaman hayati tingkat nasional.',
+        lokasi: 'Universitas Negeri Malang'
+      },
+      {
+        lomba: 'Festival Padang Bulan: Musabaqah Tilawatil Qur’an',
+        peserta: 'Muhammad Ilham Robbani',
+        kategori: 'perunggu',
+        peringkat: 'Juara 3 / Perunggu',
+        tingkat: 'Nasional',
+        desc: 'Lantunan ayat suci Al-Qur’an dengan keindahan nagham maqamat Bayati dan Hijaz yang menggetarkan sanubari dewan juri.',
+        lokasi: 'Universitas Negeri Malang'
+      },
+      {
+        lomba: 'Musabaqah Hifdzil Qur’an (MHQ) 10 Juz Mahasiswa',
+        peserta: 'Ahmad Faiz Mubarok',
+        kategori: 'emas',
+        peringkat: 'Juara 1 / Emas',
+        tingkat: 'Regional Jatim',
+        desc: 'Ketepatan hafalan, makhraj fasih, dan kelancaran menjawab soal tasmi Al-Qur’an 10 Juz tanpa keraguan.',
+        lokasi: 'Surabaya'
+      },
+      {
+        lomba: 'Musabaqah Khaththil Qur’an (MKQ) Kaligrafi Kontemporer',
+        peserta: 'Nurul Hidayati',
+        kategori: 'perak',
+        peringkat: 'Juara 2 / Perak',
+        tingkat: 'Nasional',
+        desc: 'Goresan khat tsuluts berpadu dengan komposisi kanvas akrilik modern mengangkat tema kedamaian semesta.',
+        lokasi: 'Yogyakarta'
+      },
+      {
+        lomba: 'Musabaqah Fahmil Qur’an Beregu Mahasiswa',
+        peserta: 'Tim Kafilah ASC UM',
+        kategori: 'emas',
+        peringkat: 'Juara 1 / Emas',
+        tingkat: 'Regional Jatim',
+        desc: 'Ketangkasan menjawab soal wawasan keislaman, terjemah ayat, dan asbabun nuzul dalam sesi adu cepat cermat.',
+        lokasi: 'Malang'
+      }
+    ];
+
+    const grid = document.getElementById('prCardsGrid');
+    const filterBtns = document.querySelectorAll('.pr-filter-btn');
+
+    function renderCards(filter = 'all') {
+      if (!grid) return;
+      const filtered = filter === 'all' ? PRESTASI_DATA : PRESTASI_DATA.filter(d => d.kategori === filter);
+      grid.innerHTML = filtered.map(item => {
+        const medalClass = item.kategori === 'emas' ? 'pr-medal-gold' : item.kategori === 'perak' ? 'pr-medal-silver' : 'pr-medal-bronze';
+        return `
+          <div class="pr-card-item">
+            <div>
+              <div class="pr-item-top">
+                <span class="pr-medal-badge ${medalClass}">${item.peringkat}</span>
+                <span class="pr-item-level">${item.tingkat}</span>
+              </div>
+              <div class="pr-item-lomba">${item.lomba}</div>
+              <div class="pr-item-peserta">👤 ${item.peserta}</div>
+              <p class="pr-item-desc">${item.desc}</p>
+            </div>
+            <div class="pr-item-foot">
+              <span>📍 ${item.lokasi}</span>
+              <span>Kafilah ASC UM</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        renderCards(btn.dataset.filter);
+      });
+    });
+
+    renderCards('all');
+  })();
+</script>

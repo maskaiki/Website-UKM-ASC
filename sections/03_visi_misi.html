@@ -1,0 +1,272 @@
+<!-- =====================================================================
+  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 03: VISI & MISI KINETIC SCROLL (ASYAM)
+  Fungsi: Panggung Scroll Bertahap Visi & Misi — Selaras White-First Editorial
+  
+  Cara Pakai di WordPress (Elementor / Divi):
+  1. Widget "Custom HTML" pada container Section 3 (Full Width).
+  2. Pastikan overflow container = Default / Visible agar efek menempel jalan.
+====================================================================== -->
+
+<style>
+  #visi-misi {
+    position: relative;
+    height: 280vh;
+    width: 100%;
+    background: #ffffff;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #09131c;
+  }
+
+  #visi-misi * {
+    box-sizing: border-box;
+  }
+
+  #visi-misi .vm-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 var(--pad-x, 32px);
+    background: radial-gradient(circle at 10% 20%, rgba(13, 92, 63, 0.05), transparent 45%),
+                radial-gradient(circle at 90% 80%, rgba(92, 58, 40, 0.04), transparent 45%),
+                #ffffff;
+  }
+
+  .vm-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .vm-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1.5px solid rgba(9, 19, 28, 0.08);
+    padding-bottom: 20px;
+  }
+
+  .vm-kicker {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0d5c3f;
+    margin-bottom: 6px;
+  }
+
+  .vm-h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #09131c;
+    margin: 0;
+  }
+
+  .vm-h2 span {
+    color: #0d5c3f;
+  }
+
+  .vm-progress-pill {
+    font-family: 'Geist Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 16px;
+    background: #f7f7f5;
+    border-radius: 999px;
+    color: #0d5c3f;
+    border: 1px solid rgba(13, 92, 63, 0.15);
+  }
+
+  /* Visi Text dengan Efek Kinetic Highlight */
+  .vm-visi-box {
+    background: #f7f7f5;
+    border: 1.5px solid rgba(9, 19, 28, 0.08);
+    border-radius: 24px;
+    padding: clamp(24px, 4vw, 40px);
+    box-shadow: 0 12px 32px rgba(9, 19, 28, 0.04);
+  }
+
+  .vm-label-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #0d5c3f;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 99px;
+    margin-bottom: 14px;
+  }
+
+  .vm-visi-statement {
+    font-size: clamp(20px, 2.6vw, 32px);
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    color: #5a6876;
+    margin: 0;
+  }
+
+  .vm-visi-statement .vm-word {
+    transition: color 0.25s, opacity 0.25s;
+    opacity: 0.35;
+  }
+
+  .vm-visi-statement .vm-word.is-lit {
+    color: #09131c;
+    opacity: 1;
+  }
+
+  /* 4 Pilar Misi */
+  .vm-misi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .vm-misi-card {
+    background: #ffffff;
+    border: 1.5px solid rgba(9, 19, 28, 0.08);
+    border-radius: 18px;
+    padding: 22px 20px;
+    transition: all 0.35s cubic-bezier(0.22, 0.31, 0, 1);
+  }
+
+  .vm-misi-card.is-active {
+    border-color: #0d5c3f;
+    box-shadow: 0 14px 30px rgba(13, 92, 63, 0.12);
+    transform: translateY(-4px);
+    background: #f0fdf4;
+  }
+
+  .misi-num {
+    font-family: 'Geist Mono', monospace;
+    font-size: 13px;
+    font-weight: 800;
+    color: #0d5c3f;
+    margin-bottom: 8px;
+  }
+
+  .misi-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #09131c;
+    margin-bottom: 6px;
+  }
+
+  .misi-p {
+    font-size: 12.5px;
+    color: #5a6876;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  @media (max-width: 992px) {
+    .vm-misi-grid { grid-template-columns: repeat(2, 1fr); }
+    #visi-misi { height: 240vh; }
+  }
+
+  @media (max-width: 640px) {
+    .vm-misi-grid { grid-template-columns: 1fr; }
+    .vm-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
+
+<section id="visi-misi">
+  <div class="vm-stage" id="vmStage">
+    <div class="vm-container">
+      <div class="vm-head">
+        <div>
+          <div class="vm-kicker">✦ 03 · Arah Gerak &amp; Komitmen</div>
+          <h2 class="vm-h2">Visi &amp; <span>Misi Utama.</span></h2>
+        </div>
+        <div class="vm-progress-pill" id="vmProgressPill">SCROLL TO REVEAL</div>
+      </div>
+
+      <!-- Kotak Visi Kinetic -->
+      <div class="vm-visi-box">
+        <span class="vm-label-tag">Visi Organisasi</span>
+        <p class="vm-visi-statement" id="vmText">
+          Menjadi episentrum pembinaan insan Qur'ani Universitas Negeri Malang yang berkarakter kokoh, berprestasi unggul di tingkat nasional, dan berkontribusi nyata bagi peradaban umat melalui sinergi dakwah inklusif.
+        </p>
+      </div>
+
+      <!-- 4 Pilar Misi -->
+      <div class="vm-misi-grid">
+        <div class="vm-misi-card" data-step="1">
+          <div class="misi-num">01 / MISI</div>
+          <div class="misi-title">Tadarrus &amp; Tahfidz</div>
+          <p class="misi-p">Pembinaan rutin bacaan tartil, tajwid makhraj, dan hafalan Al-Qur'an intensif bersanad.</p>
+        </div>
+        <div class="vm-misi-card" data-step="2">
+          <div class="misi-num">02 / MISI</div>
+          <div class="misi-title">Kafilah Prestasi</div>
+          <p class="misi-p">Menggembleng kontingen kafilah UM dalam mempertahankan gelar Juara Umum MTQMN.</p>
+        </div>
+        <div class="vm-misi-card" data-step="3">
+          <div class="misi-num">03 / MISI</div>
+          <div class="misi-title">Syiar &amp; Pengabdian</div>
+          <p class="misi-p">Mengabdi kepada masyarakat melalui desa binaan Qur'ani dan inovasi media dakwah digital.</p>
+        </div>
+        <div class="vm-misi-card" data-step="4">
+          <div class="misi-num">04 / MISI</div>
+          <div class="misi-title">Ukhuwah Inklusif</div>
+          <p class="misi-p">Menghidupkan kekeluargaan hangat yang merangkul mahasiswa lintas fakultas dan golongan.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const sec = document.getElementById('visi-misi');
+    const vmText = document.getElementById('vmText');
+    const pill = document.getElementById('vmProgressPill');
+    const cards = document.querySelectorAll('.vm-misi-card');
+
+    if (sec && vmText) {
+      // Split kata untuk efek kinetic scroll
+      const words = vmText.innerText.trim().split(/\s+/);
+      vmText.innerHTML = words.map(w => `<span class="vm-word">${w}</span>`).join(' ');
+      const wordSpans = vmText.querySelectorAll('.vm-word');
+
+      function onScroll() {
+        const rect = sec.getBoundingClientRect();
+        const total = sec.offsetHeight - window.innerHeight;
+        if (total <= 0) return;
+
+        let p = -rect.top / total;
+        p = Math.max(0, Math.min(1, p));
+
+        // Nyalakan kata-kata secara bertahap sesuai progress scroll
+        const litCount = Math.floor(p * wordSpans.length * 1.2);
+        wordSpans.forEach((sp, i) => {
+          sp.classList.toggle('is-lit', i < litCount);
+        });
+
+        // Aktifkan kartu misi
+        const activeCardIdx = Math.floor(p * cards.length * 1.1);
+        cards.forEach((card, idx) => {
+          card.classList.toggle('is-active', idx <= activeCardIdx);
+        });
+
+        if (pill) {
+          pill.innerText = p >= 0.95 ? 'VISI MISI TERCAPAI ✦' : `${Math.round(p * 100)}% DIBACA`;
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+  })();
+</script>
