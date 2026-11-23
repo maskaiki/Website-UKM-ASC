@@ -1,0 +1,331 @@
+<style>
+  /* ==========================================================================
+     00. CLEAN EDITORIAL HEADER & MENU DRAWER (ANTI-AI-SLOP, 4-POINT GRID)
+     ========================================================================== */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 76px;
+    z-index: 120;
+    padding: 0 var(--pad-x, clamp(20px, 4vw, 56px));
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    background: #f6f5f0;
+    border-bottom: 1px solid rgba(9, 19, 28, 0.08);
+    transition: background 0.22s cubic-bezier(0.22, 0.31, 0, 1), border-color 0.22s, box-shadow 0.22s;
+  }
+
+  .site-header.is-scrolled {
+    background: #ffffff;
+    border-bottom-color: rgba(9, 19, 28, 0.12);
+    box-shadow: 0 4px 16px rgba(9, 19, 28, 0.05);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    justify-self: start;
+    text-decoration: none;
+  }
+
+  .brand-logo {
+    font-family: var(--font-asc, 'Geist', sans-serif);
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    color: var(--ink, #09131c);
+  }
+
+  .brand-logo span {
+    color: var(--emerald-700, #0d5c3f);
+  }
+
+  .brand-sep {
+    width: 1px;
+    height: 24px;
+    background: rgba(9, 19, 28, 0.2);
+  }
+
+  .brand-sub {
+    font-family: 'Plus Jakarta Sans', var(--font-ui, sans-serif);
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #273545;
+  }
+
+  /* Clean text navigation without pill container, badges, or emojis */
+  .header-center-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .nav-link {
+    font-family: 'Plus Jakarta Sans', var(--font-ui, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    color: #273545;
+    position: relative;
+    padding: 6px 0;
+    transition: color 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1.5px;
+    background: var(--emerald-700, #0d5c3f);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.22s cubic-bezier(0.22, 0.31, 0, 1);
+  }
+
+  .nav-link:hover {
+    color: var(--ink, #09131c);
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .header-right {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .btn-menu-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 8px;
+    border: 1.5px solid rgba(9, 19, 28, 0.22);
+    background: rgba(255, 255, 255, 0.9);
+    font-family: 'Plus Jakarta Sans', var(--font-ui, sans-serif);
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink, #09131c);
+    cursor: pointer;
+    transition: background 0.16s, border-color 0.16s, color 0.16s, transform 0.12s;
+  }
+
+  .btn-menu-trigger:hover {
+    background: var(--ink, #09131c);
+    border-color: var(--ink, #09131c);
+    color: #ffffff;
+  }
+
+  .btn-menu-trigger:active {
+    transform: scale(0.97);
+  }
+
+  .burger-icon {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 16px;
+  }
+
+  .burger-icon i {
+    height: 1.5px;
+    width: 100%;
+    background: currentColor;
+    display: block;
+    border-radius: 1px;
+  }
+
+  /* ==========================================================================
+     FULL-SCREEN MENU OVERLAY
+     ========================================================================== */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 250;
+    background: var(--ink, #09131c);
+    color: #ffffff;
+    padding: 24px var(--pad-x, clamp(20px, 4vw, 56px));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-16px);
+    transition: opacity 0.4s cubic-bezier(0.22, 0.31, 0, 1), transform 0.4s cubic-bezier(0.22, 0.31, 0, 1);
+  }
+
+  .menu-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .menu-overlay-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .menu-overlay .btn-menu-trigger {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+  }
+
+  .menu-overlay .btn-menu-trigger:hover {
+    background: #ffffff;
+    color: #09131c;
+  }
+
+  .menu-overlay-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 48px;
+    margin: auto 0;
+  }
+
+  .menu-overlay-link {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    font-size: clamp(24px, 3.4vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    transition: padding-left 0.32s cubic-bezier(0.22, 0.31, 0, 1), color 0.2s;
+  }
+
+  .menu-overlay-link:hover {
+    padding-left: 16px;
+    color: #10b981;
+  }
+
+  .menu-overlay-link span.num {
+    font-size: 14px;
+    font-weight: 600;
+    color: #10b981;
+  }
+
+  @media (max-width: 1024px) {
+    .header-center-nav {
+      display: none;
+    }
+
+    .site-header {
+      grid-template-columns: 1fr auto;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .menu-overlay-links {
+      grid-template-columns: 1fr;
+    }
+
+    .site-header {
+      height: 64px;
+      padding: 0 16px;
+    }
+
+    .brand-sep,
+    .brand-sub {
+      display: none;
+    }
+  }
+</style>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ======================== CLEAN EDITORIAL HEADER ======================== -->
+<header class="site-header" id="siteHeader">
+  <a href="#top" class="brand">
+    <div class="brand-logo">ASC<span>.</span></div>
+    <div class="brand-sep"></div>
+    <div class="brand-sub">Al-Qur'an<br />Study Club UM</div>
+  </a>
+
+  <nav class="header-center-nav" aria-label="Navigasi Utama">
+    <a href="#asc-visi-misi" class="nav-link">Visi Misi</a>
+    <a href="#asc-pembinaan" class="nav-link">Pembinaan</a>
+    <a href="#asc-struktur" class="nav-link">Struktur</a>
+    <a href="#prestasi" class="nav-link">Prestasi</a>
+    <a href="#kabinet" class="nav-link">Kabinet</a>
+  </nav>
+
+  <div class="header-right">
+    <button type="button" class="btn-menu-trigger" id="openMenuBtn" aria-label="Buka Menu Navigasi">
+      <span>Menu</span>
+      <span class="burger-icon" aria-hidden="true"><i></i><i></i></span>
+    </button>
+  </div>
+</header>
+
+<!-- ======================== FULL-SCREEN MENU DRAWER ======================== -->
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+  <div class="menu-overlay-top">
+    <div class="brand-logo" style="color:#fff;">ASC<span style="color:#10b981;">.</span></div>
+    <button type="button" class="btn-menu-trigger" id="closeMenuBtn">Tutup ✕</button>
+  </div>
+
+  <div class="menu-overlay-links">
+    <a href="#asc-visi-misi" class="menu-overlay-link"><span class="num">01</span><span>Visi &amp; Misi</span></a>
+    <a href="#asc-pembinaan" class="menu-overlay-link"><span class="num">02</span><span>11 Bidang Pembinaan</span></a>
+    <a href="#asc-struktur" class="menu-overlay-link"><span class="num">03</span><span>Struktur Organisasi</span></a>
+    <a href="#prestasi" class="menu-overlay-link"><span class="num">04</span><span>Jejak Prestasi (15)</span></a>
+    <a href="#kabinet" class="menu-overlay-link"><span class="num">05</span><span>Departemen &amp; Kabinet</span></a>
+    <a href="#gabung" class="menu-overlay-link"><span class="num">06</span><span>Daftar Pembinaan</span></a>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;color:rgba(255,255,255,0.72);font-size:14px;">
+    <span>Kompleks Masjid Al-Hikmah · Universitas Negeri Malang</span>
+    <span>Instagram: @ukm_asc_um · ukm.asc@um.ac.id</span>
+  </div>
+</div>
+
+<script>
+  (function () {
+    'use strict';
+
+    const header = document.getElementById('siteHeader');
+    const progress = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (header) header.classList.toggle('is-scrolled', y > 24);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (progress) progress.style.width = max > 0 ? `${(y / max) * 100}%` : '0%';
+    }, { passive: true });
+
+    const menuOverlay = document.getElementById('menuOverlay');
+    const openMenuBtn = document.getElementById('openMenuBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const openMenu = () => {
+      if (!menuOverlay) return;
+      menuOverlay.classList.add('is-open');
+      menuOverlay.setAttribute('aria-hidden', 'false');
+    };
+    const closeMenu = () => {
+      if (!menuOverlay) return;
+      menuOverlay.classList.remove('is-open');
+      menuOverlay.setAttribute('aria-hidden', 'true');
+    };
+    if (openMenuBtn) openMenuBtn.addEventListener('click', openMenu);
+    if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
+    document.querySelectorAll('.menu-overlay-link').forEach((l) => l.addEventListener('click', closeMenu));
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOverlay && menuOverlay.classList.contains('is-open')) {
+        closeMenu();
+      }
+    });
+  })();
+</script>

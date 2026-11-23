@@ -320,19 +320,27 @@
   }
 
   #asc-pr #prS1 {
-    height: 400vh;
+    position: relative !important;
+    width: 100% !important;
+    height: 400vh !important;
+    overflow: visible !important;
   }
 
   #asc-pr #prS2 {
-    height: 390vh;
+    position: relative !important;
+    width: 100% !important;
+    height: 390vh !important;
+    overflow: visible !important;
   }
 
   #asc-pr .pr-stg {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    height: 100svh;
-    overflow: clip;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    overflow: hidden !important;
   }
 
   #asc-pr .pr-stg.dk {
@@ -985,6 +993,13 @@
     color: #fff;
   }
 
+  @media (max-width: 1024px) {
+    #asc-pr .pr-trk {
+      --cw: min(420px, 68vw);
+      --ch: min(56vh, 480px);
+    }
+  }
+
   @media (max-width:900px) {
     #asc-pr .pr-head {
       grid-template-columns: 1fr;
@@ -1004,11 +1019,11 @@
     }
 
     #asc-pr #prS1 {
-      height: 380vh;
+      height: 380vh !important;
     }
 
     #asc-pr #prS2 {
-      height: 360vh;
+      height: 360vh !important;
     }
 
     #asc-pr .pr-hero .pr-head {
@@ -1758,15 +1773,72 @@
       if (rc.top < vh) { var e = ease(clamp((vh - rc.top) / (vh * .85))); cw.style.opacity = e.toFixed(3); cw.style.transform = 'translate3d(0,' + ((1 - e) * 60).toFixed(1) + 'px,0) scale(' + (.9 + .1 * e).toFixed(3) + ')'; }
     }
 
+    /* Perbaiki overflow parent WordPress (Divi/Elementor) agar position: sticky hidup */
+    function fixParents(el) {
+      if (!el) return;
+      var p = el.parentElement, n = 0;
+      while (p && p !== document.documentElement && n++ < 25) {
+        var cs = window.getComputedStyle(p);
+        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+          p.style.setProperty('overflow', 'visible', 'important');
+        }
+        p = p.parentElement;
+      }
+      if (document.documentElement) {
+        document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+      }
+      if (document.body) {
+        document.body.style.setProperty('overflow-x', 'visible', 'important');
+      }
+    }
+
     if (reduce) {
       root.classList.add('pr-static'); bgs.forEach(function (b, i) { b.firstChild.textContent = ST[i][0]; });
     } else {
-      ASC.unlock(root);
       function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(render); } }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll, { passive: true });
-      window.addEventListener('load', function () { ASC.unlock(root); render(); });
-      render();
+      function init() {
+        if (!root) return false;
+        if (root.dataset.ready) return true;
+        root.dataset.ready = '1';
+        fixParents(root);
+        render();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', function () {
+          fixParents(root);
+          onScroll();
+        }, { passive: true });
+        window.addEventListener('load', function () {
+          fixParents(root);
+          render();
+        });
+        if (window.ResizeObserver) {
+          new ResizeObserver(function () {
+            fixParents(root);
+            render();
+          }).observe(root);
+        }
+        // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak perlu zoom in/out
+        [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+          setTimeout(function () {
+            fixParents(root);
+            render();
+            try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+          }, ms);
+        });
+        return true;
+      }
+
+      function run() {
+        if (init()) return;
+        var n = 0, t = setInterval(function () {
+          if (init() || ++n >= 25) clearInterval(t);
+        }, 150);
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', run);
+      } else {
+        run();
+      }
     }
   })();
 </script>

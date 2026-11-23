@@ -26,7 +26,8 @@
   .elementor-section,
   .elementor-column,
   .elementor-widget-wrap,
-  .elementor-widget {
+  .elementor-widget,
+  .elementor-element {
     overflow: visible !important;
   }
 
@@ -48,27 +49,66 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* WRAPPER NAVBAR: FLOATING STICKY DENGAN Z-INDEX MAKSIMAL */
+  /* =========================================================================
+     2. WRAPPER NAVBAR: DUAL-STATE HYBRID (RELATIVE DI ATAS -> FIXED FLOATING SAAT SCROLL)
+     WordPress seringkali memaksa margin pada ul, li, dan header. Reset di bawah
+     menjamin tampilan tetap ramping, rapi, dan presisi di semua tema WordPress.
+     ========================================================================= */
+  /* Placeholder pengisi ruang agar halaman tidak meloncat saat navbar floating */
+  .asc-nav-placeholder {
+    display: none;
+    width: 100%;
+    height: 76px;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+  .asc-nav-placeholder.active {
+    display: block;
+  }
+
+  /* Default State (Saat di posisi paling atas halaman): Relative di bawah header tema WP */
   #asc-header-navbar {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
-    position: sticky !important;
-    top: 16px !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
     z-index: 999999 !important;
     width: 100% !important;
     max-width: 1220px !important;
-    margin: 14px auto 0 !important;
+    margin: 16px auto 20px !important;
     padding: 0 16px !important;
     pointer-events: none;
-    /* Biarkan klik di area luar navbar tembus ke bawah */
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease !important;
+    transform: translate3d(0, 0, 0) !important;
+    opacity: 1 !important;
+  }
+
+  /* Floating State (Saat halaman digulir melewati posisi awal): Melayang fixed */
+  #asc-header-navbar.asc-is-floating {
+    position: fixed !important;
+    top: 16px !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 auto !important;
+  }
+
+  /* Kondisi saat scroll turun dalam mode floating: Slide up halus ke atas & fade out */
+  #asc-header-navbar.asc-is-floating.asc-nav-hidden {
+    transform: translate3d(0, -140%, 0) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
 
   /* Penyesuaian jarak saat Admin login ke WordPress (ada toolbar hitam #wpadminbar) */
-  body.admin-bar #asc-header-navbar {
+  body.admin-bar #asc-header-navbar.asc-is-floating {
     top: 48px !important;
   }
 
   @media screen and (max-width: 782px) {
-    body.admin-bar #asc-header-navbar {
+    body.admin-bar #asc-header-navbar.asc-is-floating {
       top: 60px !important;
     }
   }
@@ -447,8 +487,16 @@
 
   @media (max-width: 640px) {
     #asc-header-navbar {
-      top: 10px !important;
+      margin: 10px auto 14px !important;
       padding: 0 10px !important;
+    }
+
+    #asc-header-navbar.asc-is-floating {
+      top: 10px !important;
+    }
+
+    .asc-nav-placeholder {
+      height: 66px !important;
     }
 
     #asc-header-navbar .asc-brand-sub {
@@ -470,7 +518,10 @@
 <!-- =========================================================================
      STRUKTUR HTML SECTION 00: HEADER & FLOATING NAVBAR
      ========================================================================= -->
-<div id="asc-header-navbar">
+<!-- Placeholder pengisi ruang agar konten tidak meloncat saat navbar floating -->
+<div class="asc-nav-placeholder" id="ascNavPlaceholder"></div>
+
+<div id="asc-header-navbar" role="banner">
 
   <!-- THE FLOATING CAPSULE BAR (COMPACT 56PX) -->
   <div class="asc-nav-capsule" id="ascNavCapsule">
@@ -682,17 +733,14 @@
     /* 2. Buka overflow milik container Divi/Elementor/tema WordPress yang memblokir position: sticky */
     A.unlock = function (root) {
       try {
-        var n = root;
-        while (n && n !== d) {
-          if (n.nodeType === 1) {
-            var cs = w.getComputedStyle(n);
-            if (/hidden|auto|scroll|clip/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
-              n.style.setProperty('overflow', 'visible', 'important');
-              n.style.setProperty('overflow-x', 'visible', 'important');
-              n.style.setProperty('overflow-y', 'visible', 'important');
-            }
+        var el = root || d.getElementById('asc-header-navbar') || d.body;
+        var p = el.parentElement, n = 0;
+        while (p && p !== d.documentElement && n++ < 25) {
+          var cs = w.getComputedStyle(p);
+          if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+            p.style.setProperty('overflow', 'visible', 'important');
           }
-          n = n.parentElement;
+          p = p.parentElement;
         }
         if (d.documentElement) {
           d.documentElement.style.setProperty('overflow-x', 'visible', 'important');
@@ -702,6 +750,13 @@
         }
       } catch (e) { /* abaikan */ }
     };
+
+    /* Jalankan pembebas overflow secara berulang untuk mengatasi inject asinkron Divi */
+    A.unlock();
+    var unCount = 0, unTimer = setInterval(function () {
+      A.unlock();
+      if (++unCount >= 25) clearInterval(unTimer);
+    }, 150);
   })(window, document);
 </script>
 
@@ -712,9 +767,12 @@
     if (A.hdrOff) A.hdrOff();
     var dup = document.querySelectorAll('#asc-header-navbar');
     for (var i = 0; i < dup.length - 1; i++) dup[i].remove();
+    var dupPh = document.querySelectorAll('#ascNavPlaceholder');
+    for (var j = 0; j < dupPh.length - 1; j++) dupPh[j].remove();
     document.querySelectorAll('.asc-nav-main').forEach(function (el) { if (!el.querySelector('#asc-header-navbar') && !el.id) el.remove(); });
     var nav = document.getElementById('asc-header-navbar');
     if (!nav) return;
+    var placeholder = document.getElementById('ascNavPlaceholder');
     var capsule = document.getElementById('ascNavCapsule') || nav.querySelector('.asc-nav-capsule');
     var btn = document.getElementById('ascHamburgerBtn'), drawer = document.getElementById('ascMobileDrawer');
     var OFFSET = 88;                                           /* jarak berhenti di bawah header saat menggulir */
@@ -746,13 +804,54 @@
       });
     }
 
-    /* Satu pengendali scroll (dibatasi rAF): morph kapsul, menu aktif, dan tinggi header untuk section lain */
-    var ticking = false, scrolled = null, activeKey = null, hhLast = -1;
+    /* Ukur posisi awal navbar pada dokumen untuk menentukan kapan harus mulai melayang */
+    var initialTop = 0, isFloating = false, isHidden = false, lastY = 0, ticking = false, scrolled = null, activeKey = null, hhLast = -1;
+    function measureInitialTop() {
+      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      if (!isFloating) {
+        var nr = nav.getBoundingClientRect();
+        if (nr.top + y > 0) initialTop = nr.top + y;
+      } else if (placeholder) {
+        var pr = placeholder.getBoundingClientRect();
+        if (pr.top + y > 0) initialTop = pr.top + y;
+      }
+    }
+
+    /* Satu pengendali scroll (dibatasi rAF): hybrid float, morph kapsul, menu aktif, dan smart auto-hide */
     function tick() {
       ticking = false;
-      var y = window.pageYOffset || 0;
-      var s = y > 24;
+      var y = Math.max(0, window.pageYOffset || document.documentElement.scrollTop || 0);
+
+      /* Tentukan batas float: saat navbar menyentuh batas atas layar */
+      var threshold = initialTop > 30 ? Math.max(20, initialTop - 16) : 60;
+      var shouldFloat = y > threshold;
+
+      if (shouldFloat !== isFloating) {
+        isFloating = shouldFloat;
+        nav.classList.toggle('asc-is-floating', isFloating);
+        if (placeholder) placeholder.classList.toggle('active', isFloating);
+        if (!isFloating) {
+          isHidden = false;
+          nav.classList.remove('asc-nav-hidden');
+        }
+      }
+
+      var s = y > (threshold + 10);
       if (s !== scrolled && capsule) { scrolled = s; capsule.classList.toggle('asc-scrolled', s); }
+
+      /* Smart Auto-Hide saat mode floating: Scroll turun sembunyi, scroll naik muncul */
+      var isDrawerOpen = drawer && drawer.classList.contains('asc-open');
+      if (isFloating && !isDrawerOpen) {
+        var diff = y - lastY;
+        if (diff > 8 && y > threshold + 50) {
+          if (!isHidden) { isHidden = true; nav.classList.add('asc-nav-hidden'); }
+        } else if (diff < -6) {
+          if (isHidden) { isHidden = false; nav.classList.remove('asc-nav-hidden'); }
+        }
+      } else if (!isFloating) {
+        if (isHidden) { isHidden = false; nav.classList.remove('asc-nav-hidden'); }
+      }
+      lastY = y;
 
       var best = null, bestTop = -1e9;
       for (var i = 0; i < groups.length; i++) {
@@ -768,7 +867,8 @@
       }
 
       /* Beri tahu section yang menempel (pinned) berapa tinggi header yang sedang menutupi layar */
-      var r = (capsule || nav).getBoundingClientRect(), hh = r.bottom > 0 ? Math.round(r.bottom + 8) : 0;
+      var r = (capsule || nav).getBoundingClientRect();
+      var hh = (isFloating && !isHidden && r.bottom > 0) ? Math.round(r.bottom + 8) : 0;
       if (Math.abs(hh - hhLast) > 1) { hhLast = hh; document.documentElement.style.setProperty('--asc-hh', hh + 'px'); }
     }
     function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(tick); } }
@@ -779,6 +879,7 @@
       if (ev) ev.preventDefault();
       var el = els[els.length - 1];
       var top = el.getBoundingClientRect().top + (window.pageYOffset || 0) - OFFSET;
+      if (isHidden) { isHidden = false; nav.classList.remove('asc-nav-hidden'); }
       window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
       try { history.replaceState(null, '', key.split(',')[0].trim()); } catch (e) { }
       closeMenu();
@@ -787,7 +888,13 @@
     nav.addEventListener('click', onNavClick);
 
     /* Drawer mobile */
-    function setMenu(open) { if (!btn || !drawer) return; btn.classList.toggle('asc-open', open); drawer.classList.toggle('asc-open', open); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    function setMenu(open) {
+      if (!btn || !drawer) return;
+      if (open && isHidden) { isHidden = false; nav.classList.remove('asc-nav-hidden'); }
+      btn.classList.toggle('asc-open', open);
+      drawer.classList.toggle('asc-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
     function closeMenu() { setMenu(false); }
     function onBtn(e) { e.stopPropagation(); setMenu(!(drawer && drawer.classList.contains('asc-open'))); }
     function onDoc(e) { if (!nav.contains(e.target)) closeMenu(); }
@@ -796,15 +903,34 @@
     document.addEventListener('click', onDoc);
     document.addEventListener('keydown', onKey);
 
-    function onLoad() { prune(); tick(); }
+    function onLoad() {
+      if (A && A.unlock) A.unlock(nav);
+      measureInitialTop();
+      prune();
+      tick();
+    }
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
+    window.addEventListener('resize', function () {
+      if (A && A.unlock) A.unlock(nav);
+      measureInitialTop();
+      onScroll();
+    }, { passive: true });
     window.addEventListener('load', onLoad);
     document.addEventListener('DOMContentLoaded', onLoad);
     A.hdrOff = function () {
       window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); window.removeEventListener('load', onLoad);
       document.removeEventListener('DOMContentLoaded', onLoad); document.removeEventListener('click', onDoc); document.removeEventListener('keydown', onKey);
     };
-    prune(); tick();
+
+    /* Inisialisasi awal & berkala untuk menangkap rendering dinamis Divi/WordPress */
+    measureInitialTop();
+    prune();
+    tick();
+    [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+      setTimeout(function () {
+        measureInitialTop();
+        tick();
+      }, ms);
+    });
   })();
 </script>

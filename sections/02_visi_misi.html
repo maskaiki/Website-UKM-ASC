@@ -1,0 +1,1154 @@
+<!-- =====================================================================
+UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 02: VISI & MISI (KINETIC SCROLL)
+Cara pakai di WordPress (Elementor / Divi):
+1. Widget "Custom HTML" di container FULL WIDTH, paste seluruh file ini.
+2. Elementor: Container > Advanced > Overflow = Default (agar efek "menempel" jalan).
+3. Ganti teks: cari tag <h3 class="vm-h"> dan <p class="vm-p"> di bagian HTML.
+====================================================================== -->
+
+<style>
+  /* =========================================================================
+     FIX OVERFLOW UNTUK DIVI & ELEMENTOR WORDPRESS (AGAR POSITION:STICKY BERFUNGSI)
+     ========================================================================= */
+  .et_pb_section,
+  .et_pb_fullwidth_section,
+  .et_pb_row,
+  .et_pb_column,
+  .et_pb_module,
+  .et_pb_code,
+  .et_pb_fullwidth_code,
+  .et_pb_code_inner,
+  .elementor-section,
+  .elementor-column,
+  .elementor-widget-wrap,
+  .elementor-widget,
+  .elementor-element {
+    overflow: visible !important;
+  }
+
+  #asc-vm {
+    position: relative !important;
+    height: 1300vh !important;
+    width: 100% !important;
+    overflow: visible !important;
+    background: #f6f5f0;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --p: 0;
+  }
+
+  #asc-vm * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  #asc-vm .vm-pin {
+    padding-top: var(--asc-hh, 0px);
+    box-sizing: border-box;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    display: grid;
+    place-items: center;
+    overflow: hidden !important;
+  }
+
+  /* Frame 16:9 ala video, skala semua isi pakai satuan cqw */
+  #asc-vm .vm-frame {
+    position: relative;
+    width: min(94vw, 1360px, calc((100svh - 40px - var(--asc-hh, 0px))*16/9));
+    aspect-ratio: 16/9;
+    container-type: size;
+    border-radius: 16px;
+    border: 1px solid rgba(9, 19, 28, 0.12);
+    overflow: hidden;
+    background: #09131c;
+    box-shadow: 0 30px 70px -20px rgba(10, 74, 51, .45);
+    --hl: #e8f0eb;
+    --cb: transparent;
+    --cf: #e8f0eb;
+  }
+
+  #asc-vm .vm-frame[data-theme="light"] {
+    --hl: #09131c;
+    --cb: #09131c;
+    --cf: #f6f5f0;
+  }
+
+  #asc-vm .vm-frame[data-theme="blue"],
+  #asc-vm .vm-frame[data-theme="sky"] {
+    --hl: #09131c;
+    --cb: #09131c;
+    --cf: #f6f5f0;
+  }
+
+  /* Scene */
+  #asc-vm .vm-s {
+    position: absolute;
+    inset: 0;
+    container-type: size;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--fg);
+    --lp: 0;
+    --sp: 40%;
+  }
+
+  #asc-vm .vm-s[data-theme="dark"] {
+    --bg: #091f17;
+    --fg: #f6f5f0;
+    --ac: #e5c166;
+    --gh: rgba(255, 255, 255, .06);
+  }
+
+  #asc-vm .vm-s[data-theme="light"] {
+    --bg: #f6f5f0;
+    --fg: #09131c;
+    --ac: #0d5c3f;
+    --gh: rgba(13, 92, 63, .10);
+    background-image: linear-gradient(rgba(13, 92, 63, .06) 1px, transparent 1px), linear-gradient(90deg, rgba(13, 92, 63, .06) 1px, transparent 1px);
+    background-size: 12.5cqw 12.5cqw;
+  }
+
+  #asc-vm .vm-s[data-theme="blue"] {
+    --bg: #0a4a33;
+    --fg: #fff;
+    --ac: #d7e6dc;
+    --gh: rgba(9, 19, 28, .2);
+    background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, .07) 0 .6cqw, transparent .6cqw 1.2cqw);
+  }
+
+  #asc-vm .vm-s[data-theme="sky"] {
+    --bg: #0d5c3f;
+    --fg: #fff;
+    --ac: #09131c;
+    --gh: rgba(9, 19, 28, .2);
+    background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, .08) 0 .6cqw, transparent .6cqw 1.2cqw);
+  }
+
+  #asc-vm .vm-s.split {
+    background: linear-gradient(90deg, transparent var(--sp), #09131c var(--sp)), repeating-linear-gradient(135deg, rgba(255, 255, 255, .08) 0 .6cqw, transparent .6cqw 1.2cqw), #0d5c3f;
+  }
+
+  /* Teks */
+  #asc-vm .vm-txt {
+    position: absolute;
+    left: 8cqw;
+    right: 8cqw;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+  }
+
+  #asc-vm .vm-txt.ctr {
+    text-align: center;
+  }
+
+  #asc-vm .vm-h {
+    font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    text-transform: none;
+    font-size: 7.2cqw;
+    line-height: .96;
+    letter-spacing: -0.035em;
+  }
+
+  #asc-vm .vm-h.sm {
+    font-size: 6.2cqw;
+  }
+
+  #asc-vm .vm-h.o {
+    color: transparent;
+    -webkit-text-stroke: .16cqw var(--fg);
+  }
+
+  #asc-vm .w {
+    display: inline-block;
+    margin-right: .2em;
+    position: relative;
+    z-index: 1;
+    will-change: transform, opacity;
+  }
+
+  #asc-vm .vm-h .w:last-child {
+    margin-right: 0;
+  }
+
+  #asc-vm .k {
+    display: inline-block;
+    font-size: 1.35cqw;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    margin-bottom: 2cqw;
+    padding: .5cqw 1.1cqw;
+    border-radius: 6px;
+    background: var(--fg);
+    color: var(--bg);
+  }
+
+  #asc-vm .vm-p {
+    margin-top: 2.6cqw;
+    max-width: 52cqw;
+    font-size: 2.15cqw;
+    line-height: 1.62;
+    font-weight: 500;
+  }
+
+  /* Hantu angka / kata */
+  #asc-vm .gh {
+    position: absolute;
+    right: -1cqw;
+    top: 50%;
+    z-index: 1;
+    font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
+    font-size: 62cqh;
+    line-height: .8;
+    color: var(--gh);
+    transform: translate3d(calc((1 - var(--lp))*8cqw), -50%, 0);
+    font-weight: 800;
+  }
+
+  #asc-vm .gh.l {
+    right: auto;
+    left: 3cqw;
+  }
+
+  #asc-vm .band {
+    position: absolute;
+    left: -1.2cqw;
+    right: -1.2cqw;
+    top: 44%;
+    height: .3em;
+    background: var(--ac);
+    z-index: 0;
+    transform-origin: 0 50%;
+    transform: scaleX(clamp(0, calc((var(--lp) - .22)*8), 1));
+  }
+
+  #asc-vm .ln {
+    position: relative;
+    display: inline-block;
+  }
+
+  #asc-vm .dg {
+    position: absolute;
+    left: 50%;
+    top: -20%;
+    width: 1px;
+    height: 150%;
+    background: var(--ac);
+    opacity: .55;
+    z-index: 2;
+    transform: rotate(38deg) translate3d(calc((var(--lp) - .5)*90cqw), 0, 0);
+  }
+
+  /* Crosshair */
+  #asc-vm .cx {
+    position: absolute;
+    left: 60cqw;
+    top: 50%;
+    width: 30cqw;
+    height: 30cqw;
+    margin: -15cqw 0 0 -15cqw;
+    z-index: 1;
+    transform: scale(calc(.55 + var(--lp)*.45)) rotate(calc(var(--lp)*40deg));
+  }
+
+  #asc-vm .cx i {
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--ac);
+    border-radius: 50%;
+  }
+
+  #asc-vm .cx i:nth-child(2) {
+    inset: 8cqw;
+  }
+
+  #asc-vm .cx i:nth-child(3) {
+    inset: 13.4cqw;
+    border-radius: 0;
+    border-width: 0;
+    border-top: 1px solid var(--ac);
+  }
+
+  #asc-vm .cx::before,
+  #asc-vm .cx::after {
+    content: "";
+    position: absolute;
+    background: var(--ac);
+  }
+
+  #asc-vm .cx::before {
+    left: -4cqw;
+    right: -4cqw;
+    top: 50%;
+    height: 1px;
+  }
+
+  #asc-vm .cx::after {
+    top: -4cqw;
+    bottom: -4cqw;
+    left: 50%;
+    width: 1px;
+  }
+
+  #asc-vm .tag {
+    position: absolute;
+    left: 67cqw;
+    top: 30%;
+    font-size: 1.15cqw;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--ac);
+    text-transform: none;
+    z-index: 2;
+  }
+
+  #asc-vm .hint {
+    position: absolute;
+    left: 50%;
+    bottom: 8cqh;
+    transform: translateX(-50%);
+    z-index: 4;
+    font-size: 1.2cqw;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--fg);
+    opacity: calc(1 - var(--lp)*5);
+  }
+
+  /* Bacaan: cincin Iman-Islam-Ihsan, alur Membaca-Memahami-Mengamalkan, penanda misi */
+  #asc-vm .vm-txt.w50 {
+    right: 50cqw;
+  }
+
+  #asc-vm .rg {
+    position: absolute;
+    left: 75cqw;
+    top: 50%;
+    width: 38cqw;
+    height: 38cqw;
+    margin: -19cqw 0 0 -19cqw;
+    z-index: 2;
+  }
+
+  #asc-vm .rg::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1.3cqw;
+    height: 1.3cqw;
+    margin: -.65cqw 0 0 -.65cqw;
+    border-radius: 2px;
+    background: var(--ac);
+  }
+
+  #asc-vm .rg i {
+    --o: clamp(0, calc((var(--lp) - var(--t))*9), 1);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    border: .2cqw solid var(--ac);
+    opacity: var(--o);
+    background: transparent;
+    transform: translate(-50%, -50%) scale(calc(.6 + var(--o)*.4));
+  }
+
+  #asc-vm .rg em {
+    position: absolute;
+    left: 50%;
+    top: -.8cqw;
+    transform: translate(-50%, -50%);
+    padding: .3cqw 1cqw;
+    background: var(--bg);
+    font-style: normal;
+    font-size: 1.35cqw;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--ac);
+  }
+
+  #asc-vm .nt {
+    margin-top: 2.2cqw;
+    max-width: 52cqw;
+    padding-left: 1.6cqw;
+    border-left: .3cqw solid var(--ac);
+    font-size: 1.9cqw;
+    line-height: 1.55;
+    font-style: italic;
+  }
+
+  #asc-vm .fl {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.1cqw;
+    margin-top: 3cqw;
+  }
+
+  #asc-vm .ch {
+    padding: .9cqw 1.9cqw;
+    border-radius: 8px;
+    border: .2cqw solid var(--ac);
+    background: rgba(13, 92, 63, .1);
+    font-size: 1.55cqw;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+
+  #asc-vm .ar {
+    font-size: 1.8cqw;
+    font-weight: 800;
+    color: var(--ac);
+  }
+
+  #asc-vm .pg {
+    display: flex;
+    gap: .7cqw;
+    margin-top: 2.8cqw;
+  }
+
+  #asc-vm .pg i {
+    width: 5cqw;
+    height: .45cqw;
+    border-radius: 1cqw;
+    background: var(--fg);
+    opacity: .28;
+  }
+
+  #asc-vm .pg i.on {
+    background: var(--ac);
+    opacity: 1;
+  }
+
+  /* Waveform */
+  #asc-vm .wv {
+    position: absolute;
+    left: 8cqw;
+    right: 8cqw;
+    top: 68%;
+    height: 14cqh;
+    z-index: 2;
+  }
+
+  #asc-vm .wv::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    background: var(--fg);
+    opacity: .5;
+  }
+
+  #asc-vm .wv b {
+    position: absolute;
+    top: 50%;
+    width: 1px;
+    background: var(--ac);
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+
+  #asc-vm .wv u {
+    position: absolute;
+    top: -10%;
+    height: 120%;
+    width: 1px;
+    background: var(--ac);
+  }
+
+  /* HUD */
+  #asc-vm .vm-hud {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    color: var(--hl);
+    transition: color .3s;
+  }
+
+  #asc-vm .c {
+    position: absolute;
+    width: 2.4cqw;
+    height: 2.4cqw;
+    border: 0 solid var(--hl);
+    transition: border-color .3s;
+  }
+
+  #asc-vm .c.tl {
+    left: 1.8cqw;
+    top: 3.2cqw;
+    border-width: 1px 0 0 1px;
+  }
+
+  #asc-vm .c.tr {
+    right: 1.8cqw;
+    top: 3.2cqw;
+    border-width: 1px 1px 0 0;
+  }
+
+  #asc-vm .c.bl {
+    left: 1.8cqw;
+    bottom: 3.2cqw;
+    border-width: 0 0 1px 1px;
+  }
+
+  #asc-vm .c.br {
+    right: 1.8cqw;
+    bottom: 3.2cqw;
+    border-width: 0 1px 1px 0;
+  }
+
+  #asc-vm .chip {
+    position: absolute;
+    padding: .4cqw .9cqw;
+    border-radius: 6px;
+    font-size: 1.05cqw;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    background: var(--cb);
+    color: var(--cf);
+    transition: background .3s, color .3s;
+  }
+
+  #asc-vm .chip.tl {
+    left: 3.4cqw;
+    top: 4cqw;
+  }
+
+  #asc-vm .chip.tr {
+    right: 3.4cqw;
+    top: 4cqw;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #asc-vm .chip.bl {
+    left: 3.4cqw;
+    bottom: 4cqw;
+  }
+
+  #asc-vm .dots {
+    position: absolute;
+    right: 3.6cqw;
+    bottom: 4.1cqw;
+    display: flex;
+    gap: .5cqw;
+  }
+
+  #asc-vm .dots b {
+    width: .7cqw;
+    height: .7cqw;
+    border-radius: 2px;
+    border: 1px solid var(--hl);
+  }
+
+  #asc-vm .dots b.on {
+    background: var(--hl);
+  }
+
+  /* Tablet (701px - 1024px) */
+  @media (max-width: 1024px) {
+    #asc-vm .vm-frame {
+      width: min(94vw, calc((100svh - 40px - var(--asc-hh, 0px))*16/9));
+      border-radius: 16px;
+    }
+    #asc-vm .vm-txt {
+      left: 5cqw;
+      right: 5cqw;
+    }
+  }
+
+  /* Mobile: frame potret */
+  @media (max-width:700px) {
+    #asc-vm .vm-frame {
+      aspect-ratio: 4/5;
+      width: min(94vw, calc((100svh - 40px - var(--asc-hh, 0px))*.8));
+      border-radius: 14px;
+    }
+
+    #asc-vm .vm-txt {
+      left: 7cqw;
+      right: 7cqw;
+    }
+
+    #asc-vm .vm-h {
+      font-size: 10.5cqw;
+    }
+
+    #asc-vm .vm-h.sm {
+      font-size: 8.8cqw;
+    }
+
+    #asc-vm .vm-p {
+      font-size: 4.2cqw;
+      max-width: none;
+      margin-top: 4cqw;
+    }
+
+    #asc-vm .k {
+      font-size: 2.6cqw;
+      margin-bottom: 4cqw;
+      padding: 1cqw 2.2cqw;
+    }
+
+    #asc-vm .gh {
+      font-size: 50cqh;
+    }
+
+    #asc-vm .cx {
+      left: 50%;
+      top: 30%;
+      width: 60cqw;
+      height: 60cqw;
+      margin: -30cqw 0 0 -30cqw;
+      opacity: .6;
+    }
+
+    #asc-vm .cx i:nth-child(2) {
+      inset: 16cqw;
+    }
+
+    #asc-vm .tag {
+      display: none;
+    }
+
+    #asc-vm .hint {
+      font-size: 2.6cqw;
+    }
+
+    #asc-vm .chip {
+      font-size: 2cqw;
+      padding: .8cqw 1.8cqw;
+    }
+
+    #asc-vm .chip.tl {
+      left: 6cqw;
+      top: 7.5cqw;
+    }
+
+    #asc-vm .chip.tr {
+      right: 6cqw;
+      top: 7.5cqw;
+    }
+
+    #asc-vm .chip.bl {
+      left: 6cqw;
+      bottom: 7.5cqw;
+    }
+
+    #asc-vm .dots {
+      right: 6cqw;
+      bottom: 8cqw;
+      gap: 1.2cqw;
+    }
+
+    #asc-vm .dots b {
+      width: 1.8cqw;
+      height: 1.8cqw;
+    }
+
+    #asc-vm .c {
+      width: 6cqw;
+      height: 6cqw;
+    }
+
+    #asc-vm .c.tl,
+    #asc-vm .c.tr {
+      top: 4.5cqw;
+    }
+
+    #asc-vm .c.bl,
+    #asc-vm .c.br {
+      bottom: 4.5cqw;
+    }
+
+    #asc-vm .c.tl,
+    #asc-vm .c.bl {
+      left: 3.5cqw;
+    }
+
+    #asc-vm .c.tr,
+    #asc-vm .c.br {
+      right: 3.5cqw;
+    }
+
+    #asc-vm .wv {
+      left: 7cqw;
+      right: 7cqw;
+      top: 72%;
+    }
+  }
+
+  @media (max-width:700px) {
+    #asc-vm .vm-txt.low {
+      top: auto;
+      bottom: 13cqw;
+      transform: none;
+    }
+
+    #asc-vm .vm-txt.w50 {
+      right: 7cqw;
+    }
+
+    #asc-vm .rg {
+      left: 50%;
+      top: 30%;
+      width: 44cqw;
+      height: 44cqw;
+      margin: -22cqw 0 0 -22cqw;
+    }
+
+    #asc-vm .rg em {
+      font-size: 2.6cqw;
+      top: -1.4cqw;
+    }
+
+    #asc-vm .nt {
+      font-size: 3.6cqw;
+      margin-top: 2.6cqw;
+      padding-left: 2.6cqw;
+      max-width: none;
+      border-left-width: .6cqw;
+    }
+
+    #asc-vm .fl {
+      gap: 1.6cqw;
+      margin-top: 4cqw;
+    }
+
+    #asc-vm .ch {
+      font-size: 2.7cqw;
+      padding: 1.4cqw 2.6cqw;
+    }
+
+    #asc-vm .ar {
+      font-size: 3.2cqw;
+    }
+
+    #asc-vm .pg {
+      gap: 1.4cqw;
+      margin-top: 4cqw;
+    }
+
+    #asc-vm .pg i {
+      width: 9cqw;
+      height: .9cqw;
+    }
+
+    #asc-vm .vm-h.sm {
+      font-size: 8.5cqw;
+    }
+  }
+
+  /* Gerak dikurangi: tampil sebagai kartu bertumpuk biasa */
+  #asc-vm.vm-static {
+    height: auto;
+    padding: 48px 0;
+  }
+
+  #asc-vm.vm-static .vm-pin {
+    position: relative;
+    height: auto;
+    display: block;
+  }
+
+  #asc-vm.vm-static .vm-frame {
+    width: min(94vw, 1100px);
+    aspect-ratio: auto;
+    margin: 0 auto;
+    background: none;
+    box-shadow: none;
+    overflow: visible;
+    container-type: normal;
+  }
+
+  #asc-vm.vm-static .rg {
+    opacity: 1;
+  }
+
+  #asc-vm.vm-static .rg i {
+    --o: 1;
+  }
+
+  #asc-vm.vm-static .vm-s {
+    position: relative;
+    aspect-ratio: 16/9;
+    margin-bottom: 16px;
+    border-radius: 16px;
+    clip-path: none !important;
+    visibility: visible !important;
+  }
+
+  #asc-vm.vm-static .vm-hud,
+  #asc-vm.vm-static .hint {
+    display: none;
+  }
+
+  @media (max-width:700px) {
+    #asc-vm.vm-static .vm-s {
+      aspect-ratio: 4/5;
+    }
+  }
+
+  /* Scoped overflow: visible agar position: sticky di container induk berfungsi */
+</style>
+
+<section id="asc-vm" aria-label="Visi dan Misi UKM ASC">
+  <span id="asc-visi-misi" style="position:relative;top:-90px;display:block;visibility:hidden;height:0;width:0;"></span>
+  <div class="vm-pin">
+    <div class="vm-frame" data-theme="dark">
+
+      <!-- 0 · pembuka -->
+      <div class="vm-s" data-theme="dark" data-w="70">
+        <div class="cx"><i></i><i></i><i></i></div><span class="tag">Arah &amp; Tujuan</span>
+        <div class="vm-txt">
+          <h3 class="vm-h">Ke mana kita melangkah?</h3>
+        </div>
+        <span class="hint">Gulir ke bawah ↓</span>
+      </div>
+
+      <!-- 1 · visi (split) -->
+      <div class="vm-s split" data-theme="sky" data-w="85">
+        <div class="gh l">01</div>
+        <div class="vm-txt"><span class="k">Visi</span>
+          <h3 class="vm-h">Mencetak generasi rabbani</h3>
+        </div>
+      </div>
+
+      <!-- 2 · visi lanjutan -->
+      <div class="vm-s" data-theme="light" data-w="85">
+        <div class="dg"></div>
+        <div class="vm-txt ctr">
+          <h3 class="vm-h o">Berjiwa</h3>
+          <div class="ln"><span class="band"></span>
+            <h3 class="vm-h">Qur’ani</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 · makna generasi rabbani -->
+      <div class="vm-s" data-theme="dark" data-w="140">
+        <div class="rg"><i style="--t:.16;width:100%;height:100%"><em>Iman</em></i><i
+            style="--t:.28;width:66%;height:66%"><em>Islam</em></i><i
+            style="--t:.40;width:32%;height:32%"><em>Ihsan</em></i></div>
+        <div class="vm-txt w50 low"><span class="k">Makna visi</span>
+          <h3 class="vm-h sm">Generasi Rabbani</h3>
+          <p class="vm-p">Generasi yang menjunjung tinggi nilai-nilai ketuhanan, mencakup iman, Islam, dan ihsan.</p>
+        </div>
+      </div>
+
+      <!-- 4 · makna berjiwa qur'ani -->
+      <div class="vm-s" data-theme="light" data-w="150">
+        <div class="dg"></div>
+        <div class="vm-txt"><span class="k">Makna visi</span>
+          <h3 class="vm-h sm">Berjiwa Qur’ani</h3>
+          <p class="vm-p">Menjadikan al-Qur’an sebagai pedoman dalam setiap tindakan, meliputi kegiatan membaca,
+            memahami, dan mengamalkan nilai-nilai al-Qur’an.</p>
+          <div class="fl"><span class="ch">Membaca</span><span class="ar">→</span><span class="ch">Memahami</span><span
+              class="ar">→</span><span class="ch">Mengamalkan</span></div>
+          <p class="nt">Berjiwa Qur’ani merupakan esensi dari generasi Rabbani, bukan istilah yang bertentangan.</p>
+        </div>
+      </div>
+
+      <!-- 5 · pengantar misi -->
+      <div class="vm-s" data-theme="sky" data-w="70">
+        <div class="gh">02</div>
+        <div class="vm-txt ctr">
+          <h3 class="vm-h">Empat langkah</h3>
+          <h3 class="vm-h o">misi kami</h3>
+        </div>
+      </div>
+
+      <!-- 6-9 · misi -->
+      <div class="vm-s" data-theme="blue" data-w="120">
+        <div class="gh">01</div>
+        <div class="vm-txt"><span class="k">Misi 01 / 04</span>
+          <h3 class="vm-h sm">Lembaga profesional</h3>
+          <p class="vm-p">Mewujudkan lembaga profesional dalam pengajaran dan penanaman nilai-nilai Al-Qur’an berbasis
+            mahasiswa.</p>
+          <div class="pg"><i class="on"></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="vm-s" data-theme="light" data-w="120">
+        <div class="gh">02</div>
+        <div class="dg"></div>
+        <div class="vm-txt"><span class="k">Misi 02 / 04</span>
+          <h3 class="vm-h sm">Wadah bakat & minat</h3>
+          <p class="vm-p">Menjadi lembaga yang mewadahi dan memfasilitasi bakat dan minat mahasiswa dalam hal
+            ke-Al-Qur’an-an.</p>
+          <div class="pg"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="vm-s" data-theme="dark" data-w="120">
+        <div class="gh">03</div>
+        <div class="vm-txt"><span class="k">Misi 03 / 04</span>
+          <h3 class="vm-h sm">Perekat umat</h3>
+          <p class="vm-p">Menjadi perekat umat yang berdiri di atas dan untuk semua golongan.</p>
+          <div class="pg"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+        </div>
+      </div>
+      <div class="vm-s" data-theme="blue" data-w="120">
+        <div class="gh">04</div>
+        <div class="vm-txt"><span class="k">Misi 04 / 04</span>
+          <h3 class="vm-h sm">Jalin kerja sama</h3>
+          <p class="vm-p">Menjalin kerja sama dengan organisasi lain dalam rangka memperluas jaringan dan memaksimalkan
+            program kerja.</p>
+          <div class="pg"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+        </div>
+      </div>
+
+      <!-- 10 · penutup -->
+      <div class="vm-s" data-theme="dark" data-w="100">
+        <div class="vm-txt" style="top:36%">
+          <h3 class="vm-h sm">Generasi rabbani</h3>
+          <h3 class="vm-h sm o">berjiwa qur’ani</h3>
+        </div>
+        <div class="wv"></div>
+      </div>
+
+      <!-- HUD -->
+      <div class="vm-hud" aria-hidden="true">
+        <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+        <span class="chip tl">Visi &amp; Misi · UKM ASC UM</span>
+        <span class="chip tr" id="vmTime">01 / 11</span>
+        <span class="chip bl" id="vmBar">Pembuka</span>
+        <span class="dots"><b class="on"></b><b></b><b></b><b></b></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASC CORE: Satu loader font & pembersih overflow WordPress (Idempoten / Aman digabung) -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v && w.ASC.v >= 3) return;
+    var A = w.ASC = (w.ASC || {});
+    A.v = 3;
+
+    /* 1. Satu pemuat font untuk seluruh halaman */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Geist:wght@500..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. Buka overflow milik container Divi/Elementor/tema WordPress yang memblokir position: sticky */
+    A.unlock = function (root) {
+      try {
+        var n = root;
+        while (n && n !== d) {
+          if (n.nodeType === 1) {
+            var cs = w.getComputedStyle(n);
+            if (/hidden|auto|scroll|clip/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+              n.style.setProperty('overflow', 'visible', 'important');
+              n.style.setProperty('overflow-x', 'visible', 'important');
+              n.style.setProperty('overflow-y', 'visible', 'important');
+            }
+          }
+          n = n.parentElement;
+        }
+        if (d.documentElement) {
+          d.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+        }
+        if (d.body) {
+          d.body.style.setProperty('overflow-x', 'visible', 'important');
+        }
+      } catch (e) { /* abaikan */ }
+    };
+  })(window, document);
+</script>
+
+<script>
+  (function () {
+    var root = document.getElementById('asc-vm'); if (!root) return;
+    var frame = root.querySelector('.vm-frame'), scenes = [].slice.call(root.querySelectorAll('.vm-s')), N = scenes.length;
+    var tEl = document.getElementById('vmTime'), bEl = document.getElementById('vmBar'), dots = [].slice.call(root.querySelectorAll('.dots b'));
+
+    /* Kumpulkan unit animasi tiap adegan (urut sesuai dokumen): label, kata judul, paragraf, penanda */
+    scenes.forEach(function (s) {
+      var u = [];
+      [].forEach.call(s.querySelectorAll('.k,.vm-h,.vm-p,.nt,.ch,.ar,.pg'), function (e) {
+        if (e.classList.contains('vm-h')) {
+          e.innerHTML = e.textContent.trim().split(/\s+/).map(function (w) { return '<span class="w">' + w.replace(/&/g, '&') + '</span>'; }).join(' ');
+          u = u.concat([].slice.call(e.children));
+        } else u.push(e);
+      });
+      s._u = u; s._w = +s.dataset.w;
+    });
+
+    /* Waveform penutup */
+    var wv = root.querySelector('.wv'), ticks = [], head;
+    for (var i = 0; i < 30; i++) { var b = document.createElement('b'); b.style.left = (i / 29 * 100) + '%'; b.style.height = (18 + ((i * 37) % 7) * 13) + '%'; wv.appendChild(b); ticks.push(b); }
+    head = document.createElement('u'); wv.appendChild(head);
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      root.classList.add('vm-static'); ticks.forEach(function (t) { t.style.opacity = 1; }); head.style.display = 'none'; return;
+    }
+
+    ASC.unlock(root);
+
+    function clamp(x) { return Math.max(0, Math.min(1, x)); }
+    function ease(t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+    function pad(n, l) { n = '' + n; while (n.length < (l || 2)) n = '0' + n; return n; }
+    function wipe(i, r) {
+      var v = ((1 - r) * 100).toFixed(2) + '%';
+      return ['inset(0 0 ' + v + ' 0)', 'inset(0 0 0 ' + v + ')', 'inset(' + v + ' 0 0 0)', 'inset(0 ' + v + ' 0 0)'][i % 4];
+    }
+
+    /* Garis waktu: tiap adegan punya panjang scroll sendiri (data-w, satuan vh).
+    Adegan yang banyak teksnya dibuat lebih panjang agar nyaman dibaca. */
+    var U = 0, total = 0;
+    function geom() {
+      U = window.innerHeight / 100; var c = 0;
+      scenes.forEach(function (s) { s._st = c; s._ln = s._w * U; c += s._ln; });
+      total = c;
+      root.style.setProperty('height', Math.round(window.innerHeight + total) + 'px', 'important');
+    }
+    var target = 0, cur = 0, raf = 0, last = 0, lastTheme = '';
+    function read() { var r = root.getBoundingClientRect(); return Math.max(0, Math.min(total, -r.top)); }
+
+    var SCENE_LABELS = [
+      'Pembuka',
+      'Visi · Generasi Rabbani',
+      'Visi · Berjiwa Qur’ani',
+      'Makna · Generasi Rabbani',
+      'Makna · Berjiwa Qur’ani',
+      'Empat Langkah Misi',
+      'Misi 01 · Lembaga Profesional',
+      'Misi 02 · Wadah Bakat & Minat',
+      'Misi 03 · Perekat Umat',
+      'Misi 04 · Jalin Kerja Sama',
+      'Penutup'
+    ];
+    var SCENE_GROUP = [0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3];
+
+    function render(y) {
+      var theme = 'dark', activeIdx = 0;
+      scenes.forEach(function (s, i) {
+        var lp = y - s._st, clip = 'none', vis = true;
+        if (i > 0) { var r = ease(clamp(lp / (22 * U))); clip = r >= 1 ? 'none' : wipe(i, r); vis = lp > 0; }
+        if (y > s._st + s._ln + 22 * U) vis = false; /* tertutup adegan berikutnya */
+        s.style.visibility = vis ? 'visible' : 'hidden'; if (!vis) return;
+        s.style.clipPath = clip;
+        var L = clamp(lp / s._ln); s.style.setProperty('--lp', L.toFixed(4));
+        if (lp > 10 * U) { theme = s.dataset.theme; activeIdx = i; }
+        if (s.classList.contains('split')) s.style.setProperty('--sp', (36 + ease(clamp((lp - 8 * U) / (60 * U))) * 30).toFixed(2) + '%');
+
+        /* unit muncul berurutan, lalu bertahan agar sempat dibaca */
+        var u = s._u, m = u.length, base = i ? 12 * U : 2 * U;
+        for (var k = 0; k < m; k++) {
+          var v = clamp((lp - (base + k * 2.4 * U)) / (7 * U)), el = u[k];
+          if (el._v === v) continue;
+          el._v = v;
+          el.style.opacity = v.toFixed(3);
+          el.style.transform = 'translate3d(0,' + ((1 - v) * 26).toFixed(1) + 'px,0)';
+        }
+        if (s.contains(wv)) {
+          ticks.forEach(function (t, k) { t.style.opacity = clamp((L - (.2 + .5 * k / 30)) / .04); });
+          head.style.left = (clamp((L - .2) / .55) * 100) + '%';
+        }
+      });
+      if (theme !== lastTheme) { lastTheme = theme; frame.setAttribute('data-theme', theme); }
+      tEl.textContent = pad(activeIdx + 1) + ' / ' + pad(N);
+      bEl.textContent = SCENE_LABELS[activeIdx] || 'Visi & Misi';
+      var grp = SCENE_GROUP[activeIdx] || 0;
+      dots.forEach(function (d, k) { d.classList.toggle('on', k === grp); });
+    }
+
+    function frameLoop(now) {
+      var dt = Math.min(.05, (now - last) / 1000 || .016); last = now;
+      cur += (target - cur) * (1 - Math.exp(-dt * 8));
+      if (Math.abs(target - cur) < .4) cur = target;
+      render(cur);
+      raf = cur === target ? 0 : requestAnimationFrame(frameLoop);
+    }
+    function onScroll() {
+      target = read(); if (!raf) { last = performance.now(); raf = requestAnimationFrame(frameLoop); }
+    }
+
+    /* Perbaiki overflow parent WordPress (Divi/Elementor) agar position: sticky hidup */
+    function fixParents(el) {
+      if (!el) return;
+      var p = el.parentElement, n = 0;
+      while (p && p !== document.documentElement && n++ < 25) {
+        var cs = window.getComputedStyle(p);
+        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+          p.style.setProperty('overflow', 'visible', 'important');
+        }
+        p = p.parentElement;
+      }
+      if (document.documentElement) {
+        document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+      }
+      if (document.body) {
+        document.body.style.setProperty('overflow-x', 'visible', 'important');
+      }
+    }
+
+    function init() {
+      if (!root) return false;
+      if (root.dataset.ready) return true;
+      root.dataset.ready = '1';
+      fixParents(root);
+      geom();
+      target = cur = read();
+      render(cur);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function () {
+        fixParents(root);
+        geom();
+        target = cur = read();
+        render(cur);
+      }, { passive: true });
+      window.addEventListener('load', function () {
+        fixParents(root);
+        geom();
+        target = cur = read();
+        render(cur);
+      });
+      if (window.ResizeObserver) {
+        new ResizeObserver(function () {
+          fixParents(root);
+          geom();
+          target = cur = read();
+          render(cur);
+        }).observe(root);
+      }
+      // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak perlu zoom in/out
+      [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+        setTimeout(function () {
+          fixParents(root);
+          geom();
+          target = cur = read();
+          render(cur);
+          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+        }, ms);
+      });
+      return true;
+    }
+
+    function run() {
+      if (init()) return;
+      var n = 0, t = setInterval(function () {
+        if (init() || ++n >= 25) clearInterval(t);
+      }, 150);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run);
+    } else {
+      run();
+    }
+  })();
+</script>

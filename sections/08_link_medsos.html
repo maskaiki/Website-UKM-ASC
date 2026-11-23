@@ -1,0 +1,668 @@
+<!-- =====================================================================
+  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 08: KANAL MEDIA SOSIAL
+  Desain: Matte Obsidian-Emerald · Geometri 16px/8px · Zero AI Slop
+====================================================================== -->
+
+<style>
+  .et_pb_section,
+  .et_pb_fullwidth_section,
+  .et_pb_row,
+  .et_pb_column,
+  .et_pb_module,
+  .et_pb_code,
+  .et_pb_fullwidth_code,
+  .et_pb_code_inner,
+  .elementor-section,
+  .elementor-column,
+  .elementor-widget-wrap,
+  .elementor-widget {
+    overflow: visible !important;
+  }
+
+  #asc-kontak {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #f6f5f0;
+    background: #07140f;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+
+  #asc-kontak * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #asc-kontak .asc-pl-track {
+    position: relative !important;
+    width: 100% !important;
+    height: 220vh !important;
+    overflow: visible !important;
+    background: #07140f;
+  }
+
+  #asc-kontak .asc-pl-sticky {
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    overflow: hidden !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+    z-index: 10;
+  }
+
+  #asc-kontak .asc-pl-headline {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 92%;
+    max-width: 1000px;
+    z-index: 4;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+
+  #asc-kontak .asc-pl-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #e5c166;
+    margin-bottom: 16px;
+  }
+
+  #asc-kontak .asc-pl-tag::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 1.5px;
+    background: #e5c166;
+    flex-shrink: 0;
+  }
+
+  #asc-kontak .asc-pl-title {
+    font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(38px, 6.4vw, 80px);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin-bottom: 14px;
+  }
+
+  #asc-kontak .asc-pl-title span {
+    color: #e5c166;
+  }
+
+  #asc-kontak .asc-pl-sub {
+    font-size: clamp(14.5px, 1.25vw, 17px);
+    color: rgba(246, 245, 240, 0.72);
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.6;
+    transition: opacity 0.3s ease;
+  }
+
+  #asc-kontak .asc-pl-scrolldown {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: rgba(246, 245, 240, 0.62);
+    font-size: 12.5px;
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 600;
+    pointer-events: none;
+    z-index: 4;
+    transition: opacity 0.3s ease;
+  }
+
+  #asc-kontak .asc-pl-cards-wrap {
+    position: absolute;
+    left: 50%;
+    top: 62%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(14px, 2.2vw, 28px);
+    width: 100%;
+    max-width: 1180px;
+    padding: 0 20px;
+    pointer-events: auto;
+  }
+
+  #asc-kontak .asc-pill-card {
+    position: relative;
+    border-radius: 16px;
+    background: #0d261c;
+    border: 1px solid rgba(246, 245, 240, 0.14);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 26px 16px 22px;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+    will-change: transform, opacity;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+
+  #asc-kontak .asc-pill-card.card-ig {
+    width: clamp(140px, 17.5vw, 205px);
+    height: clamp(320px, 42vh, 400px);
+    margin-top: 12px;
+  }
+
+  #asc-kontak .asc-pill-card.card-yt {
+    width: clamp(140px, 17.5vw, 205px);
+    height: clamp(300px, 39vh, 375px);
+    margin-top: 38px;
+  }
+
+  #asc-kontak .asc-pill-card.card-tk {
+    width: clamp(140px, 17.5vw, 205px);
+    height: clamp(340px, 45vh, 425px);
+    margin-top: -6px;
+  }
+
+  #asc-kontak .asc-pill-card.card-wa {
+    width: clamp(140px, 17.5vw, 205px);
+    height: clamp(310px, 40vh, 390px);
+    margin-top: 24px;
+  }
+
+  #asc-kontak .asc-pill-card:hover {
+    border-color: #e5c166;
+    background: #113024;
+  }
+
+  #asc-kontak .asc-pill-icon-badge {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    flex-shrink: 0;
+    z-index: 2;
+  }
+
+  #asc-kontak .asc-pill-card:hover .asc-pill-icon-badge {
+    transform: translateY(-2px);
+  }
+
+  #asc-kontak .card-ig .asc-pill-icon-badge {
+    background: #c13584;
+  }
+
+  #asc-kontak .card-yt .asc-pill-icon-badge {
+    background: #dc2626;
+  }
+
+  #asc-kontak .card-tk .asc-pill-icon-badge {
+    background: #18181b;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  #asc-kontak .card-wa .asc-pill-icon-badge {
+    background: #0d5c3f;
+    border: 1px solid rgba(229, 193, 102, 0.35);
+  }
+
+  #asc-kontak .asc-pill-vtext {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-orientation: mixed;
+    font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(20px, 2.2vw, 30px);
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin: 16px 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.25s ease;
+    user-select: none;
+    z-index: 2;
+  }
+
+  #asc-kontak .asc-pill-card:hover .asc-pill-vtext {
+    color: #e5c166;
+  }
+
+  #asc-kontak .asc-pill-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border-radius: 8px;
+    background: rgba(246, 245, 240, 0.08);
+    border: 1px solid rgba(246, 245, 240, 0.14);
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #f6f5f0;
+    letter-spacing: 0;
+    transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+    white-space: nowrap;
+    z-index: 2;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #asc-kontak .asc-pill-card:hover .asc-pill-action {
+    background: #ffffff;
+    color: #09131c;
+    border-color: #ffffff;
+  }
+
+  @media (max-width: 1024px) {
+    #asc-kontak .asc-pl-cards-wrap {
+      gap: 12px;
+      padding: 0 16px;
+    }
+
+    #asc-kontak .asc-pill-card {
+      width: clamp(140px, 21vw, 200px);
+    }
+  }
+
+  @media (max-width: 680px) {
+    #asc-kontak .asc-pl-track {
+      height: 190vh !important;
+    }
+
+    #asc-kontak .asc-pl-title {
+      font-size: clamp(28px, 7vw, 38px);
+      line-height: 1.1;
+    }
+
+    #asc-kontak .asc-pl-sub {
+      font-size: 13px;
+      line-height: 1.55;
+      padding: 0 10px;
+    }
+
+    #asc-kontak .asc-pl-cards-wrap {
+      gap: 8px;
+      padding: 0 10px;
+      top: 56%;
+    }
+
+    #asc-kontak .asc-pill-card {
+      width: 23%;
+      padding: 16px 6px 14px;
+      border-radius: 14px;
+    }
+
+    #asc-kontak .asc-pill-card.card-ig {
+      height: 320px;
+      margin-top: 10px;
+    }
+
+    #asc-kontak .asc-pill-card.card-yt {
+      height: 292px;
+      margin-top: 32px;
+    }
+
+    #asc-kontak .asc-pill-card.card-tk {
+      height: 344px;
+      margin-top: -8px;
+    }
+
+    #asc-kontak .asc-pill-card.card-wa {
+      height: 304px;
+      margin-top: 22px;
+    }
+
+    #asc-kontak .asc-pill-icon-badge {
+      width: 42px;
+      height: 42px;
+    }
+
+    #asc-kontak .asc-pill-icon-badge svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    #asc-kontak .asc-pill-vtext {
+      font-size: 15px;
+      letter-spacing: 0;
+      margin: 10px 0;
+    }
+
+    #asc-kontak .asc-pill-action {
+      padding: 5px 8px;
+      font-size: 10px;
+    }
+
+    #asc-kontak .asc-pill-action span {
+      display: none;
+    }
+
+    #asc-kontak .asc-pill-action svg {
+      width: 11px;
+      height: 11px;
+    }
+  }
+</style>
+
+<div id="asc-kontak">
+  <span id="asc-medsos" style="position:relative;top:-90px;display:block;visibility:hidden;height:0;width:0;"></span>
+
+  <div class="asc-pl-track" id="asc-soc-track">
+    <div class="asc-pl-sticky" id="asc-soc-sticky">
+
+      <div class="asc-pl-headline" id="asc-soc-title-box">
+        <div class="asc-pl-tag">Berdiri di atas dan untuk semua golongan</div>
+        <h2 class="asc-pl-title">
+          Terhubung bersama<br>
+          <span>UKM ASC UM.</span>
+        </h2>
+        <p class="asc-pl-sub" id="asc-soc-sub">
+          Ikuti kabar pembinaan, agenda syiar, dan dokumentasi kegiatan Al-Qur'an Study Club Universitas Negeri Malang.
+        </p>
+      </div>
+
+      <div class="asc-pl-scrolldown" id="asc-soc-hint">
+        <span>Gulir ke bawah</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+        </svg>
+      </div>
+
+      <div class="asc-pl-cards-wrap" id="asc-soc-cards">
+
+        <!-- CARD 1: INSTAGRAM -->
+        <a href="https://instagram.com/ukm_asc_um" target="_blank" rel="noopener noreferrer"
+          class="asc-pill-card card-ig" data-card-idx="0" title="Kunjungi Instagram UKM ASC UM">
+          <div class="asc-pill-icon-badge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+          </div>
+          <div class="asc-pill-vtext">Instagram</div>
+          <div class="asc-pill-action">
+            <span>@ukm_asc_um</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M7 17L17 7M7 7h10v10" />
+            </svg>
+          </div>
+        </a>
+
+        <!-- CARD 2: YOUTUBE -->
+        <a href="https://www.youtube.com/@AlQuranStudyClub" target="_blank" rel="noopener noreferrer"
+          class="asc-pill-card card-yt" data-card-idx="1" title="Tonton Kanal YouTube UKM ASC UM">
+          <div class="asc-pill-icon-badge">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#ffffff" />
+            </svg>
+          </div>
+          <div class="asc-pill-vtext">YouTube</div>
+          <div class="asc-pill-action">
+            <span>@AlQuranStudyClub</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M7 17L17 7M7 7h10v10" />
+            </svg>
+          </div>
+        </a>
+
+        <!-- CARD 3: TIKTOK -->
+        <a href="https://www.tiktok.com/@ukm_asc_um" target="_blank" rel="noopener noreferrer"
+          class="asc-pill-card card-tk" data-card-idx="2" title="Ikuti TikTok @ukm_asc_um">
+          <div class="asc-pill-icon-badge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.35 0 .69.07 1 .19V9.07a6.29 6.29 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.33 6.34 6.34 0 0 0 9.34 21.67 6.34 6.34 0 0 0 15.68 15.33V8.89a8.18 8.18 0 0 0 4.81 1.55V7a4.86 4.86 0 0 1-.9-.31z" />
+            </svg>
+          </div>
+          <div class="asc-pill-vtext">TikTok</div>
+          <div class="asc-pill-action">
+            <span>@ukm_asc_um</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M7 17L17 7M7 7h10v10" />
+            </svg>
+          </div>
+        </a>
+
+        <!-- CARD 4: WHATSAPP CP -->
+        <a href="https://wa.me/6281284129092?text=Assalamu%27alaikum%2C%20halo%20Kak%20Rifqi%2C%20saya%20ingin%20bertanya%20mengenai%20UKM%20ASC%20UM"
+          target="_blank" rel="noopener noreferrer" class="asc-pill-card card-wa" data-card-idx="3"
+          title="Chat WhatsApp Narahubung Resmi">
+          <div class="asc-pill-icon-badge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+          </div>
+          <div class="asc-pill-vtext">WhatsApp</div>
+          <div class="asc-pill-action">
+            <span>Chat Langsung</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M7 17L17 7M7 7h10v10" />
+            </svg>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ASC CORE: Satu loader font & pembersih overflow WordPress (Idempoten / Aman digabung) -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v && w.ASC.v >= 3) return;
+    var A = w.ASC = (w.ASC || {});
+    A.v = 3;
+
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Geist:wght@500..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap';
+      d.head.appendChild(l);
+    }
+
+    A.unlock = function (root) {
+      try {
+        var n = root;
+        while (n && n !== d) {
+          if (n.nodeType === 1) {
+            var cs = w.getComputedStyle(n);
+            if (/hidden|auto|scroll|clip/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+              n.style.setProperty('overflow', 'visible', 'important');
+              n.style.setProperty('overflow-x', 'visible', 'important');
+              n.style.setProperty('overflow-y', 'visible', 'important');
+            }
+          }
+          n = n.parentElement;
+        }
+        if (d.documentElement) {
+          d.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+        }
+        if (d.body) {
+          d.body.style.setProperty('overflow-x', 'visible', 'important');
+        }
+      } catch (e) { /* abaikan */ }
+    };
+  })(window, document);
+</script>
+
+<script>
+  (function () {
+    const track = document.getElementById('asc-soc-track');
+    const titleBox = document.getElementById('asc-soc-title-box');
+    const subTitle = document.getElementById('asc-soc-sub');
+    const cardsWrap = document.getElementById('asc-soc-cards');
+    const hint = document.getElementById('asc-soc-hint');
+    const cards = cardsWrap ? cardsWrap.querySelectorAll('.asc-pill-card') : [];
+
+    const cardConfigs = [
+      { startP: 0.08, endP: 0.68, startY: 110, startScale: 0.88, startRot: -3 },
+      { startP: 0.16, endP: 0.74, startY: 122, startScale: 0.86, startRot: -1 },
+      { startP: 0.12, endP: 0.70, startY: 114, startScale: 0.88, startRot: 1 },
+      { startP: 0.20, endP: 0.78, startY: 126, startScale: 0.86, startRot: 3 }
+    ];
+
+    function updatePlariumScroll() {
+      if (!track) return;
+      const rect = track.getBoundingClientRect();
+      const trackH = track.offsetHeight;
+      const winH = window.innerHeight;
+      const totalDist = trackH - winH;
+
+      if (totalDist <= 0) return;
+
+      let progress = -rect.top / totalDist;
+      progress = Math.max(0, Math.min(1, progress));
+
+      if (hint) {
+        hint.style.opacity = Math.max(0, 1 - progress * 4.5);
+      }
+
+      if (titleBox) {
+        const titleY = -progress * (winH * 0.30);
+        const titleScale = 1 - progress * 0.28;
+        titleBox.style.transform = `translate(-50%, calc(-50% + ${titleY}px)) scale(${titleScale})`;
+
+        if (subTitle) {
+          subTitle.style.opacity = Math.max(0, 1 - progress * 2.2);
+        }
+      }
+
+      cards.forEach((card, i) => {
+        const cfg = cardConfigs[i] || { startP: 0.1, endP: 0.72, startY: 115, startScale: 0.88, startRot: 0 };
+        let localP = (progress - cfg.startP) / (cfg.endP - cfg.startP);
+        localP = Math.max(0, Math.min(1, localP));
+
+        const eased = 1 - Math.pow(1 - localP, 4);
+        const currentY = (1 - eased) * cfg.startY;
+        const currentScale = cfg.startScale + (1 - cfg.startScale) * eased;
+        const currentRot = (1 - eased) * cfg.startRot;
+        const currentOpacity = Math.min(1, Math.pow(eased, 1.3));
+
+        card.style.transform = `translate3d(0, ${currentY}vh, 0) scale(${currentScale}) rotate(${currentRot}deg)`;
+        card.style.opacity = currentOpacity.toFixed(3);
+      });
+    }
+
+    function fixParents(el) {
+      if (!el) return;
+      var p = el.parentElement, n = 0;
+      while (p && p !== document.documentElement && n++ < 25) {
+        var cs = window.getComputedStyle(p);
+        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+          p.style.setProperty('overflow', 'visible', 'important');
+        }
+        p = p.parentElement;
+      }
+      if (document.documentElement) {
+        document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+      }
+      if (document.body) {
+        document.body.style.setProperty('overflow-x', 'visible', 'important');
+      }
+    }
+
+    const asckRoot = document.getElementById('asc-kontak') || document.body;
+    let ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { ticking = false; updatePlariumScroll(); });
+    }
+
+    function init() {
+      if (!track) return false;
+      if (track.dataset.ready) return true;
+      track.dataset.ready = '1';
+      fixParents(asckRoot);
+      updatePlariumScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function () {
+        fixParents(asckRoot);
+        onScroll();
+      }, { passive: true });
+      window.addEventListener('load', function () {
+        fixParents(asckRoot);
+        onScroll();
+      });
+      if (window.ResizeObserver) {
+        new ResizeObserver(function () {
+          fixParents(asckRoot);
+          onScroll();
+        }).observe(track);
+      }
+      [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+        setTimeout(function () {
+          fixParents(asckRoot);
+          onScroll();
+          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+        }, ms);
+      });
+      return true;
+    }
+
+    function run() {
+      if (init()) return;
+      var n = 0, t = setInterval(function () {
+        if (init() || ++n >= 25) clearInterval(t);
+      }, 150);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run);
+    } else {
+      run();
+    }
+
+    cards.forEach(card => {
+      card.addEventListener('mousemove', e => {
+        if (parseFloat(card.style.opacity || '0') < 0.85) return;
+
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const rotX = -(y / rect.height) * 8;
+        const rotY = (x / rect.width) * 8;
+
+        card.style.transform = `translate3d(0, 0, 0) perspective(600px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.03)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        updatePlariumScroll();
+      });
+    });
+  })();
+</script>

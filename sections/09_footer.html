@@ -1,0 +1,130 @@
+<style>
+  /* ==========================================================================
+     09. FOOTER EDITORIAL + JAM WIB
+     ========================================================================== */
+  .site-footer {
+    background: #091f17;
+    color: #ffffff;
+    padding: 72px var(--pad-x, clamp(20px, 4vw, 56px)) 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    position: relative;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+
+  .footer-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .footer-col h4 {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #e5c166;
+    margin-bottom: 14px;
+  }
+
+  .footer-col a,
+  .footer-col p {
+    display: block;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: rgba(246, 245, 240, 0.80);
+    margin-bottom: 8px;
+    transition: color 0.18s;
+  }
+
+  .footer-col a:hover {
+    color: #ffffff;
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 13.5px;
+    color: rgba(246, 245, 240, 0.68);
+  }
+
+  @media (max-width: 1180px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .footer-cols {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="brand-logo" style="color:#ffffff;font-size:42px;">ASC<span style="color:#e5c166;">.</span></div>
+      <p style="font-size:15.5px;line-height:1.65;color:rgba(246,245,240,0.8);max-width:400px;margin-top:14px;">
+        Unit Kegiatan Mahasiswa Al-Qur'an Study Club Universitas Negeri Malang. Berdiri di atas dan untuk semua golongan.
+      </p>
+    </div>
+
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <a href="#asc-visi-misi">Visi &amp; Misi</a>
+        <a href="#asc-pembinaan">Bidang Pembinaan</a>
+        <a href="#asc-struktur">Struktur Organisasi</a>
+        <a href="#prestasi">Jejak Prestasi</a>
+        <a href="#kabinet">Kabinet &amp; Departemen</a>
+      </div>
+      <div class="footer-col">
+        <h4>Sekretariat</h4>
+        <p>Kompleks Masjid Al-Hikmah</p>
+        <p>Universitas Negeri Malang</p>
+        <p>Jl. Semarang No. 5, Kota Malang</p>
+      </div>
+      <div class="footer-col">
+        <h4>Kanal Resmi</h4>
+        <a href="https://instagram.com/ukm_asc_um" target="_blank" rel="noopener">Instagram @ukm_asc_um</a>
+        <a href="mailto:ukm.asc@um.ac.id">ukm.asc@um.ac.id</a>
+        <a href="https://ormawa.um.ac.id/asc-ukm/" target="_blank" rel="noopener">Portal Ormawa UM</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>Kota Malang, Jawa Timur</span>
+    <span id="wibClock">Waktu Malang · --:--:-- WIB</span>
+    <span>© 2026 UKM Al-Qur'an Study Club UM</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    'use strict';
+    const clockEl = document.getElementById('wibClock');
+    function updateClock() {
+      if (!clockEl) return;
+      const t = new Intl.DateTimeFormat('id-ID', {
+        timeZone: 'Asia/Jakarta',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      }).format(new Date());
+      clockEl.textContent = `Waktu Malang · ${t} WIB`;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+  })();
+</script>
