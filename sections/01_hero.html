@@ -1,0 +1,912 @@
+<style>
+  /* ==========================================================================
+     01. BOLD KINETIC POSTER HERO (AFAL TEXTURE-IN-TEXT + ROAM TILT + 19 UX PHYSICS)
+     ========================================================================== */
+  .hero-o3-shell {
+    background: #f6f5f0;
+    padding: 84px clamp(12px, 2vw, 28px) clamp(16px, 2.2vw, 28px);
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Plus Jakarta Sans', var(--font-ui, -apple-system, BlinkMacSystemFont, sans-serif);
+  }
+
+  .hero-o3-shell .o3-stage {
+    position: relative;
+    flex: 1;
+    min-height: calc(100svh - 112px);
+    border-radius: 16px;
+    border: 1px solid rgba(9, 19, 28, 0.10);
+    background: #ffffff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .hero-o3-shell .o3-top-meta {
+    position: relative;
+    z-index: 5;
+    padding: 20px clamp(20px, 3vw, 40px) 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #273545;
+  }
+
+  .hero-o3-shell .o3-top-meta span.muted {
+    color: #526173;
+    font-weight: 500;
+  }
+
+  .hero-o3-shell .o3-svg-wrap {
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(1320px, 96%);
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-o3-shell .o3-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+
+  /* Entrance Stagger & Origin Awareness (#2, #3, #9, #14) */
+  .hero-o3-shell .o3-letter-g {
+    opacity: 0;
+    transform: translateY(58px);
+    transition:
+      transform 0.78s cubic-bezier(0.22, 0.31, 0, 1),
+      opacity 0.56s cubic-bezier(0.22, 0.31, 0, 1);
+    transition-delay: var(--d, 0ms);
+    will-change: transform, opacity;
+  }
+
+  .hero-o3-shell.is-entered .o3-letter-g {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero-o3-shell .o3-anim-rise {
+    transform: translateY(20px);
+    opacity: 0;
+    transition:
+      transform 0.56s cubic-bezier(0.22, 0.31, 0, 1),
+      opacity 0.48s cubic-bezier(0.22, 0.31, 0, 1);
+    transition-delay: var(--d, 0ms);
+    will-change: transform, opacity;
+  }
+
+  .hero-o3-shell.is-entered .o3-anim-rise {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .hero-o3-shell .o3-anim-subject {
+    transform-origin: bottom center;
+    transform: translateY(34px) scale(0.985);
+    opacity: 0;
+    transition:
+      transform 0.68s cubic-bezier(0.22, 0.31, 0, 1),
+      opacity 0.52s cubic-bezier(0.22, 0.31, 0, 1);
+    transition-delay: var(--d, 150ms);
+    will-change: transform, opacity;
+  }
+
+  .hero-o3-shell.is-entered .o3-anim-subject {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  .hero-o3-shell .o3-anim-shadow {
+    opacity: 0;
+    transform: scaleX(0.92);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 0.31, 0, 1),
+      transform 0.7s cubic-bezier(0.22, 0.31, 0, 1);
+    transition-delay: 200ms;
+  }
+
+  .hero-o3-shell.is-entered .o3-anim-shadow {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  /* Physical contact shadow behind subject (#17 Solid Drawing / Rebound) */
+  .hero-o3-shell .o3-shadow {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(820px, 74vw);
+    height: 120px;
+    z-index: 2;
+    background: radial-gradient(50% 50% at 50% 82%, rgba(9, 19, 28, 0.28) 0%, rgba(9, 19, 28, 0.10) 55%, transparent 80%);
+    filter: blur(12px);
+    pointer-events: none;
+  }
+
+  .hero-o3-shell .o3-cutout-wrap {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    width: min(880px, 76vw);
+    height: min(80%, 630px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .hero-o3-shell .o3-cutout-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .hero-o3-shell .o3-cutout-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+    filter:
+      drop-shadow(-12px 18px 26px rgba(9, 19, 28, 0.22))
+      drop-shadow(0 6px 12px rgba(9, 19, 28, 0.12));
+  }
+
+  .hero-o3-shell .o3-bottom {
+    position: relative;
+    z-index: 5;
+    padding: 0 clamp(20px, 3vw, 40px) 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    pointer-events: none;
+  }
+
+  .hero-o3-shell .o3-desc-block {
+    pointer-events: auto;
+    max-width: 256px;
+  }
+
+  .hero-o3-shell .o3-desc-title {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink, #09131c);
+    margin-bottom: 6px;
+  }
+
+  .hero-o3-shell .o3-desc-text {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #273545;
+  }
+
+  .hero-o3-shell .o3-cta-block {
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .hero-o3-shell .o3-cta-note {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #526173;
+  }
+
+  /* One Main CTA — Fitts's Law (#8), Von Restorff (#13), Squash & Stretch (#4), Follow-through (#11) */
+  .hero-o3-shell .o3-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    height: 50px;
+    padding: 0 28px;
+    border-radius: 8px;
+    background: var(--emerald-700, #0d5c3f);
+    color: #ffffff;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    box-shadow: 0 8px 20px -6px rgba(13, 92, 63, 0.42), 0 1px 2px rgba(9, 19, 28, 0.12);
+    transition:
+      transform 0.18s cubic-bezier(0.22, 0.31, 0, 1),
+      background 0.16s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.22s cubic-bezier(0.22, 0.31, 0, 1);
+  }
+
+  .hero-o3-shell .o3-cta-btn .o3-cta-arrow {
+    display: inline-block;
+    transition: transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .hero-o3-shell .o3-cta-btn:hover {
+    background: var(--emerald-900, #063726);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px -8px rgba(13, 92, 63, 0.50), 0 2px 4px rgba(9, 19, 28, 0.12);
+  }
+
+  .hero-o3-shell .o3-cta-btn:hover .o3-cta-arrow {
+    transform: translateX(5px);
+  }
+
+  .hero-o3-shell .o3-cta-btn:active {
+    transform: translateY(0) scale(0.975, 0.955);
+    box-shadow: 0 4px 10px -4px rgba(13, 92, 63, 0.45);
+    transition-duration: 0.08s;
+  }
+
+  @media (max-width: 720px) {
+    .hero-o3-shell {
+      padding: 72px 12px 16px;
+    }
+
+    .hero-o3-shell .o3-stage {
+      min-height: calc(100svh - 88px);
+      justify-content: flex-start;
+    }
+
+    .hero-o3-shell .o3-top-meta {
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12.5px;
+    }
+
+    .hero-o3-shell .o3-svg-wrap {
+      top: 190px;
+    }
+
+    .hero-o3-shell .o3-shadow {
+      bottom: auto;
+      top: 390px;
+      height: 60px;
+    }
+
+    .hero-o3-shell .o3-cutout-wrap {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      transform: none;
+      width: 100%;
+      height: 350px;
+      margin-top: 44px;
+    }
+
+    .hero-o3-shell .o3-bottom {
+      position: relative;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 14px;
+      padding: 16px 20px 20px;
+      background: #ffffff;
+      border-top: 1px solid rgba(9, 19, 28, 0.10);
+    }
+
+    .hero-o3-shell .o3-desc-block {
+      max-width: 100%;
+    }
+
+    .hero-o3-shell .o3-cta-block {
+      align-items: stretch;
+    }
+
+    .hero-o3-shell .o3-cta-btn {
+      width: 100%;
+    }
+
+    .hero-o3-shell .o3-cta-note {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-o3-shell .o3-letter-g,
+    .hero-o3-shell .o3-anim-rise,
+    .hero-o3-shell .o3-anim-subject,
+    .hero-o3-shell .o3-anim-shadow {
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>
+
+<section class="hero-o3-shell" id="heroStage" aria-label="Beranda UKM Al-Qur'an Study Club UM">
+  <div class="o3-stage">
+    <div class="o3-top-meta o3-anim-rise" style="--d:80ms">
+      <span>Al-Qur'an Study Club · Universitas Negeri Malang</span>
+      <span class="muted">11 Bidang Pembinaan · Masjid Al-Hikmah</span>
+    </div>
+
+    <!-- Custom Tilted Lettering with Seamless Islamic Geometric Lattice Masked INSIDE the Letters -->
+    <div class="o3-svg-wrap" id="o3SvgWrap" data-parallax="-12" aria-hidden="true">
+      <svg class="o3-svg" viewBox="0 0 1200 460" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="o3IslamicFill" width="64" height="64" patternUnits="userSpaceOnUse">
+            <rect width="64" height="64" fill="#091f17" />
+            <g fill="none" stroke="rgba(229, 193, 102, 0.30)" stroke-width="1.15">
+              <rect x="16" y="16" width="32" height="32" />
+              <rect x="16" y="16" width="32" height="32" transform="rotate(45 32 32)" />
+              <circle cx="32" cy="32" r="8" stroke="rgba(16, 185, 129, 0.42)" />
+              <path d="M0 0 L12 12 M64 0 L52 12 M0 64 L12 52 M64 64 L52 52" stroke="rgba(229, 193, 102, 0.16)" />
+              <path d="M0 32 L10 32 M54 32 L64 32 M32 0 L32 10 M32 54 L32 64" stroke="rgba(255, 255, 255, 0.16)" />
+            </g>
+          </pattern>
+        </defs>
+
+        <g class="o3-letter-g" style="--d:0ms">
+          <text x="195" y="382" text-anchor="middle" transform="rotate(-3.4 195 250)"
+            font-family="'Geist', 'Arial Black', sans-serif" font-weight="900" font-size="430"
+            letter-spacing="-14" fill="url(#o3IslamicFill)" stroke="#09131c" stroke-width="2">A</text>
+        </g>
+        <g class="o3-letter-g" style="--d:75ms">
+          <text x="580" y="370" text-anchor="middle" transform="rotate(2.4 580 240)"
+            font-family="'Geist', 'Arial Black', sans-serif" font-weight="900" font-size="430"
+            letter-spacing="-14" fill="url(#o3IslamicFill)" stroke="#09131c" stroke-width="2">S</text>
+        </g>
+        <g class="o3-letter-g" style="--d:150ms">
+          <text x="975" y="388" text-anchor="middle" transform="rotate(-2.8 975 250)"
+            font-family="'Geist', 'Arial Black', sans-serif" font-weight="900" font-size="430"
+            letter-spacing="-14" fill="url(#o3IslamicFill)" stroke="#09131c" stroke-width="2">C</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="o3-shadow o3-anim-shadow" id="o3Shadow" data-parallax="-6" aria-hidden="true"></div>
+
+    <div class="o3-cutout-wrap">
+      <div class="o3-cutout-inner o3-anim-subject" data-parallax="8" style="--d:160ms">
+        <img id="cutoutPhoto" src="../assets/hero-asc-cutout.webp"
+          onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='../assets/hero-asc-cutout.png';}else if(this.dataset.fb==='1'){this.dataset.fb='2';this.src='assets/hero-asc-cutout.png';}"
+          alt="Pengurus UKM Al-Qur'an Study Club Universitas Negeri Malang" />
+      </div>
+    </div>
+
+    <div class="o3-bottom">
+      <div class="o3-desc-block o3-anim-rise" style="--d:250ms">
+        <h1 class="o3-desc-title">Wadah Qur'ani Mahasiswa UM.</h1>
+        <p class="o3-desc-text">
+          Pembinaan tahsin, tilawah, tahfidz, kaligrafi, hingga kafilah MTQ nasional — berdiri di atas dan untuk
+          semua golongan.
+        </p>
+      </div>
+
+      <div class="o3-cta-block o3-anim-rise" style="--d:310ms">
+        <span class="o3-cta-note">Terbuka untuk seluruh fakultas UM</span>
+        <a href="#gabung" class="o3-cta-btn" data-cursor-hover>
+          <span>Daftar Pembinaan</span>
+          <span class="o3-cta-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function initHeroOption3() {
+    'use strict';
+
+    const shell = document.getElementById('heroStage');
+    if (!shell) return;
+
+    requestAnimationFrame(() => {
+      shell.classList.add('is-entered');
+    });
+
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hoverCapable = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+    if (reduceMotion || !hoverCapable) return;
+
+    const parallaxEls = Array.from(shell.querySelectorAll('[data-parallax]'));
+    const pat = document.getElementById('o3IslamicFill');
+
+    let targetX = 0, targetY = 0, curX = 0, curY = 0;
+
+    shell.addEventListener('pointermove', (e) => {
+      const r = shell.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      targetX = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      targetY = ((e.clientY - r.top) / r.height - 0.5) * 2;
+    }, { passive: true });
+
+    shell.addEventListener('pointerleave', () => {
+      targetX = 0;
+      targetY = 0;
+    });
+
+    function tickParallax() {
+      curX += (targetX - curX) * 0.08;
+      curY += (targetY - curY) * 0.08;
+
+      if (Math.abs(curX) > 0.001 || Math.abs(curY) > 0.001 || Math.abs(targetX) > 0.001) {
+        parallaxEls.forEach((el) => {
+          const depth = parseFloat(el.getAttribute('data-parallax') || '0');
+          const dx = (curX * depth).toFixed(2);
+          const dy = (curY * depth * 0.45).toFixed(2);
+          if (el.classList.contains('o3-svg-wrap')) {
+            el.style.transform = 'translate(calc(-50% + ' + dx + 'px), calc(-50% + ' + dy + 'px))';
+          } else if (el.classList.contains('o3-shadow')) {
+            el.style.transform = 'translateX(calc(-50% + ' + dx + 'px))';
+          } else {
+            el.style.transform = 'translate3d(' + dx + 'px, ' + dy + 'px, 0)';
+          }
+        });
+
+        if (pat) {
+          pat.setAttribute('patternTransform', 'translate(' + (curX * 14).toFixed(1) + ' ' + (curY * 8).toFixed(1) + ')');
+        }
+      }
+      requestAnimationFrame(tickParallax);
+    }
+    requestAnimationFrame(tickParallax);
+  })();
+</script>
+
+<!-- === TRANSISI ASYAM (PANGGUNG SCROLL ASC DARI 01_profil.html BAGIAN 2) === -->
+<style>
+  .et_pb_section,
+  .et_pb_fullwidth_section,
+  .et_pb_row,
+  .et_pb_column,
+  .et_pb_module,
+  .et_pb_code,
+  .et_pb_fullwidth_code,
+  .et_pb_code_inner,
+  .elementor-section,
+  .elementor-column,
+  .elementor-widget-wrap,
+  .elementor-widget,
+  .elementor-element {
+    overflow: visible !important;
+  }
+
+  #asc-hero-profil {
+    --asc-canvas: #f6f5f0;
+    --asc-deep: #091f17;
+    --asc-ink: #09131c;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--asc-ink);
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #asc-hero-profil * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  #asc-hero-profil .asc-track {
+    position: relative;
+    background: var(--asc-canvas);
+  }
+
+  #asc-hero-profil .asc-stage {
+    position: relative;
+    width: 100%;
+    height: min(80vh, 680px);
+    overflow: hidden;
+    background: var(--asc-canvas);
+  }
+
+  #asc-hero-profil.asc-js:not(.asc-static) .asc-track {
+    position: relative !important;
+    width: 100% !important;
+    height: 400vh !important;
+    overflow: visible !important;
+  }
+
+  #asc-hero-profil.asc-js:not(.asc-static) .asc-stage {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    overflow: hidden !important;
+  }
+
+  #asc-hero-profil .asc-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  #asc-hero-profil .asc-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10%;
+    z-index: 3;
+    padding: 0 20px;
+    text-align: center;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--asc-deep);
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    #asc-hero-profil.asc-js:not(.asc-static) .asc-track {
+      height: 270vh !important;
+    }
+
+    #asc-hero-profil .asc-caption {
+      font-size: 12.5px;
+      bottom: 14%;
+    }
+  }
+</style>
+
+<div id="asc-hero-profil" data-image="">
+  <!-- ==================== PANGGUNG SCROLL MASK ASC ==================== -->
+  <div class="asc-track">
+    <div class="asc-stage">
+      <svg class="asc-svg" id="ascSvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"
+        focusable="false">
+        <defs>
+          <linearGradient id="ascGradScene" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#091f17" />
+            <stop offset="0.58" stop-color="#0d4a34" />
+            <stop offset="1" stop-color="#0d5c3f" />
+          </linearGradient>
+          <pattern id="ascPat" width="120" height="120" patternUnits="userSpaceOnUse">
+            <polygon
+              points="60,20 71.7,31.7 88.3,31.7 88.3,48.3 100,60 88.3,71.7 88.3,88.3 71.7,88.3 60,100 48.3,88.3 31.7,88.3 31.7,71.7 20,60 31.7,48.3 31.7,31.7 48.3,31.7"
+              fill="none" stroke="#e5c166" stroke-opacity="0.32" stroke-width="1.5" />
+          </pattern>
+          <clipPath id="ascClipSkew">
+            <polygon id="ascSkewPoly" points="0,-270 1600,-270 1600,1170 0,1170" />
+          </clipPath>
+          <mask id="ascMaskL" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="900">
+            <g id="ascLettersG" transform="translate(800 450) scale(0.9)">
+              <path fill="#ffffff" fill-rule="evenodd"
+                d="M-577.9 -194.4 L-520.9 -137.5 L-440.4 -137.5 L-440.4 -56.9 L-383.5 0 L-440.4 56.9 L-440.4 137.5 L-520.9 137.5 L-577.9 194.4 L-634.8 137.5 L-715.3 137.5 L-715.3 56.9 L-772.3 0 L-715.3 -56.9 L-715.3 -137.5 L-634.8 -137.5ZM-519.6 0A58.3 58.3 0 1 0 -636.2 0A58.3 58.3 0 1 0 -519.6 0ZM-298.3 180H-203.8L-181.8 110.7H-54L-32.7 180H64.4L-60 -180H-174.6ZM-160.1 42.8 -153.5 21.7C-141 -18.4 -129.4 -57.7 -117.1 -102C-105 -57.7 -93.4 -18.4 -81.5 21.7L-75 42.8ZM246.1 185.8C338.8 185.8 393.9 143 393.9 70.6C393.9 15 359.4 -16.7 279.6 -32.6L248 -38.9C206.9 -47.4 189.8 -58.2 189.8 -77.8C189.8 -100.3 212.7 -116 245.6 -116C279.9 -116 302.8 -97.6 305.3 -67.9H385.7C383.5 -141.6 330.6 -185.8 244.4 -185.8C159.8 -185.8 102.8 -140.6 102.8 -73.7C102.8 -21.3 138.8 13.5 209.1 28L246.1 35.5C289.3 44.5 307.9 56.3 307.9 76.8C307.9 100.5 283.5 116 246.8 116C205.2 116 179.9 95.7 178.7 61.1H95.8C95.8 140.6 150.1 185.8 246.1 185.8ZM609.7 185.8C697.6 185.8 761.4 131.9 772.3 49.3H684.8C677.1 87.5 649.8 109.9 611.1 109.9C555.6 109.9 524.1 68.6 524.1 0.2C524.1 -68.4 555.8 -109.9 611.1 -109.9C649.8 -109.9 677.3 -87.2 684.6 -48.8H772.3C761.6 -131.4 697.6 -185.8 609.7 -185.8C510.9 -185.8 436.7 -117.4 436.7 0.2C436.7 116.9 510.9 185.8 609.7 185.8Z" />
+            </g>
+          </mask>
+        </defs>
+        <g id="ascLayerP" clip-path="url(#ascClipSkew)" style="display:none">
+          <g class="asc-scene">
+            <rect class="asc-sc-bg" width="1600" height="900" fill="url(#ascGradScene)" />
+            <rect class="asc-sc-bg" width="1600" height="900" fill="url(#ascPat)" />
+            <image class="asc-sc-img" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid slice" />
+          </g>
+        </g>
+        <g id="ascLayerL" mask="url(#ascMaskL)">
+          <g class="asc-scene">
+            <rect class="asc-sc-bg" width="1600" height="900" fill="url(#ascGradScene)" />
+            <rect class="asc-sc-bg" width="1600" height="900" fill="url(#ascPat)" />
+            <image class="asc-sc-img" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid slice" />
+          </g>
+        </g>
+      </svg>
+      <p class="asc-caption">Al-Qur'an Study Club · UKM Universitas Negeri Malang</p>
+    </div>
+  </div>
+</div>
+
+<!-- ASC CORE: Satu loader font & pembersih overflow WordPress (Idempoten / Aman digabung) -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v && w.ASC.v >= 3) return;
+    var A = w.ASC = (w.ASC || {});
+    A.v = 3;
+
+    /* 1. Satu pemuat font untuk seluruh halaman */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Geist:wght@500..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. Buka overflow milik container Divi/Elementor/tema WordPress yang memblokir position: sticky */
+    A.unlock = function (root) {
+      try {
+        var n = root;
+        while (n && n !== d) {
+          if (n.nodeType === 1) {
+            var cs = w.getComputedStyle(n);
+            if (/hidden|auto|scroll|clip/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+              n.style.setProperty('overflow', 'visible', 'important');
+              n.style.setProperty('overflow-x', 'visible', 'important');
+              n.style.setProperty('overflow-y', 'visible', 'important');
+            }
+          }
+          n = n.parentElement;
+        }
+        if (d.documentElement) {
+          d.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+        }
+        if (d.body) {
+          d.body.style.setProperty('overflow-x', 'visible', 'important');
+        }
+      } catch (e) { /* abaikan */ }
+    };
+  })(window, document);
+</script>
+
+<script>
+  (function () {
+    'use strict';
+    var root = document.getElementById('asc-hero-profil');
+    if (!root || root.getAttribute('data-asc-ready') === '1') { return; }
+    root.setAttribute('data-asc-ready', '1');
+
+    /* Geometri kelompok mask (bintang + A S C), satuan lokal, berpusat di 0,0.
+    fx, fy = titik fokus zoom awal; r = radius lingkaran terbesar yang masih di dalam bentuk. */
+    var GEO = { gw: 1544.6, gh: 388.8, fx: -577.9, fy: -115.1, r: 52 };
+
+    var track = root.querySelector('.asc-track');
+    var stage = root.querySelector('.asc-stage');
+    var svg = root.querySelector('#ascSvg');
+    if (!track || !stage || !svg) { return; }
+
+    var layerP = svg.querySelector('#ascLayerP');
+    var layerL = svg.querySelector('#ascLayerL');
+    var poly = svg.querySelector('#ascSkewPoly');
+    var lettersG = svg.querySelector('#ascLettersG');
+    var maskEl = svg.querySelector('#ascMaskL');
+    var scenes = svg.querySelectorAll('.asc-scene');
+    var bgRects = svg.querySelectorAll('.asc-sc-bg');
+    var imgs = svg.querySelectorAll('.asc-sc-img');
+    var aura = root.querySelector('.asc-aura');
+    var caption = root.querySelector('.asc-caption');
+
+    var mqCompact = window.matchMedia ? window.matchMedia('(max-width: 768px)') : null;
+    var mqReduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+
+    var W = 1600, H = 900, sf = 0.9, s0 = 20;
+    var compact = false, staticMode = false, lastP = -1, queued = false, awake = true;
+
+    function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
+    function range(v, a, b) { return b <= a ? (v >= b ? 1 : 0) : clamp((v - a) / (b - a), 0, 1); }
+    function ease(t) { return t * t * (3 - 2 * t); }
+
+    /* ---------- 1. Buka overflow milik container/tema (penyebab sticky gagal) ---------- */
+    function unlockAncestors() {
+      try {
+        var el = root;
+        var p = el.parentElement, n = 0;
+        while (p && p !== document.documentElement && n++ < 25) {
+          var cs = window.getComputedStyle(p);
+          if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+            p.style.setProperty('overflow', 'visible', 'important');
+          }
+          p = p.parentElement;
+        }
+        if (document.documentElement) {
+          document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+        }
+        if (document.body) {
+          document.body.style.setProperty('overflow-x', 'visible', 'important');
+        }
+      } catch (e) { /* abaikan */ }
+    }
+
+    /* ---------- 2. Gambar ---------- */
+    function setImage() {
+      var src = window.ASC_HERO_IMAGE || root.getAttribute('data-image') || '';
+      var i;
+      for (i = 0; i < imgs.length; i++) {
+        (function (img) {
+          img.addEventListener('error', function () { img.style.display = 'none'; });
+          if (src) {
+            img.setAttribute('href', src);
+            img.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', src);
+          } else {
+            img.style.display = 'none';
+          }
+        })(imgs[i]);
+      }
+    }
+
+    /* ---------- 3. Ukuran ---------- */
+    function measure() {
+      var r = stage.getBoundingClientRect();
+      W = Math.max(1, Math.round(r.width));
+      H = Math.max(1, Math.round(r.height));
+      compact = !!(mqCompact && mqCompact.matches);
+
+      svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+      var i;
+      for (i = 0; i < bgRects.length; i++) { bgRects[i].setAttribute('width', W); bgRects[i].setAttribute('height', H); }
+      for (i = 0; i < imgs.length; i++) { imgs[i].setAttribute('width', W); imgs[i].setAttribute('height', H); }
+      maskEl.setAttribute('width', W);
+      maskEl.setAttribute('height', H);
+
+      /* lebar akhir kelompok huruf, dibatasi juga oleh tinggi layar */
+      var fitW = W <= 1024 ? W * 0.88 : Math.min(W * 0.64, 1260);
+      sf = Math.min(fitW / GEO.gw, (H * 0.5) / GEO.gh);
+      /* skala awal: lingkaran terbesar di dalam bentuk menutup seluruh layar */
+      s0 = Math.max(sf * 3, (Math.sqrt(W * W + H * H) / 2) / GEO.r * 1.05);
+      lastP = -1;
+    }
+
+    /* ---------- 4. Render satu frame berdasarkan progres 0..1 ---------- */
+    function setPoly(u) {
+      var k = 0.39 * u;
+      var half = (W / 2) * (1 - 0.32 * u);
+      var cx = W / 2 + W * 0.015 * u;
+      var yT = -H * 0.3, yB = H * 1.3;
+      var dT = yT - H / 2, dB = yB - H / 2;
+      poly.setAttribute('points',
+        (cx - half + k * dT).toFixed(1) + ',' + yT.toFixed(1) + ' ' +
+        (cx + half + k * dT).toFixed(1) + ',' + yT.toFixed(1) + ' ' +
+        (cx + half + k * dB).toFixed(1) + ',' + yB.toFixed(1) + ' ' +
+        (cx - half + k * dB).toFixed(1) + ',' + yB.toFixed(1));
+    }
+
+    function render(p) {
+      var skewU = 0, lOp = 1, zt;
+      if (compact) {
+        zt = ease(range(p, 0.10, 0.80));
+      } else {
+        skewU = ease(range(p, 0.12, 0.36));
+        lOp = range(p, 0.34, 0.42);
+        zt = ease(range(p, 0.42, 0.84));
+      }
+
+      /* layer miring (hanya desktop) */
+      var showP = !compact && lOp < 1;
+      layerP.style.display = showP ? '' : 'none';
+      if (showP) { setPoly(skewU); }
+
+      /* layer mask huruf */
+      if (lOp <= 0) {
+        layerL.style.display = 'none';
+      } else {
+        layerL.style.display = '';
+        layerL.style.opacity = lOp >= 1 ? '1' : String(lOp);
+      }
+
+      var s = s0 * Math.pow(sf / s0, zt);
+      /* titik fokus bertahan di dalam bentuk saat zoom besar, baru bergeser ke tengah kelompok di akhir */
+      var fm = ease(range(zt, 0.45, 1));
+      var fx = GEO.fx * (1 - fm), fy = GEO.fy * (1 - fm);
+      lettersG.setAttribute('transform',
+        'translate(' + (W / 2).toFixed(1) + ' ' + (H / 2).toFixed(1) + ') scale(' + s.toFixed(5) + ') translate(' + (-fx).toFixed(2) + ' ' + (-fy).toFixed(2) + ')');
+
+      /* gerak halus pada foto di dalam mask */
+      var z = 1.08 - 0.08 * p;
+      var sceneT = 'translate(' + (W / 2).toFixed(1) + ' ' + (H / 2).toFixed(1) + ') scale(' + z.toFixed(4) + ') translate(' + (-W / 2).toFixed(1) + ' ' + (-H / 2).toFixed(1) + ')';
+      var i;
+      for (i = 0; i < scenes.length; i++) { scenes[i].setAttribute('transform', sceneT); }
+
+      /* aura biru + caption */
+      var a = range(zt, 0.4, 1);
+      if (aura) {
+        aura.style.opacity = a.toFixed(3);
+        aura.style.transform = 'translate(-50%, -50%) scale(' + (0.8 + 0.2 * a).toFixed(3) + ')';
+      }
+      if (caption) {
+        var c = range(p, 0.86, 0.97);
+        caption.style.opacity = c.toFixed(3);
+        caption.style.transform = 'translateY(' + ((1 - c) * 14).toFixed(1) + 'px)';
+      }
+    }
+
+    function update(force) {
+      queued = false;
+      var p;
+      if (staticMode) {
+        p = 1;
+      } else {
+        var rect = track.getBoundingClientRect();
+        var total = track.offsetHeight - stage.offsetHeight;
+        p = total > 1 ? clamp(-rect.top / total, 0, 1) : 1;
+      }
+      if (!force && Math.abs(p - lastP) < 0.00005) { return; }
+      lastP = p;
+      render(p);
+    }
+
+    function schedule() {
+      if (queued) { return; }
+      queued = true;
+      if (window.requestAnimationFrame) { window.requestAnimationFrame(function () { update(false); }); }
+      else { update(false); }
+    }
+
+    function applyMode() {
+      staticMode = !!(mqReduce && mqReduce.matches);
+      root.className = root.className.replace(/\basc-static\b/g, '').replace(/\s+$/, '');
+      if (staticMode) { root.className += ' asc-static'; }
+      measure();
+      update(true);
+    }
+
+    /* ---------- 5. Muncul saat di-scroll untuk bagian teks ---------- */
+    function setupReveal() {
+      var els = root.querySelectorAll('.asc-rv');
+      var i;
+      if (!('IntersectionObserver' in window)) {
+        for (i = 0; i < els.length; i++) { els[i].className += ' asc-in'; }
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        for (var j = 0; j < entries.length; j++) {
+          if (entries[j].isIntersecting) {
+            entries[j].target.className += ' asc-in';
+            io.unobserve(entries[j].target);
+          }
+        }
+      }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+      for (i = 0; i < els.length; i++) { io.observe(els[i]); }
+    }
+
+    /* ---------- 6. Inisialisasi ---------- */
+    try {
+      root.className += ' asc-js';
+      unlockAncestors();
+      setImage();
+      setupReveal();
+      applyMode();
+
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', function () { unlockAncestors(); measure(); schedule(); });
+      window.addEventListener('orientationchange', function () { window.setTimeout(function () { unlockAncestors(); measure(); update(true); }, 250); });
+      window.addEventListener('load', function () { unlockAncestors(); measure(); update(true); });
+      window.addEventListener('pageshow', function () { unlockAncestors(); measure(); update(true); });
+      if (window.ResizeObserver) {
+        new ResizeObserver(function () { measure(); schedule(); }).observe(stage);
+      }
+      var unCount = 0, unTimer = setInterval(function () {
+        unlockAncestors();
+        measure();
+        if (++unCount >= 25) clearInterval(unTimer);
+      }, 150);
+      // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak perlu zoom in/out
+      [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+        setTimeout(function () {
+          unlockAncestors();
+          measure();
+          schedule();
+          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+        }, ms);
+      });
+      if (mqReduce) {
+        if (mqReduce.addEventListener) { mqReduce.addEventListener('change', applyMode); }
+        else if (mqReduce.addListener) { mqReduce.addListener(applyMode); }
+      }
+      if (mqCompact) {
+        var onCompact = function () { measure(); update(true); };
+        if (mqCompact.addEventListener) { mqCompact.addEventListener('change', onCompact); }
+        else if (mqCompact.addListener) { mqCompact.addListener(onCompact); }
+      }
+    } catch (err) {
+      /* jika ada masalah, kembali ke tampilan statis agar halaman tetap rapi */
+      root.className = root.className.replace(/\basc-js\b/g, '') + ' asc-static';
+      if (window.console && console.warn) { console.warn('ASC hero: mode statis dipakai karena error', err); }
+    }
+  })();
+</script>

@@ -1,79 +1,18 @@
-<!-- =====================================================================
-  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 06: STRUKTUR KABINET & DEPARTEMEN
-  Fungsi: Gobo Expanding Slices 5 Departemen Penggerak UKM ASC UM
-  
-  Cara Pakai di WordPress (Elementor / Divi):
-  1. Widget "Custom HTML" pada container Section 6 (Full Width).
-  2. Paste seluruh isi file ini.
-====================================================================== -->
-
 <style>
-  #kabinet {
-    position: relative;
-    padding: 100px var(--pad-x, 32px);
-    background: #ffffff;
-    border-top: 1px solid rgba(9, 19, 28, 0.08);
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #09131c;
-  }
-
-  #kabinet * {
-    box-sizing: border-box;
-  }
-
-  .kb-head {
-    max-width: 1200px;
-    margin: 0 auto 56px;
+  /* ==========================================================================
+     06. KABINET & DEPARTEMEN — CLEAN ARCHITECTURAL ACCORDION SLICES
+     ========================================================================== */
+  .slices-container {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 32px;
-  }
-
-  .kb-kicker {
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #0d5c3f;
-    margin-bottom: 8px;
-  }
-
-  .kb-h2 {
-    font-size: clamp(32px, 4.5vw, 52px);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: #09131c;
-    margin: 0;
-  }
-
-  .kb-h2 span {
-    color: #0d5c3f;
-  }
-
-  .kb-lead {
-    font-size: 16px;
-    color: #5a6876;
-    max-width: 480px;
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  /* Expanding Slices Stage */
-  .kb-slices-wrap {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    gap: 16px;
+    gap: 12px;
     height: 480px;
   }
 
-  .kb-slice {
+  .dept-slice {
     flex: 1;
-    min-width: 110px;
-    border-radius: 24px;
-    padding: 32px 28px;
+    min-width: 100px;
+    border-radius: 16px;
+    padding: 28px 24px;
     color: #ffffff;
     position: relative;
     overflow: hidden;
@@ -81,187 +20,205 @@
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
-    transition: flex 0.65s cubic-bezier(0.22, 0.31, 0, 1), transform 0.4s cubic-bezier(0.22, 0.31, 0, 1), box-shadow 0.45s;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15), 0 16px 36px rgba(0, 0, 0, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    transition: flex 0.55s cubic-bezier(0.22, 0.31, 0, 1), border-color 0.25s, box-shadow 0.35s;
+    box-shadow: 0 12px 28px -12px rgba(9, 19, 28, 0.24);
   }
 
-  .kb-slice:hover,
-  .kb-slice.is-expanded {
-    flex: 3.5;
-    transform: translateY(-4px);
-    box-shadow: inset 0 0 0 1.5px rgba(234, 179, 8, 0.55), 0 28px 56px rgba(6, 55, 38, 0.28);
+  .dept-slice-watermark {
+    position: absolute;
+    bottom: -24px;
+    right: -24px;
+    width: 170px;
+    height: 170px;
+    color: #e5c166;
+    opacity: 0.10;
+    pointer-events: none;
+    transition: transform 0.6s cubic-bezier(0.22, 0.31, 0, 1), opacity 0.35s ease;
   }
 
-  .kb-slice-num {
-    font-family: 'Geist Mono', monospace;
-    font-size: 13.5px;
+  .dept-slice-num {
+    font-size: 13px;
     font-weight: 700;
-    letter-spacing: 0.08em;
-    padding: 6px 14px;
-    border-radius: 99px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(8px);
+    letter-spacing: 0.02em;
+    padding: 5px 12px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     align-self: flex-start;
   }
 
-  .kb-slice h3 {
+  .dept-slice h3 {
+    font-family: var(--font-asc, 'Geist', sans-serif);
     font-size: 19px;
     font-weight: 800;
+    letter-spacing: -0.025em;
     line-height: 1.2;
     margin-bottom: 8px;
-    transition: font-size 0.45s cubic-bezier(0.22, 0.31, 0, 1);
+    transition: font-size 0.4s cubic-bezier(0.22, 0.31, 0, 1);
   }
 
-  .kb-slice:hover h3,
-  .kb-slice.is-expanded h3 {
-    font-size: 28px;
-  }
-
-  .kb-slice p {
+  .dept-slice p {
     font-size: 14.5px;
-    line-height: 1.55;
-    color: rgba(255, 255, 255, 0.92);
-    margin-top: 10px;
-    max-width: 420px;
+    line-height: 1.6;
+    color: rgba(246, 245, 240, 0.88);
+    margin-top: 8px;
+    max-width: 400px;
     opacity: 0;
     max-height: 0;
     overflow: hidden;
     transform: translateY(8px);
-    transition: opacity 0.35s ease, transform 0.4s ease-out, max-height 0.45s cubic-bezier(0.22, 0.31, 0, 1);
+    transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.22, 0.31, 0, 1), max-height 0.4s cubic-bezier(0.22, 0.31, 0, 1);
   }
 
-  .kb-slice:hover p,
-  .kb-slice.is-expanded p {
+  .dept-slice.is-expanded {
+    flex: 3.2;
+    border-color: rgba(229, 193, 102, 0.48);
+    box-shadow: 0 20px 40px -16px rgba(9, 19, 28, 0.32);
+  }
+
+  .dept-slice.is-expanded .dept-slice-watermark {
+    transform: rotate(18deg) scale(1.1);
+    opacity: 0.18;
+  }
+
+  .dept-slice.is-expanded h3 {
+    font-size: 26px;
+  }
+
+  .dept-slice.is-expanded p {
     opacity: 1;
     max-height: 180px;
     transform: translateY(0);
+    transition-delay: 0.08s;
   }
 
-  .kb-slice-watermark {
-    position: absolute;
-    bottom: -20px;
-    right: -20px;
-    width: 180px;
-    height: 180px;
-    color: #ffffff;
-    opacity: 0.10;
-    pointer-events: none;
-    transition: transform 0.7s cubic-bezier(0.22, 0.31, 0, 1), opacity 0.5s ease;
+  @media (hover: hover) {
+    .dept-slice:hover {
+      flex: 3.2;
+      border-color: rgba(229, 193, 102, 0.48);
+    }
+
+    .dept-slice:hover .dept-slice-watermark {
+      transform: rotate(18deg) scale(1.1);
+      opacity: 0.18;
+    }
+
+    .dept-slice:hover h3 {
+      font-size: 26px;
+    }
+
+    .dept-slice:hover p {
+      opacity: 1;
+      max-height: 180px;
+      transform: translateY(0);
+    }
   }
 
-  .kb-slice:hover .kb-slice-watermark,
-  .kb-slice.is-expanded .kb-slice-watermark {
-    transform: rotate(24deg) scale(1.18);
-    opacity: 0.22;
-  }
-
-  @media (max-width: 992px) {
-    .kb-slices-wrap {
+  @media (max-width: 1180px) {
+    .slices-container {
       flex-direction: column;
       height: auto;
     }
-    .kb-slice {
-      min-height: 86px;
-      height: 86px;
-      flex: none;
+
+    .dept-slice {
+      flex: none !important;
+      min-height: 84px;
       padding: 20px 24px;
     }
-    .kb-slice.is-expanded {
-      height: 250px;
-    }
-  }
 
-  @media (max-width: 640px) {
-    #kabinet { padding: 60px 16px; }
-    .kb-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .dept-slice.is-expanded {
+      min-height: 210px;
+    }
   }
 </style>
 
-<section id="kabinet">
-  <div class="kb-head">
+<section class="section" id="kabinet">
+  <div class="section-head" data-reveal>
     <div>
-      <div class="kb-kicker">✦ 06 · Struktur Penggerak Organisasi</div>
-      <h2 class="kb-h2">Kabinet &amp; <span>Departemen.</span></h2>
+      <div class="kicker"><span class="kicker-diamond"></span> 06 · Departemen &amp; Kabinet</div>
+      <h2 class="section-h2">Kabinet &amp; <span>Departemen.</span></h2>
     </div>
-    <p class="kb-lead">
-      Arahkan kursor atau sentuh panel departemen untuk membuka rincian divisi kerja dan peran strategis pengurus UKM ASC UM.
+    <p class="section-lead">
+      Pilih tiap panel departemen untuk melihat peran strategis dan divisi kerja pengurus UKM ASC UM.
     </p>
   </div>
 
-  <div class="kb-slices-wrap" id="kbSlicesWrap">
-    <!-- Slice 1: BPH (Default Expanded) -->
-    <div class="kb-slice is-expanded" style="background: linear-gradient(160deg, #063726, #0d5c3f);">
-      <span class="kb-slice-num">01 · Inti</span>
+  <div class="slices-container" data-reveal>
+    <div class="dept-slice is-expanded" style="background:#091f17;">
+      <svg class="dept-slice-watermark" width="170" height="170" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <rect x="20" y="20" width="60" height="60" />
+        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" />
+        <circle cx="50" cy="50" r="16" />
+      </svg>
+      <span class="dept-slice-num">01 · Inti</span>
       <div>
         <h3>Badan Pengurus Harian (BPH)</h3>
-        <p>Pengarah kebijakan strategis organisasi, koordinasi sekretariatan, tata kelola keuangan, serta pengawasan mutu pembinaan kafilah.</p>
+        <p>Pengarah kebijakan strategis, kesekretariatan, pengelolaan keuangan, dan pengawasan mutu organisasi.</p>
       </div>
-      <svg class="kb-slice-watermark" viewBox="0 0 100 100" fill="none">
-        <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="2" />
-        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor" stroke-width="2" />
-      </svg>
     </div>
 
-    <!-- Slice 2: Pembinaan -->
-    <div class="kb-slice" style="background: linear-gradient(160deg, #3d2417, #5c3a28);">
-      <span class="kb-slice-num">02 · Kader</span>
+    <div class="dept-slice" style="background:#3e271c;">
+      <svg class="dept-slice-watermark" width="170" height="170" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <rect x="20" y="20" width="60" height="60" />
+        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" />
+        <circle cx="50" cy="50" r="16" />
+      </svg>
+      <span class="dept-slice-num">02 · Pembinaan</span>
       <div>
         <h3>Departemen Pembinaan</h3>
-        <p>Pusat pengembangan kurikulum 11 bidang keahlian, bimbingan mentor kafilah, dan evaluasi hasil belajar di Masjid Al-Hikmah UM.</p>
+        <p>Pengelola kurikulum, mentor, dan evaluasi rutin 11 cabang pembinaan Al-Qur'an mahasiswa UM.</p>
       </div>
-      <svg class="kb-slice-watermark" viewBox="0 0 100 100" fill="none">
-        <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="2" />
-        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor" stroke-width="2" />
-      </svg>
     </div>
 
-    <!-- Slice 3: Syiar -->
-    <div class="kb-slice" style="background: linear-gradient(160deg, #0d2238, #143b66);">
-      <span class="kb-slice-num">03 · Dakwah</span>
+    <div class="dept-slice" style="background:#0d4a34;">
+      <svg class="dept-slice-watermark" width="170" height="170" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <rect x="20" y="20" width="60" height="60" />
+        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" />
+        <circle cx="50" cy="50" r="16" />
+      </svg>
+      <span class="dept-slice-num">03 · Dakwah</span>
       <div>
         <h3>Departemen Syiar</h3>
-        <p>Penyelenggara agenda syiar keislaman kampus, kajian akbar tadabbur alam, dan kepanitiaan festival Al-Qur'an tingkat universitas.</p>
+        <p>Penyelenggara kajian kampus, festival Qur'ani nasional, dan pengabdian masyarakat desa binaan.</p>
       </div>
-      <svg class="kb-slice-watermark" viewBox="0 0 100 100" fill="none">
-        <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="2" />
-        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor" stroke-width="2" />
-      </svg>
     </div>
 
-    <!-- Slice 4: Media & Humas -->
-    <div class="kb-slice" style="background: linear-gradient(160deg, #084c33, #0d7a52);">
-      <span class="kb-slice-num">04 · Kreatif</span>
+    <div class="dept-slice" style="background:#073625;">
+      <svg class="dept-slice-watermark" width="170" height="170" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <rect x="20" y="20" width="60" height="60" />
+        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" />
+        <circle cx="50" cy="50" r="16" />
+      </svg>
+      <span class="dept-slice-num">04 · Media</span>
       <div>
         <h3>Departemen Media &amp; Humas</h3>
-        <p>Tim kreatif peraih Juara 1 OTY yang mengelola identitas visual, produksi konten dakwah digital media sosial, dan relasi eksternal.</p>
+        <p>Tim kreatif peraih Juara 1 Pengelolaan Media OTY yang menangani identitas visual, media sosial, dan relasi eksternal.</p>
       </div>
-      <svg class="kb-slice-watermark" viewBox="0 0 100 100" fill="none">
-        <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="2" />
-        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor" stroke-width="2" />
-      </svg>
     </div>
 
-    <!-- Slice 5: Kesejahteraan -->
-    <div class="kb-slice" style="background: linear-gradient(160deg, #2b1d16, #452e22);">
-      <span class="kb-slice-num">05 · Internal</span>
+    <div class="dept-slice" style="background:#2d1e17;">
+      <svg class="dept-slice-watermark" width="170" height="170" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <rect x="20" y="20" width="60" height="60" />
+        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" />
+        <circle cx="50" cy="50" r="16" />
+      </svg>
+      <span class="dept-slice-num">05 · Internal</span>
       <div>
         <h3>Departemen Kesejahteraan</h3>
-        <p>Penjaga soliditas internal anggota, kewirausahaan mandiri organisasi, dan manajemen logistik sekretariat Gedung Ormawa.</p>
+        <p>Penjaga solidaritas internal pengurus, kewirausahaan organisasi, dan inventaris sekretariat.</p>
       </div>
-      <svg class="kb-slice-watermark" viewBox="0 0 100 100" fill="none">
-        <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="2" />
-        <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor" stroke-width="2" />
-      </svg>
     </div>
   </div>
 </section>
 
 <script>
-  (function() {
-    const slices = document.querySelectorAll('.kb-slice');
-    slices.forEach(slice => {
+  (function () {
+    'use strict';
+    const deptSlices = document.querySelectorAll('.dept-slice');
+    deptSlices.forEach((slice) => {
       slice.addEventListener('click', () => {
-        slices.forEach(s => s.classList.remove('is-expanded'));
+        deptSlices.forEach((s) => s.classList.remove('is-expanded'));
         slice.classList.add('is-expanded');
       });
     });

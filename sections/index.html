@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASC · UKM Al-Qur'an Study Club — Universitas Negeri Malang</title>
+    <meta name="description"
+        content="Wadah pembinaan Al-Qur'an dan aktualisasi minat mahasiswa Universitas Negeri Malang. Berdiri di atas dan untuk semua golongan." />
+
+    <!-- Font: POPPINS (Semua Teks UI, Besar & Tegas) + GEIST 900 (Khusus Huruf Raksasa ASC) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@500..900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+        rel="stylesheet" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230d5c3f'/%3E%3C/svg%3E" />
+
+    <style>
+        /* ==========================================================================
+       1. DESIGN TOKENS — BOLD, READABLE, ZERO PALE GRAY, EMERALD & GOLD ISLAMIC
+       ========================================================================== */
+        :root {
+            --bg: #f6f5f0;
+            --surface: #ffffff;
+            --surface-2: #e8f0eb;
+            --card-bg: #ffffff;
+
+            /* Teks Kontras Tinggi — Tidak ada abu-abu pudar */
+            --ink: #09131c;
+            --ink-mid: #1e2d3b;
+            --ink-soft: #273545;
+
+            /* Aksen Daun Zamrud & Emas Islami */
+            --emerald-900: #063726;
+            --emerald-700: #0d5c3f;
+            --emerald-600: #127852;
+            --emerald-500: #10b981;
+            --emerald-100: #d1fae5;
+            --gold-600: #b8860b;
+            --gold-400: #eab308;
+            --pdh-brown: #4a3022;
+
+            --border: rgba(9, 19, 28, 0.12);
+            --border-strong: rgba(13, 92, 63, 0.28);
+
+            --font-ui: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-asc: "Geist", "Arial Black", sans-serif;
+
+            --ease-gobo: cubic-bezier(0.22, 0.31, 0, 1);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --pad-x: clamp(24px, 3.5vw, 56px);
+            --asc-hh: 76px;
+                    --ink-secondary: #273545;
+            --emerald: #0d5c3f;
+            --emerald-800: #08452f;
+            --gold: #b8860b;
+            --font-body: var(--font-ui);
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--bg);
+            color: var(--ink);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: var(--font-ui);
+            background: var(--bg);
+            color: var(--ink);
+            overflow-x: hidden;
+            line-height: 1.55;
+            font-size: 16px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: var(--font-ui);
+            color: inherit;
+            background: none;
+            border: 0;
+            cursor: pointer;
+        }
+
+        
+        /* Global SVG Safety Guard */
+        svg:not([width]):not([class]) {
+            max-width: 100%;
+            height: auto;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        /* ==========================================================================
+       2. GLOBAL SCROLL PROGRESS & REVEAL
+       ========================================================================== */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            width: 0%;
+            background: var(--emerald-700);
+            z-index: 300;
+        }
+
+        /* Reveal on Scroll */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.65s var(--ease-gobo), transform 0.65s var(--ease-gobo);
+        }
+
+        [data-reveal].is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Typography Helpers (Besar & Tegas!) */
+        .kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0;
+            text-transform: none;
+            color: var(--emerald-700);
+        }
+
+        .kicker-diamond {
+            width: 20px;
+            height: 1.5px;
+            background: var(--emerald-700);
+            transform: none;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        /* ==========================================================================
+       7. SECTION GENERAL & ASYMMETRIC BENTO PRESTASI
+       ========================================================================== */
+        .section {
+            padding: 96px var(--pad-x);
+            position: relative;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 56px;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .section-h2 {
+            font-family: var(--font-asc);
+            font-size: clamp(34px, 4.2vw, 52px);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -0.035em;
+            color: var(--ink);
+            margin-top: 12px;
+        }
+
+        .section-h2 span {
+            color: var(--emerald-700);
+        }
+
+        .section-lead {
+            font-size: 16.5px;
+            color: var(--ink-mid);
+            max-width: 480px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+
+        /* --- PRIMARY ACTION BUTTONS --- */
+        .btn-primary-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 22px;
+            background: var(--emerald-700);
+            color: #ffffff !important;
+            font-family: var(--font-ui);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            border-radius: 8px;
+            border: 1.5px solid var(--emerald-700);
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.16s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-primary-pill .circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.16);
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+            transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .btn-primary-pill:hover {
+            background: var(--emerald-900);
+            border-color: var(--emerald-900);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary-pill:active {
+            transform: translateY(0) scale(0.975, 0.955);
+            transition-duration: 0.08s;
+        }
+
+        .btn-primary-pill:hover .circle {
+            transform: translateX(3px);
+        }
+
+        .btn-header-cta {
+            transition: background 0.2s ease, transform 0.16s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .btn-header-cta:hover {
+            background: var(--emerald-900);
+            transform: translateY(-1px);
+        }
+
+        /* Section Assembler Overlay & Fallback Error Notice */
+        #ascSectionLoader {
+            position: fixed;
+            inset: 0;
+            z-index: 20000;
+            background: #f6f5f0;
+            display: grid;
+            place-items: center;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        #ascSectionLoader.is-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .asc-loader-mark {
+            font-family: var(--font-asc);
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            color: var(--ink);
+        }
+
+        .asc-loader-mark span {
+            color: var(--emerald-700);
+        }
+
+        #ascLoaderError {
+            max-width: 680px;
+            margin: 64px auto;
+            padding: 28px 32px;
+            border-radius: 16px;
+            background: #fff7ed;
+            border: 1.5px solid #fdba74;
+            color: #7c2d12;
+            font-size: 15px;
+            line-height: 1.65;
+        }
+
+        #ascLoaderError code {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: rgba(124, 45, 18, 0.08);
+            font-family: var(--font-mono);
+            font-size: 13.5px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="ascSectionLoader" aria-hidden="true">
+        <div class="asc-loader-mark">ASC<span>.</span></div>
+    </div>
+    <div id="ascLoaderError" hidden></div>
+
+    <div class="asc-slot" data-src="00_header.html"></div>
+
+    <main id="top">
+        <div class="asc-slot" data-src="01_hero.html"></div>
+        <div class="asc-slot" data-src="02_visi_misi.html"></div>
+        <div class="asc-slot" data-src="03_pembinaan.html"></div>
+        <div class="asc-slot" data-src="04_struktur_organisasi.html"></div>
+        <div class="asc-slot" data-src="05_prestasi.html"></div>
+        <div class="asc-slot" data-src="06_kabinet.html"></div>
+        <div class="asc-slot" data-src="07_faq_kontak.html"></div>
+        <div class="asc-slot" data-src="08_link_medsos.html"></div>
+    </main>
+
+    <div class="asc-slot" data-src="09_footer.html"></div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            const loaderEl = document.getElementById('ascSectionLoader');
+            const errorEl = document.getElementById('ascLoaderError');
+            const slots = Array.from(document.querySelectorAll('.asc-slot[data-src]'));
+
+            function hideLoader() {
+                if (!loaderEl) return;
+                loaderEl.classList.add('is-hidden');
+                setTimeout(() => loaderEl.remove(), 400);
+            }
+
+            function showLoadError(failedFiles) {
+                if (!errorEl) return;
+                errorEl.hidden = false;
+                errorEl.innerHTML =
+                    '<strong>Gagal memuat potongan halaman:</strong> ' +
+                    failedFiles.map((f) => '<code>' + f + '</code>').join(', ') +
+                    '<br><br>Jika file dibuka langsung lewat <code>file://</code>, browser memblokir <code>fetch()</code> lokal karena aturan CORS. ' +
+                    'Untuk melihatnya secara lokal, jalankan <code>python -m http.server 8000</code> di folder <code>Website-UKM-ASC</code> lalu buka ' +
+                    '<code>http://localhost:8000/sections/index.html</code> (atau deploy langsung ke GitHub Pages).';
+            }
+
+            function executeScriptsSequentially(scripts, done) {
+                let idx = 0;
+                function next() {
+                    if (idx >= scripts.length) {
+                        if (typeof done === 'function') done();
+                        return;
+                    }
+                    const oldScript = scripts[idx++];
+                    const newScript = document.createElement('script');
+                    for (let i = 0; i < oldScript.attributes.length; i++) {
+                        const attr = oldScript.attributes[i];
+                        newScript.setAttribute(attr.name, attr.value);
+                    }
+                    if (oldScript.src) {
+                        newScript.onload = next;
+                        newScript.onerror = next;
+                        document.body.appendChild(newScript);
+                    } else {
+                        newScript.text = oldScript.textContent;
+                        document.body.appendChild(newScript);
+                        next();
+                    }
+                }
+                next();
+            }
+
+            function initCrossSectionEngines() {
+                const io = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+                    });
+                }, { threshold: 0.1 });
+                document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+            }
+
+            async function mountAllSections() {
+                const results = await Promise.all(
+                    slots.map(async (slot) => {
+                        const src = slot.getAttribute('data-src');
+                        try {
+                            const res = await fetch(src, { cache: 'no-cache' });
+                            if (!res.ok) throw new Error('HTTP ' + res.status);
+                            return { slot, src, html: await res.text(), ok: true };
+                        } catch (err) {
+                            console.error('[ASC Sections Loader] Gagal memuat ' + src + ':', err);
+                            return { slot, src, html: '', ok: false };
+                        }
+                    })
+                );
+
+                const failed = results.filter((r) => !r.ok).map((r) => r.src);
+                if (failed.length > 0) {
+                    showLoadError(failed);
+                }
+
+                const extractedScripts = [];
+
+                results.forEach((item) => {
+                    if (!item.ok) {
+                        item.slot.remove();
+                        return;
+                    }
+                    const tpl = document.createElement('template');
+                    tpl.innerHTML = item.html;
+
+                    tpl.content.querySelectorAll('script').forEach((s) => {
+                        extractedScripts.push(s);
+                        s.remove();
+                    });
+
+                    item.slot.replaceWith(tpl.content);
+                });
+
+                executeScriptsSequentially(extractedScripts, () => {
+                    initCrossSectionEngines();
+
+                    try {
+                        window.dispatchEvent(new Event('DOMContentLoaded'));
+                        window.dispatchEvent(new Event('load'));
+                    } catch (_) {}
+
+                    requestAnimationFrame(() => {
+                        window.dispatchEvent(new Event('resize'));
+                        window.dispatchEvent(new Event('scroll'));
+                    });
+
+                    if (window.location.hash) {
+                        const target = document.querySelector(window.location.hash);
+                        if (target) {
+                            setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 150);
+                        }
+                    }
+
+                    hideLoader();
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', mountAllSections);
+            } else {
+                mountAllSections();
+            }
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,660 @@
+<!-- =====================================================================
+UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 05: 10 PEMBINAAN (SCROLL STORY)
+Cara pakai di WordPress (Elementor / Divi):
+1. Taruh widget "Custom HTML" di container FULL WIDTH.
+2. Paste seluruh isi file ini.
+3. Ganti gambar: cari "DAFTAR PEMBINAAN" di bawah, isi bagian img:'' dengan URL gambar.
+CATATAN: efek "menempel saat scroll" (sticky) tidak jalan jika ada parent
+dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
+====================================================================== -->
+
+<style>
+  /* =========================================================================
+     FIX OVERFLOW UNTUK DIVI & ELEMENTOR WORDPRESS (AGAR POSITION:STICKY BERFUNGSI)
+     ========================================================================= */
+  .et_pb_section,
+  .et_pb_fullwidth_section,
+  .et_pb_row,
+  .et_pb_column,
+  .et_pb_module,
+  .et_pb_code,
+  .et_pb_fullwidth_code,
+  .et_pb_code_inner,
+  .elementor-section,
+  .elementor-column,
+  .elementor-widget-wrap,
+  .elementor-widget,
+  .elementor-element {
+    overflow: visible !important;
+  }
+
+  #asc-pb {
+    --blue: #0d5c3f;
+    --royal: #0d5c3f;
+    --ink: #09131c;
+    --muted: #526173;
+    --p: 0;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    position: relative !important;
+    height: 520vh !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  #asc-pb * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  #asc-pb .pb-stage {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    overflow: hidden !important;
+    background: #f6f5f0;
+  }
+
+  #asc-pb .pb-wash {
+    display: none;
+  }
+
+  /* Judul tetap di tempat */
+  #asc-pb .pb-head {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 15vh;
+    text-align: center;
+    padding: 0 20px;
+    z-index: 1;
+  }
+
+  #asc-pb .pb-title {
+    font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(32px, 4.6vw, 62px);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -.035em;
+  }
+
+  #asc-pb .pb-uline {
+    display: block;
+    width: min(42vw, 340px);
+    height: 18px;
+    margin: 4px auto 0;
+    overflow: visible;
+  }
+
+  #asc-pb .pb-uline path {
+    fill: none;
+    stroke: #d7e6dc;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  #asc-pb .pb-sub {
+    margin: 8px auto 0;
+    max-width: 520px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  /* Jalur kartu */
+  #asc-pb .pb-track {
+    position: absolute;
+    left: 0;
+    top: 39.5vh;
+    display: flex;
+    gap: 28px;
+    padding: 0 4vw;
+    will-change: transform;
+    z-index: 2;
+  }
+
+  #asc-pb .pb-card {
+    flex: 0 0 clamp(270px, 30vw, 440px);
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid rgba(9, 19, 28, 0.10);
+    padding: 12px 12px 20px;
+    box-shadow: 0 14px 30px -16px rgba(9, 19, 28, 0.16);
+    will-change: transform;
+    transform-origin: 50% 100%;
+  }
+
+  #asc-pb .pb-img {
+    position: relative;
+    aspect-ratio: 16/9;
+    border-radius: 10px;
+    background: #091f17 center/cover no-repeat;
+    overflow: hidden;
+  }
+
+  #asc-pb .pb-img.pb-ph {
+    background: #091f17;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #f6f5f0;
+    border: 1px solid rgba(229, 193, 102, 0.22);
+  }
+
+  #asc-pb .pb-ph-orn {
+    position: absolute;
+    right: -18px;
+    bottom: -24px;
+    width: 136px;
+    height: 136px;
+    opacity: 0.22;
+    pointer-events: none;
+  }
+
+  #asc-pb .pb-ph-top {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  #asc-pb .pb-ph-num {
+    font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: #e5c166;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #asc-pb .pb-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(246, 245, 240, 0.10);
+    border: 1px solid rgba(246, 245, 240, 0.18);
+    color: #f6f5f0;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 11px;
+    border-radius: 8px;
+  }
+
+  #asc-pb .pb-ph-meta {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  #asc-pb .pb-ph-focus {
+    font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    line-height: 1.25;
+  }
+
+  #asc-pb .pb-ph-loc {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(246, 245, 240, 0.72);
+  }
+
+  #asc-pb .pb-card h3 {
+    font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(18px, 1.6vw, 23px);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin: 16px 6px 8px;
+    line-height: 1.25;
+  }
+
+  #asc-pb .pb-card p {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0 6px 14px;
+    min-height: 4.4em;
+  }
+
+  #asc-pb .pb-row {
+    display: flex;
+    margin: 0 6px;
+  }
+
+  #asc-pb .pb-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: #0d5c3f;
+    transition: background 0.2s ease, transform 0.14s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  #asc-pb .pb-btn:hover {
+    background: #063726;
+  }
+
+  #asc-pb .pb-btn:active {
+    transform: scale(0.98, 0.96);
+  }
+
+  #asc-pb .pb-btn:focus-visible {
+    outline: 3px solid #09131c;
+    outline-offset: 2px;
+  }
+
+  /* Penanda progres */
+  #asc-pb .pb-prog {
+    position: absolute;
+    left: 50%;
+    bottom: 2.2vh;
+    transform: translateX(-50%);
+    width: min(320px, 70vw);
+    z-index: 5;
+    text-align: center;
+    background: #ffffff;
+    padding: 8px 18px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(9, 19, 28, 0.12);
+  }
+
+  #asc-pb .pb-count {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 10px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #asc-pb .pb-bar {
+    height: 4px;
+    border-radius: 4px;
+    background: rgba(9, 19, 28, .1);
+    overflow: hidden;
+  }
+
+  #asc-pb .pb-bar i {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #0d5c3f, #0d5c3f);
+    transform-origin: 0 50%;
+    transform: scaleX(var(--p));
+  }
+
+  /* Gerak dikurangi: daftar geser biasa */
+  #asc-pb.pb-static {
+    height: auto;
+    padding: 60px 0;
+  }
+
+  #asc-pb.pb-static .pb-stage {
+    position: relative;
+    height: auto;
+    overflow: visible;
+  }
+
+  #asc-pb.pb-static .pb-head {
+    position: relative;
+    top: 0;
+    margin-bottom: 30px;
+  }
+
+  #asc-pb.pb-static .pb-track {
+    position: relative;
+    top: 0;
+    transform: none !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 20px;
+  }
+
+  #asc-pb.pb-static .pb-card {
+    transform: none !important;
+    scroll-snap-align: center;
+  }
+
+  #asc-pb.pb-static .pb-prog,
+  #asc-pb.pb-static .pb-wash {
+    display: none;
+  }
+
+  /* Beri ruang dinamis untuk header yang menempel di atas */
+  #asc-pb .pb-head {
+    top: max(11vh, calc(var(--asc-hh, 0px) + 18px));
+  }
+
+  /* Tablet (641px - 1024px) */
+  @media (max-width: 1024px) {
+    #asc-pb .pb-head {
+      top: max(12vh, calc(var(--asc-hh, 0px) + 16px));
+      left: 4vw;
+      right: 4vw;
+    }
+
+    #asc-pb .pb-track {
+      top: 42vh;
+      gap: 20px;
+    }
+
+    #asc-pb .pb-card {
+      flex-basis: min(340px, 60vw);
+    }
+  }
+
+  /* Mobile (<= 640px) */
+  @media (max-width: 640px) {
+    #asc-pb .pb-head {
+      top: max(11vh, calc(var(--asc-hh, 0px) + 18px));
+      padding: 0 16px;
+    }
+
+    #asc-pb .pb-sub {
+      font-size: 13px;
+    }
+
+    #asc-pb .pb-track {
+      top: 40vh;
+      gap: 16px;
+    }
+
+    #asc-pb .pb-card {
+      flex-basis: 78vw;
+      padding: 10px 10px 16px;
+    }
+
+    #asc-pb .pb-img {
+      aspect-ratio: 16 / 9;
+    }
+
+    #asc-pb .pb-card h3 {
+      margin-top: 12px;
+    }
+
+    #asc-pb .pb-card p {
+      min-height: 0;
+      margin-bottom: 12px;
+      font-size: 12.5px;
+      line-height: 1.55;
+    }
+
+    #asc-pb .pb-prog {
+      bottom: 1.6vh;
+    }
+  }
+
+  @media (max-width: 640px) and (max-height: 700px) {
+    #asc-pb .pb-sub {
+      display: none;
+    }
+
+    #asc-pb .pb-track {
+      top: 35vh;
+    }
+
+    #asc-pb .pb-img {
+      aspect-ratio: 16 / 7.5;
+    }
+
+    #asc-pb .pb-card p {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+</style>
+
+<section id="asc-pb" aria-label="10 Bidang Pembinaan UKM ASC">
+  <span id="asc-pembinaan" style="position:relative;top:-90px;display:block;visibility:hidden;height:0;width:0;"></span>
+  <div class="pb-stage">
+    <div class="pb-wash"></div>
+    <div class="pb-head">
+      <h2 class="pb-title">Sepuluh jalan untuk<br>tumbuh bersama Al-Qur'an
+        <svg class="pb-uline" viewBox="0 0 380 22" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M4 8 C 20 20, 34 20, 40 10 S 70 6, 120 11 S 260 8, 376 9" />
+        </svg>
+      </h2>
+      <p class="pb-sub">Bidang pembinaan rutin UKM ASC Universitas Negeri Malang, dari memperbaiki bacaan hingga
+        berkarya.</p>
+    </div>
+    <div class="pb-track" id="pbTrack"></div>
+    <div class="pb-prog" aria-hidden="true">
+      <div class="pb-count" id="pbCount">1 dari 10</div>
+      <div class="pb-bar"><i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ASC CORE: Satu loader font & pembersih overflow WordPress (Idempoten / Aman digabung) -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v && w.ASC.v >= 3) return;
+    var A = w.ASC = (w.ASC || {});
+    A.v = 3;
+
+    /* 1. Satu pemuat font untuk seluruh halaman */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Geist:wght@500..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. Buka overflow milik container Divi/Elementor/tema WordPress yang memblokir position: sticky */
+    A.unlock = function (root) {
+      try {
+        var n = root;
+        while (n && n !== d) {
+          if (n.nodeType === 1) {
+            var cs = w.getComputedStyle(n);
+            if (/hidden|auto|scroll|clip/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+              n.style.setProperty('overflow', 'visible', 'important');
+              n.style.setProperty('overflow-x', 'visible', 'important');
+              n.style.setProperty('overflow-y', 'visible', 'important');
+            }
+          }
+          n = n.parentElement;
+        }
+        if (d.documentElement) {
+          d.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+        }
+        if (d.body) {
+          d.body.style.setProperty('overflow-x', 'visible', 'important');
+        }
+      } catch (e) { /* abaikan */ }
+    };
+  })(window, document);
+</script>
+
+<script>
+  (function () {
+    /* ============ DAFTAR PEMBINAAN (ganti img:'' dengan URL gambar, link:'#' dengan URL tujuan) ============ */
+    var DATA = [
+      { t: "Tahsinul Qiro’ah", cat: "Bacaan & Tajwid", focus: "Makhraj & Sifat Huruf", d: "Penyempurnaan makharijul huruf, sifat huruf, dan kaidah tajwid dasar hingga mahir agar bacaan Al-Qur'an tepat dan fasih.", img: '', link: '#gabung' },
+      { t: "Tartilul Qur’an", cat: "Irama Murattal", focus: "Tempo, Waqaf & Ibtida'", d: "Pembinaan membaca Al-Qur'an secara perlahan, teratur, memperhatikan waqaf wal ibtida', serta penghayatan makna ayat.", img: '', link: '#gabung' },
+      { t: "Tilawatul Qur’an", cat: "Seni Maqamat", focus: "7 Maqam & Olah Vokal", d: "Pelatihan seni baca Al-Qur'an dengan keindahan maqam lagu (Bayati, Shoba, Hijaz, Nahawand, Rast, Sika, Jiharkah).", img: '', link: '#gabung' },
+      { t: "Tahfidhul Qur’an", cat: "Hafalan Al-Qur'an", focus: "Ziyadah, Tasmi' & Muraja'ah", d: "Program bimbingan menghafal Al-Qur'an, setor hafalan (tasmi'), dan muraja'ah rutin untuk menjaga hafalan kalamullah.", img: '', link: '#gabung' },
+      { t: "Syarhul Qur’an", cat: "Orasi & Dakwah", focus: "Pensyarah, Tilawah & Sari Tilawah", d: "Pembinaan seni orasi dan syiar Al-Qur'an dalam format tim (pensyarah, qari'/qari'ah, dan sari tilawah) mengangkat isu kontemporer.", img: '', link: '#gabung' },
+      { t: "Fahmul Qur’an", cat: "Wawasan Qur'ani", focus: "Tafsir, Hadis & Cerdas Cermat", d: "Cerdas cermat ke-Al-Qur'an-an yang mendalami wawasan tafsir, ulumul Qur'an, hadis, fiqih, sirah nabawiyah, dan bahasa Arab.", img: '', link: '#gabung' },
+      { t: "Khaththul Qur’an (Kaligrafi)", cat: "Seni Kaligrafi", focus: "Naskhi, Tsuluts & Mushaf", d: "Pelatihan seni rupa kaligrafi Islam (Naskhi, Tsuluts, Riq'ah, Diwani, Kufi) dalam bidang naskah, hiasan mushaf, dan dekorasi.", img: '', link: '#gabung' },
+      { t: "Karya Tulis Ilmiah Al-Qur'an (KTIA)", cat: "Riset Ilmiah", focus: "Integrasi Ayat & Sains", d: "Bimbingan penulisan karya ilmiah yang mengintegrasikan Al-Qur'an dengan solusi sains, teknologi, dan isu sosial kemasyarakatan.", img: '', link: '#gabung' },
+      { t: "Desain Aplikasi Al-Qur'an", cat: "Inovasi Digital", focus: "UI/UX & Platform Edukasi", d: "Pengembangan kreativitas mahasiswa dalam merancang inovasi UI/UX, aplikasi edukasi, dan platform digital berbasis Al-Qur'an.", img: '', link: '#gabung' },
+      { t: "Maulid Nabi & Peringatan PHBI", cat: "Seni Shalawat", focus: "Hadrah, Vokal & Syiar Kampus", d: "Pembinaan seni rebana/hadrah shalawat, kepanitiaan hari besar Islam, dan semarak syiar dakwah di kampus Universitas Negeri Malang.", img: '', link: '#gabung' }
+    ];
+    /* ======================================================================================================== */
+
+    var root = document.getElementById('asc-pb');
+    if (!root) return;
+    var track = document.getElementById('pbTrack');
+    var countEl = document.getElementById('pbCount');
+    var wash = root.querySelector('.pb-wash');
+    var line = root.querySelector('.pb-uline path');
+    var stage = root.querySelector('.pb-stage');
+
+    var ORN_SVG = '<svg class="pb-ph-orn" viewBox="0 0 100 100" fill="none" aria-hidden="true">' +
+      '<rect x="22" y="22" width="56" height="56" stroke="#e5c166" stroke-width="1.4"/>' +
+      '<rect x="22" y="22" width="56" height="56" transform="rotate(45 50 50)" stroke="#e5c166" stroke-width="1.4"/>' +
+      '<circle cx="50" cy="50" r="14" stroke="#e5c166" stroke-width="1.2"/></svg>';
+
+    var h = '';
+    DATA.forEach(function (x, i) {
+      var n = ('0' + (i + 1)).slice(-2), bg = x.img ? ' style="background-image:url(\'' + x.img + '\')"' : '', ph = x.img ? '' : ' pb-ph';
+      var topPanel = x.img
+        ? '<div class="pb-img" role="img" aria-label="' + x.t + '"' + bg + '><span class="pb-badge" style="position:absolute;top:12px;left:12px;background:#091f17;">' + x.cat + '</span></div>'
+        : '<div class="pb-img pb-ph" role="img" aria-label="' + x.t + '">' + ORN_SVG +
+            '<div class="pb-ph-top"><span class="pb-ph-num">' + n + '</span><span class="pb-badge">' + x.cat + '</span></div>' +
+            '<div class="pb-ph-meta"><span class="pb-ph-focus">' + x.focus + '</span><span class="pb-ph-loc">Rutin mingguan · Masjid Al-Hikmah UM</span></div>' +
+          '</div>';
+      h += '<article class="pb-card">' + topPanel +
+        '<h3>' + x.t + '</h3><p>' + x.d + '</p>' +
+        '<div class="pb-row"><a class="pb-btn" href="' + x.link + '"><span>Ikuti Pembinaan</span><span aria-hidden="true">→</span></a></div></article>';
+    });
+    if (track) track.innerHTML = h;
+
+    var cards = track ? [].slice.call(track.children) : [];
+    var lefts = [], vw = 1200, vh = 800, trackW = 0, startX = 0, endX = 0, ticking = false;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { root.classList.add('pb-static'); return; }
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function update() {
+      ticking = false;
+      if (!root) return;
+      var r = root.getBoundingClientRect(), total = root.offsetHeight - vh;
+      if (total <= 0) total = 1;
+      var p = Math.min(1, Math.max(0, -r.top / total));
+      root.style.setProperty('--p', p);
+      var x = lerp(startX, endX, p);
+      if (track) track.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
+      if (wash) wash.style.opacity = Math.min(1, Math.sin(Math.PI * Math.min(1, p * 1.08)) * 1.25);
+      var c = Math.min(1, p * 6);
+      if (line) line.style.stroke = 'rgb(' + Math.round(lerp(215, 13, c)) + ',' + Math.round(lerp(230, 92, c)) + ',' + Math.round(lerp(220, 63, c)) + ')';
+      var best = 0, bd = 1e9;
+      cards.forEach(function (el, i) {
+        var cx = x + (lefts[i] || 0), off = (cx - vw / 2) / vw;
+        var rot = (i % 2 ? 1 : -1) * 2.6 + off * 5, y = Math.sin(i * 1.7) * 14 + Math.abs(off) * 18;
+        el.style.transform = 'translate3d(0,' + y.toFixed(2) + 'px,0) rotate(' + rot.toFixed(2) + 'deg)';
+        var d = Math.abs(off); if (d < bd) { bd = d; best = i; }
+      });
+      if (countEl) countEl.textContent = (best + 1) + ' dari ' + cards.length;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }
+
+    function measure() {
+      if (!root || !track) return;
+      vw = Math.min(window.innerWidth, document.documentElement.clientWidth || window.innerWidth);
+      vh = window.innerHeight;
+      trackW = track.scrollWidth || 3200;
+      cards = [].slice.call(track.children);
+      lefts = cards.map(function (c) { return c.offsetLeft + c.offsetWidth / 2; });
+      startX = vw * 0.92;
+      endX = -(trackW - vw * 0.78);
+      root.style.setProperty('height', Math.round(vh + (startX - endX) * 0.85) + 'px', 'important');
+      update();
+    }
+
+    /* Perbaiki overflow parent WordPress (Divi/Elementor) agar position: sticky hidup */
+    function fixParents(el) {
+      if (!el) return;
+      var p = el.parentElement, n = 0;
+      while (p && p !== document.documentElement && n++ < 25) {
+        var cs = window.getComputedStyle(p);
+        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+          p.style.setProperty('overflow', 'visible', 'important');
+        }
+        p = p.parentElement;
+      }
+      if (document.documentElement && document.documentElement.style) {
+        document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+      }
+      if (document.body && document.body.style) {
+        document.body.style.setProperty('overflow-x', 'visible', 'important');
+      }
+    }
+
+    function init() {
+      if (!root) root = document.getElementById('asc-pb');
+      if (!root) return false;
+      if (root.dataset.ready === '1') return true;
+      root.dataset.ready = '1';
+      if (!track) track = document.getElementById('pbTrack');
+      if (!countEl) countEl = document.getElementById('pbCount');
+      if (!wash && root) wash = root.querySelector('.pb-wash');
+      if (!line && root) line = root.querySelector('.pb-uline path');
+      if (!stage && root) stage = root.querySelector('.pb-stage');
+
+      fixParents(root);
+      measure();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function () {
+        fixParents(root);
+        measure();
+      }, { passive: true });
+      window.addEventListener('orientationchange', function () {
+        setTimeout(function () { fixParents(root); measure(); }, 200);
+      });
+      window.addEventListener('load', function () {
+        fixParents(root);
+        measure();
+      });
+      window.addEventListener('pageshow', function () {
+        fixParents(root);
+        measure();
+      });
+      if (window.ResizeObserver && stage) {
+        new ResizeObserver(function () {
+          fixParents(root);
+          measure();
+        }).observe(stage);
+      }
+      // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak perlu zoom in/out
+      [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+        setTimeout(function () {
+          fixParents(root);
+          measure();
+          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+        }, ms);
+      });
+      return true;
+    }
+
+    function run() {
+      if (init()) return;
+      var n = 0, t = setInterval(function () {
+        if (init() || ++n >= 25) clearInterval(t);
+      }, 150);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run);
+    } else {
+      run();
+    }
+  })();
+</script>

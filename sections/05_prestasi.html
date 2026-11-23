@@ -1,474 +1,2592 @@
-<!-- =====================================================================
-  UKM ASC UNIVERSITAS NEGERI MALANG - SECTION 05: PRESTASI & REKAM JEJAK
-  Fungsi: Bento Grid Metrik 4x Juara Umum (Kaiki) + Showcase 15 Prestasi Riil (Asyam)
-  
-  Cara Pakai di WordPress (Elementor / Divi):
-  1. Widget "Custom HTML" pada container Section 5 (Full Width).
-  2. Paste seluruh isi file ini (CSS & JS terisolasi).
-====================================================================== -->
-
 <style>
-  #prestasi {
-    position: relative;
-    padding: 100px var(--pad-x, 32px);
-    background: #ffffff;
-    border-top: 1px solid rgba(9, 19, 28, 0.08);
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #09131c;
-  }
-
-  #prestasi * {
-    box-sizing: border-box;
-  }
-
-  .pr-head {
-    max-width: 1200px;
-    margin: 0 auto 48px;
+  /* ==========================================================================
+     PART A: JEJAK PRESTASI — GOBO 3D KINETIC RIBBON & VISUAL ARCHIVE (WHITE-FIRST)
+     ========================================================================== */
+  #prestasi .section-header-row {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    gap: 32px;
-  }
-
-  .pr-kicker {
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #0d5c3f;
-    margin-bottom: 8px;
-  }
-
-  .pr-h2 {
-    font-size: clamp(32px, 4.5vw, 52px);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: #09131c;
-    margin: 0;
-  }
-
-  .pr-h2 span {
-    color: #0d5c3f;
-  }
-
-  .pr-lead {
-    font-size: 16px;
-    color: #5a6876;
-    max-width: 480px;
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  /* Bento Grid Metrik */
-  .pr-bento-grid {
-    max-width: 1200px;
-    margin: 0 auto 64px;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 20px;
-  }
-
-  .pr-bento-card {
-    position: relative;
-    background: #f7f7f5;
-    border: 1.5px solid rgba(9, 19, 28, 0.08);
-    border-radius: 22px;
-    padding: 32px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 260px;
-    transition: transform 0.35s cubic-bezier(0.22, 0.31, 0, 1), border-color 0.3s, box-shadow 0.35s;
-  }
-
-  .pr-bento-card:hover {
-    transform: translateY(-5px);
-    border-color: #0d5c3f;
-    box-shadow: 0 20px 40px rgba(13, 92, 63, 0.1);
-    background: #ffffff;
-  }
-
-  .pr-bento-card.span-7 { grid-column: span 7; }
-  .pr-bento-card.span-5 { grid-column: span 5; }
-  .pr-bento-card.span-4 { grid-column: span 4; }
-
-  .bento-num {
-    font-family: 'Geist', sans-serif;
-    font-size: clamp(48px, 5vw, 76px);
-    font-weight: 900;
-    letter-spacing: -0.04em;
-    line-height: 0.95;
-    color: #0d5c3f;
-    margin-block: 12px;
-  }
-
-  .pr-bento-card h3 {
-    font-size: 20px;
-    font-weight: 800;
-    color: #09131c;
-    margin-bottom: 6px;
-  }
-
-  .pr-bento-card p {
-    font-size: 14px;
-    color: #5a6876;
-    line-height: 1.55;
-    margin: 0;
-  }
-
-  /* Filter Tabs Prestasi Riil */
-  .pr-filter-bar {
-    max-width: 1200px;
-    margin: 0 auto 32px;
-    display: flex;
     flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 36px;
+  }
+
+  #prestasi .label-kicker {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    border-top: 1px solid rgba(9, 19, 28, 0.08);
-    padding-top: 40px;
-  }
-
-  .pr-filter-title {
-    font-size: 20px;
-    font-weight: 800;
-    color: #09131c;
-  }
-
-  .pr-filter-pills {
-    display: flex;
     gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .pr-filter-btn {
-    padding: 8px 18px;
-    border-radius: 999px;
-    background: #f7f7f5;
-    border: 1px solid rgba(9, 19, 28, 0.1);
     font-size: 13px;
     font-weight: 700;
-    color: #5a6876;
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.22, 0.31, 0, 1);
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--emerald-700, #0d5c3f);
   }
 
-  .pr-filter-btn:hover,
-  .pr-filter-btn.is-active {
-    background: #09131c;
-    color: #ffffff;
-    border-color: #09131c;
+  #prestasi .section-heading {
+    font-family: var(--font-asc, 'Geist', sans-serif);
+    font-size: clamp(34px, 4.4vw, 56px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: var(--ink, #09131c);
   }
 
-  /* List Kartu Prestasi Riil */
-  .pr-cards-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+  #prestasi .emerald-text {
+    color: var(--emerald-700, #0d5c3f);
   }
 
-  .pr-card-item {
-    background: #ffffff;
-    border: 1.5px solid rgba(9, 19, 28, 0.08);
-    border-radius: 20px;
-    padding: 24px;
+  #prestasi .prestasi-header-right {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 250px;
-    transition: all 0.3s cubic-bezier(0.22, 0.31, 0, 1);
+    gap: 12px;
+    align-items: flex-end;
   }
 
-  .pr-card-item:hover {
-    border-color: #0d5c3f;
-    transform: translateY(-4px);
-    box-shadow: 0 16px 36px rgba(13, 92, 63, 0.1);
+  #prestasi .prestasi-lead {
+    max-width: 470px;
+    color: var(--ink-secondary, #273545);
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: right;
+    margin: 0;
   }
 
-  .pr-item-top {
+  .gallery-view-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .view-switch-group {
+    display: inline-flex;
+    background: var(--surface, #f6f5f0);
+    border: 1.5px solid var(--border, rgba(9, 19, 28, 0.12));
+    border-radius: 8px;
+    padding: 3px;
+  }
+
+  .view-switch-btn {
+    background: transparent;
+    border: none;
+    padding: 7px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--ink-secondary, #273545);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .view-switch-btn.is-active {
+    background: #ffffff;
+    color: var(--ink, #09131c);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .ribbon-nav-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border, rgba(9, 19, 28, 0.12));
+    background: #ffffff;
+    color: var(--ink, #09131c);
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .ribbon-nav-btn:hover {
+    border-color: var(--emerald, #0d5c3f);
+    color: var(--emerald, #0d5c3f);
+    transform: scale(1.06);
+  }
+
+  /* 3D WebGL Ribbon Stage */
+  .gobo-ribbon-stage {
+    position: relative;
+    width: 100%;
+    height: 530px;
+    min-height: 440px;
+    margin-top: 24px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1.5px solid rgba(9, 19, 28, 0.12);
+    box-shadow: 0 16px 45px -12px rgba(9, 19, 28, 0.08), 0 0 0 1px rgba(9, 19, 28, 0.03);
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+  }
+
+  .gobo-ribbon-stage:active {
+    cursor: grabbing;
+  }
+
+  .gobo-ribbon-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    outline: none;
+  }
+
+  .gobo-hud-top {
+    position: absolute;
+    top: 18px;
+    left: 24px;
+    right: 24px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .gobo-hud-hint {
+    font-family: var(--font-ui, 'Plus Jakarta Sans', sans-serif);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: #526173;
+    background: #ffffff;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  .gobo-hud-bottom {
+    position: absolute;
+    bottom: 20px;
+    left: 24px;
+    right: 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    gap: 16px;
+    pointer-events: none;
+    z-index: 10;
   }
 
-  .pr-medal-badge {
-    padding: 4px 10px;
+  .gobo-active-slot {
+    font-family: var(--font-ui, 'Plus Jakarta Sans', sans-serif);
+    font-size: 13px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: #09131c;
+    background: #ffffff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(9, 19, 28, 0.12);
+    flex-shrink: 0;
+  }
+
+  .gobo-scrub-rail {
+    pointer-events: auto;
+    cursor: pointer;
+    width: 180px;
+    height: 5px;
+    background: rgba(9, 19, 28, 0.12);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    transition: height 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .gobo-scrub-rail:hover {
+    height: 7px;
+  }
+
+  .gobo-scrub-thumb {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 20%;
+    background: #0d5c3f;
+    border-radius: 8px;
+    transform: translateX(0%);
+  }
+
+  .gobo-active-title {
+    font-family: var(--font-ui, 'Plus Jakarta Sans', sans-serif);
+    font-size: 13px;
+    font-weight: 700;
+    color: #09131c;
+    background: #ffffff;
+    padding: 5px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(9, 19, 28, 0.10);
+    max-width: 380px;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Peringkat & Meta Badges */
+  .prestasi-badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .prestasi-rank-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
     border-radius: 8px;
     font-size: 11.5px;
     font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0;
+    text-transform: none;
   }
 
-  .pr-medal-gold { background: #fef08a; color: #854d0e; }
-  .pr-medal-silver { background: #e2e8f0; color: #475569; }
-  .pr-medal-bronze { background: #fed7aa; color: #9a3412; }
+  .prestasi-rank-pill.rank-1 {
+    background: linear-gradient(135deg, #f0d27c, #b8892b);
+    color: #3b2a06;
+  }
 
-  .pr-item-level {
-    font-family: 'Geist Mono', monospace;
-    font-size: 11px;
+  .prestasi-rank-pill.rank-2 {
+    background: linear-gradient(135deg, #eef2f6, #d6d3c9);
+    color: #1b2733;
+  }
+
+  .prestasi-rank-pill.rank-3 {
+    background: linear-gradient(135deg, #efbf90, #b87339);
+    color: #3b200a;
+  }
+
+  .prestasi-rank-pill.rank-4 {
+    background: #0d5c3f;
+    color: #ffffff;
+  }
+
+  .prestasi-meta-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 11px;
+    border-radius: 8px;
+    font-size: 11.5px;
     font-weight: 700;
-    color: #5a6876;
-    text-transform: uppercase;
+    background: rgba(9, 19, 28, 0.06);
+    color: #1e2d3b;
   }
 
-  .pr-item-lomba {
-    font-size: 16.5px;
+  .prestasi-meta-pill.on-dark {
+    background: rgba(9, 31, 23, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+  }
+
+  /* Active Sync Detail Story Card Below 3D Stage */
+  .gobo-active-detail-card {
+    margin-top: 18px;
+    background: #ffffff;
+    border: 1.5px solid rgba(9, 19, 28, 0.12);
+    border-radius: 16px;
+    padding: 20px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    box-shadow: 0 4px 20px rgba(11, 19, 30, 0.04);
+    transition: all 0.3s ease;
+  }
+
+  .gobo-detail-media-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .gobo-detail-thumb {
+    width: 84px;
+    height: 84px;
+    border-radius: 14px;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+    background: linear-gradient(145deg, #063726, #0d5c3f, #127852);
+    border: 1.5px solid rgba(9, 19, 28, 0.1);
+    display: grid;
+    place-items: center;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 900;
+    font-size: 22px;
+  }
+
+  .gobo-detail-thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 50%;
+  }
+
+  .gobo-detail-left {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 720px;
+    min-width: 0;
+  }
+
+  .gobo-detail-left h3 {
+    font-size: 18.5px;
     font-weight: 800;
-    color: #09131c;
-    line-height: 1.35;
-    margin-bottom: 8px;
-  }
-
-  .pr-item-peserta {
-    font-size: 13.5px;
-    font-weight: 700;
-    color: #0d5c3f;
-    margin-bottom: 6px;
-  }
-
-  .pr-item-desc {
-    font-size: 12.5px;
-    color: #5a6876;
-    line-height: 1.55;
+    color: var(--ink, #09131c);
+    line-height: 1.3;
     margin: 0;
   }
 
-  .pr-item-foot {
-    margin-top: 16px;
-    padding-top: 12px;
-    border-top: 1px solid rgba(9, 19, 28, 0.06);
-    font-size: 11.5px;
-    color: #5a6876;
+  .prestasi-detail-meta {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--emerald-700, #0d5c3f);
+    line-height: 1.4;
+  }
+
+  .gobo-detail-left p {
+    font-size: 13.5px;
+    color: var(--ink-secondary, #273545);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .gobo-detail-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+
+  .btn-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 6px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0d5c3f;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .btn-text-link:hover {
+    color: #063726;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .btn-open-detail {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    background: var(--surface, #f6f5f0);
+    border: 1.5px solid rgba(9, 19, 28, 0.12);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink, #09131c);
+    cursor: pointer;
+    transition: all 0.25s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+    text-decoration: none;
+  }
+
+  .btn-open-detail:hover {
+    background: var(--ink, #09131c);
+    color: #ffffff;
+    border-color: var(--ink, #09131c);
+    transform: translateY(-2px);
+  }
+
+  .btn-open-detail.is-emerald {
+    background: #0d5c3f;
+    color: #ffffff;
+    border-color: #0d5c3f;
+  }
+
+  .btn-open-detail.is-emerald:hover {
+    background: #063726;
+    border-color: #063726;
+  }
+
+  /* Grid Visual Filter Bar */
+  .prestasi-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-top: 22px;
+  }
+
+  .prestasi-filter-pill {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1.5px solid rgba(9, 19, 28, 0.12);
+    background: #ffffff;
+    color: var(--ink, #09131c);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .prestasi-filter-pill:hover {
+    border-color: #0d5c3f;
+    color: #0d5c3f;
+  }
+
+  .prestasi-filter-pill.is-active {
+    background: #09131c;
+    border-color: #09131c;
+    color: #ffffff;
+  }
+
+  /* Grid Visual Mode — Photo Cards */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    margin-top: 22px;
+  }
+
+  .gallery-card {
+    background: #ffffff;
+    border: 1.5px solid rgba(9, 19, 28, 0.12);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(11, 19, 30, 0.04);
+    transition: all 0.35s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .gallery-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(13, 92, 63, 0.38);
+    box-shadow: 0 20px 40px -15px rgba(13, 92, 63, 0.14);
+  }
+
+  .gallery-photo-box {
+    width: 100%;
+    height: 230px;
+    position: relative;
+    overflow: hidden;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #ffffff;
+    flex-shrink: 0;
+  }
+
+  .gallery-photo-box img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 58%;
+    z-index: 1;
+    transition: transform 0.55s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+  }
+
+  .gallery-card:hover .gallery-photo-box img {
+    transform: scale(1.04);
+  }
+
+  .gallery-photo-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(6, 19, 30, 0.52) 0%, rgba(6, 19, 30, 0.08) 42%, rgba(6, 19, 30, 0.84) 100%);
+  }
+
+  .gradient-watermark-wrap {
+    position: absolute;
+    right: -14px;
+    top: 18px;
+    width: 150px;
+    height: 150px;
+    opacity: 0.24;
+    pointer-events: none;
+    transform: rotate(15deg);
+    z-index: 0;
+  }
+
+  .gradient-watermark {
+    width: 100%;
+    height: 100%;
+  }
+
+  .gradient-card-top {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    position: relative;
+    z-index: 3;
   }
 
-  @media (max-width: 992px) {
-    .pr-bento-card.span-7,
-    .pr-bento-card.span-5,
-    .pr-bento-card.span-4 { grid-column: span 12; }
-    .pr-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .gradient-card-num {
+    font-family: var(--font-asc, 'Geist', sans-serif);
+    font-size: 28px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+    flex-shrink: 0;
   }
 
-  @media (max-width: 640px) {
-    .pr-cards-grid { grid-template-columns: 1fr; }
-    #prestasi { padding: 60px 16px; }
+  .gradient-card-bottom {
+    position: relative;
+    z-index: 3;
+  }
+
+  .gradient-card-bottom span {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.94);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+  }
+
+  .gallery-body {
+    padding: 20px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    flex: 1;
+  }
+
+  .gallery-body h4 {
+    font-size: 16.5px;
+    font-weight: 800;
+    color: var(--ink, #09131c);
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .gallery-card-who {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0d5c3f;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .gallery-card-loc {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #3a4757;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .gallery-card-desc {
+    font-size: 13px;
+    color: var(--ink-secondary, #273545);
+    line-height: 1.55;
+    margin: 4px 0 0;
+  }
+
+  /* Lightbox Modal */
+  .gallery-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(9, 19, 28, 0.86);
+    z-index: 9999;
+    display: none;
+    place-items: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .gallery-modal.is-open {
+    display: grid;
+    opacity: 1;
+  }
+
+  .gallery-modal-dialog {
+    background: #ffffff;
+    border-radius: 16px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 32px 70px rgba(0, 0, 0, 0.45);
+    position: relative;
+    animation: modalPop 0.35s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+  }
+
+  @keyframes modalPop {
+    from { transform: scale(0.94); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .gallery-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: rgba(9, 19, 28, 0.78);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    font-size: 22px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    z-index: 15;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .gallery-modal-close:hover {
+    background: rgba(9, 19, 28, 0.95);
+    transform: scale(1.04);
+  }
+
+  .gallery-modal-visual {
+    width: 100%;
+    height: 280px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    padding: 24px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #ffffff;
+  }
+
+  .gallery-modal-visual img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 62%;
+    z-index: 1;
+  }
+
+  .modal-visual-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(6, 19, 30, 0.56) 0%, rgba(6, 19, 30, 0.14) 40%, rgba(6, 19, 30, 0.9) 100%);
+  }
+
+  .modal-visual-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+    padding-right: 48px;
+  }
+
+  .modal-visual-num {
+    font-family: var(--font-asc, 'Geist', sans-serif);
+    font-size: 18px;
+    font-weight: 800;
+    background: rgba(9, 31, 23, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 8px;
+    color: #ffffff;
+    line-height: 1.2;
+  }
+
+  .modal-visual-bottom {
+    position: relative;
+    z-index: 3;
+  }
+
+  .modal-visual-bottom h3 {
+    font-size: 23px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 4px;
+    line-height: 1.25;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-visual-bottom span {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .gallery-modal-content {
+    padding: 24px 30px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+  }
+
+  .prestasi-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 24px;
+  }
+
+  .prestasi-meta-item dt {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #526173;
+    margin-bottom: 3px;
+  }
+
+  .prestasi-meta-item dd {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink, #09131c);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .prestasi-modal-quote {
+    margin: 0;
+    padding: 14px 18px;
+    border-left: 3.5px solid #0d5c3f;
+    background: #f6f5f0;
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: #1e2d3b;
+  }
+
+  .prestasi-modal-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(9, 19, 28, 0.08);
+  }
+
+  .prestasi-modal-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  @media (max-width: 960px) {
+    #prestasi .prestasi-header-right {
+      align-items: flex-start;
+    }
+
+    #prestasi .prestasi-lead {
+      text-align: left;
+    }
+
+    .gobo-active-detail-card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 810px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .gobo-ribbon-stage {
+      height: 480px;
+      border-radius: 16px;
+    }
+
+    .gallery-view-controls {
+      justify-content: flex-start;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .prestasi-meta-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .gobo-detail-media-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gobo-ribbon-stage {
+      height: 430px;
+      border-radius: 16px;
+    }
+
+    .gobo-hud-top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      top: 14px;
+      left: 16px;
+      right: 16px;
+    }
+
+    .gobo-hud-hint {
+      font-size: 10px;
+    }
+
+    .gobo-hud-bottom {
+      bottom: 14px;
+      left: 16px;
+      right: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .gobo-active-title {
+      max-width: 100%;
+      width: 100%;
+      text-align: left;
+      font-size: 11.5px;
+    }
+
+    .gobo-scrub-rail {
+      width: 120px;
+    }
+
+    .gobo-active-detail-card {
+      gap: 14px;
+      padding: 16px 18px;
+    }
+
+    .gallery-modal-dialog {
+      max-width: 95vw;
+      border-radius: 16px;
+    }
+
+    .gallery-modal-visual {
+      height: 230px;
+      padding: 20px;
+    }
+
+    .modal-visual-bottom h3 {
+      font-size: 18px;
+    }
+
+    .gallery-modal-content {
+      padding: 18px 18px 20px;
+    }
+  }
+
+  /* ==========================================================================
+     PART B: SCOPED CLOSING CTA (#asc-pr-cta)
+     ========================================================================== */
+  #asc-pr-cta {
+    --pr-ink: #09131c;
+    position: relative;
+    width: 100%;
+    background: #f6f5f0;
+    padding: 0 clamp(12px, 2vw, 28px) clamp(16px, 2.2vw, 28px);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  #asc-pr-cta * {
+    box-sizing: border-box;
+  }
+
+  #asc-pr-cta .pr-cta {
+    position: relative;
+    overflow: clip;
+    border-radius: 16px;
+    border: 1px solid rgba(9, 19, 28, 0.12);
+    min-height: 82vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 12vh 6vw;
+    color: #ffffff;
+    background: #091f17;
+  }
+
+  #asc-pr-cta .pr-px {
+    position: absolute;
+    z-index: 1;
+    will-change: transform;
+    pointer-events: none;
+  }
+
+  #asc-pr-cta .pr-md {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: grid;
+    place-items: center;
+    font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
+    font-size: 23px;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  #asc-pr-cta .pr-md.pr-disc {
+    width: var(--s);
+    height: var(--s);
+    font-size: calc(var(--s) * 0.46);
+  }
+
+  #asc-pr-cta .pr-md.r1 {
+    background: #e5c166;
+    color: #09131c;
+  }
+
+  #asc-pr-cta .pr-md.r2 {
+    background: #d9e8de;
+    color: #09131c;
+  }
+
+  #asc-pr-cta .pr-md.r3 {
+    background: #c78d56;
+    color: #09131c;
+  }
+
+  #asc-pr-cta .pr-cw {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    will-change: transform, opacity;
+  }
+
+  #asc-pr-cta .pr-eye {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #d9e8de;
+    margin-bottom: 18px;
+  }
+
+  #asc-pr-cta .pr-eye::before {
+    content: "";
+    width: 34px;
+    height: 2px;
+    background: #d9e8de;
+  }
+
+  #asc-pr-cta .pr-cta h3 {
+    margin: 0;
+    font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(38px, 6.4vw, 92px);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    color: #ffffff;
+  }
+
+  #asc-pr-cta .pr-cta h3 em {
+    font-style: normal;
+    color: #e5c166;
+  }
+
+  #asc-pr-cta .pr-cta p {
+    margin: 22px auto 0;
+    max-width: 520px;
+    font-size: clamp(14px, 1.15vw, 17px);
+    line-height: 1.75;
+    color: #d6d3c9;
+  }
+
+  #asc-pr-cta .pr-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 26px;
+    padding: 13px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.3s, background 0.3s, color 0.3s;
+  }
+
+  #asc-pr-cta .pr-btn.lt {
+    background: #ffffff;
+    color: var(--pr-ink);
+  }
+
+  #asc-pr-cta .pr-btn.lt:hover {
+    background: #e5c166;
+    color: #09131c;
+    transform: translateY(-2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #asc-pr-cta * {
+      transition: none !important;
+      animation: none !important;
+    }
   }
 </style>
 
-<section id="prestasi">
-  <div class="pr-head">
+<!-- PART A: 3D RIBBON JEJAK PRESTASI -->
+<section class="section" id="prestasi" aria-label="Jejak Prestasi UKM ASC">
+  <div id="galeri" style="position:relative;top:-84px;"></div>
+  <div id="asc-prestasi" style="position:relative;top:-84px;"></div>
+
+  <div class="section-header-row" data-reveal>
     <div>
-      <div class="pr-kicker">✦ 05 · Rekam Jejak &amp; Prestasi Kampus</div>
-      <h2 class="pr-h2">Tradisi Juara <span>Kafilah.</span></h2>
+      <span class="label-kicker">05 · Jejak Prestasi</span>
+      <h2 class="section-heading" style="margin-top:8px;">
+        Jejak <span class="emerald-text">Prestasi.</span>
+      </h2>
     </div>
-    <p class="pr-lead">
-      Pencapaian gemilang kafilah Al-Qur'an Study Club Universitas Negeri Malang dalam mengharumkan nama almamater di tingkat regional dan nasional.
-    </p>
-  </div>
-
-  <!-- Bento Grid Metrik Utama -->
-  <div class="pr-bento-grid">
-    <div class="pr-bento-card span-7">
-      <div>
-        <span class="pr-kicker">Tradisi Kafilah Kampus</span>
-        <div class="bento-num">4× Juara Umum</div>
-      </div>
-      <div>
-        <h3>MTQ Mahasiswa Nasional (MTQMN)</h3>
-        <p>Pilar utama pembinaan delegasi Universitas Negeri Malang dalam mempertahankan supremasi juara umum MTQMN melalui kurikulum pembinaan intensif sepanjang tahun.</p>
-      </div>
-    </div>
-
-    <div class="pr-bento-card span-5">
-      <div>
-        <span class="pr-kicker">Ekosistem Kurikulum</span>
-        <div class="bento-num">11 Bidang</div>
-      </div>
-      <div>
-        <h3>Pembinaan Minat &amp; Bakat</h3>
-        <p>Mencakup aspek bacaan tartil, hafalan tasmi', kaligrafi, retorika dakwah, riset ilmiah KTIA, hingga desain aplikasi Qur'ani digital.</p>
-      </div>
-    </div>
-
-    <div class="pr-bento-card span-4">
-      <div>
-        <span class="pr-kicker">Penghargaan Ormawa</span>
-        <div class="bento-num">#1 OTY</div>
-      </div>
-      <div>
-        <h3>Juara 1 Media &amp; Sosmed 2026</h3>
-        <p>Apresiasi tertinggi Ormawa of the Year UM atas kreativitas syiar digital dan keterbukaan informasi publik.</p>
-      </div>
-    </div>
-
-    <div class="pr-bento-card span-4">
-      <div>
-        <span class="pr-kicker">Dedikasi Masyarakat</span>
-        <div class="bento-num">PPK</div>
-      </div>
-      <div>
-        <h3>Kampung Tepa Salira</h3>
-        <p>Program pengabdian masyarakat berkelanjutan berbasis literasi Qur'ani dan pemberdayaan sosial desa binaan.</p>
-      </div>
-    </div>
-
-    <div class="pr-bento-card span-4">
-      <div>
-        <span class="pr-kicker">Inklusivitas Kampus</span>
-        <div class="bento-num">74%</div>
-      </div>
-      <div>
-        <h3>Lintas Fakultas &amp; Golongan</h3>
-        <p>Mayoritas kader berasal dari fakultas non-keagamaan (Teknik, MIPA, Ekonomi, Sastra) membuktikan dakwah ASC terbuka untuk semua.</p>
+    <div class="prestasi-header-right">
+      <p class="prestasi-lead">
+        Capaian mahasiswa UKM Al-Qur'an Study Club di berbagai ajang, dari tingkat kampus hingga internasional:
+        bukti bahwa khidmah pada Al-Qur'an melahirkan karya dan prestasi.
+      </p>
+      <div class="gallery-view-controls">
+        <div class="view-switch-group">
+          <button type="button" class="view-switch-btn is-active" id="btnRibbonMode">3D Ribbon</button>
+          <button type="button" class="view-switch-btn" id="btnGridMode">Grid Visual</button>
+        </div>
+        <button type="button" class="ribbon-nav-btn" id="btnRibbonPrev" title="Geser Sebelumnya" aria-label="Geser Sebelumnya">‹</button>
+        <button type="button" class="ribbon-nav-btn" id="btnRibbonNext" title="Geser Selanjutnya" aria-label="Geser Selanjutnya">›</button>
+        <button type="button" class="ribbon-nav-btn" id="btnRibbonPlay" title="Jeda/Lanjut Putar Otomatis" aria-label="Jeda atau Lanjut Putar Otomatis">⏸</button>
       </div>
     </div>
   </div>
 
-  <!-- Filter & Showcase 15 Prestasi Riil Asyam -->
-  <div class="pr-filter-bar">
-    <div class="pr-filter-title">Capaian Prestasi Anggota Kafilah</div>
-    <div class="pr-filter-pills" id="prFilterPills">
-      <button type="button" class="pr-filter-btn is-active" data-filter="all">Semua Capaian</button>
-      <button type="button" class="pr-filter-btn" data-filter="emas">Juara 1 / Emas</button>
-      <button type="button" class="pr-filter-btn" data-filter="perak">Juara 2 / Perak</button>
-      <button type="button" class="pr-filter-btn" data-filter="perunggu">Juara 3 / Perunggu</button>
+  <!-- GOBO 3D CURVED RIBBON STAGE -->
+  <div class="gobo-ribbon-stage" id="goboRibbonStage" role="region" aria-label="3D Curved Ribbon Jejak Prestasi UKM ASC">
+    <div class="gobo-hud-top">
+      <span class="gobo-hud-hint">Geser atau klik kartu untuk melihat detail</span>
+    </div>
+    <canvas class="gobo-ribbon-canvas" id="goboRibbonCanvas" aria-label="Kanvas pita 3D Jejak Prestasi UKM ASC"></canvas>
+    <div class="gobo-hud-bottom">
+      <div class="gobo-active-slot" id="goboActiveSlot">01 / 15</div>
+      <div class="gobo-scrub-rail" id="goboScrubRail" title="Klik untuk loncat ke posisi prestasi">
+        <div class="gobo-scrub-thumb" id="goboScrubThumb"></div>
+      </div>
+      <div class="gobo-active-title" id="goboActiveTitle">(01) Khitobah Mahrojan Arabi Nasional</div>
     </div>
   </div>
 
-  <div class="pr-cards-grid" id="prCardsGrid">
-    <!-- Populated by JS with 15 real achievements -->
+  <!-- Sync Detail Story Card Below 3D Stage -->
+  <div class="gobo-active-detail-card" id="goboActiveDetailCard">
+    <div class="gobo-detail-media-row">
+      <div class="gobo-detail-thumb" id="detailThumb">
+        <span id="detailThumbNum">01</span>
+        <img id="detailThumbImg" src="../assets/prestasi/01.jpg" alt="Salwa Nafisah — Lomba Khitobah Mahrojan Arabi Nasional" />
+      </div>
+      <div class="gobo-detail-left">
+        <div class="prestasi-badge-row" id="detailBadges">
+          <span class="prestasi-rank-pill rank-1">Juara 1 / Emas</span>
+          <span class="prestasi-meta-pill">Nasional</span>
+          <span class="prestasi-meta-pill">Non-Akademik · 03 Mei 2026</span>
+        </div>
+        <h3 id="detailHeading">Lomba Khitobah (Pidato Bahasa Arab) Mahrojan Arabi Nasional</h3>
+        <div class="prestasi-detail-meta" id="detailMeta">Salwa Nafisah · Khudama’ · Departemen Pembinaan · MUNAYA VIII Markaz Arabiyah Pare</div>
+        <p id="detailDesc">Menampilkan kefasihan retorika dan penguasaan bahasa Arab yang mendalam dengan artikulasi percaya diri, membawakan pesan dakwah Qur’ani di kancah nasional.</p>
+      </div>
+    </div>
+    <div class="gobo-detail-right">
+      <a class="btn-text-link" id="detailBuktiLink" href="https://drive.google.com/open?id=1qulQIdtDgZ4o7eQ9hCAVNey8FfklnCwX" target="_blank" rel="noopener noreferrer">
+        <span>Bukti capaian</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+      <button type="button" class="btn-open-detail is-emerald" id="btnOpenModalFromDetail">
+        <span>Buka Detail Lengkap</span>
+        <span aria-hidden="true">→</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Filter Pills (Grid Visual Mode Only) -->
+  <div class="prestasi-filter-bar" id="prestasiGridFilter" style="display:none;" role="group" aria-label="Filter Tingkat Prestasi">
+    <button type="button" class="prestasi-filter-pill is-active" data-tingkat="Semua">Semua (15)</button>
+    <button type="button" class="prestasi-filter-pill" data-tingkat="Internasional">Internasional (3)</button>
+    <button type="button" class="prestasi-filter-pill" data-tingkat="Nasional">Nasional (8)</button>
+    <button type="button" class="prestasi-filter-pill" data-tingkat="Universitas">Universitas (4)</button>
+  </div>
+
+  <!-- GRID VISUAL MODE (15 REAL ACHIEVEMENT CARDS) -->
+  <div class="gallery-grid" id="prestasiGrid" style="display:none;"></div>
+
+  <!-- LIGHTBOX / DETAIL MODAL -->
+  <div class="gallery-modal" id="galleryModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="gallery-modal-dialog">
+      <button type="button" class="gallery-modal-close" id="modalCloseBtn" aria-label="Tutup Detail">&times;</button>
+      <div class="gallery-modal-visual" id="modalVisual">
+        <div class="gradient-watermark-wrap" style="top:25px;right:10px;opacity:0.25;">
+          <svg viewBox="0 0 100 100" width="150" height="150" fill="none" class="gradient-watermark">
+            <rect x="25" y="25" width="50" height="50" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
+            <rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
+            <circle cx="50" cy="50" r="14" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <img id="modalVisualImg" src="" alt="" />
+        <div class="modal-visual-scrim"></div>
+        <div class="modal-visual-top">
+          <div class="prestasi-badge-row" id="modalVisualBadges"></div>
+          <span class="modal-visual-num" id="modalVisualNum">01 / 15</span>
+        </div>
+        <div class="modal-visual-bottom">
+          <h3 id="modalVisualTitle"></h3>
+          <span id="modalVisualSub"></span>
+        </div>
+      </div>
+      <div class="gallery-modal-content">
+        <dl class="prestasi-meta-grid" id="modalMetaGrid"></dl>
+        <blockquote class="prestasi-modal-quote" id="modalDesc"></blockquote>
+        <div class="prestasi-modal-actions">
+          <a class="btn-open-detail is-emerald" id="modalBuktiLink" href="#" target="_blank" rel="noopener noreferrer">
+            <span>Lihat Bukti Capaian</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <div class="prestasi-modal-nav">
+            <button type="button" class="btn-open-detail" id="modalPrevBtn">‹ Sebelumnya</button>
+            <button type="button" class="btn-open-detail" id="modalNextBtn">Selanjutnya ›</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- PART B: CLOSING CTA DIRECTLY BELOW JEJAK PRESTASI -->
+<div id="asc-pr-cta" aria-label="Laporkan Prestasi UKM ASC">
+  <div class="pr-cta" id="prCta">
+    <div class="pr-px" data-sp="-.28" data-rt=".03" style="left:9%;top:18%">
+      <span class="pr-md pr-disc r1" style="--s:clamp(56px,6.4vw,92px)">1</span>
+    </div>
+    <div class="pr-px" data-sp="-.42" data-rt="-.04" style="right:10%;top:24%">
+      <span class="pr-md pr-disc r2" style="--s:clamp(44px,4.8vw,74px)">2</span>
+    </div>
+    <div class="pr-px" data-sp="-.22" data-rt=".04" style="left:16%;bottom:14%">
+      <span class="pr-md pr-disc r3" style="--s:clamp(40px,4.2vw,64px)">3</span>
+    </div>
+    <div class="pr-cw" id="prCw">
+      <span class="pr-eye">Giliran berikutnya</span>
+      <h3>Prestasi berikutnya<br>bisa jadi <em>milikmu.</em></h3>
+      <p>Punya capaian yang belum tercatat? Laporkan melalui form pendataan agar ikut dikenang di sini.</p>
+      <a class="pr-btn lt" id="prForm2" href="#">Laporkan prestasimu <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ASC CORE: Idempotent Fraunces & Plus Jakarta Sans loader -->
 <script>
-  (function() {
+  (function (w, d) {
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link');
+      l.id = 'asc-fonts';
+      l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Geist:wght@500..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap';
+      d.head.appendChild(l);
+    }
+  })(window, document);
+</script>
+
+<script>
+  (function initJejakPrestasi() {
+    'use strict';
+
+    const LINK_FORM = '#';
+    const formLinkEl = document.getElementById('prForm2');
+    if (formLinkEl) formLinkEl.href = LINK_FORM;
+
     const PRESTASI_DATA = [
       {
-        lomba: 'Lomba Khitobah (Pidato Bahasa Arab) Mahrojan Arabi',
+        n: '01',
+        lomba: 'Lomba Khitobah (Pidato Bahasa Arab) Mahrojan Arabi Nasional',
+        shortLabel: 'KHITOBAH MAHROJAN ARABI',
         peserta: 'Salwa Nafisah',
-        kategori: 'emas',
-        peringkat: 'Juara 1 / Emas',
+        status: 'Khudama’',
+        dept: 'Departemen Pembinaan',
+        lokasi: 'MUNAYA VIII Markaz Arabiyah Pare',
+        tanggal: '03 Mei 2026',
+        year: '2026',
+        kategori: 'Non-Akademik',
         tingkat: 'Nasional',
-        desc: 'Menampilkan kefasihan retorika dan penguasaan bahasa Arab mendalam, membawakan pesan dakwah Qur’ani di kancah nasional.',
-        lokasi: 'Markaz Arabiyah Pare'
+        peringkat: 'Juara 1 / Emas',
+        rank: 1,
+        desc: 'Menampilkan kefasihan retorika dan penguasaan bahasa Arab yang mendalam dengan artikulasi percaya diri, membawakan pesan dakwah Qur’ani di kancah nasional.',
+        fotoLocal: '../assets/prestasi/01.jpg',
+        fotoAlt: 'assets/prestasi/01.jpg',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1d_mkOQNti8MPveBaRtqZ5ndWW77CBnOJ&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1qulQIdtDgZ4o7eQ9hCAVNey8FfklnCwX',
+        bgCss: 'linear-gradient(145deg, #063726, #0d5c3f, #127852)',
+        baseStops: [[0, '#063726'], [0.5, '#0d5c3f'], [1, '#127852']],
+        orb1: { x: 0.82, y: 0.22, r: 0.65, c: '#10b981' },
+        orb2: { x: 0.18, y: 0.85, r: 0.45, c: '#d97706' }
       },
       {
+        n: '02',
         lomba: 'SOLERAM 2026: Public Speaking & Storytelling Competition',
+        shortLabel: 'SOLERAM PUBLIC SPEAKING',
         peserta: 'Gina Nastiti',
-        kategori: 'emas',
-        peringkat: 'Juara 1 / Emas',
+        status: 'Khudama’ Muda',
+        dept: 'Departemen Kaderisasi',
+        lokasi: 'Fakultas Ilmu Sosial Universitas Negeri Malang',
+        tanggal: '22 Juni 2026',
+        year: '2026',
+        kategori: 'Non-Akademik',
         tingkat: 'Nasional',
-        desc: 'Membawakan narasi kebudayaan Topeng Panji sebagai sarana penyampaian nilai moralitas dan integritas luhur generasi muda.',
-        lokasi: 'FIS Universitas Negeri Malang'
+        peringkat: 'Juara 1 / Emas',
+        rank: 1,
+        desc: 'Membawakan narasi kebudayaan Topeng Panji sebagai sarana penyampaian nilai moralitas, integritas luhur, dan keteladanan bagi generasi muda Indonesia.',
+        fotoLocal: '../assets/prestasi/02.jpg',
+        fotoAlt: 'assets/prestasi/02.jpg',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1Q8juPEaIC1QU20xrTxXZ26q0zxb981CI&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1GGX1qQaS3Dn_4ZXvzbMcoi43-aqlT6ng',
+        bgCss: 'linear-gradient(145deg, #09131c, #143b66, #0d4a34)',
+        baseStops: [[0, '#09131c'], [0.5, '#143b66'], [1, '#0d4a34']],
+        orb1: { x: 0.85, y: 0.18, r: 0.55, c: '#e5c166' },
+        orb2: { x: 0.2, y: 0.82, r: 0.45, c: '#f59e0b' }
       },
       {
+        n: '03',
         lomba: 'Kejuaraan Nasional Pencak Silat IRJ 24 Tahun 2026',
+        shortLabel: 'KEJURNAS SILAT IRJ 24',
         peserta: 'Muhrizal Syahril Maulani',
-        kategori: 'emas',
-        peringkat: 'Juara 1 / Emas',
+        status: 'Khudama’',
+        dept: 'Departemen Pembinaan',
+        lokasi: 'GOR Ken Arok Malang / PB IPSI',
+        tanggal: '25 September 2026',
+        year: '2026',
+        kategori: 'Non-Akademik',
         tingkat: 'Nasional',
-        desc: 'Menunjukkan sportivitas dan ketangguhan seni bela diri pencak silat hingga berhasil merebut medali emas bagi kontingen UM.',
-        lokasi: 'GOR Ken Arok Malang'
+        peringkat: 'Juara 1 / Emas',
+        rank: 1,
+        desc: 'Menunjukkan kedisiplinan, ketangguhan fisik, dan sportivitas seni bela diri pencak silat hingga berhasil merebut medali emas tingkat nasional bagi kontingen UM.',
+        fotoLocal: '../assets/prestasi/03.jpg',
+        fotoAlt: 'assets/prestasi/03.jpg',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1JSC87IkFoAu9z6nistaklL-d2ZmNnSAD&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1nAQzM_lv6BZ_bH4qigiHktxrNVy-l1JV',
+        bgCss: 'linear-gradient(145deg, #451a03, #78350f, #b45309)',
+        baseStops: [[0, '#451a03'], [0.5, '#78350f'], [1, '#b45309']],
+        orb1: { x: 0.8, y: 0.2, r: 0.6, c: '#fbbf24' },
+        orb2: { x: 0.18, y: 0.88, r: 0.45, c: '#0d5c3f' }
       },
       {
+        n: '04',
         lomba: 'Olimpiade Kimia Bidang Esai Ilmiah Nasional',
+        shortLabel: 'OLIMPIADE KIMIA ESAI',
         peserta: 'Siti Nurbaya Sulaiman',
-        kategori: 'emas',
+        status: 'Khudama’ Muda',
+        dept: 'TDI',
+        lokasi: 'Fakultas Sains dan Teknologi UIN Maulana Malik Ibrahim Malang',
+        tanggal: '17 Oktober 2026',
+        year: '2026',
+        kategori: 'Akademik',
+        tingkat: 'Nasional',
         peringkat: 'Juara 1 / Emas',
-        tingkat: 'Nasional',
-        desc: 'Gagasan riset kimia terapan berwawasan lingkungan dan energi hijau berkelanjutan dalam kompetisi esai sains nasional.',
-        lokasi: 'UIN Maulana Malik Ibrahim'
+        rank: 1,
+        desc: 'Gagasan riset kimia terapan berwawasan lingkungan dan energi hijau berkelanjutan yang berhasil meraih Juara 1 dalam kompetisi esai sains nasional.',
+        fotoLocal: '../assets/prestasi/04.jpg',
+        fotoAlt: 'assets/prestasi/04.jpg',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=17-GMZmnK-9f1_PCjYoGVUdHGDhHgMDYG&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1GcW3VN26M4_29WL9MdsjWgh6sAl9_GyS',
+        bgCss: 'linear-gradient(145deg, #3b1d11, #5c3a28, #7c4d2b)',
+        baseStops: [[0, '#3b1d11'], [0.5, '#5c3a28'], [1, '#7c4d2b']],
+        orb1: { x: 0.85, y: 0.25, r: 0.52, c: '#d97706' },
+        orb2: { x: 0.15, y: 0.85, r: 0.42, c: '#0f766e' }
       },
       {
-        lomba: 'Lomba Esai Ilmiah Nasional FESTIVAL BIOLOGI 2026',
+        n: '05',
+        lomba: 'Cogito National Competition Bidang Karya Ilmiah',
+        shortLabel: 'COGITO NATIONAL KTI',
         peserta: 'Siti Nurbaya Sulaiman',
-        kategori: 'perak',
-        peringkat: 'Juara 2 / Perak',
+        status: 'Khudama’ Muda',
+        dept: 'TDI',
+        lokasi: 'Fakultas FISIP Universitas Sriwijaya',
+        tanggal: '29 Agustus 2026',
+        year: '2026',
+        kategori: 'Akademik',
         tingkat: 'Nasional',
-        desc: 'Inovasi karya tulis ilmiah bidang biosains terapan dan pelestarian keanekaragaman hayati tingkat nasional.',
-        lokasi: 'Universitas Negeri Malang'
+        peringkat: 'Best Idea',
+        rank: 4,
+        desc: 'Meraih penghargaan kehormatan Best Idea berkat orisinalitas pemikiran, metodologi riset, dan solusi aplikatif yang diajukan di hadapan dewan juri.',
+        fotoLocal: '../assets/prestasi/05.jpg',
+        fotoAlt: 'assets/prestasi/05.jpg',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1U5Hp43UTEoIItTvKbNojA0ohBWdAfv5E&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1ms8hr2jkJ5pRfruPTX7LMJZgH7PV4w2d',
+        bgCss: 'linear-gradient(145deg, #042f2e, #0f766e, #115e59)',
+        baseStops: [[0, '#042f2e'], [0.5, '#0f766e'], [1, '#115e59']],
+        orb1: { x: 0.85, y: 0.2, r: 0.55, c: '#2dd4bf' },
+        orb2: { x: 0.2, y: 0.85, r: 0.45, c: '#15803d' }
       },
       {
-        lomba: 'Festival Padang Bulan: Musabaqah Tilawatil Qur’an',
-        peserta: 'Muhammad Ilham Robbani',
-        kategori: 'perunggu',
+        n: '06',
+        lomba: 'Musabaqah Syarhil Qur’an (MSQ) PAI FEST Nasional',
+        shortLabel: 'MSQ PAI FEST NASIONAL',
+        peserta: 'Siti Dewi Nur Fatimah & Nafisa Putri Krisan Az-Zahro',
+        status: 'Khudama’ Muda',
+        dept: 'Departemen Pembinaan',
+        lokasi: 'UIN Walisongo Semarang',
+        tanggal: '10 September 2026',
+        year: '2026',
+        kategori: 'Non-Akademik',
+        tingkat: 'Nasional',
+        peringkat: 'Juara 2 / Perak',
+        rank: 2,
+        desc: 'Sinergi harmonis antara lantunan ayat suci Al-Qur’an, terjemah puitis, dan pensyarahan materi keislaman kontekstual mengenai ukhuwah pemuda Qur’ani.',
+        fotoLocal: '../assets/prestasi/06.jpg',
+        fotoAlt: 'assets/prestasi/06.jpg',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1nj5kTY6Fqky-GKZwLTDN9xLys-oXV994&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1pL8TkMYaVGBPMfMcyMS2dh3RYpj0rkad',
+        bgCss: 'linear-gradient(145deg, #4c0519, #881337, #9f1239)',
+        baseStops: [[0, '#4c0519'], [0.5, '#881337'], [1, '#9f1239']],
+        orb1: { x: 0.8, y: 0.15, r: 0.55, c: '#fb7185' },
+        orb2: { x: 0.15, y: 0.85, r: 0.45, c: '#f59e0b' }
+      },
+      {
+        n: '07',
+        lomba: 'Lomba Karya Tulis Ilmiah Biology Soedirman Competition',
+        shortLabel: 'LKTI BIOLOGY SOEDIRMAN',
+        peserta: 'Sakinatul Lutfiyah',
+        status: 'Khudama’',
+        dept: 'Departemen Kaderisasi',
+        lokasi: 'Universitas Jenderal Soedirman',
+        tanggal: '26 September 2026',
+        year: '2026',
+        kategori: 'Akademik',
+        tingkat: 'Nasional',
+        peringkat: 'Juara 2 / Perak',
+        rank: 2,
+        desc: 'Inovasi karya tulis ilmiah bidang biosains terapan dan pelestarian keanekaragaman hayati yang sukses mengantarkan gelar Juara 2 tingkat nasional.',
+        fotoLocal: '../assets/prestasi/07.jpg',
+        fotoAlt: 'assets/prestasi/07.jpg',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=141F7rxwmuuXrHPvHdSlCSSYO8DqpRf2_&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1wzhqcFDL4U8CplkET49epHWnHVtg00TA',
+        bgCss: 'linear-gradient(145deg, #063726, #0d5c3f, #14532d)',
+        baseStops: [[0, '#063726'], [0.5, '#0d5c3f'], [1, '#14532d']],
+        orb1: { x: 0.82, y: 0.2, r: 0.6, c: '#34d399' },
+        orb2: { x: 0.2, y: 0.85, r: 0.45, c: '#eab308' }
+      },
+      {
+        n: '08',
+        lomba: 'International Essay Competition UM × UTM',
+        shortLabel: 'INTL ESSAY UM × UTM',
+        peserta: 'Sakinatul Lutfiyah',
+        status: 'Khudama’',
+        dept: 'Departemen Kaderisasi',
+        lokasi: 'Universitas Negeri Malang × Universiti Teknologi Malaysia',
+        tanggal: '20 Juli 2026',
+        year: '2026',
+        kategori: 'Akademik',
+        tingkat: 'Internasional',
+        peringkat: 'Runner-Up Internasional',
+        rank: 4,
+        desc: 'Penulisan esai ilmiah kritis dalam forum kerja sama akademik bilateral antarperguruan tinggi Indonesia dan Malaysia.',
+        fotoLocal: '../assets/prestasi/08.jpg',
+        fotoAlt: 'assets/prestasi/08.jpg',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=18NyMn8paROQkWjCzydiICD5VJG4Hr8mB&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1Iz33QpWhXpMWxdFeyg-E0BzM-0QiNa2D',
+        bgCss: 'linear-gradient(145deg, #09131c, #1e3a8a, #0a4a33)',
+        baseStops: [[0, '#09131c'], [0.5, '#1e3a8a'], [1, '#0a4a33']],
+        orb1: { x: 0.85, y: 0.2, r: 0.58, c: '#e5c166' },
+        orb2: { x: 0.18, y: 0.85, r: 0.44, c: '#d97706' }
+      },
+      {
+        n: '09',
+        lomba: 'International Competitive Essay in Chemistry (ICEChem)',
+        shortLabel: 'ICECHEM ESSAY INTL',
+        peserta: 'Wildatuz Zahrah',
+        status: 'Khudama’',
+        dept: 'Departemen Pembinaan',
+        lokasi: 'Departemen Kimia Universitas Negeri Malang',
+        tanggal: '22 Juli 2026',
+        year: '2026',
+        kategori: 'Akademik',
+        tingkat: 'Internasional',
         peringkat: 'Juara 3 / Perunggu',
-        tingkat: 'Nasional',
-        desc: 'Lantunan ayat suci Al-Qur’an dengan keindahan nagham maqamat Bayati dan Hijaz yang menggetarkan sanubari dewan juri.',
-        lokasi: 'Universitas Negeri Malang'
+        rank: 3,
+        desc: 'Kompetisi esai penelitian internasional yang mempertemukan inovator muda lintas negara dalam riset kimia terapan dan biokimia berkelanjutan.',
+        fotoLocal: '../assets/prestasi/09.jpg',
+        fotoAlt: 'assets/prestasi/09.jpg',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1wI6TOvk0yRK7oT-8a0sLmN9OyjG937LY&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1YZGCHuopeGZypjICAVvDln-amqEX7DHi',
+        bgCss: 'linear-gradient(145deg, #3b1d11, #7c2d12, #b45309)',
+        baseStops: [[0, '#3b1d11'], [0.5, '#7c2d12'], [1, '#b45309']],
+        orb1: { x: 0.8, y: 0.22, r: 0.56, c: '#f59e0b' },
+        orb2: { x: 0.2, y: 0.84, r: 0.45, c: '#0d5c3f' }
       },
       {
-        lomba: 'Musabaqah Hifdzil Qur’an (MHQ) 10 Juz Mahasiswa',
-        peserta: 'Ahmad Faiz Mubarok',
-        kategori: 'emas',
+        n: '10',
+        lomba: 'International Conference on Education and Teaching (ICET)',
+        shortLabel: 'ICET CONFERENCE INTL',
+        peserta: 'Muhammad Daril Ilmi Hidayat',
+        status: 'Khudama’ Muda',
+        dept: 'Departemen Syiar',
+        lokasi: 'UIN Fatmawati Sukarno Bengkulu',
+        tanggal: '14 Oktober 2026',
+        year: '2026',
+        kategori: 'Akademik',
+        tingkat: 'Internasional',
+        peringkat: 'Presenter Internasional',
+        rank: 4,
+        desc: 'Mempresentasikan artikel penelitian ilmiah di hadapan forum akademisi internasional mengenai metodologi pendidikan karakter dan keteladanan.',
+        fotoLocal: '../assets/prestasi/10.jpg',
+        fotoAlt: 'assets/prestasi/10.jpg',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1Iq6BCDzL7XTcDjtSIrO-HdDX4NKtIm7z&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1aHn0wBLX6zO1ppFljHxnaE8BzPmC3V68',
+        bgCss: 'linear-gradient(145deg, #042f2e, #0f766e, #0d5c3f)',
+        baseStops: [[0, '#042f2e'], [0.5, '#0f766e'], [1, '#0d5c3f']],
+        orb1: { x: 0.84, y: 0.18, r: 0.56, c: '#2dd4bf' },
+        orb2: { x: 0.18, y: 0.86, r: 0.44, c: '#eab308' }
+      },
+      {
+        n: '11',
+        lomba: 'Musabaqah Hifdhil Qur’an (MHQ) 20 Juz MTQ UM XVIII',
+        shortLabel: 'MHQ 20 JUZ MTQ UM',
+        peserta: 'Anisa Putri Effendy',
+        status: 'Khudama’',
+        dept: 'Departemen Pembinaan',
+        lokasi: 'Aula Rektorat Lt. 9 Universitas Negeri Malang',
+        tanggal: '09 Oktober 2026',
+        year: '2026',
+        kategori: 'Non-Akademik',
+        tingkat: 'Universitas',
         peringkat: 'Juara 1 / Emas',
-        tingkat: 'Regional Jatim',
-        desc: 'Ketepatan hafalan, makhraj fasih, dan kelancaran menjawab soal tasmi Al-Qur’an 10 Juz tanpa keraguan.',
-        lokasi: 'Surabaya'
+        rank: 1,
+        desc: 'Ketahanan hafalan, fashohah, dan kelancaran tajwid yang prima pada cabang 20 Juz dalam ajang bergengsi Musabaqah Tilawatil Qur’an Mahasiswa UM XVIII.',
+        fotoLocal: '../assets/prestasi/11.jpg',
+        fotoAlt: 'assets/prestasi/11.jpg',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1aMpfvR0a-F_GG72Yw56UlpYiOVQ250XV&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1nSe4DSXW8Jl6-6yz0hMx5TyrKiBhNL-2',
+        bgCss: 'linear-gradient(145deg, #063726, #0d5c3f, #065f46)',
+        baseStops: [[0, '#063726'], [0.5, '#0d5c3f'], [1, '#065f46']],
+        orb1: { x: 0.82, y: 0.2, r: 0.6, c: '#fbbf24' },
+        orb2: { x: 0.16, y: 0.85, r: 0.45, c: '#10b981' }
       },
       {
-        lomba: 'Musabaqah Khaththil Qur’an (MKQ) Kaligrafi Kontemporer',
-        peserta: 'Nurul Hidayati',
-        kategori: 'perak',
+        n: '12',
+        lomba: 'Musabaqah Desain Aplikasi Al-Qur’an (MDAQ) MTQ UM XVIII',
+        shortLabel: 'MDAQ APLIKASI MTQ UM',
+        peserta: 'Asyam Sakhi Maulana & Mohammad Rifky Wicaksana',
+        status: 'Khudama’',
+        dept: 'Departemen Syiar',
+        lokasi: 'Universitas Negeri Malang',
+        tanggal: '10 Oktober 2026',
+        year: '2026',
+        kategori: 'Non-Akademik',
+        tingkat: 'Universitas',
         peringkat: 'Juara 2 / Perak',
-        tingkat: 'Nasional',
-        desc: 'Goresan khat tsuluts berpadu dengan komposisi kanvas akrilik modern mengangkat tema kedamaian semesta.',
-        lokasi: 'Yogyakarta'
+        rank: 2,
+        desc: 'Perancangan prototipe produk digital Al-Qur’an interaktif yang mengombinasikan arsitektur modern, UI/UX intuitif, dan kemudahan akses pembelajaran kalamullah.',
+        fotoLocal: '../assets/prestasi/12.jpg',
+        fotoAlt: 'assets/prestasi/12.jpg',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1IY_KU_eQkwAei-ucOIs1xYxLoGn7jeJq&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1s0WnNKDpC03WeKf3N3JPzlM4rGxAkfwQ',
+        bgCss: 'linear-gradient(145deg, #09131c, #143b66, #09131c)',
+        baseStops: [[0, '#09131c'], [0.5, '#143b66'], [1, '#09131c']],
+        orb1: { x: 0.85, y: 0.2, r: 0.56, c: '#e5c166' },
+        orb2: { x: 0.18, y: 0.85, r: 0.44, c: '#10b981' }
       },
       {
-        lomba: 'Musabaqah Fahmil Qur’an Beregu Mahasiswa',
-        peserta: 'Tim Kafilah ASC UM',
-        kategori: 'emas',
-        peringkat: 'Juara 1 / Emas',
-        tingkat: 'Regional Jatim',
-        desc: 'Ketangkasan menjawab soal wawasan keislaman, terjemah ayat, dan asbabun nuzul dalam sesi adu cepat cermat.',
-        lokasi: 'Malang'
+        n: '13',
+        lomba: 'Musabaqah Karya Tulis Ilmiah Al-Qur’an (MKTIA) Nasional',
+        shortLabel: 'MKTIA NASIONAL UB',
+        peserta: 'Sakinatul Lutfiyah',
+        status: 'Khudama’',
+        dept: 'Departemen Kaderisasi',
+        lokasi: 'UKM Seni Religi Universitas Brawijaya',
+        tanggal: '28 September 2026',
+        year: '2026',
+        kategori: 'Akademik',
+        tingkat: 'Nasional',
+        peringkat: 'Juara 3 / Perunggu',
+        rank: 3,
+        desc: 'Karya tulis ilmiah bertema Al-Qur’an yang mengkaji integrasi wahyu Ilahi dengan solusi problematika sains dan kemanusiaan di tingkat nasional.',
+        fotoLocal: '../assets/prestasi/13.jpg',
+        fotoAlt: 'assets/prestasi/13.jpg',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1dM_gcQ6QJmU-4LTqV5vJaFaM74FL3Wo1&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1iWKdOeWVPMCWoyQYoFDYXrU6pk5PxjkT',
+        bgCss: 'linear-gradient(145deg, #451a03, #78350f, #92400e)',
+        baseStops: [[0, '#451a03'], [0.5, '#78350f'], [1, '#92400e']],
+        orb1: { x: 0.82, y: 0.2, r: 0.55, c: '#fbbf24' },
+        orb2: { x: 0.16, y: 0.84, r: 0.45, c: '#0d5c3f' }
+      },
+      {
+        n: '14',
+        lomba: 'Musabaqah Khaththul Qur’an (MKQ) Kontemporer MTQ UM XVIII',
+        shortLabel: 'MKQ KONTEMPORER MTQ',
+        peserta: 'Alfiyatun Nur Amaliyah',
+        status: 'Khudama’',
+        dept: 'Departemen Pembinaan',
+        lokasi: 'Universitas Negeri Malang',
+        tanggal: '08 Oktober 2026',
+        year: '2026',
+        kategori: 'Non-Akademik',
+        tingkat: 'Universitas',
+        peringkat: 'Juara 3 / Perunggu',
+        rank: 3,
+        desc: 'Karya seni rupa kaligrafi kontemporer yang mengekspresikan kedalaman makna ayat Al-Qur’an melalui komposisi warna, estetika modern, dan kaidah khat yang terjaga.',
+        fotoLocal: '../assets/prestasi/14.jpg',
+        fotoAlt: 'assets/prestasi/14.jpg',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=18MDy6BdoF927G1oNAlccXLj6R6YOkcEQ&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1dbNxAILh2HCWEalZUq7y2jiGwQo1heSj',
+        bgCss: 'linear-gradient(145deg, #4c0519, #881337, #9f1239)',
+        baseStops: [[0, '#4c0519'], [0.5, '#881337'], [1, '#9f1239']],
+        orb1: { x: 0.82, y: 0.18, r: 0.56, c: '#fb7185' },
+        orb2: { x: 0.18, y: 0.85, r: 0.45, c: '#f59e0b' }
+      },
+      {
+        n: '15',
+        lomba: 'Tasmi’ Al-Qur’an 30 Juz Bil-Ghaib Sekali Duduk',
+        shortLabel: 'TASMI 30 JUZ BIL-GHAIB',
+        peserta: 'Early Azkiyatul Awliya',
+        status: 'Peserta Pembinaan',
+        dept: 'Peserta pembinaan Tahfidzul Qur’an',
+        lokasi: 'Majelis Tahfidh Universitas Negeri Malang',
+        tanggal: '20 Februari 2026',
+        year: '2026',
+        kategori: 'Non-Akademik',
+        tingkat: 'Universitas',
+        peringkat: 'Syahadah 30 Juz',
+        rank: 4,
+        desc: 'Pencapaian istimewa memperdengarkan hafalan Al-Qur’an 30 Juz secara mutqin dan bil-ghaib dalam satu majelis tasmi’ syahadah.',
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: '',
+        bukti: 'https://drive.google.com/open?id=11qT-G2e357XlQoXTaBgxqGMveirGivjK',
+        bgCss: 'linear-gradient(145deg, #063726, #0d5c3f, #0f766e)',
+        baseStops: [[0, '#063726'], [0.5, '#0d5c3f'], [1, '#0f766e']],
+        orb1: { x: 0.82, y: 0.22, r: 0.65, c: '#10b981' },
+        orb2: { x: 0.18, y: 0.84, r: 0.48, c: '#eab308' }
       }
     ];
 
-    const grid = document.getElementById('prCardsGrid');
-    const filterBtns = document.querySelectorAll('.pr-filter-btn');
+    const N = PRESTASI_DATA.length;
+    const totalStr = String(N).padStart(2, '0');
+    const stage = document.getElementById('goboRibbonStage');
+    const canvas = document.getElementById('goboRibbonCanvas');
+    const activeSlotEl = document.getElementById('goboActiveSlot');
+    const activeTitleEl = document.getElementById('goboActiveTitle');
+    const scrubThumb = document.getElementById('goboScrubThumb');
+    const scrubRail = document.getElementById('goboScrubRail');
+    const btnPrev = document.getElementById('btnRibbonPrev');
+    const btnNext = document.getElementById('btnRibbonNext');
+    const btnPlay = document.getElementById('btnRibbonPlay');
+    const btnRibbonMode = document.getElementById('btnRibbonMode');
+    const btnGridMode = document.getElementById('btnGridMode');
+    const gridFilterBar = document.getElementById('prestasiGridFilter');
+    const galleryGrid = document.getElementById('prestasiGrid');
+    const detailCard = document.getElementById('goboActiveDetailCard');
+    const detailThumb = document.getElementById('detailThumb');
+    const detailThumbNum = document.getElementById('detailThumbNum');
+    const detailThumbImg = document.getElementById('detailThumbImg');
+    const detailBadges = document.getElementById('detailBadges');
+    const detailHeading = document.getElementById('detailHeading');
+    const detailMeta = document.getElementById('detailMeta');
+    const detailDesc = document.getElementById('detailDesc');
+    const detailBuktiLink = document.getElementById('detailBuktiLink');
+    const btnOpenDetail = document.getElementById('btnOpenModalFromDetail');
 
-    function renderCards(filter = 'all') {
-      if (!grid) return;
-      const filtered = filter === 'all' ? PRESTASI_DATA : PRESTASI_DATA.filter(d => d.kategori === filter);
-      grid.innerHTML = filtered.map(item => {
-        const medalClass = item.kategori === 'emas' ? 'pr-medal-gold' : item.kategori === 'perak' ? 'pr-medal-silver' : 'pr-medal-bronze';
-        return `
-          <div class="pr-card-item">
-            <div>
-              <div class="pr-item-top">
-                <span class="pr-medal-badge ${medalClass}">${item.peringkat}</span>
-                <span class="pr-item-level">${item.tingkat}</span>
-              </div>
-              <div class="pr-item-lomba">${item.lomba}</div>
-              <div class="pr-item-peserta">👤 ${item.peserta}</div>
-              <p class="pr-item-desc">${item.desc}</p>
-            </div>
-            <div class="pr-item-foot">
-              <span>📍 ${item.lokasi}</span>
-              <span>Kafilah ASC UM</span>
-            </div>
-          </div>
-        `;
-      }).join('');
+    const modal = document.getElementById('galleryModal');
+    const modalClose = document.getElementById('modalCloseBtn');
+    const modalVisual = document.getElementById('modalVisual');
+    const modalVisualImg = document.getElementById('modalVisualImg');
+    const modalVisualBadges = document.getElementById('modalVisualBadges');
+    const modalVisualNum = document.getElementById('modalVisualNum');
+    const modalVisualTitle = document.getElementById('modalVisualTitle');
+    const modalVisualSub = document.getElementById('modalVisualSub');
+    const modalMetaGrid = document.getElementById('modalMetaGrid');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalBuktiLink = document.getElementById('modalBuktiLink');
+    const modalPrevBtn = document.getElementById('modalPrevBtn');
+    const modalNextBtn = document.getElementById('modalNextBtn');
+
+    if (!stage || !canvas) return;
+
+    function esc(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
     }
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('is-active'));
-        btn.classList.add('is-active');
-        renderCards(btn.dataset.filter);
+    function applyImgFallback(imgEl, item, onEmpty) {
+      if (!imgEl) return;
+      const chain = [item.fotoLocal, item.fotoAlt, item.fotoRemote].filter(Boolean);
+      let step = 0;
+      if (!chain.length) {
+        imgEl.style.display = 'none';
+        imgEl.removeAttribute('src');
+        if (onEmpty) onEmpty();
+        return;
+      }
+      imgEl.style.display = 'block';
+      imgEl.onerror = function () {
+        step += 1;
+        if (step < chain.length) {
+          imgEl.src = chain[step];
+        } else {
+          imgEl.onerror = null;
+          imgEl.style.display = 'none';
+          if (onEmpty) onEmpty();
+        }
+      };
+      imgEl.src = chain[0];
+    }
+
+    function rankBadgeHTML(item) {
+      return '<span class="prestasi-rank-pill rank-' + item.rank + '">' + esc(item.peringkat) + '</span>';
+    }
+
+    function syncDetailCard(idx) {
+      const item = PRESTASI_DATA[idx];
+      if (!item) return;
+      if (activeSlotEl) activeSlotEl.textContent = item.n + ' / ' + totalStr;
+      if (activeTitleEl) activeTitleEl.textContent = '(' + item.n + ') ' + item.shortLabel;
+      if (detailThumb) detailThumb.style.background = item.bgCss;
+      if (detailThumbNum) detailThumbNum.textContent = item.n;
+      applyImgFallback(detailThumbImg, item);
+      if (detailThumbImg) detailThumbImg.alt = item.peserta + ' — ' + item.lomba;
+      if (detailBadges) {
+        detailBadges.innerHTML =
+          rankBadgeHTML(item) +
+          '<span class="prestasi-meta-pill">' + esc(item.tingkat) + '</span>' +
+          '<span class="prestasi-meta-pill">' + esc(item.kategori) + ' · ' + esc(item.tanggal) + '</span>';
+      }
+      if (detailHeading) detailHeading.textContent = item.lomba;
+      if (detailMeta) {
+        detailMeta.textContent = [item.peserta, item.status, item.dept, item.lokasi].filter(Boolean).join(' · ');
+      }
+      if (detailDesc) detailDesc.textContent = item.desc;
+      if (detailBuktiLink) detailBuktiLink.href = item.bukti || '#';
+    }
+
+    // Build Grid Visual Mode dynamically
+    let currentFilter = 'Semua';
+    function renderGridCards() {
+      if (!galleryGrid) return;
+      galleryGrid.innerHTML = PRESTASI_DATA.map((item, idx) => {
+        const visible = currentFilter === 'Semua' || item.tingkat === currentFilter;
+        const hiddenStyle = visible ? '' : ' style="display:none;"';
+        return (
+          '<article class="gallery-card" data-idx="' + idx + '" data-tingkat="' + esc(item.tingkat) + '"' + hiddenStyle + '>' +
+            '<div class="gallery-photo-box" style="background:' + item.bgCss + ';">' +
+              '<div class="gradient-watermark-wrap">' +
+                '<svg viewBox="0 0 100 100" width="150" height="150" fill="none" class="gradient-watermark">' +
+                  '<rect x="25" y="25" width="50" height="50" stroke="rgba(255,255,255,0.24)" stroke-width="1.5"/>' +
+                  '<rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="rgba(255,255,255,0.24)" stroke-width="1.5"/>' +
+                  '<circle cx="50" cy="50" r="14" stroke="rgba(255,255,255,0.24)" stroke-width="1.5"/>' +
+                '</svg>' +
+              '</div>' +
+              '<img data-card-img="' + idx + '" alt="' + esc(item.peserta + ' — ' + item.lomba) + '" />' +
+              '<div class="gallery-photo-scrim"></div>' +
+              '<div class="gradient-card-top">' +
+                '<div class="prestasi-badge-row">' +
+                  rankBadgeHTML(item) +
+                  '<span class="prestasi-meta-pill on-dark">' + esc(item.tingkat) + '</span>' +
+                '</div>' +
+                '<span class="gradient-card-num">' + item.n + '</span>' +
+              '</div>' +
+              '<div class="gradient-card-bottom">' +
+                '<span>' + esc(item.kategori) + ' · ' + esc(item.tanggal) + '</span>' +
+              '</div>' +
+            '</div>' +
+            '<div class="gallery-body">' +
+              '<h4>' + esc(item.lomba) + '</h4>' +
+              '<p class="gallery-card-who">' + esc(item.peserta) + ' · ' + esc(item.dept) + '</p>' +
+              '<p class="gallery-card-loc">' + esc(item.lokasi) + '</p>' +
+              '<p class="gallery-card-desc">' + esc(item.desc) + '</p>' +
+            '</div>' +
+          '</article>'
+        );
+      }).join('');
+
+      PRESTASI_DATA.forEach((item, idx) => {
+        const imgEl = galleryGrid.querySelector('img[data-card-img="' + idx + '"]');
+        applyImgFallback(imgEl, item);
       });
+
+      galleryGrid.querySelectorAll('.gallery-card').forEach((card) => {
+        card.addEventListener('click', () => {
+          const idx = parseInt(card.getAttribute('data-idx') || '0', 10);
+          openModalForIndex(idx);
+        });
+      });
+    }
+
+    renderGridCards();
+
+    if (gridFilterBar) {
+      gridFilterBar.querySelectorAll('.prestasi-filter-pill').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          currentFilter = btn.getAttribute('data-tingkat') || 'Semua';
+          gridFilterBar.querySelectorAll('.prestasi-filter-pill').forEach((b) => {
+            b.classList.toggle('is-active', b === btn);
+          });
+          if (galleryGrid) {
+            galleryGrid.querySelectorAll('.gallery-card').forEach((card) => {
+              const tg = card.getAttribute('data-tingkat');
+              card.style.display = (currentFilter === 'Semua' || tg === currentFilter) ? '' : 'none';
+            });
+          }
+        });
+      });
+    }
+
+    // Lightbox Modal
+    let modalIndex = 0;
+    function openModalForIndex(idx) {
+      if (!modal || idx < 0 || idx >= N) return;
+      modalIndex = idx;
+      const item = PRESTASI_DATA[idx];
+      if (modalVisual) modalVisual.style.background = item.bgCss;
+      applyImgFallback(modalVisualImg, item);
+      if (modalVisualImg) modalVisualImg.alt = item.peserta + ' — ' + item.lomba;
+      if (modalVisualBadges) {
+        modalVisualBadges.innerHTML =
+          rankBadgeHTML(item) +
+          '<span class="prestasi-meta-pill on-dark">' + esc(item.tingkat) + '</span>';
+      }
+      if (modalVisualNum) modalVisualNum.textContent = item.n + ' / ' + totalStr;
+      if (modalVisualTitle) modalVisualTitle.textContent = item.lomba;
+      if (modalVisualSub) modalVisualSub.textContent = item.peserta + ' · ' + item.tanggal;
+
+      if (modalMetaGrid) {
+        const rows = [
+          ['Peraih Prestasi', item.peserta],
+          ['Status & Departemen', [item.status, item.dept].filter(Boolean).join(' · ')],
+          ['Peringkat / Penghargaan', item.peringkat],
+          ['Tingkat & Kategori', item.tingkat + ' · ' + item.kategori],
+          ['Penyelenggara / Lokasi', item.lokasi],
+          ['Tanggal Capaian', item.tanggal]
+        ];
+        modalMetaGrid.innerHTML = rows.map(([k, v]) => (
+          '<div class="prestasi-meta-item"><dt>' + esc(k) + '</dt><dd>' + esc(v) + '</dd></div>'
+        )).join('');
+      }
+      if (modalDesc) modalDesc.textContent = '“' + item.desc + '”';
+      if (modalBuktiLink) {
+        modalBuktiLink.href = item.bukti || '#';
+        modalBuktiLink.style.display = item.bukti ? 'inline-flex' : 'none';
+      }
+
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+    }
+    if (modalPrevBtn) {
+      modalPrevBtn.addEventListener('click', () => {
+        openModalForIndex((modalIndex - 1 + N) % N);
+      });
+    }
+    if (modalNextBtn) {
+      modalNextBtn.addEventListener('click', () => {
+        openModalForIndex((modalIndex + 1) % N);
+      });
+    }
+
+    let activeIndex = 0;
+    if (btnOpenDetail) {
+      btnOpenDetail.addEventListener('click', () => {
+        openModalForIndex(activeIndex);
+      });
+    }
+    syncDetailCard(0);
+
+    // WebGL 3D Ribbon State & Texture Atlas (4x4 Grid = 16 Slots, 2048x2304 Safe GPU Texture)
+    let autoDrift = true;
+    const BASE = 36;
+    let pos = 0, target = 0, boost = 0, dragVel = 0;
+    let dragging = false, moved = 0, lastX = 0, lastY = 0, lastMoveT = 0;
+    let prevPos = 0, speedE = 0, shrinkE = 0;
+
+    const CW = 512, CH = 512, LH = 64;
+    const GX = 4, GY = 4;
+    const atlasCv = document.createElement('canvas');
+    atlasCv.width = CW * GX;
+    atlasCv.height = (CH + LH) * GY;
+    const actx = atlasCv.getContext('2d');
+    const loadedImages = new Array(N).fill(null);
+
+    let W = 0, H = 0, DPR = 1, S = 280, GAP = 20, LABH = 34;
+    let A0 = 0, C0 = 0, LO = 0, HI = 0, FADE = [-10, 0, 1e6, 1e6 + 1], VERT = false;
+    const BEND = { e0: 0.55, mag: 0.42, lift: 0.38, vmag: 0.32 };
+    const stride = () => S + GAP;
+
+    function geom() {
+      W = stage.clientWidth;
+      H = stage.clientHeight;
+      if (!W || !H) return;
+      DPR = Math.min(2, window.devicePixelRatio || 1);
+      VERT = W < 640;
+      S = Math.min(320, Math.max(220, W * 0.28));
+      GAP = 20;
+      LABH = 34;
+      A0 = W * 0.5;
+      C0 = H * 0.52;
+      LO = 0;
+      HI = W;
+      FADE = [-10, 0, H, H + 10];
+    }
+
+    const VERT_SRC = `attribute vec2 aPos; varying vec2 vUv; void main(){ vUv = aPos * 0.5 + 0.5; gl_Position = vec4(aPos, 0.0, 1.0); }`;
+
+    const FRAG = `
+precision highp float;
+varying vec2 vUv;
+uniform vec2 uRes; uniform float uDpr;
+uniform sampler2D uAtlas; uniform vec2 uGrid; uniform float uN;
+uniform float uOffset; uniform float uS; uniform float uGap; uniform float uLabH; uniform float uRad;
+uniform float uVert; uniform float uA0; uniform float uC0; uniform float uLo; uniform float uHi; uniform float uStride; uniform vec4 uFade;
+uniform float uShrink; uniform float uTime; uniform float uIntro; uniform float uWob;
+uniform float uE0; uniform float uMag; uniform float uLift; uniform float uVMag; uniform float uBendAmt;
+uniform vec3 uCube; uniform vec3 uLabel; uniform vec3 uTint; uniform float uTintAmt;
+uniform float uHover; uniform float uHoverT; uniform float uSeed;
+
+float hash(vec2 p){ return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453); }
+float sdBox(vec2 p, vec2 b, float r){ vec2 q = abs(p) - b + r; return min(max(q.x, q.y), 0.0) + length(max(q, 0.0)) - r; }
+float oval(vec2 uv, vec2 c, vec2 r, float fall){ return pow(clamp(1.0 - length((uv - c) / r), 0.0, 1.0), fall); }
+
+vec3 bg(vec2 p){
+  return vec3(1.0);
+}
+
+vec4 strip(vec2 p){
+  bool vert = uVert > 0.5;
+  float A = vert ? p.y : p.x;
+  float X = vert ? p.x : p.y;
+  float s = A - uA0 + uOffset;
+  float k = floor(s / uStride + 0.5);
+  float local = s - k * uStride - (vert ? uLabH * 0.5 : 0.0);
+  float ord = k + 4.0;
+  float e1 = clamp((uIntro - 0.1 - ord * 0.05) / 0.7, 0.0, 1.0);
+  if (e1 <= 0.0) return vec4(0.0);
+  bool hov = abs(k - uHover) < 0.5;
+  float hT = hov ? uHoverT : 0.0;
+  float sz = uS * (1.0 - 0.07 * uShrink) * (1.0 + 0.03 * hT);
+  float h = sz;
+  float cc = uC0 + sin(s * 0.0042 + uTime * 0.85) * uWob;
+  vec2 c = vert ? vec2(X - cc, local) : vec2(local, X - cc);
+
+  // Exact integer slot & 2D grid cell computation (immune to ANGLE/D3D11 mod precision bugs)
+  float fk = floor(k + 0.5);
+  float slot = fk - uN * floor((fk + 0.5) / uN);
+  slot = floor(slot + 0.5);
+  if (slot >= uN) slot -= uN;
+  if (slot < 0.0) slot += uN;
+  float ri = floor((slot + 0.5) / uGrid.x);
+  float ci = slot - uGrid.x * ri;
+
+  vec4 col = vec4(0.0);
+  float inside = clamp(0.5 - sdBox(c, vec2(sz, h) * 0.5, min(uRad, h * 0.5)), 0.0, 1.0);
+  if (inside > 0.0) {
+    vec2 iuv = vec2(c.x / sz + 0.5, c.y / sz + 0.5);
+    vec2 auv = vec2(
+      (ci + clamp(iuv.x, 0.004, 0.996)) / uGrid.x,
+      (ri + (64.0 + clamp(iuv.y * 512.0, 2.0, 510.0)) / 576.0) / uGrid.y
+    );
+    vec3 img = texture2D(uAtlas, auv).rgb;
+    if (hT > 0.001) {
+      img = clamp((img - 0.5) * (1.0 + 0.14 * hT) + 0.5 + 0.04 * hT, 0.0, 1.0);
+    }
+    col = vec4(img * inside, inside);
+  }
+  float ly = c.y + h * 0.5 + uLabH;
+  if (ly >= 0.0 && ly < uLabH && abs(c.x) < sz * 0.5) {
+    vec2 luv = vec2(c.x / sz + 0.5, ly / uLabH);
+    vec2 auv2 = vec2(
+      (ci + clamp(luv.x, 0.004, 0.996)) / uGrid.x,
+      (ri + clamp(luv.y * 64.0, 2.0, 60.0) / 576.0) / uGrid.y
+    );
+    vec4 lab = texture2D(uAtlas, auv2);
+    col = mix(col, vec4(lab.rgb, 1.0), lab.a);
+  }
+  return col;
+}
+
+vec2 bendMap(vec2 p, out float t, out float sg){
+  bool vert = uVert > 0.5;
+  vec2 q = vert ? p.yx : p;
+  float hw = q.x < uA0 ? uA0 - uLo : uHi - uA0;
+  float u = (q.x - uA0) / hw;
+  float a = abs(u);
+  sg = u < 0.0 ? -1.0 : 1.0;
+  float vy = (q.y - uC0) / uS;
+  float e0 = max(0.2, uE0 - 0.1 * vy * vy);
+  t = smoothstep(e0, 1.0, a) * uBendAmt;
+  float span = max(1.0 - e0, 0.001);
+  float ex = max(a - e0, 0.0) * uBendAmt;
+  float aq = a - uMag * ex * ex / (2.0 * span);
+  float cl = uC0 - sg * uLift * t * t;
+  vec2 r = vec2(uA0 + sg * aq * hw, uC0 + (q.y - cl) / (1.0 + uVMag * t));
+  return vert ? r.yx : r;
+}
+
+void main(){
+  vec2 p = vec2(vUv.x, 1.0 - vUv.y) * uRes;
+  vec3 col;
+  vec3 base = bg(p);
+  vec4 s;
+  float t, sg;
+  vec2 q = bendMap(p, t, sg);
+  if (t < 0.002) {
+    s = strip(q);
+    col = mix(base, s.rgb, s.a);
+  } else {
+    vec2 dd = vec2(sg * 18.0, -sg * 6.0) * t * t;
+    if (uVert > 0.5) dd = dd.yx;
+    vec3 acc = vec3(0.0); vec3 ws = vec3(0.0); float al = 0.0;
+    for (int i = 0; i < 7; i++) {
+      float k = float(i) / 6.0;
+      vec3 w = vec3(exp(-pow(k / 0.38, 2.0)), exp(-pow((k - 0.5) / 0.38, 2.0)), exp(-pow((k - 1.0) / 0.38, 2.0)));
+      s = strip(q + dd * (k - 0.5));
+      acc += mix(base, s.rgb, s.a) * w;
+      ws += w;
+      al += s.a;
+    }
+    col = acc / ws;
+    al /= 7.0;
+    float hl = smoothstep(0.03, 0.2, t) * (1.0 - smoothstep(0.2, 0.5, t));
+    col = mix(col, col * (1.0 - 0.06 * t * t) - vec3(0.02) * hl, al);
+  }
+  col = mix(base, col, smoothstep(uFade.x, uFade.y, p.y) * (1.0 - smoothstep(uFade.z, uFade.w, p.y)));
+  col += (hash(p * uDpr + fract(uTime) * 61.0) - 0.5) * 0.008;
+  gl_FragColor = vec4(col, 1.0);
+}
+`;
+
+    let gl = null, tex = null;
+    const U = {};
+    const UNIFORMS = [
+      'uRes','uDpr','uAtlas','uGrid','uN','uOffset','uS','uGap','uLabH',
+      'uRad','uVert','uA0','uC0','uLo','uHi','uStride','uFade','uShrink',
+      'uTime','uIntro','uWob','uE0','uMag','uLift','uVMag','uBendAmt',
+      'uCube','uLabel','uTint','uTintAmt','uHover','uHoverT','uSeed'
+    ];
+
+    function initGL() {
+      gl = canvas.getContext('webgl', { antialias: true, alpha: false, depth: false }) ||
+           canvas.getContext('experimental-webgl');
+      if (!gl) return false;
+
+      gl.clearColor(1.0, 1.0, 1.0, 1.0);
+
+      function compile(type, src) {
+        const sh = gl.createShader(type);
+        gl.shaderSource(sh, src);
+        gl.compileShader(sh);
+        if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+          console.error('[WebGL Jejak Prestasi]', gl.getShaderInfoLog(sh));
+          return null;
+        }
+        return sh;
+      }
+
+      const vs = compile(gl.VERTEX_SHADER, VERT_SRC);
+      const fs = compile(gl.FRAGMENT_SHADER, FRAG);
+      if (!vs || !fs) return false;
+
+      const prog = gl.createProgram();
+      gl.attachShader(prog, vs);
+      gl.attachShader(prog, fs);
+      gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+        console.error('[WebGL Jejak Prestasi]', gl.getProgramInfoLog(prog));
+        return false;
+      }
+      gl.useProgram(prog);
+
+      UNIFORMS.forEach((name) => {
+        U[name] = gl.getUniformLocation(prog, name);
+      });
+
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      const aPos = gl.getAttribLocation(prog, 'aPos');
+      gl.enableVertexAttribArray(aPos);
+      gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+      tex = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+
+      return true;
+    }
+
+    let uploadQueued = false;
+    function uploadAtlas() {
+      if (!gl || !tex) return;
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, atlasCv);
+    }
+
+    function queueUploadAtlas() {
+      if (uploadQueued) return;
+      uploadQueued = true;
+      requestAnimationFrame(() => {
+        uploadQueued = false;
+        uploadAtlas();
+      });
+    }
+
+    function drawRoundedRectPath(ctx, rx, ry, rw, rh, rad) {
+      ctx.beginPath();
+      ctx.moveTo(rx + rad, ry);
+      ctx.lineTo(rx + rw - rad, ry);
+      ctx.quadraticCurveTo(rx + rw, ry, rx + rw, ry + rad);
+      ctx.lineTo(rx + rw, ry + rh - rad);
+      ctx.quadraticCurveTo(rx + rw, ry + rh, rx + rw - rad, ry + rh);
+      ctx.lineTo(rx + rad, ry + rh);
+      ctx.quadraticCurveTo(rx, ry + rh, rx, ry + rh - rad);
+      ctx.lineTo(rx, ry + rad);
+      ctx.quadraticCurveTo(rx, ry, rx + rad, ry);
+      ctx.closePath();
+    }
+
+    function wrapLines(ctx, text, maxWidth, maxLines) {
+      const words = text.split(/\s+/);
+      const lines = [];
+      let cur = '';
+      for (let wi = 0; wi < words.length; wi++) {
+        const test = cur ? cur + ' ' + words[wi] : words[wi];
+        if (ctx.measureText(test).width <= maxWidth) {
+          cur = test;
+        } else {
+          if (cur) lines.push(cur);
+          cur = words[wi];
+          if (lines.length === maxLines - 1) {
+            const rem = words.slice(wi + 1).join(' ');
+            let lastLine = cur + (rem ? ' ' + rem : '');
+            if (ctx.measureText(lastLine).width > maxWidth) {
+              while (lastLine.length > 4 && ctx.measureText(lastLine + '…').width > maxWidth) {
+                lastLine = lastLine.slice(0, -1);
+              }
+              lastLine += '…';
+            }
+            lines.push(lastLine);
+            return lines;
+          }
+        }
+      }
+      if (cur && lines.length < maxLines) lines.push(cur);
+      return lines;
+    }
+
+    function drawAtlasTile(i, img) {
+      const w = PRESTASI_DATA[i];
+      if (!w || !actx) return;
+      const col = i % GX;
+      const row = Math.floor(i / GX);
+      const tx = col * CW;
+      const ty = row * (CH + LH);
+
+      // 1. Top label strip (tx, ty, CW, LH)
+      actx.clearRect(tx, ty, CW, LH);
+      actx.textBaseline = 'alphabetic';
+      actx.font = "700 20px 'Poppins', 'Geist', sans-serif";
+      actx.textAlign = 'left';
+      actx.fillStyle = '#09131c';
+      let labText = '(' + w.n + ') ' + w.shortLabel;
+      while (labText.length > 10 && actx.measureText(labText).width > CW - 165) {
+        labText = labText.slice(0, -2) + '…';
+      }
+      actx.fillText(labText, tx + 14, ty + 42);
+
+      actx.textAlign = 'right';
+      actx.fillStyle = '#0d5c3f';
+      actx.font = "700 18px 'Plus Jakarta Sans', sans-serif";
+      actx.fillText(w.tingkat, tx + CW - 14, ty + 42);
+
+      // 2. Clipped card body (tx, ty + LH, CW, CH)
+      const by = ty + LH;
+      actx.save();
+      actx.beginPath();
+      actx.rect(tx, by, CW, CH);
+      actx.clip();
+
+      if (img && img.naturalWidth > 0 && img.naturalHeight > 0) {
+        // Object-fit: cover centered at y = 32% so faces & trophies stay framed
+        const scale = Math.max(CW / img.naturalWidth, CH / img.naturalHeight);
+        const dw = img.naturalWidth * scale;
+        const dh = img.naturalHeight * scale;
+        const dx = tx + (CW - dw) * 0.5;
+        const dy = by + (CH - dh) * 0.32;
+        actx.drawImage(img, dx, dy, dw, dh);
+      } else {
+        // Multi-stop gradient + glow orbs + Islamic geometric watermark
+        const bgGrad = actx.createLinearGradient(tx, by, tx + CW, by + CH);
+        w.baseStops.forEach((s) => bgGrad.addColorStop(s[0], s[1]));
+        actx.fillStyle = bgGrad;
+        actx.fillRect(tx, by, CW, CH);
+
+        const o1 = actx.createRadialGradient(
+          tx + CW * w.orb1.x, by + CH * w.orb1.y, 0,
+          tx + CW * w.orb1.x, by + CH * w.orb1.y, CW * w.orb1.r
+        );
+        o1.addColorStop(0, w.orb1.c);
+        o1.addColorStop(1, 'transparent');
+        actx.fillStyle = o1;
+        actx.fillRect(tx, by, CW, CH);
+
+        const o2 = actx.createRadialGradient(
+          tx + CW * w.orb2.x, by + CH * w.orb2.y, 0,
+          tx + CW * w.orb2.x, by + CH * w.orb2.y, CW * w.orb2.r
+        );
+        o2.addColorStop(0, w.orb2.c);
+        o2.addColorStop(1, 'transparent');
+        actx.fillStyle = o2;
+        actx.fillRect(tx, by, CW, CH);
+
+        actx.save();
+        actx.translate(tx + CW * 0.76, by + CH * 0.42);
+        actx.strokeStyle = 'rgba(255, 255, 255, 0.18)';
+        actx.lineWidth = 3;
+        actx.strokeRect(-86, -86, 172, 172);
+        actx.rotate(Math.PI / 4);
+        actx.strokeRect(-86, -86, 172, 172);
+        actx.beginPath();
+        actx.arc(0, 0, 50, 0, Math.PI * 2);
+        actx.stroke();
+        actx.restore();
+      }
+
+      // Top readability scrim
+      const topScrim = actx.createLinearGradient(0, by, 0, by + CH * 0.28);
+      topScrim.addColorStop(0, 'rgba(6, 19, 30, 0.56)');
+      topScrim.addColorStop(1, 'rgba(6, 19, 30, 0.0)');
+      actx.fillStyle = topScrim;
+      actx.fillRect(tx, by, CW, CH * 0.28);
+
+      // Rich bottom readability scrim
+      const botScrim = actx.createLinearGradient(0, by + CH * 0.34, 0, by + CH);
+      botScrim.addColorStop(0, 'rgba(6, 19, 30, 0.0)');
+      botScrim.addColorStop(0.55, 'rgba(6, 19, 30, 0.80)');
+      botScrim.addColorStop(1, 'rgba(6, 19, 30, 0.96)');
+      actx.fillStyle = botScrim;
+      actx.fillRect(tx, by + CH * 0.34, CW, CH * 0.66);
+
+      // Top-left Peringkat badge
+      const badgeLabel = w.peringkat;
+      actx.font = "700 18px 'Plus Jakarta Sans', sans-serif";
+      const pillW = Math.min(CW - 140, actx.measureText(badgeLabel).width + 30);
+      drawRoundedRectPath(actx, tx + 28, by + 28, pillW, 38, 8);
+      if (w.rank === 1) {
+        actx.fillStyle = '#f0d27c';
+        actx.fill();
+        actx.fillStyle = '#3b2a06';
+      } else if (w.rank === 2) {
+        actx.fillStyle = '#e2e8f0';
+        actx.fill();
+        actx.fillStyle = '#1b2733';
+      } else if (w.rank === 3) {
+        actx.fillStyle = '#efbf90';
+        actx.fill();
+        actx.fillStyle = '#3b200a';
+      } else {
+        actx.fillStyle = '#0d5c3f';
+        actx.fill();
+        actx.fillStyle = '#ffffff';
+      }
+      actx.textAlign = 'left';
+      actx.textBaseline = 'middle';
+      actx.fillText(badgeLabel, tx + 44, by + 48, pillW - 32);
+
+      // Top-right giant slot number
+      actx.textBaseline = 'alphabetic';
+      actx.font = "900 44px 'Geist', 'Plus Jakarta Sans', sans-serif";
+      actx.fillStyle = 'rgba(255, 255, 255, 0.72)';
+      actx.textAlign = 'right';
+      actx.fillText(w.n, tx + CW - 28, by + 64);
+
+      // Bottom wrapped title (up to 3 lines) + peserta/date metadata
+      actx.textAlign = 'left';
+      actx.fillStyle = '#ffffff';
+      actx.font = "800 25px 'Plus Jakarta Sans', sans-serif";
+      const titleLines = wrapLines(actx, w.lomba, CW - 60, 3);
+      const lineH = 31;
+      const baseTitleY = by + CH - 64 - (titleLines.length - 1) * lineH;
+      titleLines.forEach((ln, li) => {
+        actx.fillText(ln, tx + 30, baseTitleY + li * lineH);
+      });
+
+      actx.fillStyle = 'rgba(226, 244, 236, 0.94)';
+      actx.font = "600 17px 'Plus Jakarta Sans', sans-serif";
+      let subLine = w.peserta + ' · ' + w.tanggal;
+      if (actx.measureText(subLine).width > CW - 60) {
+        while (subLine.length > 6 && actx.measureText(subLine + '…').width > CW - 60) {
+          subLine = subLine.slice(0, -1);
+        }
+        subLine += '…';
+      }
+      actx.fillText(subLine, tx + 30, by + CH - 28);
+
+      // Delicate inner frame
+      actx.strokeStyle = 'rgba(255, 255, 255, 0.24)';
+      actx.lineWidth = 2.5;
+      actx.strokeRect(tx + 12, by + 12, CW - 24, CH - 24);
+
+      actx.restore();
+    }
+
+    function generateAtlas() {
+      for (let i = 0; i < N; i++) {
+        drawAtlasTile(i, loadedImages[i]);
+      }
+      uploadAtlas();
+    }
+
+    function loadAtlasPhotos() {
+      PRESTASI_DATA.forEach((item, i) => {
+        const urls = [item.fotoLocal, item.fotoAlt, item.fotoRemote].filter(Boolean);
+        if (!urls.length) return;
+        let idx = 0;
+        function tryNext() {
+          if (idx >= urls.length) return;
+          const img = new Image();
+          if (/^https?:\/\//i.test(urls[idx])) {
+            img.crossOrigin = 'anonymous';
+          }
+          img.onload = function () {
+            loadedImages[i] = img;
+            drawAtlasTile(i, img);
+            queueUploadAtlas();
+          };
+          img.onerror = function () {
+            idx += 1;
+            tryNext();
+          };
+          img.src = urls[idx];
+        }
+        tryNext();
+      });
+    }
+
+    function resize() {
+      geom();
+      if (!W || !H) return;
+      canvas.width = Math.round(W * DPR);
+      canvas.height = Math.round(H * DPR);
+    }
+
+    if (btnRibbonMode && btnGridMode && galleryGrid) {
+      btnRibbonMode.addEventListener('click', () => {
+        btnRibbonMode.classList.add('is-active');
+        btnGridMode.classList.remove('is-active');
+        stage.style.display = 'block';
+        if (detailCard) detailCard.style.display = 'flex';
+        if (gridFilterBar) gridFilterBar.style.display = 'none';
+        galleryGrid.style.display = 'none';
+        resize();
+      });
+
+      btnGridMode.addEventListener('click', () => {
+        btnGridMode.classList.add('is-active');
+        btnRibbonMode.classList.remove('is-active');
+        stage.style.display = 'none';
+        if (detailCard) detailCard.style.display = 'none';
+        if (gridFilterBar) gridFilterBar.style.display = 'flex';
+        galleryGrid.style.display = 'grid';
+      });
+
+      galleryGrid.style.display = 'none';
+    }
+
+    stage.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0) return;
+      if (scrubRail && scrubRail.contains(e.target)) return;
+      dragging = true;
+      moved = 0;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      lastMoveT = performance.now();
+      dragVel = 0;
+      boost = 0;
+      try { stage.setPointerCapture(e.pointerId); } catch (_) {}
     });
 
-    renderCards('all');
+    window.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      const now = performance.now();
+      const dtm = Math.max(8, now - lastMoveT);
+      lastMoveT = now;
+      const dx = e.clientX - lastX;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      moved += Math.abs(dx);
+      target -= dx;
+      dragVel = dragVel * 0.6 + (-dx / dtm * 1000) * 0.4;
+    });
+
+    const release = (e) => {
+      if (!dragging) return;
+      dragging = false;
+      boost = (performance.now() - lastMoveT < 90) ? Math.max(-5000, Math.min(5000, dragVel)) : 0;
+      if (moved < 6 && e.type === 'pointerup') {
+        const rect = stage.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const st = stride();
+        if (clickX >= 0 && clickX <= rect.width && st > 0) {
+          const clickedSlot = Math.round((clickX - A0 + pos) / st);
+          const clickedIdx = ((clickedSlot % N) + N) % N;
+          openModalForIndex(clickedIdx);
+        } else {
+          openModalForIndex(activeIndex);
+        }
+      }
+    };
+
+    window.addEventListener('pointerup', release);
+    window.addEventListener('pointercancel', release);
+
+    stage.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      boost = Math.max(-6000, Math.min(6000, boost + d * 5));
+    }, { passive: false });
+
+    if (scrubRail) {
+      scrubRail.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const r = scrubRail.getBoundingClientRect();
+        const pct = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+        const total = stride() * N;
+        const cur = (target % total + total) % total;
+        boost = 0;
+        dragVel = 0;
+        target += pct * total - cur;
+      });
+    }
+
+    if (btnPrev) {
+      btnPrev.addEventListener('click', () => {
+        boost = 0;
+        target -= stride();
+      });
+    }
+    if (btnNext) {
+      btnNext.addEventListener('click', () => {
+        boost = 0;
+        target += stride();
+      });
+    }
+    if (btnPlay) {
+      btnPlay.addEventListener('click', () => {
+        autoDrift = !autoDrift;
+        btnPlay.textContent = autoDrift ? '⏸' : '▶';
+        btnPlay.title = autoDrift ? 'Jeda Putar Otomatis' : 'Mulai Putar Otomatis';
+      });
+    }
+
+    window.addEventListener('keydown', (e) => {
+      const isModalOpen = modal && modal.classList.contains('is-open');
+      if (isModalOpen) {
+        if (e.key === 'ArrowRight') openModalForIndex((modalIndex + 1) % N);
+        if (e.key === 'ArrowLeft') openModalForIndex((modalIndex - 1 + N) % N);
+        if (e.key === 'Escape') closeModal();
+        return;
+      }
+      if (e.key === 'ArrowRight') boost += 1400;
+      if (e.key === 'ArrowLeft') boost -= 1400;
+    });
+
+    window.addEventListener('resize', resize);
+
+    let prevT = performance.now();
+    function loop(t) {
+      requestAnimationFrame(loop);
+      const dt = Math.min(0.05, Math.max(0.001, (t - prevT) / 1000));
+      prevT = t;
+      const time = t / 1000;
+      const f60 = dt * 60;
+
+      if (!dragging) {
+        boost *= Math.pow(0.5, dt / 0.5);
+        if (Math.abs(boost) < 1) boost = 0;
+        target += ((autoDrift ? BASE : 0) + boost) * dt;
+      }
+      pos += (target - pos) * (1 - Math.pow(dragging ? 0.55 : 0.35, f60));
+
+      const velSigned = (pos - prevPos) / dt;
+      const sp = Math.min(1, Math.abs(velSigned) / 2600);
+      prevPos = pos;
+      shrinkE += (sp - shrinkE) * (sp > shrinkE ? 0.25 : 0.06) * f60;
+      speedE += (sp - speedE) * 0.12 * f60;
+
+      const st = stride();
+      const curSlot = Math.round(pos / st);
+      const idx = (curSlot % N + N) % N;
+
+      if (idx !== activeIndex && PRESTASI_DATA[idx]) {
+        activeIndex = idx;
+        syncDetailCard(idx);
+      }
+
+      const total = st * N;
+      const prog = ((pos % total + total) % total) / total;
+      if (scrubThumb) {
+        scrubThumb.style.transform = 'translateX(' + (prog * 400).toFixed(2) + '%)';
+      }
+
+      if (gl && W > 0 && H > 0) {
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        gl.uniform2f(U.uRes, W, H);
+        gl.uniform1f(U.uDpr, DPR);
+        gl.uniform1i(U.uAtlas, 0);
+        gl.uniform2f(U.uGrid, GX, GY);
+        gl.uniform1f(U.uN, N);
+        gl.uniform1f(U.uOffset, pos);
+        gl.uniform1f(U.uS, S);
+        gl.uniform1f(U.uGap, GAP);
+        gl.uniform1f(U.uLabH, LABH);
+        gl.uniform1f(U.uRad, 14);
+        gl.uniform1f(U.uVert, VERT ? 1 : 0);
+        gl.uniform1f(U.uA0, A0);
+        gl.uniform1f(U.uC0, C0);
+        gl.uniform1f(U.uLo, LO);
+        gl.uniform1f(U.uHi, HI);
+        gl.uniform1f(U.uStride, st);
+        gl.uniform4f(U.uFade, FADE[0], FADE[1], FADE[2], FADE[3]);
+        gl.uniform1f(U.uShrink, shrinkE);
+        gl.uniform1f(U.uTime, time);
+        gl.uniform1f(U.uIntro, 99.0);
+        gl.uniform1f(U.uWob, 1.4 + 7 * speedE);
+        gl.uniform1f(U.uE0, BEND.e0);
+        gl.uniform1f(U.uMag, BEND.mag);
+        gl.uniform1f(U.uLift, BEND.lift * S);
+        gl.uniform1f(U.uVMag, BEND.vmag);
+        gl.uniform1f(U.uBendAmt, 1.0);
+        gl.uniform3f(U.uCube, 0.05, 0.08, 0.1);
+        gl.uniform3f(U.uLabel, 0.035, 0.075, 0.11);
+        gl.uniform3f(U.uTint, 0.05, 0.36, 0.24);
+        gl.uniform1f(U.uTintAmt, 0.3);
+        gl.uniform1f(U.uHover, -10000);
+        gl.uniform1f(U.uHoverT, 0);
+        gl.uniform1f(U.uSeed, 0);
+
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+      }
+    }
+
+    if (initGL()) {
+      resize();
+      generateAtlas();
+      loadAtlasPhotos();
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => { generateAtlas(); });
+      }
+      requestAnimationFrame(loop);
+    } else {
+      if (btnGridMode) btnGridMode.click();
+    }
+  })();
+
+  /* ==========================================================================
+     PART B: SCOPED ASYAM CLOSING CTA PARALLAX & ENTRANCE (#asc-pr-cta)
+     ========================================================================== */
+  (function initPrestasiCta() {
+    'use strict';
+    const wrap = document.getElementById('asc-pr-cta');
+    const cta = document.getElementById('prCta');
+    const cw = document.getElementById('prCw');
+    if (!wrap || !cta || !cw) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      cw.style.opacity = '1';
+      cw.style.transform = 'none';
+      return;
+    }
+
+    const pxs = Array.from(cta.querySelectorAll('.pr-px')).map((el) => ({
+      el: el,
+      sp: parseFloat(el.dataset.sp || '0') || 0,
+      rt: parseFloat(el.dataset.rt || '0') || 0
+    }));
+
+    function clamp(x) { return Math.max(0, Math.min(1, x)); }
+    function ease(t) { return 1 - Math.pow(1 - t, 3); }
+
+    let ticking = false;
+    function renderCta() {
+      ticking = false;
+      const vh = window.innerHeight;
+      const rc = cta.getBoundingClientRect();
+      if (rc.bottom < -300 || rc.top > vh + 300) return;
+
+      const off = rc.top + rc.height / 2 - vh / 2;
+      pxs.forEach((p) => {
+        p.el.style.transform =
+          'translate3d(0,' + (off * p.sp).toFixed(1) + 'px,0) rotate(' + (off * p.rt).toFixed(2) + 'deg)';
+      });
+
+      if (rc.top < vh) {
+        const e = ease(clamp((vh - rc.top) / (vh * 0.65)));
+        cw.style.opacity = e.toFixed(3);
+        cw.style.transform =
+          'translate3d(0,' + ((1 - e) * 44).toFixed(1) + 'px,0) scale(' + (0.93 + 0.07 * e).toFixed(3) + ')';
+      }
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(renderCta);
+      }
+    }
+
+    renderCta();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
   })();
 </script>

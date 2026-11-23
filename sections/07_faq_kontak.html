@@ -1,0 +1,274 @@
+<style>
+  /* ==========================================================================
+     07. FAQ ACCORDION & FORM PENDAFTARAN (CLEAN EDITORIAL, ZERO SLOP)
+     ========================================================================== */
+  .faq-contact-grid {
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .faq-box {
+    background: #ffffff;
+    border: 1px solid rgba(9, 19, 28, 0.10);
+    border-radius: 16px;
+    padding: 8px 28px;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(9, 19, 28, 0.10);
+  }
+
+  .faq-item:last-child {
+    border-bottom: 0;
+  }
+
+  .faq-btn {
+    width: 100%;
+    padding: 22px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+    font-size: 17.5px;
+    font-weight: 700;
+    color: var(--ink, #09131c);
+  }
+
+  .faq-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: #f6f5f0;
+    border: 1px solid rgba(9, 19, 28, 0.10);
+    display: grid;
+    place-items: center;
+    font-size: 19px;
+    color: var(--emerald-700, #0d5c3f);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .faq-plus {
+    display: inline-block;
+    line-height: 1;
+    transition: transform 0.28s cubic-bezier(0.22, 0.31, 0, 1);
+  }
+
+  .faq-item.is-open .faq-icon {
+    background: var(--emerald-700, #0d5c3f);
+    border-color: var(--emerald-700, #0d5c3f);
+    color: #ffffff;
+  }
+
+  .faq-item.is-open .faq-plus {
+    transform: rotate(45deg);
+  }
+
+  .faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.22, 0.31, 0, 1);
+  }
+
+  .faq-content p {
+    padding-bottom: 22px;
+    font-size: 15px;
+    color: #273545;
+    line-height: 1.65;
+    text-align: left;
+  }
+
+  .contact-card {
+    background: #ffffff;
+    border: 1px solid rgba(9, 19, 28, 0.10);
+    border-radius: 16px;
+    padding: 36px;
+  }
+
+  .contact-card h3 {
+    font-family: var(--font-asc, 'Geist', sans-serif);
+    font-size: clamp(26px, 2.4vw, 34px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--ink, #09131c);
+    margin: 8px 0 20px;
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(9, 19, 28, 0.14);
+    background: #f6f5f0;
+    font-family: var(--font-ui, 'Plus Jakarta Sans', sans-serif);
+    font-size: 15px;
+    color: var(--ink, #09131c);
+    margin-bottom: 12px;
+    outline: none;
+    transition: border-color 0.18s, background 0.18s;
+  }
+
+  .input-field:focus {
+    background: #ffffff;
+    border-color: var(--emerald-700, #0d5c3f);
+  }
+
+  .humas-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(9, 19, 28, 0.10);
+  }
+
+  .humas-strip-title {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--ink, #09131c);
+  }
+
+  .humas-strip-sub {
+    font-size: 13.5px;
+    color: #526173;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  .humas-ig-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    border: 1px solid rgba(9, 19, 28, 0.16);
+    background: #f6f5f0;
+    color: var(--ink, #09131c);
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    flex-shrink: 0;
+    transition: background 0.18s, color 0.18s, border-color 0.18s, transform 0.18s;
+  }
+
+  .humas-ig-btn:hover {
+    background: var(--emerald-700, #0d5c3f);
+    border-color: var(--emerald-700, #0d5c3f);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 1024px) {
+    .faq-contact-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .contact-card {
+      padding: 24px;
+    }
+
+    .faq-box {
+      padding: 4px 20px;
+    }
+  }
+</style>
+
+<section class="section" id="faq">
+  <div class="faq-contact-grid">
+    <div data-reveal>
+      <div class="kicker"><span class="kicker-diamond"></span> 07 · Pertanyaan Umum</div>
+      <h2 class="section-h2" style="margin-bottom:28px;">Sebelum <span>Bergabung.</span></h2>
+
+      <div class="faq-box">
+        <div class="faq-item is-open">
+          <button type="button" class="faq-btn">
+            <span>Apakah harus sudah lancar mengaji untuk ikut UKM ASC?</span>
+            <span class="faq-icon"><span class="faq-plus">+</span></span>
+          </button>
+          <div class="faq-content" style="max-height:220px;">
+            <p>Sama sekali tidak. Kami menyediakan bidang <strong>Tahsinul Qur'an</strong> yang membimbing mahasiswa dari tingkat paling dasar dengan suasana belajar yang ramah, sabar, dan bebas rasa sungkan.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-btn">
+            <span>Apakah terbuka untuk mahasiswa semua jurusan di UM?</span>
+            <span class="faq-icon"><span class="faq-plus">+</span></span>
+          </button>
+          <div class="faq-content">
+            <p>Ya, terbuka untuk seluruh mahasiswa Universitas Negeri Malang dari fakultas mana pun sesuai semboyan kami: <em>Berdiri di atas dan untuk semua golongan</em>.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-btn">
+            <span>Bagaimana jika saya tertarik di bidang desain, IT, atau musik?</span>
+            <span class="faq-icon"><span class="faq-plus">+</span></span>
+          </button>
+          <div class="faq-content">
+            <p>ASC memiliki bidang <strong>Desain Aplikasi Al-Qur'an (DAQ)</strong> untuk peminat UI/UX &amp; pemrograman, <strong>Khaththil Qur'an</strong> untuk seni visual/kaligrafi, serta <strong>Voice of ASC</strong> dan <strong>Ulul Musthofa</strong> untuk seni vokal &amp; hadrah.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-card" id="gabung" data-reveal>
+      <div class="kicker"><span class="kicker-diamond"></span> Pendaftaran &amp; Kolaborasi</div>
+      <h3>Mari Bertumbuh Bersama.</h3>
+
+      <form id="joinForm">
+        <input type="text" class="input-field" placeholder="Nama Lengkap &amp; Fakultas / Angkatan" required />
+        <input type="email" class="input-field" placeholder="Alamat Email atau Nomor WhatsApp" required />
+        <input type="text" class="input-field" placeholder="Bidang Pembinaan yang Diminati (Misal: Tahsin / DAQ / Tilawah)" />
+        <textarea class="input-field" rows="3" placeholder="Pesan atau pertanyaan singkat..."></textarea>
+        <button type="submit" class="btn-primary-pill" style="width:100%;">
+          <span>Kirim Pendaftaran / Pesan</span>
+          <span aria-hidden="true">→</span>
+        </button>
+        <p id="formSuccess" style="display:none;margin-top:14px;font-size:14px;font-weight:700;color:var(--emerald-700);">
+          Pesan berhasil tercatat. Tim Humas UKM ASC UM akan segera menghubungi kamu.
+        </p>
+      </form>
+
+      <div class="humas-strip">
+        <div>
+          <div class="humas-strip-title">Respon Cepat via Humas</div>
+          <p class="humas-strip-sub">
+            DM langsung ke <strong>@ukm_asc_um</strong> atau kunjungi Sekretariat Kompleks Masjid Al-Hikmah UM.
+          </p>
+        </div>
+        <a href="https://instagram.com/ukm_asc_um" target="_blank" rel="noopener" class="humas-ig-btn" aria-label="Buka Instagram UKM ASC UM">↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    'use strict';
+
+    document.querySelectorAll('.faq-item').forEach((item) => {
+      const btn = item.querySelector('.faq-btn');
+      const content = item.querySelector('.faq-content');
+      if (!btn || !content) return;
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.toggle('is-open');
+        content.style.maxHeight = isOpen ? content.scrollHeight + 'px' : '0px';
+      });
+    });
+
+    const joinForm = document.getElementById('joinForm');
+    const formSuccess = document.getElementById('formSuccess');
+    if (joinForm) {
+      joinForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (formSuccess) formSuccess.style.display = 'block';
+        e.target.reset();
+      });
+    }
+  })();
+</script>
