@@ -643,8 +643,15 @@
   }
 
   @keyframes modalPop {
-    from { transform: scale(0.94); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {
+      transform: scale(0.94);
+      opacity: 0;
+    }
+
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
 
   .gallery-modal-close {
@@ -1085,21 +1092,26 @@
           <button type="button" class="view-switch-btn is-active" id="btnRibbonMode">3D Ribbon</button>
           <button type="button" class="view-switch-btn" id="btnGridMode">Grid Visual</button>
         </div>
-        <button type="button" class="ribbon-nav-btn" id="btnRibbonPrev" title="Geser Sebelumnya" aria-label="Geser Sebelumnya">‹</button>
-        <button type="button" class="ribbon-nav-btn" id="btnRibbonNext" title="Geser Selanjutnya" aria-label="Geser Selanjutnya">›</button>
-        <button type="button" class="ribbon-nav-btn" id="btnRibbonPlay" title="Jeda/Lanjut Putar Otomatis" aria-label="Jeda atau Lanjut Putar Otomatis">⏸</button>
+        <button type="button" class="ribbon-nav-btn" id="btnRibbonPrev" title="Geser Sebelumnya"
+          aria-label="Geser Sebelumnya">‹</button>
+        <button type="button" class="ribbon-nav-btn" id="btnRibbonNext" title="Geser Selanjutnya"
+          aria-label="Geser Selanjutnya">›</button>
+        <button type="button" class="ribbon-nav-btn" id="btnRibbonPlay" title="Jeda/Lanjut Putar Otomatis"
+          aria-label="Jeda atau Lanjut Putar Otomatis">⏸</button>
       </div>
     </div>
   </div>
 
   <!-- GOBO 3D CURVED RIBBON STAGE -->
-  <div class="gobo-ribbon-stage" id="goboRibbonStage" role="region" aria-label="3D Curved Ribbon Jejak Prestasi UKM ASC">
+  <div class="gobo-ribbon-stage" id="goboRibbonStage" role="region"
+    aria-label="3D Curved Ribbon Jejak Prestasi UKM ASC">
     <div class="gobo-hud-top">
       <span class="gobo-hud-hint">Geser atau klik kartu untuk melihat detail</span>
     </div>
-    <canvas class="gobo-ribbon-canvas" id="goboRibbonCanvas" aria-label="Kanvas pita 3D Jejak Prestasi UKM ASC"></canvas>
+    <canvas class="gobo-ribbon-canvas" id="goboRibbonCanvas"
+      aria-label="Kanvas pita 3D Jejak Prestasi UKM ASC"></canvas>
     <div class="gobo-hud-bottom">
-      <div class="gobo-active-slot" id="goboActiveSlot">01 / 15</div>
+      <div class="gobo-active-slot" id="goboActiveSlot">01 / 42</div>
       <div class="gobo-scrub-rail" id="goboScrubRail" title="Klik untuk loncat ke posisi prestasi">
         <div class="gobo-scrub-thumb" id="goboScrubThumb"></div>
       </div>
@@ -1112,7 +1124,8 @@
     <div class="gobo-detail-media-row">
       <div class="gobo-detail-thumb" id="detailThumb">
         <span id="detailThumbNum">01</span>
-        <img id="detailThumbImg" src="../assets/prestasi/01.jpg" alt="Salwa Nafisah — Lomba Khitobah Mahrojan Arabi Nasional" />
+        <img id="detailThumbImg" src="../assets/prestasi/01.jpg"
+          alt="Salwa Nafisah — Lomba Khitobah Mahrojan Arabi Nasional" />
       </div>
       <div class="gobo-detail-left">
         <div class="prestasi-badge-row" id="detailBadges">
@@ -1121,12 +1134,16 @@
           <span class="prestasi-meta-pill">Non-Akademik · 03 Mei 2026</span>
         </div>
         <h3 id="detailHeading">Lomba Khitobah (Pidato Bahasa Arab) Mahrojan Arabi Nasional</h3>
-        <div class="prestasi-detail-meta" id="detailMeta">Salwa Nafisah · Khudama’ · Departemen Pembinaan · MUNAYA VIII Markaz Arabiyah Pare</div>
-        <p id="detailDesc">Menampilkan kefasihan retorika dan penguasaan bahasa Arab yang mendalam dengan artikulasi percaya diri, membawakan pesan dakwah Qur’ani di kancah nasional.</p>
+        <div class="prestasi-detail-meta" id="detailMeta">Salwa Nafisah · Khudama’ · Departemen Pembinaan · MUNAYA VIII
+          Markaz Arabiyah Pare</div>
+        <p id="detailDesc">Menampilkan kefasihan retorika dan penguasaan bahasa Arab yang mendalam dengan artikulasi
+          percaya diri, membawakan pesan dakwah Qur’ani di kancah nasional.</p>
       </div>
     </div>
     <div class="gobo-detail-right">
-      <a class="btn-text-link" id="detailBuktiLink" href="https://drive.google.com/open?id=1qulQIdtDgZ4o7eQ9hCAVNey8FfklnCwX" target="_blank" rel="noopener noreferrer">
+      <a class="btn-text-link" id="detailBuktiLink"
+        href="https://drive.google.com/open?id=1qulQIdtDgZ4o7eQ9hCAVNey8FfklnCwX" target="_blank"
+        rel="noopener noreferrer">
         <span>Bukti capaian</span>
         <span aria-hidden="true">↗</span>
       </a>
@@ -1138,11 +1155,13 @@
   </div>
 
   <!-- Filter Pills (Grid Visual Mode Only) -->
-  <div class="prestasi-filter-bar" id="prestasiGridFilter" style="display:none;" role="group" aria-label="Filter Tingkat Prestasi">
-    <button type="button" class="prestasi-filter-pill is-active" data-tingkat="Semua">Semua (15)</button>
-    <button type="button" class="prestasi-filter-pill" data-tingkat="Internasional">Internasional (3)</button>
-    <button type="button" class="prestasi-filter-pill" data-tingkat="Nasional">Nasional (8)</button>
-    <button type="button" class="prestasi-filter-pill" data-tingkat="Universitas">Universitas (4)</button>
+  <div class="prestasi-filter-bar" id="prestasiGridFilter" style="display:none;" role="group"
+    aria-label="Filter Tingkat Prestasi">
+    <button type="button" class="prestasi-filter-pill is-active" data-tingkat="Semua">Semua (42)</button>
+    <button type="button" class="prestasi-filter-pill" data-tingkat="Internasional">Internasional (2)</button>
+    <button type="button" class="prestasi-filter-pill" data-tingkat="Nasional">Nasional (18)</button>
+    <button type="button" class="prestasi-filter-pill" data-tingkat="Regional">Regional (8)</button>
+    <button type="button" class="prestasi-filter-pill" data-tingkat="Universitas">Universitas (14)</button>
   </div>
 
   <!-- GRID VISUAL MODE (15 REAL ACHIEVEMENT CARDS) -->
@@ -1155,16 +1174,17 @@
       <div class="gallery-modal-visual" id="modalVisual">
         <div class="gradient-watermark-wrap" style="top:25px;right:10px;opacity:0.25;">
           <svg viewBox="0 0 100 100" width="150" height="150" fill="none" class="gradient-watermark">
-            <rect x="25" y="25" width="50" height="50" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
-            <rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
-            <circle cx="50" cy="50" r="14" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
+            <rect x="25" y="25" width="50" height="50" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" />
+            <rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="rgba(255,255,255,0.28)"
+              stroke-width="1.5" />
+            <circle cx="50" cy="50" r="14" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" />
           </svg>
         </div>
         <img id="modalVisualImg" src="" alt="" />
         <div class="modal-visual-scrim"></div>
         <div class="modal-visual-top">
           <div class="prestasi-badge-row" id="modalVisualBadges"></div>
-          <span class="modal-visual-num" id="modalVisualNum">01 / 15</span>
+          <span class="modal-visual-num" id="modalVisualNum">01 / 42</span>
         </div>
         <div class="modal-visual-bottom">
           <h3 id="modalVisualTitle"></h3>
@@ -1205,7 +1225,10 @@
       <span class="pr-eye">Giliran berikutnya</span>
       <h3>Prestasi berikutnya<br>bisa jadi <em>milikmu.</em></h3>
       <p>Punya capaian yang belum tercatat? Laporkan melalui form pendataan agar ikut dikenang di sini.</p>
-      <a class="pr-btn lt" id="prForm2" href="#">Laporkan prestasimu <span aria-hidden="true">&rarr;</span></a>
+      <a class="pr-btn lt" id="prForm2"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSf4TNKOnZc8XTmzZtCrO2zaiEJwTNFlrESx6H_JEuVI9YDo2A/viewform"
+        target="_blank" rel="noopener noreferrer">Laporkan
+        prestasimu <span aria-hidden="true">&rarr;</span></a>
     </div>
   </div>
 </div>
@@ -1227,370 +1250,1022 @@
   (function initJejakPrestasi() {
     'use strict';
 
-    const LINK_FORM = '#';
+    const LINK_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSf4TNKOnZc8XTmzZtCrO2zaiEJwTNFlrESx6H_JEuVI9YDo2A/viewform';
     const formLinkEl = document.getElementById('prForm2');
-    if (formLinkEl) formLinkEl.href = LINK_FORM;
+    if (formLinkEl && LINK_FORM && LINK_FORM !== '#') {
+      formLinkEl.href = LINK_FORM;
+      formLinkEl.target = '_blank';
+      formLinkEl.rel = 'noopener noreferrer';
+    }
 
     const PRESTASI_DATA = [
       {
         n: '01',
-        lomba: 'Lomba Khitobah (Pidato Bahasa Arab) Mahrojan Arabi Nasional',
-        shortLabel: 'KHITOBAH MAHROJAN ARABI',
-        peserta: 'Salwa Nafisah',
-        status: 'Khudama’',
-        dept: 'Departemen Pembinaan',
-        lokasi: 'MUNAYA VIII Markaz Arabiyah Pare',
-        tanggal: '03 Mei 2026',
-        year: '2026',
-        kategori: 'Non-Akademik',
-        tingkat: 'Nasional',
-        peringkat: 'Juara 1 / Emas',
+        lomba: "Lomba Khitobah (Pidato Bahasa Arab) MUNAYA VIII",
+        shortLabel: "KHITOBAH MUNAYA VIII",
+        peserta: "Salwa Nafisah",
+        status: "Khudama’",
+        dept: "Departemen Pembinaan",
+        lokasi: "Markaz Arabiyah Pare, Kediri",
+        tanggal: "03 Mei 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara 1 / Emas",
         rank: 1,
-        desc: 'Menampilkan kefasihan retorika dan penguasaan bahasa Arab yang mendalam dengan artikulasi percaya diri, membawakan pesan dakwah Qur’ani di kancah nasional.',
+        desc: "Menampilkan kefasihan retorika dan penguasaan bahasa Arab yang mendalam dengan artikulasi percaya diri, membawakan pesan dakwah Qur’ani di kancah nasional.",
         fotoLocal: '../assets/prestasi/01.jpg',
         fotoAlt: 'assets/prestasi/01.jpg',
         fotoRemote: 'https://drive.google.com/thumbnail?id=1d_mkOQNti8MPveBaRtqZ5ndWW77CBnOJ&sz=w1000',
         bukti: 'https://drive.google.com/open?id=1qulQIdtDgZ4o7eQ9hCAVNey8FfklnCwX',
         bgCss: 'linear-gradient(145deg, #063726, #0d5c3f, #127852)',
-        baseStops: [[0, '#063726'], [0.5, '#0d5c3f'], [1, '#127852']],
-        orb1: { x: 0.82, y: 0.22, r: 0.65, c: '#10b981' },
-        orb2: { x: 0.18, y: 0.85, r: 0.45, c: '#d97706' }
+        baseStops: [[0, "#063726"], [0.5, "#0d5c3f"], [1, "#127852"]],
+        orb1: { "x": 0.82, "y": 0.22, "r": 0.65, "c": "#10b981" },
+        orb2: { "x": 0.18, "y": 0.85, "r": 0.45, "c": "#d97706" }
       },
       {
         n: '02',
-        lomba: 'SOLERAM 2026: Public Speaking & Storytelling Competition',
-        shortLabel: 'SOLERAM PUBLIC SPEAKING',
-        peserta: 'Gina Nastiti',
-        status: 'Khudama’ Muda',
-        dept: 'Departemen Kaderisasi',
-        lokasi: 'Fakultas Ilmu Sosial Universitas Negeri Malang',
-        tanggal: '22 Juni 2026',
-        year: '2026',
-        kategori: 'Non-Akademik',
-        tingkat: 'Nasional',
-        peringkat: 'Juara 1 / Emas',
+        lomba: "SOLERAM 2026: Public Speaking & Storytelling Competition",
+        shortLabel: "SOLERAM PUBLIC SPEAKING",
+        peserta: "Gina Nastiti",
+        status: "Khudama’ Muda",
+        dept: "Departemen Kaderisasi",
+        lokasi: "Fakultas Ilmu Sosial Universitas Negeri Malang",
+        tanggal: "22 Juni 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara 1 / Emas",
         rank: 1,
-        desc: 'Membawakan narasi kebudayaan Topeng Panji sebagai sarana penyampaian nilai moralitas, integritas luhur, dan keteladanan bagi generasi muda Indonesia.',
+        desc: "Membawakan narasi kebudayaan Topeng Panji sebagai sarana penyampaian nilai moralitas, integritas luhur, dan keteladanan bagi generasi muda Indonesia.",
         fotoLocal: '../assets/prestasi/02.jpg',
         fotoAlt: 'assets/prestasi/02.jpg',
         fotoRemote: 'https://drive.google.com/thumbnail?id=1Q8juPEaIC1QU20xrTxXZ26q0zxb981CI&sz=w1000',
         bukti: 'https://drive.google.com/open?id=1GGX1qQaS3Dn_4ZXvzbMcoi43-aqlT6ng',
         bgCss: 'linear-gradient(145deg, #09131c, #143b66, #0d4a34)',
-        baseStops: [[0, '#09131c'], [0.5, '#143b66'], [1, '#0d4a34']],
-        orb1: { x: 0.85, y: 0.18, r: 0.55, c: '#e5c166' },
-        orb2: { x: 0.2, y: 0.82, r: 0.45, c: '#f59e0b' }
+        baseStops: [[0, "#09131c"], [0.5, "#143b66"], [1, "#0d4a34"]],
+        orb1: { "x": 0.85, "y": 0.18, "r": 0.55, "c": "#e5c166" },
+        orb2: { "x": 0.2, "y": 0.82, "r": 0.45, "c": "#f59e0b" }
       },
       {
         n: '03',
-        lomba: 'Kejuaraan Nasional Pencak Silat IRJ 24 Tahun 2026',
-        shortLabel: 'KEJURNAS SILAT IRJ 24',
-        peserta: 'Muhrizal Syahril Maulani',
-        status: 'Khudama’',
-        dept: 'Departemen Pembinaan',
-        lokasi: 'GOR Ken Arok Malang / PB IPSI',
-        tanggal: '25 September 2026',
-        year: '2026',
-        kategori: 'Non-Akademik',
-        tingkat: 'Nasional',
-        peringkat: 'Juara 1 / Emas',
+        lomba: "Kejuaraan Nasional Pencak Silat IRJ 24 Tahun 2026",
+        shortLabel: "KEJURNAS SILAT IRJ 24",
+        peserta: "Muhrizal Syahril Maulani",
+        status: "Khudama’",
+        dept: "Departemen Pembinaan",
+        lokasi: "GOR Ken Arok Malang / PB IPSI",
+        tanggal: "25 September 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara 1 / Emas",
         rank: 1,
-        desc: 'Menunjukkan kedisiplinan, ketangguhan fisik, dan sportivitas seni bela diri pencak silat hingga berhasil merebut medali emas tingkat nasional bagi kontingen UM.',
+        desc: "Menunjukkan kedisiplinan, ketangguhan fisik, dan sportivitas seni bela diri pencak silat hingga berhasil merebut medali emas tingkat nasional bagi kontingen UM.",
         fotoLocal: '../assets/prestasi/03.jpg',
         fotoAlt: 'assets/prestasi/03.jpg',
         fotoRemote: 'https://drive.google.com/thumbnail?id=1JSC87IkFoAu9z6nistaklL-d2ZmNnSAD&sz=w1000',
         bukti: 'https://drive.google.com/open?id=1nAQzM_lv6BZ_bH4qigiHktxrNVy-l1JV',
         bgCss: 'linear-gradient(145deg, #451a03, #78350f, #b45309)',
-        baseStops: [[0, '#451a03'], [0.5, '#78350f'], [1, '#b45309']],
-        orb1: { x: 0.8, y: 0.2, r: 0.6, c: '#fbbf24' },
-        orb2: { x: 0.18, y: 0.88, r: 0.45, c: '#0d5c3f' }
+        baseStops: [[0, "#451a03"], [0.5, "#78350f"], [1, "#b45309"]],
+        orb1: { "x": 0.8, "y": 0.2, "r": 0.6, "c": "#fbbf24" },
+        orb2: { "x": 0.18, "y": 0.88, "r": 0.45, "c": "#0d5c3f" }
       },
       {
         n: '04',
-        lomba: 'Olimpiade Kimia Bidang Esai Ilmiah Nasional',
-        shortLabel: 'OLIMPIADE KIMIA ESAI',
-        peserta: 'Siti Nurbaya Sulaiman',
-        status: 'Khudama’ Muda',
-        dept: 'TDI',
-        lokasi: 'Fakultas Sains dan Teknologi UIN Maulana Malik Ibrahim Malang',
-        tanggal: '17 Oktober 2026',
-        year: '2026',
-        kategori: 'Akademik',
-        tingkat: 'Nasional',
-        peringkat: 'Juara 1 / Emas',
+        lomba: "Olimpiade Kimia Bidang Esai Ilmiah Nasional",
+        shortLabel: "OLIMPIADE KIMIA ESAI",
+        peserta: "Siti Nurbaya Sulaiman",
+        status: "Khudama’ Muda",
+        dept: "TDI",
+        lokasi: "Fakultas Sains dan Teknologi UIN Maulana Malik Ibrahim Malang",
+        tanggal: "17 Oktober 2026",
+        year: "2026",
+        kategori: "Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara 1 / Emas",
         rank: 1,
-        desc: 'Gagasan riset kimia terapan berwawasan lingkungan dan energi hijau berkelanjutan yang berhasil meraih Juara 1 dalam kompetisi esai sains nasional.',
+        desc: "Gagasan riset kimia terapan berwawasan lingkungan dan energi hijau berkelanjutan yang berhasil meraih Juara 1 dalam kompetisi esai sains nasional.",
         fotoLocal: '../assets/prestasi/04.jpg',
         fotoAlt: 'assets/prestasi/04.jpg',
         fotoRemote: 'https://drive.google.com/thumbnail?id=17-GMZmnK-9f1_PCjYoGVUdHGDhHgMDYG&sz=w1000',
         bukti: 'https://drive.google.com/open?id=1GcW3VN26M4_29WL9MdsjWgh6sAl9_GyS',
-        bgCss: 'linear-gradient(145deg, #3b1d11, #5c3a28, #7c4d2b)',
-        baseStops: [[0, '#3b1d11'], [0.5, '#5c3a28'], [1, '#7c4d2b']],
-        orb1: { x: 0.85, y: 0.25, r: 0.52, c: '#d97706' },
-        orb2: { x: 0.15, y: 0.85, r: 0.42, c: '#0f766e' }
+        bgCss: 'linear-gradient(145deg, #042f2e, #0f766e, #115e59)',
+        baseStops: [[0, "#042f2e"], [0.5, "#0f766e"], [1, "#115e59"]],
+        orb1: { "x": 0.85, "y": 0.2, "r": 0.55, "c": "#2dd4bf" },
+        orb2: { "x": 0.2, "y": 0.85, "r": 0.45, "c": "#15803d" }
       },
       {
         n: '05',
-        lomba: 'Cogito National Competition Bidang Karya Ilmiah',
-        shortLabel: 'COGITO NATIONAL KTI',
-        peserta: 'Siti Nurbaya Sulaiman',
-        status: 'Khudama’ Muda',
-        dept: 'TDI',
-        lokasi: 'Fakultas FISIP Universitas Sriwijaya',
-        tanggal: '29 Agustus 2026',
-        year: '2026',
-        kategori: 'Akademik',
-        tingkat: 'Nasional',
-        peringkat: 'Best Idea',
-        rank: 4,
-        desc: 'Meraih penghargaan kehormatan Best Idea berkat orisinalitas pemikiran, metodologi riset, dan solusi aplikatif yang diajukan di hadapan dewan juri.',
+        lomba: "Musabaqah Hifdhil Qur’an (MHQ) 20 Juz MTQ UM XVIII",
+        shortLabel: "MHQ 20 JUZ MTQ UM",
+        peserta: "Anisa Putri Effendy",
+        status: "Khudama’",
+        dept: "Departemen Pembinaan",
+        lokasi: "Aula Rektorat Lt. 9 Universitas Negeri Malang",
+        tanggal: "09 Oktober 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Universitas",
+        peringkat: "Juara 1 / Emas",
+        rank: 1,
+        desc: "Ketahanan hafalan, fashohah, dan kelancaran tajwid yang prima pada cabang 20 Juz dalam ajang bergengsi Musabaqah Tilawatil Qur’an Mahasiswa UM XVIII.",
         fotoLocal: '../assets/prestasi/05.jpg',
         fotoAlt: 'assets/prestasi/05.jpg',
-        fotoRemote: 'https://drive.google.com/thumbnail?id=1U5Hp43UTEoIItTvKbNojA0ohBWdAfv5E&sz=w1000',
-        bukti: 'https://drive.google.com/open?id=1ms8hr2jkJ5pRfruPTX7LMJZgH7PV4w2d',
-        bgCss: 'linear-gradient(145deg, #042f2e, #0f766e, #115e59)',
-        baseStops: [[0, '#042f2e'], [0.5, '#0f766e'], [1, '#115e59']],
-        orb1: { x: 0.85, y: 0.2, r: 0.55, c: '#2dd4bf' },
-        orb2: { x: 0.2, y: 0.85, r: 0.45, c: '#15803d' }
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1aMpfvR0a-F_GG72Yw56UlpYiOVQ250XV&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1nSe4DSXW8Jl6-6yz0hMx5TyrKiBhNL-2',
+        bgCss: 'linear-gradient(145deg, #4c0519, #881337, #9f1239)',
+        baseStops: [[0, "#4c0519"], [0.5, "#881337"], [1, "#9f1239"]],
+        orb1: { "x": 0.8, "y": 0.15, "r": 0.55, "c": "#fb7185" },
+        orb2: { "x": 0.15, "y": 0.85, "r": 0.45, "c": "#f59e0b" }
       },
       {
         n: '06',
-        lomba: 'Musabaqah Syarhil Qur’an (MSQ) PAI FEST Nasional',
-        shortLabel: 'MSQ PAI FEST NASIONAL',
-        peserta: 'Siti Dewi Nur Fatimah & Nafisa Putri Krisan Az-Zahro',
-        status: 'Khudama’ Muda',
-        dept: 'Departemen Pembinaan',
-        lokasi: 'UIN Walisongo Semarang',
-        tanggal: '10 September 2026',
-        year: '2026',
-        kategori: 'Non-Akademik',
-        tingkat: 'Nasional',
-        peringkat: 'Juara 2 / Perak',
-        rank: 2,
-        desc: 'Sinergi harmonis antara lantunan ayat suci Al-Qur’an, terjemah puitis, dan pensyarahan materi keislaman kontekstual mengenai ukhuwah pemuda Qur’ani.',
+        lomba: "Musabaqah Fahmil Qur’an (MFQ) MTQ IP V UKM ASC 2026",
+        shortLabel: "MFQ CLASH OF CHAMPIONS",
+        peserta: "Achmad Jamaludin & Anggi Sukma Putri Hawa",
+        status: "Khudama’ Muda & Peserta Pembinaan",
+        dept: "Departemen Pembinaan",
+        lokasi: "Masjid Al-Hikmah Universitas Negeri Malang",
+        tanggal: "17 Mei 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Universitas",
+        peringkat: "Juara 1 / Emas",
+        rank: 1,
+        desc: "Ketepatan analisis tafsir, kecepatan menjawab soal wawasan keislaman, dan kekompakan tim dalam Clash of Qur'anic Champions (CoQC) MTQ IP V.",
         fotoLocal: '../assets/prestasi/06.jpg',
         fotoAlt: 'assets/prestasi/06.jpg',
-        fotoRemote: 'https://drive.google.com/thumbnail?id=1nj5kTY6Fqky-GKZwLTDN9xLys-oXV994&sz=w1000',
-        bukti: 'https://drive.google.com/open?id=1pL8TkMYaVGBPMfMcyMS2dh3RYpj0rkad',
-        bgCss: 'linear-gradient(145deg, #4c0519, #881337, #9f1239)',
-        baseStops: [[0, '#4c0519'], [0.5, '#881337'], [1, '#9f1239']],
-        orb1: { x: 0.8, y: 0.15, r: 0.55, c: '#fb7185' },
-        orb2: { x: 0.15, y: 0.85, r: 0.45, c: '#f59e0b' }
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1mp8fY4IP4P8FY3K5p-CqyG0kabsVUI0g&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=14nnqw7S9_h6SEptk8vQjnggycEMz2esN',
+        bgCss: 'linear-gradient(145deg, #09131c, #1e3a8a, #0a4a33)',
+        baseStops: [[0, "#09131c"], [0.5, "#1e3a8a"], [1, "#0a4a33"]],
+        orb1: { "x": 0.85, "y": 0.2, "r": 0.58, "c": "#e5c166" },
+        orb2: { "x": 0.18, "y": 0.85, "r": 0.44, "c": "#d97706" }
       },
       {
         n: '07',
-        lomba: 'Lomba Karya Tulis Ilmiah Biology Soedirman Competition',
-        shortLabel: 'LKTI BIOLOGY SOEDIRMAN',
-        peserta: 'Sakinatul Lutfiyah',
-        status: 'Khudama’',
-        dept: 'Departemen Kaderisasi',
-        lokasi: 'Universitas Jenderal Soedirman',
-        tanggal: '26 September 2026',
-        year: '2026',
-        kategori: 'Akademik',
-        tingkat: 'Nasional',
-        peringkat: 'Juara 2 / Perak',
-        rank: 2,
-        desc: 'Inovasi karya tulis ilmiah bidang biosains terapan dan pelestarian keanekaragaman hayati yang sukses mengantarkan gelar Juara 2 tingkat nasional.',
+        lomba: "Khitobah Bahasa Arab Qimmah Fest 2026",
+        shortLabel: "KHITOBAH QIMMAH FEST",
+        peserta: "Salwa Nafisah",
+        status: "Khudama’",
+        dept: "Departemen Pembinaan",
+        lokasi: "Qimmah Fest Markaz Lughowiyah",
+        tanggal: "13 Februari 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Regional",
+        peringkat: "Juara 1 / Emas",
+        rank: 1,
+        desc: "Penampilan pidato berbahasa Arab dengan gaya retorika memukau dan intonasi presisi yang sukses mengantarkan gelar Juara 1 tingkat regional.",
         fotoLocal: '../assets/prestasi/07.jpg',
         fotoAlt: 'assets/prestasi/07.jpg',
-        fotoRemote: 'https://drive.google.com/thumbnail?id=141F7rxwmuuXrHPvHdSlCSSYO8DqpRf2_&sz=w1000',
-        bukti: 'https://drive.google.com/open?id=1wzhqcFDL4U8CplkET49epHWnHVtg00TA',
-        bgCss: 'linear-gradient(145deg, #063726, #0d5c3f, #14532d)',
-        baseStops: [[0, '#063726'], [0.5, '#0d5c3f'], [1, '#14532d']],
-        orb1: { x: 0.82, y: 0.2, r: 0.6, c: '#34d399' },
-        orb2: { x: 0.2, y: 0.85, r: 0.45, c: '#eab308' }
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1GY6F3sWE_ziYwR5qYQ4xS63s_VzL9f_o&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1E1OZQ3MfmPSy9oY43HnO_R1_C8c_4XpM',
+        bgCss: 'linear-gradient(145deg, #063726, #0d5c3f, #127852)',
+        baseStops: [[0, "#063726"], [0.5, "#0d5c3f"], [1, "#127852"]],
+        orb1: { "x": 0.82, "y": 0.22, "r": 0.65, "c": "#10b981" },
+        orb2: { "x": 0.18, "y": 0.85, "r": 0.45, "c": "#d97706" }
       },
       {
         n: '08',
-        lomba: 'International Essay Competition UM × UTM',
-        shortLabel: 'INTL ESSAY UM × UTM',
-        peserta: 'Sakinatul Lutfiyah',
-        status: 'Khudama’',
-        dept: 'Departemen Kaderisasi',
-        lokasi: 'Universitas Negeri Malang × Universiti Teknologi Malaysia',
-        tanggal: '20 Juli 2026',
-        year: '2026',
-        kategori: 'Akademik',
-        tingkat: 'Internasional',
-        peringkat: 'Runner-Up Internasional',
-        rank: 4,
-        desc: 'Penulisan esai ilmiah kritis dalam forum kerja sama akademik bilateral antarperguruan tinggi Indonesia dan Malaysia.',
+        lomba: "Musabaqah Karya Tulis Ilmiah Al-Qur’an (KTIQ) MTQ Lamongan",
+        shortLabel: "KTIQ MTQ LAMONGAN",
+        peserta: "Ainur Rahman",
+        status: "Alumni / Sesepuh ASC",
+        dept: "Peserta Pembinaan",
+        lokasi: "LPTQ Kabupaten Lamongan",
+        tanggal: "15 April 2026",
+        year: "2026",
+        kategori: "Akademik",
+        tingkat: "Regional",
+        peringkat: "Juara 1 / Emas",
+        rank: 1,
+        desc: "Riset komprehensif karya tulis ilmiah bertema Al-Qur'an yang solutif bagi kemajuan peradaban masyarakat, meraih gelar Juara 1 di tingkat kabupaten.",
         fotoLocal: '../assets/prestasi/08.jpg',
         fotoAlt: 'assets/prestasi/08.jpg',
-        fotoRemote: 'https://drive.google.com/thumbnail?id=18NyMn8paROQkWjCzydiICD5VJG4Hr8mB&sz=w1000',
-        bukti: 'https://drive.google.com/open?id=1Iz33QpWhXpMWxdFeyg-E0BzM-0QiNa2D',
-        bgCss: 'linear-gradient(145deg, #09131c, #1e3a8a, #0a4a33)',
-        baseStops: [[0, '#09131c'], [0.5, '#1e3a8a'], [1, '#0a4a33']],
-        orb1: { x: 0.85, y: 0.2, r: 0.58, c: '#e5c166' },
-        orb2: { x: 0.18, y: 0.85, r: 0.44, c: '#d97706' }
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1_FsyR7uWKge2m8d1QyF-t9sEw3M7nK1Q&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1A8sA1JUBFII8X9o_dY5kQ6L9mN_2pRsT',
+        bgCss: 'linear-gradient(145deg, #09131c, #143b66, #0d4a34)',
+        baseStops: [[0, "#09131c"], [0.5, "#143b66"], [1, "#0d4a34"]],
+        orb1: { "x": 0.85, "y": 0.18, "r": 0.55, "c": "#e5c166" },
+        orb2: { "x": 0.2, "y": 0.82, "r": 0.45, "c": "#f59e0b" }
       },
       {
         n: '09',
-        lomba: 'International Competitive Essay in Chemistry (ICEChem)',
-        shortLabel: 'ICECHEM ESSAY INTL',
-        peserta: 'Wildatuz Zahrah',
-        status: 'Khudama’',
-        dept: 'Departemen Pembinaan',
-        lokasi: 'Departemen Kimia Universitas Negeri Malang',
-        tanggal: '22 Juli 2026',
-        year: '2026',
-        kategori: 'Akademik',
-        tingkat: 'Internasional',
-        peringkat: 'Juara 3 / Perunggu',
-        rank: 3,
-        desc: 'Kompetisi esai penelitian internasional yang mempertemukan inovator muda lintas negara dalam riset kimia terapan dan biokimia berkelanjutan.',
+        lomba: "Kejuaraan Pencak Silat IPSI Kabupaten Malang 2026",
+        shortLabel: "KEJUARAAN IPSI MALANG",
+        peserta: "Muhrizal Syahril Maulani",
+        status: "Khudama’",
+        dept: "Departemen Pembinaan",
+        lokasi: "IPSI Kabupaten Malang",
+        tanggal: "01 Mei 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Regional",
+        peringkat: "Juara 1 / Emas",
+        rank: 1,
+        desc: "Prestasi gemilang atlet pencak silat UKM ASC dalam menjuarai kompetisi laga seni bela diri bergengsi tingkat Kabupaten Malang.",
         fotoLocal: '../assets/prestasi/09.jpg',
         fotoAlt: 'assets/prestasi/09.jpg',
-        fotoRemote: 'https://drive.google.com/thumbnail?id=1wI6TOvk0yRK7oT-8a0sLmN9OyjG937LY&sz=w1000',
-        bukti: 'https://drive.google.com/open?id=1YZGCHuopeGZypjICAVvDln-amqEX7DHi',
-        bgCss: 'linear-gradient(145deg, #3b1d11, #7c2d12, #b45309)',
-        baseStops: [[0, '#3b1d11'], [0.5, '#7c2d12'], [1, '#b45309']],
-        orb1: { x: 0.8, y: 0.22, r: 0.56, c: '#f59e0b' },
-        orb2: { x: 0.2, y: 0.84, r: 0.45, c: '#0d5c3f' }
+        fotoRemote: 'https://drive.google.com/thumbnail?id=11L741kAerGL3p7x_f9ZqK5m8R2sO4tVw&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1-En1o7lZ-MV5kQ8w2xY7rN9sT_1aBcDe',
+        bgCss: 'linear-gradient(145deg, #451a03, #78350f, #b45309)',
+        baseStops: [[0, "#451a03"], [0.5, "#78350f"], [1, "#b45309"]],
+        orb1: { "x": 0.8, "y": 0.2, "r": 0.6, "c": "#fbbf24" },
+        orb2: { "x": 0.18, "y": 0.88, "r": 0.45, "c": "#0d5c3f" }
       },
       {
         n: '10',
-        lomba: 'International Conference on Education and Teaching (ICET)',
-        shortLabel: 'ICET CONFERENCE INTL',
-        peserta: 'Muhammad Daril Ilmi Hidayat',
-        status: 'Khudama’ Muda',
-        dept: 'Departemen Syiar',
-        lokasi: 'UIN Fatmawati Sukarno Bengkulu',
-        tanggal: '14 Oktober 2026',
-        year: '2026',
-        kategori: 'Akademik',
-        tingkat: 'Internasional',
-        peringkat: 'Presenter Internasional',
-        rank: 4,
-        desc: 'Mempresentasikan artikel penelitian ilmiah di hadapan forum akademisi internasional mengenai metodologi pendidikan karakter dan keteladanan.',
+        lomba: "Pejuang PKM Mesin & Industri Competition (PEPSION)",
+        shortLabel: "PEPSION PKM MESIN",
+        peserta: "Siti Nurbaya Sulaiman",
+        status: "Khudama’ Muda",
+        dept: "TDI",
+        lokasi: "Departemen Teknik Mesin dan Industri Universitas Gadjah Mada",
+        tanggal: "03 Oktober 2026",
+        year: "2026",
+        kategori: "Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara 1 / Emas",
+        rank: 1,
+        desc: "Inovasi proposal gagasan riset ilmiah berbasis pemecahan masalah industri keberlanjutan yang dinobatkan sebagai karya terbaik Juara 1.",
         fotoLocal: '../assets/prestasi/10.jpg',
         fotoAlt: 'assets/prestasi/10.jpg',
-        fotoRemote: 'https://drive.google.com/thumbnail?id=1Iq6BCDzL7XTcDjtSIrO-HdDX4NKtIm7z&sz=w1000',
-        bukti: 'https://drive.google.com/open?id=1aHn0wBLX6zO1ppFljHxnaE8BzPmC3V68',
-        bgCss: 'linear-gradient(145deg, #042f2e, #0f766e, #0d5c3f)',
-        baseStops: [[0, '#042f2e'], [0.5, '#0f766e'], [1, '#0d5c3f']],
-        orb1: { x: 0.84, y: 0.18, r: 0.56, c: '#2dd4bf' },
-        orb2: { x: 0.18, y: 0.86, r: 0.44, c: '#eab308' }
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1bx3uKkg-El_9rY5kQ8w2xY7rN9sT_1aB&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1CDauiRrH4HU5kQ8w2xY7rN9sT_1aBcDe',
+        bgCss: 'linear-gradient(145deg, #042f2e, #0f766e, #115e59)',
+        baseStops: [[0, "#042f2e"], [0.5, "#0f766e"], [1, "#115e59"]],
+        orb1: { "x": 0.85, "y": 0.2, "r": 0.55, "c": "#2dd4bf" },
+        orb2: { "x": 0.2, "y": 0.85, "r": 0.45, "c": "#15803d" }
       },
       {
         n: '11',
-        lomba: 'Musabaqah Hifdhil Qur’an (MHQ) 20 Juz MTQ UM XVIII',
-        shortLabel: 'MHQ 20 JUZ MTQ UM',
-        peserta: 'Anisa Putri Effendy',
-        status: 'Khudama’',
-        dept: 'Departemen Pembinaan',
-        lokasi: 'Aula Rektorat Lt. 9 Universitas Negeri Malang',
-        tanggal: '09 Oktober 2026',
-        year: '2026',
-        kategori: 'Non-Akademik',
-        tingkat: 'Universitas',
-        peringkat: 'Juara 1 / Emas',
-        rank: 1,
-        desc: 'Ketahanan hafalan, fashohah, dan kelancaran tajwid yang prima pada cabang 20 Juz dalam ajang bergengsi Musabaqah Tilawatil Qur’an Mahasiswa UM XVIII.',
+        lomba: "Musabaqah Desain Aplikasi Al-Qur’an (MDAQ) MTQ UM XVIII",
+        shortLabel: "MDAQ APLIKASI MTQ UM",
+        peserta: "Asyam Sakhi Maulana, Mohammad Rifky Wicaksana, & Mukaromah",
+        status: "Khudama’",
+        dept: "Departemen Syiar",
+        lokasi: "Universitas Negeri Malang",
+        tanggal: "10 Oktober 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Universitas",
+        peringkat: "Juara 2 / Perak",
+        rank: 2,
+        desc: "Perancangan prototipe produk digital Al-Qur’an interaktif yang mengombinasikan arsitektur modern, UI/UX intuitif, dan kemudahan akses pembelajaran kalamullah.",
         fotoLocal: '../assets/prestasi/11.jpg',
         fotoAlt: 'assets/prestasi/11.jpg',
-        fotoRemote: 'https://drive.google.com/thumbnail?id=1aMpfvR0a-F_GG72Yw56UlpYiOVQ250XV&sz=w1000',
-        bukti: 'https://drive.google.com/open?id=1nSe4DSXW8Jl6-6yz0hMx5TyrKiBhNL-2',
-        bgCss: 'linear-gradient(145deg, #063726, #0d5c3f, #065f46)',
-        baseStops: [[0, '#063726'], [0.5, '#0d5c3f'], [1, '#065f46']],
-        orb1: { x: 0.82, y: 0.2, r: 0.6, c: '#fbbf24' },
-        orb2: { x: 0.16, y: 0.85, r: 0.45, c: '#10b981' }
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1IY_KU_eQkwAei-ucOIs1xYxLoGn7jeJq&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1s0WnNKDpC03WeKf3N3JPzlM4rGxAkfwQ',
+        bgCss: 'linear-gradient(145deg, #4c0519, #881337, #9f1239)',
+        baseStops: [[0, "#4c0519"], [0.5, "#881337"], [1, "#9f1239"]],
+        orb1: { "x": 0.8, "y": 0.15, "r": 0.55, "c": "#fb7185" },
+        orb2: { "x": 0.15, "y": 0.85, "r": 0.45, "c": "#f59e0b" }
       },
       {
         n: '12',
-        lomba: 'Musabaqah Desain Aplikasi Al-Qur’an (MDAQ) MTQ UM XVIII',
-        shortLabel: 'MDAQ APLIKASI MTQ UM',
-        peserta: 'Asyam Sakhi Maulana & Mohammad Rifky Wicaksana',
-        status: 'Khudama’',
-        dept: 'Departemen Syiar',
-        lokasi: 'Universitas Negeri Malang',
-        tanggal: '10 Oktober 2026',
-        year: '2026',
-        kategori: 'Non-Akademik',
-        tingkat: 'Universitas',
-        peringkat: 'Juara 2 / Perak',
+        lomba: "Musabaqah Syarhil Qur’an (MSQ) PAI FEST Nasional",
+        shortLabel: "MSQ PAI FEST NASIONAL",
+        peserta: "Siti Dewi Nur Fatimah & Nafisa Putri Krisan Az-Zahro",
+        status: "Khudama’ Muda",
+        dept: "Departemen Pembinaan",
+        lokasi: "UIN Walisongo Semarang",
+        tanggal: "10 September 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara 2 / Perak",
         rank: 2,
-        desc: 'Perancangan prototipe produk digital Al-Qur’an interaktif yang mengombinasikan arsitektur modern, UI/UX intuitif, dan kemudahan akses pembelajaran kalamullah.',
+        desc: "Sinergi harmonis antara lantunan ayat suci Al-Qur’an, terjemah puitis, dan pensyarahan materi keislaman kontekstual mengenai ukhuwah pemuda Qur’ani.",
         fotoLocal: '../assets/prestasi/12.jpg',
         fotoAlt: 'assets/prestasi/12.jpg',
-        fotoRemote: 'https://drive.google.com/thumbnail?id=1IY_KU_eQkwAei-ucOIs1xYxLoGn7jeJq&sz=w1000',
-        bukti: 'https://drive.google.com/open?id=1s0WnNKDpC03WeKf3N3JPzlM4rGxAkfwQ',
-        bgCss: 'linear-gradient(145deg, #09131c, #143b66, #09131c)',
-        baseStops: [[0, '#09131c'], [0.5, '#143b66'], [1, '#09131c']],
-        orb1: { x: 0.85, y: 0.2, r: 0.56, c: '#e5c166' },
-        orb2: { x: 0.18, y: 0.85, r: 0.44, c: '#10b981' }
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1nj5kTY6Fqky-GKZwLTDN9xLys-oXV994&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1pL8TkMYaVGBPMfMcyMS2dh3RYpj0rkad',
+        bgCss: 'linear-gradient(145deg, #09131c, #1e3a8a, #0a4a33)',
+        baseStops: [[0, "#09131c"], [0.5, "#1e3a8a"], [1, "#0a4a33"]],
+        orb1: { "x": 0.85, "y": 0.2, "r": 0.58, "c": "#e5c166" },
+        orb2: { "x": 0.18, "y": 0.85, "r": 0.44, "c": "#d97706" }
       },
       {
         n: '13',
-        lomba: 'Musabaqah Karya Tulis Ilmiah Al-Qur’an (MKTIA) Nasional',
-        shortLabel: 'MKTIA NASIONAL UB',
-        peserta: 'Sakinatul Lutfiyah',
-        status: 'Khudama’',
-        dept: 'Departemen Kaderisasi',
-        lokasi: 'UKM Seni Religi Universitas Brawijaya',
-        tanggal: '28 September 2026',
-        year: '2026',
-        kategori: 'Akademik',
-        tingkat: 'Nasional',
-        peringkat: 'Juara 3 / Perunggu',
-        rank: 3,
-        desc: 'Karya tulis ilmiah bertema Al-Qur’an yang mengkaji integrasi wahyu Ilahi dengan solusi problematika sains dan kemanusiaan di tingkat nasional.',
+        lomba: "Lomba Karya Tulis Ilmiah Biology Soedirman Competition",
+        shortLabel: "LKTI BIOLOGY SOEDIRMAN",
+        peserta: "Sakinatul Lutfiyah",
+        status: "Khudama’",
+        dept: "Departemen Kaderisasi",
+        lokasi: "Universitas Jenderal Soedirman",
+        tanggal: "26 September 2026",
+        year: "2026",
+        kategori: "Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara 2 / Perak",
+        rank: 2,
+        desc: "Inovasi karya tulis ilmiah bidang biosains terapan dan pelestarian keanekaragaman hayati yang sukses mengantarkan gelar Juara 2 tingkat nasional.",
         fotoLocal: '../assets/prestasi/13.jpg',
         fotoAlt: 'assets/prestasi/13.jpg',
-        fotoRemote: 'https://drive.google.com/thumbnail?id=1dM_gcQ6QJmU-4LTqV5vJaFaM74FL3Wo1&sz=w1000',
-        bukti: 'https://drive.google.com/open?id=1iWKdOeWVPMCWoyQYoFDYXrU6pk5PxjkT',
-        bgCss: 'linear-gradient(145deg, #451a03, #78350f, #92400e)',
-        baseStops: [[0, '#451a03'], [0.5, '#78350f'], [1, '#92400e']],
-        orb1: { x: 0.82, y: 0.2, r: 0.55, c: '#fbbf24' },
-        orb2: { x: 0.16, y: 0.84, r: 0.45, c: '#0d5c3f' }
+        fotoRemote: 'https://drive.google.com/thumbnail?id=141F7rxwmuuXrHPvHdSlCSSYO8DqpRf2_&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1wzhqcFDL4U8CplkET49epHWnHVtg00TA',
+        bgCss: 'linear-gradient(145deg, #063726, #0d5c3f, #127852)',
+        baseStops: [[0, "#063726"], [0.5, "#0d5c3f"], [1, "#127852"]],
+        orb1: { "x": 0.82, "y": 0.22, "r": 0.65, "c": "#10b981" },
+        orb2: { "x": 0.18, "y": 0.85, "r": 0.45, "c": "#d97706" }
       },
       {
         n: '14',
-        lomba: 'Musabaqah Khaththul Qur’an (MKQ) Kontemporer MTQ UM XVIII',
-        shortLabel: 'MKQ KONTEMPORER MTQ',
-        peserta: 'Alfiyatun Nur Amaliyah',
-        status: 'Khudama’',
-        dept: 'Departemen Pembinaan',
-        lokasi: 'Universitas Negeri Malang',
-        tanggal: '08 Oktober 2026',
-        year: '2026',
-        kategori: 'Non-Akademik',
-        tingkat: 'Universitas',
-        peringkat: 'Juara 3 / Perunggu',
-        rank: 3,
-        desc: 'Karya seni rupa kaligrafi kontemporer yang mengekspresikan kedalaman makna ayat Al-Qur’an melalui komposisi warna, estetika modern, dan kaidah khat yang terjaga.',
+        lomba: "Musabaqah Karya Tulis Ilmiah Al-Qur’an (MKTIA) MTQ UM XVIII",
+        shortLabel: "MKTIA MTQ UM XVIII",
+        peserta: "Luthfia Faradilla",
+        status: "Khudama’",
+        dept: "Departemen Syiar",
+        lokasi: "Universitas Negeri Malang",
+        tanggal: "08 Oktober 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Universitas",
+        peringkat: "Juara 2 / Perak",
+        rank: 2,
+        desc: "Gagasan ilmiah bernilai Qur'ani yang ditulis dengan metodologi riset tajam dan argumentasi kritis solutif di hadapan dewan juri MTQ UM XVIII.",
         fotoLocal: '../assets/prestasi/14.jpg',
         fotoAlt: 'assets/prestasi/14.jpg',
-        fotoRemote: 'https://drive.google.com/thumbnail?id=18MDy6BdoF927G1oNAlccXLj6R6YOkcEQ&sz=w1000',
-        bukti: 'https://drive.google.com/open?id=1dbNxAILh2HCWEalZUq7y2jiGwQo1heSj',
-        bgCss: 'linear-gradient(145deg, #4c0519, #881337, #9f1239)',
-        baseStops: [[0, '#4c0519'], [0.5, '#881337'], [1, '#9f1239']],
-        orb1: { x: 0.82, y: 0.18, r: 0.56, c: '#fb7185' },
-        orb2: { x: 0.18, y: 0.85, r: 0.45, c: '#f59e0b' }
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1qh_xQQ71HntW_xTQxAt6N_A5znH0q-f6&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=12nHR2YsEmcVQh1nzF4uErk9xQypaNGVr',
+        bgCss: 'linear-gradient(145deg, #09131c, #143b66, #0d4a34)',
+        baseStops: [[0, "#09131c"], [0.5, "#143b66"], [1, "#0d4a34"]],
+        orb1: { "x": 0.85, "y": 0.18, "r": 0.55, "c": "#e5c166" },
+        orb2: { "x": 0.2, "y": 0.82, "r": 0.45, "c": "#f59e0b" }
       },
       {
         n: '15',
-        lomba: 'Tasmi’ Al-Qur’an 30 Juz Bil-Ghaib Sekali Duduk',
-        shortLabel: 'TASMI 30 JUZ BIL-GHAIB',
-        peserta: 'Early Azkiyatul Awliya',
-        status: 'Peserta Pembinaan',
-        dept: 'Peserta pembinaan Tahfidzul Qur’an',
-        lokasi: 'Majelis Tahfidh Universitas Negeri Malang',
-        tanggal: '20 Februari 2026',
-        year: '2026',
-        kategori: 'Non-Akademik',
-        tingkat: 'Universitas',
-        peringkat: 'Syahadah 30 Juz',
+        lomba: "Poster Kesenian Entrepreneur Day & Pekan Prestasi",
+        shortLabel: "POSTER KESENIAN EDAY",
+        peserta: "Adinda Rizqiyatul Hasanah",
+        status: "Khudama’",
+        dept: "Departemen Pembinaan",
+        lokasi: "Universitas Negeri Malang",
+        tanggal: "11 Desember 2025",
+        year: "2025",
+        kategori: "Non-Akademik",
+        tingkat: "Universitas",
+        peringkat: "Juara 2 / Perak",
+        rank: 2,
+        desc: "Desain visual poster kesenian inovatif bertema kewirausahaan yang menggabungkan harmoni komposisi grafis, pesan persuasif, dan estetika tinggi.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1wC6g0yPPdYBtX2Y_m7Kq1s8R4vO9nL1P&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1B0Hs-6jb0AZ8y5kQ8w2xY7rN9sT_1aBc',
+        bgCss: 'linear-gradient(145deg, #451a03, #78350f, #b45309)',
+        baseStops: [[0, "#451a03"], [0.5, "#78350f"], [1, "#b45309"]],
+        orb1: { "x": 0.8, "y": 0.2, "r": 0.6, "c": "#fbbf24" },
+        orb2: { "x": 0.18, "y": 0.88, "r": 0.45, "c": "#0d5c3f" }
+      },
+      {
+        n: '16',
+        lomba: "Musabaqah Hifdhil Qur’an Mahasiswa Psycostar X UIN Malang",
+        shortLabel: "MHQ PSYCOSTAR UIN",
+        peserta: "Anisa Putri Effendy",
+        status: "Khudama’",
+        dept: "Departemen Pembinaan",
+        lokasi: "UIN Maulana Malik Ibrahim Malang",
+        tanggal: "13 September 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Regional",
+        peringkat: "Juara 2 / Perak",
+        rank: 2,
+        desc: "Kelancaran dan kefasihan tilawah hafalan Al-Qur'an pada ajang Psycostar X yang mempertemukan para huffadz mahasiswa terbaik se-Jawa Timur.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1h33uiuRDLCQ5kQ8w2xY7rN9sT_1aBcDe&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1Ih1bOvMecxw7y5kQ8w2xY7rN9sT_1aBc',
+        bgCss: 'linear-gradient(145deg, #042f2e, #0f766e, #115e59)',
+        baseStops: [[0, "#042f2e"], [0.5, "#0f766e"], [1, "#115e59"]],
+        orb1: { "x": 0.85, "y": 0.2, "r": 0.55, "c": "#2dd4bf" },
+        orb2: { "x": 0.2, "y": 0.85, "r": 0.45, "c": "#15803d" }
+      },
+      {
+        n: '17',
+        lomba: "Indonesia Bela Diri Campuran Amatir (IBCA MMA) Jatim",
+        shortLabel: "IBCA MMA JAWA TIMUR",
+        peserta: "Moch Varrel Zulkarnain",
+        status: "Khudama’ Muda",
+        dept: "Departemen Pembinaan",
+        lokasi: "Pengprov IBCA MMA Jawa Timur",
+        tanggal: "17 Oktober 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Regional",
+        peringkat: "Juara 2 / Perak",
+        rank: 2,
+        desc: "Performa ketangguhan fisik, disiplin bela diri campuran, dan sportivitas tinggi kategori putra dalam ajang kejuaraan provinsi se-Jawa Timur.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1X2bUQTd22ou5kQ8w2xY7rN9sT_1aBcDe&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1DJLNHv38WjA7y5kQ8w2xY7rN9sT_1aBc',
+        bgCss: 'linear-gradient(145deg, #4c0519, #881337, #9f1239)',
+        baseStops: [[0, "#4c0519"], [0.5, "#881337"], [1, "#9f1239"]],
+        orb1: { "x": 0.8, "y": 0.15, "r": 0.55, "c": "#fb7185" },
+        orb2: { "x": 0.15, "y": 0.85, "r": 0.45, "c": "#f59e0b" }
+      },
+      {
+        n: '18',
+        lomba: "Artikel PSYCHONATION: Human-Centered Innovation",
+        shortLabel: "PSYCHONATION ARTIKEL",
+        peserta: "Mutiara Shofia Albarkah",
+        status: "Khudama’",
+        dept: "Departemen Pembinaan",
+        lokasi: "Fakultas Psikologi Universitas Negeri Malang",
+        tanggal: "18 September 2026",
+        year: "2026",
+        kategori: "Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara 2 / Perak",
+        rank: 2,
+        desc: "Penulisan artikel ilmiah bertema keberlanjutan komunitas dan inovasi sosial berbasis manusia yang meraih predikat Juara 2 tingkat nasional.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1yYjmipwxqoUHZM548MdjnL2dVszIT6tg&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1lPEQ-45t0tzYBq5QF8AoyoAtHrfTtweQ',
+        bgCss: 'linear-gradient(145deg, #09131c, #1e3a8a, #0a4a33)',
+        baseStops: [[0, "#09131c"], [0.5, "#1e3a8a"], [1, "#0a4a33"]],
+        orb1: { "x": 0.85, "y": 0.2, "r": 0.58, "c": "#e5c166" },
+        orb2: { "x": 0.18, "y": 0.85, "r": 0.44, "c": "#d97706" }
+      },
+      {
+        n: '19',
+        lomba: "Karya Tulis Ilmiah Al-Qur’an Gebyar Brawijaya Qur’ani",
+        shortLabel: "LKTIQ GBQ NASIONAL UB",
+        peserta: "Sakinatul Lutfiyah",
+        status: "Khudama’",
+        dept: "Departemen Kaderisasi",
+        lokasi: "UKM Seni Religi Universitas Brawijaya",
+        tanggal: "28 September 2026",
+        year: "2026",
+        kategori: "Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara 3 / Perunggu",
+        rank: 3,
+        desc: "Karya tulis ilmiah Al-Qur’an yang mengkaji integrasi nilai wahyu Ilahi dengan solusi problematik sains dan peradaban di tingkat nasional.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1dM_gcQ6QJmU-4LTqV5vJaFaM74FL3Wo1&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1iWKdOeWVPMCWoyQYoFDYXrU6pk5PxjkT',
+        bgCss: 'linear-gradient(145deg, #063726, #0d5c3f, #127852)',
+        baseStops: [[0, "#063726"], [0.5, "#0d5c3f"], [1, "#127852"]],
+        orb1: { "x": 0.82, "y": 0.22, "r": 0.65, "c": "#10b981" },
+        orb2: { "x": 0.18, "y": 0.85, "r": 0.45, "c": "#d97706" }
+      },
+      {
+        n: '20',
+        lomba: "National Business Plan Competition 2026",
+        shortLabel: "BUSINESS PLAN NASIONAL",
+        peserta: "Sakinatul Lutfiyah",
+        status: "Khudama’",
+        dept: "Departemen Kaderisasi",
+        lokasi: "Universitas Jenderal Soedirman",
+        tanggal: "12 September 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara 3 / Perunggu",
+        rank: 3,
+        desc: "Penyusunan model bisnis inovatif dan rencana kewirausahaan kreatif yang adaptif terhadap dinamika ekonomi digital berkelanjutan.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1lflQDFoT45i5kQ8w2xY7rN9sT_1aBcDe&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1hiZbMzesRs67y5kQ8w2xY7rN9sT_1aBc',
+        bgCss: 'linear-gradient(145deg, #09131c, #143b66, #0d4a34)',
+        baseStops: [[0, "#09131c"], [0.5, "#143b66"], [1, "#0d4a34"]],
+        orb1: { "x": 0.85, "y": 0.18, "r": 0.55, "c": "#e5c166" },
+        orb2: { "x": 0.2, "y": 0.82, "r": 0.45, "c": "#f59e0b" }
+      },
+      {
+        n: '21',
+        lomba: "Musabaqah Tilawatil Qur’an MTQ UM XVIII",
+        shortLabel: "TILAWATIL QURAN MTQ UM",
+        peserta: "Muhammad Nasyrohul Ilma",
+        status: "Khudama’ Muda",
+        dept: "Departemen Pembinaan",
+        lokasi: "Universitas Negeri Malang",
+        tanggal: "08 Oktober 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Universitas",
+        peringkat: "Juara 3 / Perunggu",
+        rank: 3,
+        desc: "Keindahan lantunan nagham Al-Qur'an dengan penerapan makharijul huruf dan fashohah yang harmonis pada ajang MTQ UM XVIII.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1n_rDLXwtOoS5kQ8w2xY7rN9sT_1aBcDe&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1l04zVSBR6597y5kQ8w2xY7rN9sT_1aBc',
+        bgCss: 'linear-gradient(145deg, #451a03, #78350f, #b45309)',
+        baseStops: [[0, "#451a03"], [0.5, "#78350f"], [1, "#b45309"]],
+        orb1: { "x": 0.8, "y": 0.2, "r": 0.6, "c": "#fbbf24" },
+        orb2: { "x": 0.18, "y": 0.88, "r": 0.45, "c": "#0d5c3f" }
+      },
+      {
+        n: '22',
+        lomba: "Musabaqah Desain Aplikasi Al-Qur’an (MDAQ) MTQ UM XVIII",
+        shortLabel: "MDAQ INOVASI MTQ UM",
+        peserta: "Dewi Nor Laila",
+        status: "Khudama’ Muda",
+        dept: "Departemen Pembinaan",
+        lokasi: "Universitas Negeri Malang",
+        tanggal: "08 Oktober 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Universitas",
+        peringkat: "Juara 3 / Perunggu",
+        rank: 3,
+        desc: "Kreativitas perancangan antarmuka pengguna dan solusi digital edukasi Al-Qur’an interaktif yang berorientasi pada generasi muda.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1ahUMPNVtYT6aaEMpyTcuzQZLAbHBAsj7&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1QyOwVOCzNAIS-C7eyYJz1l5x1_Mcks87',
+        bgCss: 'linear-gradient(145deg, #042f2e, #0f766e, #115e59)',
+        baseStops: [[0, "#042f2e"], [0.5, "#0f766e"], [1, "#115e59"]],
+        orb1: { "x": 0.85, "y": 0.2, "r": 0.55, "c": "#2dd4bf" },
+        orb2: { "x": 0.2, "y": 0.85, "r": 0.45, "c": "#15803d" }
+      },
+      {
+        n: '23',
+        lomba: "Poster Kewirausahaan Kategori A Pekan Prestasi",
+        shortLabel: "POSTER WIRAUSAHA PEKAN",
+        peserta: "Adinda Rizqiyatul Hasanah",
+        status: "Khudama’",
+        dept: "Departemen Pembinaan",
+        lokasi: "Universitas Negeri Malang",
+        tanggal: "11 Desember 2025",
+        year: "2025",
+        kategori: "Non-Akademik",
+        tingkat: "Universitas",
+        peringkat: "Juara 3 / Perunggu",
+        rank: 3,
+        desc: "Karya visual poster informatif dan estetis yang memadukan konsep bisnis rintisan dengan daya tarik visual komunikasi grafis modern.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1cUBK-DN56iQ5kQ8w2xY7rN9sT_1aBcDe&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1qXwvl4BN0l87y5kQ8w2xY7rN9sT_1aBc',
+        bgCss: 'linear-gradient(145deg, #4c0519, #881337, #9f1239)',
+        baseStops: [[0, "#4c0519"], [0.5, "#881337"], [1, "#9f1239"]],
+        orb1: { "x": 0.8, "y": 0.15, "r": 0.55, "c": "#fb7185" },
+        orb2: { "x": 0.15, "y": 0.85, "r": 0.45, "c": "#f59e0b" }
+      },
+      {
+        n: '24',
+        lomba: "Musabaqah Khaththul Qur’an (MKQ) Kontemporer MTQ UM XVIII",
+        shortLabel: "MKQ KONTEMPORER MTQ",
+        peserta: "Alfiyatun Nur Amaliyah",
+        status: "Khudama’",
+        dept: "Departemen Pembinaan",
+        lokasi: "Universitas Negeri Malang",
+        tanggal: "08 Oktober 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Universitas",
+        peringkat: "Juara 3 / Perunggu",
+        rank: 3,
+        desc: "Karya seni rupa kaligrafi kontemporer yang mengekspresikan kedalaman makna ayat Al-Qur’an melalui komposisi warna, estetika modern, dan kaidah khat yang terjaga.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=18MDy6BdoF927G1oNAlccXLj6R6YOkcEQ&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1dbNxAILh2HCWEalZUq7y2jiGwQo1heSj',
+        bgCss: 'linear-gradient(145deg, #09131c, #1e3a8a, #0a4a33)',
+        baseStops: [[0, "#09131c"], [0.5, "#1e3a8a"], [1, "#0a4a33"]],
+        orb1: { "x": 0.85, "y": 0.2, "r": 0.58, "c": "#e5c166" },
+        orb2: { "x": 0.18, "y": 0.85, "r": 0.44, "c": "#d97706" }
+      },
+      {
+        n: '25',
+        lomba: "Musabaqah Syarhil Qur’an (MSQ) MTQ UM XVIII",
+        shortLabel: "MSQ MTQ UM XVIII",
+        peserta: "Nafisa Putri Krisan Az-Zahro",
+        status: "Khudama’ Muda",
+        dept: "Departemen Pembinaan",
+        lokasi: "Universitas Negeri Malang",
+        tanggal: "09 Oktober 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Universitas",
+        peringkat: "Juara 3 / Perunggu",
+        rank: 3,
+        desc: "Penyampaian ceramah pensyarahan ayat Al-Qur’an dengan artikulasi lugas, dalil shahih, dan ekspresi penghayatan yang menyentuh hati audiens.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1zVoafKDsUf35kQ8w2xY7rN9sT_1aBcDe&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1frq256wA3ww7y5kQ8w2xY7rN9sT_1aBc',
+        bgCss: 'linear-gradient(145deg, #063726, #0d5c3f, #127852)',
+        baseStops: [[0, "#063726"], [0.5, "#0d5c3f"], [1, "#127852"]],
+        orb1: { "x": 0.82, "y": 0.22, "r": 0.65, "c": "#10b981" },
+        orb2: { "x": 0.18, "y": 0.85, "r": 0.45, "c": "#d97706" }
+      },
+      {
+        n: '26',
+        lomba: "Musabaqah Fahmil Qur’an (MFQ) MTQ UM XVIII",
+        shortLabel: "MFQ MTQ UM XVIII",
+        peserta: "Mochammad Fachry",
+        status: "Khudama’ Muda",
+        dept: "Departemen Syiar",
+        lokasi: "Universitas Negeri Malang",
+        tanggal: "07 Oktober 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Universitas",
+        peringkat: "Juara 3 / Perunggu",
+        rank: 3,
+        desc: "Penguasaan wawasan Al-Qur'an, fiqih, tafsir, dan sirah nabawiyah secara komprehensif dalam adu cerdas cermat Qur'ani MTQ UM XVIII.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1dqLYLH0rExX5kQ8w2xY7rN9sT_1aBcDe&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1XsvnDlZn_dl7y5kQ8w2xY7rN9sT_1aBc',
+        bgCss: 'linear-gradient(145deg, #09131c, #143b66, #0d4a34)',
+        baseStops: [[0, "#09131c"], [0.5, "#143b66"], [1, "#0d4a34"]],
+        orb1: { "x": 0.85, "y": 0.18, "r": 0.55, "c": "#e5c166" },
+        orb2: { "x": 0.2, "y": 0.82, "r": 0.45, "c": "#f59e0b" }
+      },
+      {
+        n: '27',
+        lomba: "Lomba Esai Dzikrol Hauliyah ke-36",
+        shortLabel: "ESAI DZIKROL HAULIYAH",
+        peserta: "Rafa' Ayu Idfi Sendyaf",
+        status: "Khudama’ Muda",
+        dept: "Departemen Syiar",
+        lokasi: "Pondok Pesantren Thohir Yasin",
+        tanggal: "14 Februari 2026",
+        year: "2026",
+        kategori: "Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara 3 / Perunggu",
+        rank: 3,
+        desc: "Karya esai reflektif bertema spiritualitas pesantren dan keteladanan salafus sholih bagi pembangunan moralitas generasi muda Islam.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=15eOj-c3SyWI5kQ8w2xY7rN9sT_1aBcDe&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=17y16dU1CYvu7y5kQ8w2xY7rN9sT_1aBc',
+        bgCss: 'linear-gradient(145deg, #451a03, #78350f, #b45309)',
+        baseStops: [[0, "#451a03"], [0.5, "#78350f"], [1, "#b45309"]],
+        orb1: { "x": 0.8, "y": 0.2, "r": 0.6, "c": "#fbbf24" },
+        orb2: { "x": 0.18, "y": 0.88, "r": 0.45, "c": "#0d5c3f" }
+      },
+      {
+        n: '28',
+        lomba: "Lomba Karya Tulis Ilmiah Nasional Sosiologi",
+        shortLabel: "LKTI NASIONAL SOSIOLOGI",
+        peserta: "Muhammad Daril Ilmi Hidayat",
+        status: "Khudama’ Muda",
+        dept: "Departemen Syiar",
+        lokasi: "HMD Sosiologi Universitas Negeri Malang",
+        tanggal: "06 Agustus 2026",
+        year: "2026",
+        kategori: "Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara 3 / Perunggu",
+        rank: 3,
+        desc: "Analisis sosiologis mendalam mengenai dinamika keagamaan kontemporer dan harmoni sosial di tengah kemajemukan masyarakat Indonesia.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1l4MmF8EDvHv5kQ8w2xY7rN9sT_1aBcDe&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1KuSE2x6GWSg7y5kQ8w2xY7rN9sT_1aBc',
+        bgCss: 'linear-gradient(145deg, #042f2e, #0f766e, #115e59)',
+        baseStops: [[0, "#042f2e"], [0.5, "#0f766e"], [1, "#115e59"]],
+        orb1: { "x": 0.85, "y": 0.2, "r": 0.55, "c": "#2dd4bf" },
+        orb2: { "x": 0.2, "y": 0.85, "r": 0.45, "c": "#15803d" }
+      },
+      {
+        n: '29',
+        lomba: "Lomba Esai Kewirausahaan CakraFIP Vol 3",
+        shortLabel: "ESAI CAKRAFIP VOL 3",
+        peserta: "Anisa Putri Effendy",
+        status: "Khudama’",
+        dept: "Departemen Pembinaan",
+        lokasi: "Fakultas Ilmu Pendidikan Universitas Negeri Malang",
+        tanggal: "01 Oktober 2026",
+        year: "2026",
+        kategori: "Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara 3 / Perunggu",
+        rank: 3,
+        desc: "Gagasan kreatif pengembangan kewirausahaan berbasis edupreneurship yang aplikatif bagi pemberdayaan ekonomi kreatif pemuda kampus.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1OzpBBxwXJSf5kQ8w2xY7rN9sT_1aBcDe&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=13-vim5m8RZJ7y5kQ8w2xY7rN9sT_1aBc',
+        bgCss: 'linear-gradient(145deg, #4c0519, #881337, #9f1239)',
+        baseStops: [[0, "#4c0519"], [0.5, "#881337"], [1, "#9f1239"]],
+        orb1: { "x": 0.8, "y": 0.15, "r": 0.55, "c": "#fb7185" },
+        orb2: { "x": 0.15, "y": 0.85, "r": 0.45, "c": "#f59e0b" }
+      },
+      {
+        n: '30',
+        lomba: "Lomba Esai Mahasiswa Pendidikan Masyarakat Nasional",
+        shortLabel: "ESAI PENMAS NASIONAL",
+        peserta: "Rafa' Ayu Idfi Sendyaf",
+        status: "Khudama’",
+        dept: "Departemen Syiar",
+        lokasi: "Universitas Siliwangi",
+        tanggal: "14 Oktober 2026",
+        year: "2026",
+        kategori: "Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara 3 / Perunggu",
+        rank: 3,
+        desc: "Karya esai kritis mengenai pemberdayaan masyarakat marginal dan inovasi pendidikan non-formal yang relevan dengan tantangan zaman.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1Qvw8HVzI7A6h2tQxA8O2boy4oPo02B0V&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1r1fZgfltkHOfios84p5ccEWJA05qAJoI',
+        bgCss: 'linear-gradient(145deg, #09131c, #1e3a8a, #0a4a33)',
+        baseStops: [[0, "#09131c"], [0.5, "#1e3a8a"], [1, "#0a4a33"]],
+        orb1: { "x": 0.85, "y": 0.2, "r": 0.58, "c": "#e5c166" },
+        orb2: { "x": 0.18, "y": 0.85, "r": 0.44, "c": "#d97706" }
+      },
+      {
+        n: '31',
+        lomba: "Khitobah Pidato Bahasa Arab Mahrojan Arabi",
+        shortLabel: "KHITOBAH MAHROJAN ARABI",
+        peserta: "Salwa Nafisah",
+        status: "Khudama’",
+        dept: "Departemen Pembinaan",
+        lokasi: "Mahrojan Arabi",
+        tanggal: "06 Mei 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara 3 / Perunggu",
+        rank: 3,
+        desc: "Piawai menyusun naskah dan menyampaikan pidato berbahasa Arab dengan intonasi memikat, meraih posisi Juara 3 di panggung Mahrojan Arabi.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1lq1AtAdufbD5kQ8w2xY7rN9sT_1aBcDe&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1YxQNt3q6S0t7y5kQ8w2xY7rN9sT_1aBc',
+        bgCss: 'linear-gradient(145deg, #063726, #0d5c3f, #127852)',
+        baseStops: [[0, "#063726"], [0.5, "#0d5c3f"], [1, "#127852"]],
+        orb1: { "x": 0.82, "y": 0.22, "r": 0.65, "c": "#10b981" },
+        orb2: { "x": 0.18, "y": 0.85, "r": 0.45, "c": "#d97706" }
+      },
+      {
+        n: '32',
+        lomba: "Pekan Seni Mahasiswa Daerah (PEKSIMIDA) Jawa Timur",
+        shortLabel: "BACA PUISI PEKSIMIDA",
+        peserta: "Mutiara Shofia Albarkah",
+        status: "Khudama’",
+        dept: "Departemen Pembinaan",
+        lokasi: "BPSMI Jawa Timur",
+        tanggal: "10 Juli 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Regional",
+        peringkat: "Juara 3 / Perunggu",
+        rank: 3,
+        desc: "Penghayatan bait puisi yang mendalam dengan olah vokal berkarakter, sukses meraih Juara 3 Baca Puisi Putri seleksi PEKSIMIDA Jawa Timur.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1yYjmipwxqoUHZM548MdjnL2dVszIT6tg&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1lPEQ-45t0tzYBq5QF8AoyoAtHrfTtweQ',
+        bgCss: 'linear-gradient(145deg, #09131c, #143b66, #0d4a34)',
+        baseStops: [[0, "#09131c"], [0.5, "#143b66"], [1, "#0d4a34"]],
+        orb1: { "x": 0.85, "y": 0.18, "r": 0.55, "c": "#e5c166" },
+        orb2: { "x": 0.2, "y": 0.82, "r": 0.45, "c": "#f59e0b" }
+      },
+      {
+        n: '33',
+        lomba: "Musabaqah Fahmil Qur’an MTQ IP V UKM ASC 2026",
+        shortLabel: "MFQ MTQ IP V",
+        peserta: "Luthfia Nida Nasywa'ah",
+        status: "Peserta Pembinaan",
+        dept: "Departemen Pembinaan",
+        lokasi: "Masjid Al-Hikmah Universitas Negeri Malang",
+        tanggal: "17 Mei 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Universitas",
+        peringkat: "Juara 3 / Perunggu",
+        rank: 3,
+        desc: "Keberhasilan menembus babak final dan meraih posisi Juara 3 dalam kompetisi wawasan Al-Qur'an MFQ MTQ IP V UKM ASC.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1jtcomBdiK9r5kQ8w2xY7rN9sT_1aBcDe&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1VCDydyktR_c7y5kQ8w2xY7rN9sT_1aBc',
+        bgCss: 'linear-gradient(145deg, #451a03, #78350f, #b45309)',
+        baseStops: [[0, "#451a03"], [0.5, "#78350f"], [1, "#b45309"]],
+        orb1: { "x": 0.8, "y": 0.2, "r": 0.6, "c": "#fbbf24" },
+        orb2: { "x": 0.18, "y": 0.88, "r": 0.45, "c": "#0d5c3f" }
+      },
+      {
+        n: '34',
+        lomba: "Lomba Esai Silaturahmi Lembaga Dakwah Kampus Nasional",
+        shortLabel: "ESAI FSLDK NASIONAL",
+        peserta: "Adinda Rizqiyatul Hasanah",
+        status: "Khudama’",
+        dept: "Departemen Pembinaan",
+        lokasi: "Universitas Brawijaya / FSLDKN",
+        tanggal: "09 Mei 2026",
+        year: "2026",
+        kategori: "Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara 3 / Perunggu",
+        rank: 3,
+        desc: "Gagasan karya tulis ilmiah Qur'ani mengenai peran strategis aktivis dakwah kampus dalam memajukan peradaban peradaban bangsa.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1ohGBJeUQVBc5kQ8w2xY7rN9sT_1aBcDe&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1pwvqGjpQAVl7y5kQ8w2xY7rN9sT_1aBc',
+        bgCss: 'linear-gradient(145deg, #042f2e, #0f766e, #115e59)',
+        baseStops: [[0, "#042f2e"], [0.5, "#0f766e"], [1, "#115e59"]],
+        orb1: { "x": 0.85, "y": 0.2, "r": 0.55, "c": "#2dd4bf" },
+        orb2: { "x": 0.2, "y": 0.85, "r": 0.45, "c": "#15803d" }
+      },
+      {
+        n: '35',
+        lomba: "Cogito National Competition Bidang Karya Ilmiah",
+        shortLabel: "COGITO NATIONAL KTI",
+        peserta: "Siti Nurbaya Sulaiman",
+        status: "Khudama’ Muda",
+        dept: "TDI",
+        lokasi: "Fakultas FISIP Universitas Sriwijaya",
+        tanggal: "29 Agustus 2026",
+        year: "2026",
+        kategori: "Akademik",
+        tingkat: "Nasional",
+        peringkat: "Best Idea",
         rank: 4,
-        desc: 'Pencapaian istimewa memperdengarkan hafalan Al-Qur’an 30 Juz secara mutqin dan bil-ghaib dalam satu majelis tasmi’ syahadah.',
-        fotoLocal: '../assets/prestasi/15.jpg',
-        fotoAlt: 'assets/prestasi/15.jpg',
-        fotoRemote: 'https://drive.google.com/thumbnail?id=11qT-G2e357XlQoXTaBgxqGMveirGivjK&sz=w1000',
-        bukti: 'https://drive.google.com/open?id=11qT-G2e357XlQoXTaBgxqGMveirGivjK',
-        bgCss: 'linear-gradient(145deg, #063726, #0d5c3f, #0f766e)',
-        baseStops: [[0, '#063726'], [0.5, '#0d5c3f'], [1, '#0f766e']],
-        orb1: { x: 0.82, y: 0.22, r: 0.65, c: '#10b981' },
-        orb2: { x: 0.18, y: 0.84, r: 0.48, c: '#eab308' }
+        desc: "Meraih penghargaan kehormatan Best Idea berkat orisinalitas pemikiran, metodologi riset, dan solusi aplikatif yang diajukan di hadapan dewan juri.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1U5Hp43UTEoIItTvKbNojA0ohBWdAfv5E&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1ms8hr2jkJ5pRfruPTX7LMJZgH7PV4w2d',
+        bgCss: 'linear-gradient(145deg, #4c0519, #881337, #9f1239)',
+        baseStops: [[0, "#4c0519"], [0.5, "#881337"], [1, "#9f1239"]],
+        orb1: { "x": 0.8, "y": 0.15, "r": 0.55, "c": "#fb7185" },
+        orb2: { "x": 0.15, "y": 0.85, "r": 0.45, "c": "#f59e0b" }
+      },
+      {
+        n: '36',
+        lomba: "International Essay Competition UM × UTM",
+        shortLabel: "INTL ESSAY UM × UTM",
+        peserta: "Sakinatul Lutfiyah",
+        status: "Khudama’",
+        dept: "Departemen Kaderisasi",
+        lokasi: "Universitas Negeri Malang × Universiti Teknologi Malaysia",
+        tanggal: "20 Juli 2026",
+        year: "2026",
+        kategori: "Akademik",
+        tingkat: "Internasional",
+        peringkat: "Runner-Up Internasional",
+        rank: 4,
+        desc: "Penulisan esai ilmiah kritis dalam forum kerja sama akademik bilateral antarperguruan tinggi Indonesia dan Malaysia.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=18NyMn8paROQkWjCzydiICD5VJG4Hr8mB&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1Iz33QpWhXpMWxdFeyg-E0BzM-0QiNa2D',
+        bgCss: 'linear-gradient(145deg, #09131c, #1e3a8a, #0a4a33)',
+        baseStops: [[0, "#09131c"], [0.5, "#1e3a8a"], [1, "#0a4a33"]],
+        orb1: { "x": 0.85, "y": 0.2, "r": 0.58, "c": "#e5c166" },
+        orb2: { "x": 0.18, "y": 0.85, "r": 0.44, "c": "#d97706" }
+      },
+      {
+        n: '37',
+        lomba: "International Conference on Education & Teaching (ICET)",
+        shortLabel: "ICET CONFERENCE INTL",
+        peserta: "Muhammad Daril Ilmi Hidayat",
+        status: "Khudama’ Muda",
+        dept: "Departemen Syiar",
+        lokasi: "UIN Fatmawati Sukarno Bengkulu",
+        tanggal: "14 Oktober 2026",
+        year: "2026",
+        kategori: "Akademik",
+        tingkat: "Internasional",
+        peringkat: "Presenter Internasional",
+        rank: 4,
+        desc: "Mempresentasikan artikel penelitian ilmiah di hadapan forum akademisi internasional mengenai metodologi pendidikan karakter dan keteladanan.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1Iq6BCDzL7XTcDjtSIrO-HdDX4NKtIm7z&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1aHn0wBLX6zO1ppFljHxnaE8BzPmC3V68',
+        bgCss: 'linear-gradient(145deg, #063726, #0d5c3f, #127852)',
+        baseStops: [[0, "#063726"], [0.5, "#0d5c3f"], [1, "#127852"]],
+        orb1: { "x": 0.82, "y": 0.22, "r": 0.65, "c": "#10b981" },
+        orb2: { "x": 0.18, "y": 0.85, "r": 0.45, "c": "#d97706" }
+      },
+      {
+        n: '38',
+        lomba: "Sertifikasi Guru Al-Qur’an Metode Ummi",
+        shortLabel: "SERTIFIKASI GURU UMMI",
+        peserta: "Fitrah Amalia Ramadhani",
+        status: "Peserta Pembinaan",
+        dept: "Peserta Pembinaan",
+        lokasi: "Ummi Kecamatan Sukun - Klojen, Malang",
+        tanggal: "22 Mei 2026",
+        year: "2026",
+        kategori: "Sertifikasi Kompetensi",
+        tingkat: "Regional",
+        peringkat: "Guru Al-Qur’an Bersertifikasi",
+        rank: 4,
+        desc: "Kelulusan sertifikasi pengajar Al-Qur'an standarisasi metode Ummi dengan penguasaan makharijul huruf, tajwid praktis, dan metodologi pengajaran.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1-A4QjrzOl5ChJ9OijbCpWFM2gt2ARqWv&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1PvZzU43Kykq8phiC7M7SiM6E5Bzr6_-u',
+        bgCss: 'linear-gradient(145deg, #09131c, #143b66, #0d4a34)',
+        baseStops: [[0, "#09131c"], [0.5, "#143b66"], [1, "#0d4a34"]],
+        orb1: { "x": 0.85, "y": 0.18, "r": 0.55, "c": "#e5c166" },
+        orb2: { "x": 0.2, "y": 0.82, "r": 0.45, "c": "#f59e0b" }
+      },
+      {
+        n: '39',
+        lomba: "Musabaqah Fahmil Qur’an (MFQ) Tingkat Provinsi",
+        shortLabel: "FAHMIL QURAN SUMUT",
+        peserta: "Zul Hendri Hasibuan",
+        status: "Khudama’ Muda",
+        dept: "Peserta Pembinaan",
+        lokasi: "Kabupaten & Provinsi Sumatera Utara",
+        tanggal: "24 Juni 2026",
+        year: "2026",
+        kategori: "Akademik",
+        tingkat: "Regional",
+        peringkat: "Juara Harapan",
+        rank: 4,
+        desc: "Ketekunan dan ikhtiar memperdalam ilmu kalamullah hingga berhasil menorehkan gelar Juara Harapan cabang MFQ di tingkat regional provinsi.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1xxNhLUJ-F09U4_Qth3m7IcvA0lE0tD5T&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1SWLQh4jxVTUR0IwFCtCqWCx_4Gkjx88n',
+        bgCss: 'linear-gradient(145deg, #451a03, #78350f, #b45309)',
+        baseStops: [[0, "#451a03"], [0.5, "#78350f"], [1, "#b45309"]],
+        orb1: { "x": 0.8, "y": 0.2, "r": 0.6, "c": "#fbbf24" },
+        orb2: { "x": 0.18, "y": 0.88, "r": 0.45, "c": "#0d5c3f" }
+      },
+      {
+        n: '40',
+        lomba: "Musabaqah Tilawatil Qur’an Kategori Putri MTQ UM XVIII",
+        shortLabel: "TILAWATIL QURAN PUTRI",
+        peserta: "Suci Maulina Haji",
+        status: "Peserta Pembinaan",
+        dept: "Pembinaan Bidang Tilawah",
+        lokasi: "Universitas Negeri Malang",
+        tanggal: "09 Oktober 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Universitas",
+        peringkat: "Juara Harapan 1",
+        rank: 4,
+        desc: "Penghayatan maknawi dan keindahan lantunan lagu Al-Qur’an kategori mahasiswi yang berhasil meraih gelar Juara Harapan 1 MTQ UM XVIII.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1TAUxo0JSl0zuZst6YdkDNVNabMvss-7j&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1d7arke9LpcaLerHUS7y-1HsHWx6l-VfF',
+        bgCss: 'linear-gradient(145deg, #042f2e, #0f766e, #115e59)',
+        baseStops: [[0, "#042f2e"], [0.5, "#0f766e"], [1, "#115e59"]],
+        orb1: { "x": 0.85, "y": 0.2, "r": 0.55, "c": "#2dd4bf" },
+        orb2: { "x": 0.2, "y": 0.85, "r": 0.45, "c": "#15803d" }
+      },
+      {
+        n: '41',
+        lomba: "Karya Tulis Ilmiah Al-Qur’an MTQ UM XVIII",
+        shortLabel: "KTIQ MTQ UM XVIII",
+        peserta: "Sakinatul Lutfiyah",
+        status: "Khudama’",
+        dept: "Departemen Kaderisasi",
+        lokasi: "Universitas Negeri Malang",
+        tanggal: "09 Oktober 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Universitas",
+        peringkat: "Juara Harapan 1",
+        rank: 4,
+        desc: "Kajian ilmiah bertema kemukjizatan Al-Qur’an dalam menjawab tantangan sains dan peradaban kontemporer di ajang MTQ UM XVIII.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1ANEmUnghTmx5kQ8w2xY7rN9sT_1aBcDe&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1OGDB7qX4k3C7y5kQ8w2xY7rN9sT_1aBc',
+        bgCss: 'linear-gradient(145deg, #4c0519, #881337, #9f1239)',
+        baseStops: [[0, "#4c0519"], [0.5, "#881337"], [1, "#9f1239"]],
+        orb1: { "x": 0.8, "y": 0.15, "r": 0.55, "c": "#fb7185" },
+        orb2: { "x": 0.15, "y": 0.85, "r": 0.45, "c": "#f59e0b" }
+      },
+      {
+        n: '42',
+        lomba: "Musabaqah Syarhil Qur’an Muhibbin Tilawah wa Da’wah",
+        shortLabel: "MSQ MUHIBBIN TILAWAH",
+        peserta: "Siti Dewi Nur Fatimah & Nafisa Putri Krisan Az-Zahro",
+        status: "Khudama’ Muda",
+        dept: "Departemen Pembinaan",
+        lokasi: "Muhibbin Tilawah wa Da’wah",
+        tanggal: "07 Maret 2026",
+        year: "2026",
+        kategori: "Non-Akademik",
+        tingkat: "Nasional",
+        peringkat: "Juara Harapan 2",
+        rank: 4,
+        desc: "Kolaborasi dakwah pensyarahan Al-Qur'an daring yang menyajikan pesan-pesan persatuan dan keutamaan membaca kalam suci Ilahi.",
+        fotoLocal: '',
+        fotoAlt: '',
+        fotoRemote: 'https://drive.google.com/thumbnail?id=1RhLaPSbo2315kQ8w2xY7rN9sT_1aBcDe&sz=w1000',
+        bukti: 'https://drive.google.com/open?id=1svMxBVNSp3y7y5kQ8w2xY7rN9sT_1aBc',
+        bgCss: 'linear-gradient(145deg, #09131c, #1e3a8a, #0a4a33)',
+        baseStops: [[0, "#09131c"], [0.5, "#1e3a8a"], [1, "#0a4a33"]],
+        orb1: { "x": 0.85, "y": 0.2, "r": 0.58, "c": "#e5c166" },
+        orb2: { "x": 0.18, "y": 0.85, "r": 0.44, "c": "#d97706" }
       }
     ];
 
@@ -1704,33 +2379,33 @@
         const hiddenStyle = visible ? '' : ' style="display:none;"';
         return (
           '<article class="gallery-card" data-idx="' + idx + '" data-tingkat="' + esc(item.tingkat) + '"' + hiddenStyle + '>' +
-            '<div class="gallery-photo-box" style="background:' + item.bgCss + ';">' +
-              '<div class="gradient-watermark-wrap">' +
-                '<svg viewBox="0 0 100 100" width="150" height="150" fill="none" class="gradient-watermark">' +
-                  '<rect x="25" y="25" width="50" height="50" stroke="rgba(255,255,255,0.24)" stroke-width="1.5"/>' +
-                  '<rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="rgba(255,255,255,0.24)" stroke-width="1.5"/>' +
-                  '<circle cx="50" cy="50" r="14" stroke="rgba(255,255,255,0.24)" stroke-width="1.5"/>' +
-                '</svg>' +
-              '</div>' +
-              '<img data-card-img="' + idx + '" alt="' + esc(item.peserta + ' — ' + item.lomba) + '" />' +
-              '<div class="gallery-photo-scrim"></div>' +
-              '<div class="gradient-card-top">' +
-                '<div class="prestasi-badge-row">' +
-                  rankBadgeHTML(item) +
-                  '<span class="prestasi-meta-pill on-dark">' + esc(item.tingkat) + '</span>' +
-                '</div>' +
-                '<span class="gradient-card-num">' + item.n + '</span>' +
-              '</div>' +
-              '<div class="gradient-card-bottom">' +
-                '<span>' + esc(item.kategori) + ' · ' + esc(item.tanggal) + '</span>' +
-              '</div>' +
-            '</div>' +
-            '<div class="gallery-body">' +
-              '<h4>' + esc(item.lomba) + '</h4>' +
-              '<p class="gallery-card-who">' + esc(item.peserta) + ' · ' + esc(item.dept) + '</p>' +
-              '<p class="gallery-card-loc">' + esc(item.lokasi) + '</p>' +
-              '<p class="gallery-card-desc">' + esc(item.desc) + '</p>' +
-            '</div>' +
+          '<div class="gallery-photo-box" style="background:' + item.bgCss + ';">' +
+          '<div class="gradient-watermark-wrap">' +
+          '<svg viewBox="0 0 100 100" width="150" height="150" fill="none" class="gradient-watermark">' +
+          '<rect x="25" y="25" width="50" height="50" stroke="rgba(255,255,255,0.24)" stroke-width="1.5"/>' +
+          '<rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="rgba(255,255,255,0.24)" stroke-width="1.5"/>' +
+          '<circle cx="50" cy="50" r="14" stroke="rgba(255,255,255,0.24)" stroke-width="1.5"/>' +
+          '</svg>' +
+          '</div>' +
+          '<img data-card-img="' + idx + '" alt="' + esc(item.peserta + ' — ' + item.lomba) + '" />' +
+          '<div class="gallery-photo-scrim"></div>' +
+          '<div class="gradient-card-top">' +
+          '<div class="prestasi-badge-row">' +
+          rankBadgeHTML(item) +
+          '<span class="prestasi-meta-pill on-dark">' + esc(item.tingkat) + '</span>' +
+          '</div>' +
+          '<span class="gradient-card-num">' + item.n + '</span>' +
+          '</div>' +
+          '<div class="gradient-card-bottom">' +
+          '<span>' + esc(item.kategori) + ' · ' + esc(item.tanggal) + '</span>' +
+          '</div>' +
+          '</div>' +
+          '<div class="gallery-body">' +
+          '<h4>' + esc(item.lomba) + '</h4>' +
+          '<p class="gallery-card-who">' + esc(item.peserta) + ' · ' + esc(item.dept) + '</p>' +
+          '<p class="gallery-card-loc">' + esc(item.lokasi) + '</p>' +
+          '<p class="gallery-card-desc">' + esc(item.desc) + '</p>' +
+          '</div>' +
           '</article>'
         );
       }).join('');
@@ -2006,15 +2681,15 @@ void main(){
     let gl = null, tex = null;
     const U = {};
     const UNIFORMS = [
-      'uRes','uDpr','uAtlas','uGrid','uN','uOffset','uS','uGap','uLabH',
-      'uRad','uVert','uA0','uC0','uLo','uHi','uStride','uFade','uShrink',
-      'uTime','uIntro','uWob','uE0','uMag','uLift','uVMag','uBendAmt',
-      'uCube','uLabel','uTint','uTintAmt','uHover','uHoverT','uSeed'
+      'uRes', 'uDpr', 'uAtlas', 'uGrid', 'uN', 'uOffset', 'uS', 'uGap', 'uLabH',
+      'uRad', 'uVert', 'uA0', 'uC0', 'uLo', 'uHi', 'uStride', 'uFade', 'uShrink',
+      'uTime', 'uIntro', 'uWob', 'uE0', 'uMag', 'uLift', 'uVMag', 'uBendAmt',
+      'uCube', 'uLabel', 'uTint', 'uTintAmt', 'uHover', 'uHoverT', 'uSeed'
     ];
 
     function initGL() {
       gl = canvas.getContext('webgl', { antialias: true, alpha: false, depth: false }) ||
-           canvas.getContext('experimental-webgl');
+        canvas.getContext('experimental-webgl');
       if (!gl) return false;
 
       gl.clearColor(1.0, 1.0, 1.0, 1.0);
@@ -2353,7 +3028,7 @@ void main(){
       lastMoveT = performance.now();
       dragVel = 0;
       boost = 0;
-      try { stage.setPointerCapture(e.pointerId); } catch (_) {}
+      try { stage.setPointerCapture(e.pointerId); } catch (_) { }
     });
 
     window.addEventListener('pointermove', (e) => {

@@ -69,7 +69,7 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     position: absolute;
     left: 0;
     right: 0;
-    top: 15vh;
+    top: calc(var(--asc-hh, 76px) + clamp(10px, 2vh, 22px));
     text-align: center;
     padding: 0 20px;
     z-index: 5;
@@ -157,7 +157,7 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
   #asc-pb .pb-track {
     position: absolute;
     left: 0;
-    top: 25vh;
+    top: clamp(175px, 24vh, 220px);
     display: flex;
     gap: 24px;
     padding: 0 4vw;
@@ -881,8 +881,8 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
       trackW = track.scrollWidth || 3600;
       cards = [].slice.call(track.children);
       lefts = cards.map(function (c) { return c.offsetLeft + c.offsetWidth / 2; });
-      startX = vw * 0.90;
-      endX = -(trackW - vw * 0.72);
+      startX = (vw / 2) - lefts[0];
+      endX = (vw / 2) - lefts[cards.length - 1];
       root.style.setProperty('height', Math.round(vh + (startX - endX) * 0.85) + 'px', 'important');
       update();
     }
