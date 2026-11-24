@@ -72,21 +72,40 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     top: 15vh;
     text-align: center;
     padding: 0 20px;
-    z-index: 1;
+    z-index: 5;
   }
 
   #asc-pb .pb-title {
     font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
-    font-size: clamp(32px, 4.6vw, 62px);
+    font-size: clamp(24px, 3.2vw, 42px);
     font-weight: 800;
-    line-height: 1.04;
+    line-height: 1.12;
     letter-spacing: -.035em;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    margin: 0;
+  }
+
+  #asc-pb .pb-title-main {
+    display: block;
+    color: var(--ink);
+  }
+
+  #asc-pb .pb-title-um {
+    display: block;
+    font-size: clamp(15px, 1.6vw, 21px);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: #0d5c3f;
   }
 
   #asc-pb .pb-uline {
     display: block;
-    width: min(42vw, 340px);
-    height: 18px;
+    width: min(36vw, 280px);
+    height: 12px;
     margin: 4px auto 0;
     overflow: visible;
   }
@@ -94,45 +113,74 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
   #asc-pb .pb-uline path {
     fill: none;
     stroke: #d7e6dc;
-    stroke-width: 5;
+    stroke-width: 4;
     stroke-linecap: round;
     stroke-linejoin: round;
   }
 
   #asc-pb .pb-sub {
     margin: 8px auto 0;
-    max-width: 520px;
-    font-size: 14.5px;
-    line-height: 1.55;
-    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #273545;
+    background: rgba(255, 255, 255, 0.90);
+    border: 1px solid rgba(9, 19, 28, 0.10);
+    padding: 5px 14px;
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(9, 19, 28, 0.05);
+  }
+
+  #asc-pb .pb-sub a {
+    color: #0d5c3f;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.18s;
+  }
+
+  #asc-pb .pb-sub a:hover {
+    color: #063726;
+    text-decoration: underline;
+  }
+
+  #asc-pb .pb-sub-dot {
+    color: rgba(9, 19, 28, 0.35);
   }
 
   /* Jalur kartu */
   #asc-pb .pb-track {
     position: absolute;
     left: 0;
-    top: 39.5vh;
+    top: 25vh;
     display: flex;
-    gap: 28px;
+    gap: 24px;
     padding: 0 4vw;
     will-change: transform;
     z-index: 2;
   }
 
   #asc-pb .pb-card {
-    flex: 0 0 clamp(270px, 30vw, 440px);
+    flex: 0 0 clamp(310px, 29vw, 420px);
     background: #fff;
     border-radius: 16px;
     border: 1px solid rgba(9, 19, 28, 0.10);
-    padding: 12px 12px 20px;
+    padding: 14px 14px 18px;
     box-shadow: 0 14px 30px -16px rgba(9, 19, 28, 0.16);
     will-change: transform;
     transform-origin: 50% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   #asc-pb .pb-img {
     position: relative;
-    aspect-ratio: 16/9;
     border-radius: 10px;
     background: #091f17 center/cover no-repeat;
     overflow: hidden;
@@ -140,21 +188,22 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
 
   #asc-pb .pb-img.pb-ph {
     background: #091f17;
-    padding: 18px 20px;
+    padding: 14px 16px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     color: #f6f5f0;
     border: 1px solid rgba(229, 193, 102, 0.22);
+    min-height: 96px;
   }
 
   #asc-pb .pb-ph-orn {
     position: absolute;
-    right: -18px;
-    bottom: -24px;
-    width: 136px;
-    height: 136px;
-    opacity: 0.22;
+    right: -16px;
+    bottom: -20px;
+    width: 110px;
+    height: 110px;
+    opacity: 0.18;
     pointer-events: none;
   }
 
@@ -164,12 +213,12 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 10px;
   }
 
   #asc-pb .pb-ph-num {
     font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
-    font-size: 32px;
+    font-size: 26px;
     font-weight: 800;
     line-height: 1;
     letter-spacing: -0.04em;
@@ -177,16 +226,44 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     font-variant-numeric: tabular-nums;
   }
 
+  #asc-pb .pb-badges {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
   #asc-pb .pb-badge {
     display: inline-flex;
     align-items: center;
-    background: rgba(246, 245, 240, 0.10);
-    border: 1px solid rgba(246, 245, 240, 0.18);
+    background: rgba(246, 245, 240, 0.12);
+    border: 1px solid rgba(246, 245, 240, 0.22);
     color: #f6f5f0;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 600;
-    padding: 5px 11px;
-    border-radius: 8px;
+    padding: 3px 9px;
+    border-radius: 6px;
+  }
+
+  #asc-pb .pb-ig-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(229, 193, 102, 0.18);
+    border: 1px solid rgba(229, 193, 102, 0.38);
+    color: #e5c166;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.18s, color 0.18s;
+  }
+
+  #asc-pb .pb-ig-pill:hover {
+    background: #e5c166;
+    color: #091f17;
   }
 
   #asc-pb .pb-ph-meta {
@@ -194,44 +271,94 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     z-index: 2;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
+    margin-top: 8px;
   }
 
   #asc-pb .pb-ph-focus {
     font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
     color: #ffffff;
     line-height: 1.25;
   }
 
-  #asc-pb .pb-ph-loc {
-    font-size: 12px;
-    font-weight: 500;
-    color: rgba(246, 245, 240, 0.72);
-  }
-
   #asc-pb .pb-card h3 {
     font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
-    font-size: clamp(18px, 1.6vw, 23px);
+    font-size: clamp(17px, 1.45vw, 21px);
     font-weight: 800;
     letter-spacing: -0.025em;
-    margin: 16px 6px 8px;
+    margin: 12px 4px 6px;
     line-height: 1.25;
+    color: var(--ink);
   }
 
-  #asc-pb .pb-card p {
-    font-size: 13.5px;
-    line-height: 1.6;
-    color: var(--muted);
-    margin: 0 6px 14px;
-    min-height: 4.4em;
+  /* Kotak Jadwal & Lokasi */
+  #asc-pb .pb-sched-box {
+    margin: 0 4px 10px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    background: #f6f5f0;
+    border: 1px solid rgba(9, 19, 28, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 11.5px;
+    color: #273545;
+  }
+
+  #asc-pb .pb-sched-item {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    line-height: 1.35;
+  }
+
+  #asc-pb .pb-sched-item .pb-icon {
+    flex-shrink: 0;
+    font-size: 11px;
+  }
+
+  #asc-pb .pb-sched-item strong {
+    color: #0d5c3f;
+    font-weight: 700;
+  }
+
+  /* Daftar Poin Ruang Tumbuh */
+  #asc-pb .pb-pts {
+    list-style: none;
+    padding: 0;
+    margin: 0 4px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+  }
+
+  #asc-pb .pb-pts li {
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: #374759;
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+  }
+
+  #asc-pb .pb-pts li::before {
+    content: "•";
+    color: #0d5c3f;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 1.2;
+    flex-shrink: 0;
   }
 
   #asc-pb .pb-row {
     display: flex;
-    margin: 0 6px;
+    margin: 0 4px;
+    padding-top: 4px;
+    border-top: 1px solid rgba(9, 19, 28, 0.06);
   }
 
   #asc-pb .pb-btn {
@@ -240,10 +367,10 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     align-items: center;
     justify-content: space-between;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 700;
     color: #fff;
-    padding: 12px 16px;
+    padding: 10px 14px;
     border-radius: 8px;
     background: #0d5c3f;
     transition: background 0.2s ease, transform 0.14s cubic-bezier(0.22, 1, 0.36, 1);
@@ -346,25 +473,25 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
   /* Tablet (641px - 1024px) */
   @media (max-width: 1024px) {
     #asc-pb .pb-head {
-      top: max(12vh, calc(var(--asc-hh, 0px) + 16px));
+      top: max(9vh, calc(var(--asc-hh, 0px) + 14px));
       left: 4vw;
       right: 4vw;
     }
 
     #asc-pb .pb-track {
-      top: 42vh;
-      gap: 20px;
+      top: 25vh;
+      gap: 18px;
     }
 
     #asc-pb .pb-card {
-      flex-basis: min(340px, 60vw);
+      flex-basis: min(360px, 64vw);
     }
   }
 
   /* Mobile (<= 640px) */
   @media (max-width: 640px) {
     #asc-pb .pb-head {
-      top: max(11vh, calc(var(--asc-hh, 0px) + 18px));
+      top: max(8vh, calc(var(--asc-hh, 0px) + 10px));
       padding: 0 16px;
     }
 
@@ -373,34 +500,35 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
     }
 
     #asc-pb .pb-track {
-      top: 40vh;
-      gap: 16px;
+      top: 23vh;
+      gap: 14px;
     }
 
     #asc-pb .pb-card {
-      flex-basis: 78vw;
-      padding: 10px 10px 16px;
-    }
-
-    #asc-pb .pb-img {
-      aspect-ratio: 16 / 9;
-    }
-
-    #asc-pb .pb-card h3 {
-      margin-top: 12px;
-    }
-
-    #asc-pb .pb-card p {
-      min-height: 0;
-      margin-bottom: 12px;
-      font-size: 12.5px;
-      line-height: 1.55;
-    }
-
-    #asc-pb .pb-prog {
-      bottom: 1.6vh;
+      flex-basis: 86vw;
+      padding: 12px 12px 14px;
     }
   }
+
+  #asc-pb .pb-img {
+    aspect-ratio: 16 / 9;
+  }
+
+  #asc-pb .pb-card h3 {
+    margin-top: 12px;
+  }
+
+  #asc-pb .pb-card p {
+    min-height: 0;
+    margin-bottom: 12px;
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+
+  #asc-pb .pb-prog {
+    bottom: 1.6vh;
+  }
+
 
   @media (max-width: 640px) and (max-height: 700px) {
     #asc-pb .pb-sub {
@@ -430,13 +558,28 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
   <div class="pb-stage">
     <div class="pb-wash"></div>
     <div class="pb-head">
-      <h2 class="pb-title">Sepuluh jalan untuk<br>tumbuh bersama Al-Qur'an
+      <h2 class="pb-title">
+        <span class="pb-title-main">Pembinaan UKM ASC UM 2026</span>
+        <span class="pb-title-um">Universitas Negeri Malang</span>
         <svg class="pb-uline" viewBox="0 0 380 22" preserveAspectRatio="none" aria-hidden="true">
           <path d="M4 8 C 20 20, 34 20, 40 10 S 70 6, 120 11 S 260 8, 376 9" />
         </svg>
       </h2>
-      <p class="pb-sub">Bidang pembinaan rutin UKM ASC Universitas Negeri Malang, dari memperbaiki bacaan hingga
-        berkarya.</p>
+      <p class="pb-sub">
+        <span class="pb-sub-part">Part of <a href="https://instagram.com/ukm_asc_um" target="_blank"
+            rel="noopener noreferrer">@ukm_asc_um</a></span>
+        <span class="pb-sub-dot">·</span>
+        <a class="pb-sub-ig" href="https://instagram.com/pembinaan_ukmascum" target="_blank" rel="noopener noreferrer"
+          title="Instagram Pembinaan UKM ASC UM">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+          </svg>
+          @pembinaan_ukmascum
+        </a>
+      </p>
     </div>
     <div class="pb-track" id="pbTrack"></div>
     <div class="pb-prog" aria-hidden="true">
@@ -488,18 +631,160 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
 
 <script>
   (function () {
-    /* ============ DAFTAR PEMBINAAN (ganti img:'' dengan URL gambar, link:'#' dengan URL tujuan) ============ */
+    /* ========================================================================================================
+       DATA 10 PEMBINAAN UKM ASC UNIVERSITAS NEGERI MALANG (LENGKAP: IG, JADWAL, TEMPAT, MANFAAT, GOOGLE FORM)
+       ======================================================================================================== */
     var DATA = [
-      { t: "Tahsinul Qiro’ah", cat: "Bacaan & Tajwid", focus: "Makhraj & Sifat Huruf", d: "Penyempurnaan makharijul huruf, sifat huruf, dan kaidah tajwid dasar hingga mahir agar bacaan Al-Qur'an tepat dan fasih.", img: '', link: '#gabung' },
-      { t: "Tartilul Qur’an", cat: "Irama Murattal", focus: "Tempo, Waqaf & Ibtida'", d: "Pembinaan membaca Al-Qur'an secara perlahan, teratur, memperhatikan waqaf wal ibtida', serta penghayatan makna ayat.", img: '', link: '#gabung' },
-      { t: "Tilawatul Qur’an", cat: "Seni Maqamat", focus: "7 Maqam & Olah Vokal", d: "Pelatihan seni baca Al-Qur'an dengan keindahan maqam lagu (Bayati, Shoba, Hijaz, Nahawand, Rast, Sika, Jiharkah).", img: '', link: '#gabung' },
-      { t: "Tahfidhul Qur’an", cat: "Hafalan Al-Qur'an", focus: "Ziyadah, Tasmi' & Muraja'ah", d: "Program bimbingan menghafal Al-Qur'an, setor hafalan (tasmi'), dan muraja'ah rutin untuk menjaga hafalan kalamullah.", img: '', link: '#gabung' },
-      { t: "Syarhul Qur’an", cat: "Orasi & Dakwah", focus: "Pensyarah, Tilawah & Sari Tilawah", d: "Pembinaan seni orasi dan syiar Al-Qur'an dalam format tim (pensyarah, qari'/qari'ah, dan sari tilawah) mengangkat isu kontemporer.", img: '', link: '#gabung' },
-      { t: "Fahmul Qur’an", cat: "Wawasan Qur'ani", focus: "Tafsir, Hadis & Cerdas Cermat", d: "Cerdas cermat ke-Al-Qur'an-an yang mendalami wawasan tafsir, ulumul Qur'an, hadis, fiqih, sirah nabawiyah, dan bahasa Arab.", img: '', link: '#gabung' },
-      { t: "Khaththul Qur’an (Kaligrafi)", cat: "Seni Kaligrafi", focus: "Naskhi, Tsuluts & Mushaf", d: "Pelatihan seni rupa kaligrafi Islam (Naskhi, Tsuluts, Riq'ah, Diwani, Kufi) dalam bidang naskah, hiasan mushaf, dan dekorasi.", img: '', link: '#gabung' },
-      { t: "Karya Tulis Ilmiah Al-Qur'an (KTIA)", cat: "Riset Ilmiah", focus: "Integrasi Ayat & Sains", d: "Bimbingan penulisan karya ilmiah yang mengintegrasikan Al-Qur'an dengan solusi sains, teknologi, dan isu sosial kemasyarakatan.", img: '', link: '#gabung' },
-      { t: "Desain Aplikasi Al-Qur'an", cat: "Inovasi Digital", focus: "UI/UX & Platform Edukasi", d: "Pengembangan kreativitas mahasiswa dalam merancang inovasi UI/UX, aplikasi edukasi, dan platform digital berbasis Al-Qur'an.", img: '', link: '#gabung' },
-      { t: "Maulid Nabi & Peringatan PHBI", cat: "Seni Shalawat", focus: "Hadrah, Vokal & Syiar Kampus", d: "Pembinaan seni rebana/hadrah shalawat, kepanitiaan hari besar Islam, dan semarak syiar dakwah di kampus Universitas Negeri Malang.", img: '', link: '#gabung' }
+      {
+        t: "Tartilil Qur’an",
+        cat: "Nagham Murottal",
+        focus: "Irama Murottal & Adab Membaca",
+        ig: "@tartil_asc_um_",
+        igUrl: "https://instagram.com/tartil_asc_um_",
+        schedule: "Selasa · 16.00–17.00 WIB",
+        loc: "Masjid Al-Hikmah lt. 2 UM",
+        bullets: [
+          "Mempelajari bacaan Al-Qur’an secara tartil dan benar",
+          "Mengenal dan mempraktikkan nagham murottal",
+          "Meningkatkan kualitas bacaan dengan adab dan konsistensi"
+        ],
+        link: "https://docs.google.com/forms/d/e/1FAIpQLSfUwf13SGWPumaK6l_VJvOmr7XOGnztw6hUO-QBrW2qQUpdAQ/viewform"
+      },
+      {
+        t: "Tahfidhil Qur’an",
+        cat: "Hafalan Al-Qur'an",
+        focus: "Ziyadah, Muroja’ah & Tasmi’",
+        ig: "@tahfidh_asc_um",
+        igUrl: "https://instagram.com/tahfidh_asc_um",
+        schedule: "Senin—Kamis · 12.10—13.10 WIB",
+        loc: "Masjid Al-Hikmah lt. 2 UM",
+        bullets: [
+          "Menambah dan menjaga hafalan Al-Qur’an",
+          "Membiasakan muroja’ah secara rutin dan terarah",
+          "Berproses bersama dalam lingkungan yang mendukung dan Qur’ani"
+        ],
+        link: "https://docs.google.com/forms/d/e/1FAIpQLSdOyVtsq5zhktBtpg9vv2qrN4TaTdJ4kbxnQx58GFhf-NwzuA/viewform"
+      },
+      {
+        t: "Tahsinil Qiro’ah",
+        cat: "Makhraj & Tajwid",
+        focus: "Ketepatan Tajwid & Kelancaran",
+        ig: "@tahsin_asc_um",
+        igUrl: "https://instagram.com/tahsin_asc_um",
+        schedule: "Selasa & Kamis · 15.45–17.00 WIB",
+        loc: "Masjid Al-Hikmah lt. 1 & 2 UM",
+        bullets: [
+          "Memperbaiki makhraj dan tajwid bacaan Al-Qur’an",
+          "Meningkatkan kelancaran dan ketepatan membaca",
+          "Berproses secara bertahap dalam suasana yang tenang dan Qur’ani"
+        ],
+        link: "https://docs.google.com/forms/d/e/1FAIpQLSfLxd9YPumbvT4InBpijLwiIO3oMyCzenX4SrorLKfR4lxuJA/viewform"
+      },
+      {
+        t: "Maulidun Nabi",
+        cat: "Seni Shalawat",
+        focus: "Terbang, Olah Vokal & Rowi",
+        ig: "@ululmusthofa_um",
+        igUrl: "https://instagram.com/ululmusthofa_um",
+        schedule: "Rabu · 15.30–17.00 WIB",
+        loc: "Masjid Al-Hikmah lt. 3 UM",
+        bullets: [
+          "Mempelajari teknik dasar dan lanjutan terbang",
+          "Melatih vokal, nada, dan kekompakan tim hadrah",
+          "Mempelajari pembacaan rowi dengan nada dan pelafalan sesuai"
+        ],
+        link: "https://docs.google.com/forms/d/e/1FAIpQLSdqpdRJfGqxKITk1tQdXteDf8HVkjIXH3VEpEAdalxdc1lBfA/viewform"
+      },
+      {
+        t: "Syarhil Qur’an",
+        cat: "Orasi & Dakwah",
+        focus: "Public Speaking & Syiar Qur'ani",
+        ig: "@syarhil_asc_um",
+        igUrl: "https://instagram.com/syarhil_asc_um",
+        schedule: "Terjadwal Rutin · Sesi Tim",
+        loc: "Masjid Al-Hikmah UM",
+        bullets: [
+          "Mempersiapkan diri menjadi generasi mumpuni dan siap berkompetisi",
+          "Mengembangkan kemampuan syarhil, dakwah, dan public speaking",
+          "Belajar menyampaikan nilai-nilai Al-Qur'an dengan runtut dan komunikatif"
+        ],
+        link: "https://docs.google.com/forms/d/e/1FAIpQLSdSA0MdrLWBqHDpk5mwBpKfVlwvHyUTxjZdsgXHGGg3PHQEcQ/viewform"
+      },
+      {
+        t: "Khaththil Qur’an",
+        cat: "Seni Kaligrafi",
+        focus: "Kaidah Khath, Estetika & Karya",
+        ig: "@khath_asc_um",
+        igUrl: "https://instagram.com/khath_asc_um",
+        schedule: "Sabtu · 13.00–16.00 WIB",
+        loc: "Masjid Al-Hikmah lt. 1 UM",
+        bullets: [
+          "Mempelajari kaidah penulisan kaligrafi yang baik dan benar",
+          "Melatih ketelitian, estetika, dan konsistensi dalam berkarya",
+          "Mengembangkan kemampuan seni khath secara terarah dan berkelanjutan"
+        ],
+        link: "https://docs.google.com/forms/d/e/1FAIpQLSdMYznBRm-wYK2H19639H5OUFPW2tpBUihskeTUUYqw_O_LsQ/viewform"
+      },
+      {
+        t: "Tilawatil Qur’an",
+        cat: "Seni Maqamat",
+        focus: "Nagham, Suara & Pernapasan",
+        ig: "@tilawah_asc_um",
+        igUrl: "https://instagram.com/tilawah_asc_um",
+        schedule: "Kamis · 15.30–17.00 WIB",
+        loc: "Masjid Al-Hikmah lt. 2 UM",
+        bullets: [
+          "Mempelajari dan memperdalam berbagai nagham Al-Qur’an",
+          "Melatih teknik suara, pernapasan, dan penghayatan bacaan",
+          "Meningkatkan kualitas tilawah secara terarah dan berkelanjutan"
+        ],
+        link: "https://docs.google.com/forms/d/e/1FAIpQLSf5hwPcInFnJoABULNisSZIKCHUTx7ZkEuaKZjJLYu9lvWlFA/viewform"
+      },
+      {
+        t: "Fahmil Qur’an",
+        cat: "Wawasan Qur'ani",
+        focus: "Analisis Tafsir, Hadis & Tim MFQ",
+        ig: "@fahmil_asc_um",
+        igUrl: "https://instagram.com/fahmil_asc_um",
+        schedule: "Selasa & Jumat · 15.30–17.00 WIB",
+        loc: "Masjid Al-Hikmah lt. 2 UM",
+        bullets: [
+          "Mempelajari materi-materi Fahmil Qur'an secara terstruktur",
+          "Melatih analisis, ketepatan jawaban, dan kerja tim",
+          "Mempersiapkan diri menghadapi Musabaqah Fahmil Qur'an (MFQ)"
+        ],
+        link: "https://docs.google.com/forms/d/e/1FAIpQLSeVDlti-LJ9b4G7WYF205zhnEwft44gjDgZCHN91lgBFu_obg/viewform"
+      },
+      {
+        t: "Desain Aplikasi Al-Qur’an (DAQ)",
+        cat: "Inovasi Digital",
+        focus: "Skill Editing, UI/UX & MDAQ",
+        ig: "@daq_asc_um",
+        igUrl: "https://instagram.com/daq_asc_um",
+        schedule: "Selasa & Jum'at · 15.45–17.00 WIB",
+        loc: "Masjid Al-Hikmah lt. 2 UM",
+        bullets: [
+          "Mengembangkan skill editing dan desain aplikasi digital",
+          "Belajar secara rutin, terarah, dan berkelanjutan",
+          "Mempersiapkan diri menuju Musabaqah Desain Aplikasi Al-Qur’an (MDAQ)"
+        ],
+        link: "https://docs.google.com/forms/d/e/1FAIpQLScTNa2EHMORkVzpuGYjB3ZOBDuOBDjgc6doT_albXbIgefdUw/viewform"
+      },
+      {
+        t: "Karya Tulis Ilmiah Al-Qur’an (KTIA)",
+        cat: "Riset Ilmiah",
+        focus: "Penulisan Ilmiah & Nilai Qur'ani",
+        ig: "@ktia_asc_um",
+        igUrl: "https://instagram.com/ktia_asc_um",
+        schedule: "Terjadwal Rutin · Sesi Bimbingan",
+        loc: "Masjid Al-Hikmah UM",
+        bullets: [
+          "Meningkatkan kemampuan menulis karya tulis ilmiah",
+          "Memahami penulisan ilmiah umum dan berbasis nilai-nilai universal Al-Qur’an",
+          "Belajar secara rutin, terarah, dan berkelanjutan"
+        ],
+        link: "https://docs.google.com/forms/d/e/1FAIpQLSfMP07TbjDy9CiLvywm1ZVyzLP20t4ujOdNvipphw5T1iGdDg/viewform"
+      }
     ];
     /* ======================================================================================================== */
 
@@ -518,23 +803,45 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
 
     var h = '';
     DATA.forEach(function (x, i) {
-      var n = ('0' + (i + 1)).slice(-2), bg = x.img ? ' style="background-image:url(\'' + x.img + '\')"' : '', ph = x.img ? '' : ' pb-ph';
-      var topPanel = x.img
-        ? '<div class="pb-img" role="img" aria-label="' + x.t + '"' + bg + '><span class="pb-badge" style="position:absolute;top:12px;left:12px;background:#091f17;">' + x.cat + '</span></div>'
-        : '<div class="pb-img pb-ph" role="img" aria-label="' + x.t + '">' + ORN_SVG +
-            '<div class="pb-ph-top"><span class="pb-ph-num">' + n + '</span><span class="pb-badge">' + x.cat + '</span></div>' +
-            '<div class="pb-ph-meta"><span class="pb-ph-focus">' + x.focus + '</span><span class="pb-ph-loc">Rutin mingguan · Masjid Al-Hikmah UM</span></div>' +
-          '</div>';
-      h += '<article class="pb-card">' + topPanel +
-        '<h3>' + x.t + '</h3><p>' + x.d + '</p>' +
-        '<div class="pb-row"><a class="pb-btn" href="' + x.link + '"><span>Ikuti Pembinaan</span><span aria-hidden="true">→</span></a></div></article>';
+      var n = ('0' + (i + 1)).slice(-2);
+      var topPanel = '<div class="pb-img pb-ph" role="img" aria-label="' + x.t + '">' + ORN_SVG +
+        '<div class="pb-ph-top">' +
+        '<span class="pb-ph-num">' + n + '</span>' +
+        '<div class="pb-badges">' +
+        '<span class="pb-badge">' + x.cat + '</span>' +
+        '<a class="pb-ig-pill" href="' + x.igUrl + '" target="_blank" rel="noopener noreferrer" title="Buka Instagram ' + x.ig + '">' + x.ig + ' ↗</a>' +
+        '</div>' +
+        '</div>' +
+        '<div class="pb-ph-meta">' +
+        '<span class="pb-ph-focus">' + x.focus + '</span>' +
+        '</div>' +
+        '</div>';
+
+      var schedHtml = '<div class="pb-sched-box">' +
+        '<div class="pb-sched-item"><span class="pb-icon">🗓</span><span><strong>Jadwal:</strong> ' + x.schedule + '</span></div>' +
+        '<div class="pb-sched-item"><span class="pb-icon">📍</span><span><strong>Tempat:</strong> ' + x.loc + '</span></div>' +
+        '</div>';
+
+      var bulletsHtml = '<ul class="pb-pts">' +
+        x.bullets.map(function (b) { return '<li>' + b + '</li>'; }).join('') +
+        '</ul>';
+
+      h += '<article class="pb-card">' +
+        '<div>' +
+        topPanel +
+        '<h3>' + x.t + '</h3>' +
+        schedHtml +
+        bulletsHtml +
+        '</div>' +
+        '<div class="pb-row">' +
+        '<a class="pb-btn" href="' + x.link + '" target="_blank" rel="noopener noreferrer"><span>Daftar Google Form</span><span aria-hidden="true">→</span></a>' +
+        '</div>' +
+        '</article>';
     });
     if (track) track.innerHTML = h;
 
     var cards = track ? [].slice.call(track.children) : [];
     var lefts = [], vw = 1200, vh = 800, trackW = 0, startX = 0, endX = 0, ticking = false;
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { root.classList.add('pb-static'); return; }
 
     function lerp(a, b, t) { return a + (b - a) * t; }
 
@@ -553,7 +860,7 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
       var best = 0, bd = 1e9;
       cards.forEach(function (el, i) {
         var cx = x + (lefts[i] || 0), off = (cx - vw / 2) / vw;
-        var rot = (i % 2 ? 1 : -1) * 2.6 + off * 5, y = Math.sin(i * 1.7) * 14 + Math.abs(off) * 18;
+        var rot = (i % 2 ? 1 : -1) * 2.2 + off * 4, y = Math.sin(i * 1.7) * 12 + Math.abs(off) * 14;
         el.style.transform = 'translate3d(0,' + y.toFixed(2) + 'px,0) rotate(' + rot.toFixed(2) + 'deg)';
         var d = Math.abs(off); if (d < bd) { bd = d; best = i; }
       });
@@ -571,23 +878,26 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
       if (!root || !track) return;
       vw = Math.min(window.innerWidth, document.documentElement.clientWidth || window.innerWidth);
       vh = window.innerHeight;
-      trackW = track.scrollWidth || 3200;
+      trackW = track.scrollWidth || 3600;
       cards = [].slice.call(track.children);
       lefts = cards.map(function (c) { return c.offsetLeft + c.offsetWidth / 2; });
-      startX = vw * 0.92;
-      endX = -(trackW - vw * 0.78);
+      startX = vw * 0.90;
+      endX = -(trackW - vw * 0.72);
       root.style.setProperty('height', Math.round(vh + (startX - endX) * 0.85) + 'px', 'important');
       update();
     }
 
-    /* Perbaiki overflow parent WordPress (Divi/Elementor) agar position: sticky hidup */
+    /* Buka overflow milik container WordPress/Divi/Elementor agar position: sticky selalu hidup */
     function fixParents(el) {
       if (!el) return;
+      if (root) root.style.setProperty('overflow', 'visible', 'important');
       var p = el.parentElement, n = 0;
       while (p && p !== document.documentElement && n++ < 25) {
         var cs = window.getComputedStyle(p);
-        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+        if (/hidden|auto|scroll|clip/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
           p.style.setProperty('overflow', 'visible', 'important');
+          p.style.setProperty('overflow-x', 'visible', 'important');
+          p.style.setProperty('overflow-y', 'visible', 'important');
         }
         p = p.parentElement;
       }
@@ -639,7 +949,7 @@ dengan overflow:hidden. Di Elementor: Container > Advanced > Overflow = Default.
         setTimeout(function () {
           fixParents(root);
           measure();
-          try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+          try { window.dispatchEvent(new Event('resize')); } catch (e) { }
         }, ms);
       });
       return true;

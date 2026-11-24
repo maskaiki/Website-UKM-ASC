@@ -1,0 +1,496 @@
+<style>
+  /* ==========================================================================
+     02. APPLE M4 SIGNATURE SCROLL REVEAL (ASC TYPOGRAPHIC PHOTO FRAME)
+     ========================================================================== */
+
+  /* ==========================================================================
+     KOMPONEN KUNCI UTAMA (STICKY PINNING ENGINE)
+     Agar efek scroll mengunci ("diam di tempat"), ada 5 syarat mutlak:
+     1. Parent Track memiliki tinggi scroll panjang (height: 380vh !important)
+     2. Stage memiliki position: sticky !important
+     3. Stage memiliki top: 0 !important (titik kunci di viewport)
+     4. Stage memiliki height: 100vh !important (pas satu layar pandang)
+     5. Seluruh wrapper induk WordPress memiliki overflow: visible !important
+     ========================================================================== */
+
+  /* [KUNCI 1] Reset overflow WordPress/Divi/Elementor agar sticky tidak terpotong */
+  .et_pb_section,
+  .et_pb_fullwidth_section,
+  .et_pb_row,
+  .et_pb_column,
+  .et_pb_module,
+  .et_pb_code,
+  .et_pb_fullwidth_code,
+  .et_pb_code_inner,
+  .elementor-section,
+  .elementor-column,
+  .elementor-widget-wrap,
+  .elementor-widget,
+  .elementor-element {
+    overflow: visible !important;
+  }
+
+  #asc-hero-profil {
+    --asc-canvas: #f6f5f0;
+    --asc-surface-2: #e8f0eb;
+    --asc-deep: #091f17;
+    --asc-emerald: #0d5c3f;
+    --asc-gold: #b8860b;
+    --asc-ink: #09131c;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--asc-ink);
+    position: relative !important;
+    display: block;
+    width: 100% !important;
+    margin: 0;
+    padding: 0;
+    overflow: visible !important;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #asc-hero-profil * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* [KUNCI 2] Track Jalur Gulir: Memberikan jarak gulir 380vh ke bawah */
+  /* Elemen sticky di dalamnya akan terkunci selama pengguna menggulir sepanjang track ini */
+  #asc-hero-profil .asc-track {
+    position: relative !important;
+    width: 100% !important;
+    height: 380vh !important;
+    /* <--- Jarak gulir tempat frame diam mengunci */
+    overflow: visible !important;
+    /* Wajib visible agar stage dapat menempel di layar */
+    background: #f6f5f0;
+  }
+
+  /* [KUNCI 3 & 4] Frame Panggung Sticky: Terkunci di top: 0 setinggi 100vh */
+  #asc-hero-profil .asc-stage {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    /* <--- Perintah browser untuk mengunci elemen */
+    top: 0 !important;
+    /* <--- TITIK KUNCI: Menempel tepat di bibir atas layar */
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    /* <--- Tinggi tepat 1 layar penuh */
+    height: 100svh !important;
+    /* Kompatibilitas browser mobile modern */
+    overflow: hidden !important;
+    /* Foto & SVG dibatasi di dalam layar ini, tidak tembus */
+    /* Latar belakang Warm Stone Krem dengan sentuhan lembut nuansa Zamrud Islami */
+    background: #f6f5f0;
+    background:
+      radial-gradient(ellipse 75% 65% at 50% 50%, rgba(232, 240, 235, 0.70) 0%, rgba(246, 245, 240, 0.95) 60%, #f6f5f0 100%);
+  }
+
+  /* Mode fallback statis (hanya jika prefers-reduced-motion aktif) */
+  #asc-hero-profil.asc-static .asc-track {
+    height: auto !important;
+  }
+
+  #asc-hero-profil.asc-static .asc-stage {
+    position: relative !important;
+    height: min(85vh, 720px) !important;
+  }
+
+  /* SVG Masking Stage Layer */
+  #asc-hero-profil .asc-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  /* Caption Editorial Elegan di Bawah Huruf (Warm Stone & Emerald Palette) */
+  #asc-hero-profil .asc-caption-wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 8.5%;
+    z-index: 5;
+    padding: 0 24px;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.38s cubic-bezier(0.22, 0.31, 0, 1), transform 0.38s cubic-bezier(0.22, 0.31, 0, 1);
+  }
+
+  #asc-hero-profil .asc-caption-kicker {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--asc-emerald);
+    margin-bottom: 6px;
+  }
+
+  #asc-hero-profil .asc-caption-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(14px, 1.65vw, 19px);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--asc-deep);
+  }
+
+  @media (max-width: 768px) {
+    #asc-hero-profil .asc-track {
+      height: 260vh !important;
+    }
+
+    #asc-hero-profil .asc-caption-wrap {
+      bottom: 11.5%;
+      padding: 0 16px;
+    }
+
+    #asc-hero-profil .asc-caption-kicker {
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+    }
+
+    #asc-hero-profil .asc-caption-title {
+      font-size: 13.5px;
+    }
+  }
+</style>
+
+<!-- 
+  PANDUAN GANTI GAMBAR & WARNA:
+  1. Gambar: Isi atribut data-image="../assets/asc-tangan.avif" pada div di bawah,
+     atau via JS: window.ASC_HERO_IMAGE = 'https://drive.google.com/uc?export=view&id=...';
+  2. Warna background: Standar Warm Stone Krem (#f6f5f0) menyatu dengan tema web ASC.
+-->
+<div id="asc-hero-profil" data-image="../assets/asc-tangan.avif">
+  <div class="asc-track">
+    <div class="asc-stage">
+      <svg class="asc-svg" id="ascSvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"
+        focusable="false">
+        <defs>
+          <mask id="ascM4Mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="900">
+            <!-- 1. Lapisan dasar hitam (menyembunyikan foto di luar huruf) -->
+            <rect id="ascMaskBg" x="0" y="0" width="1600" height="900" fill="#000000" />
+            <!-- 2. Aperture awal putih (menampilkan 100% foto utuh saat scroll di posisi atas) -->
+            <rect id="ascMaskAperture" x="0" y="0" width="1600" height="900" fill="#ffffff" opacity="1" />
+            <!-- 3. Kelompok Huruf A S C putih (membingkai foto dengan pusat zoom presisi di huruf S) -->
+            <g id="ascLettersG" transform="translate(800 450) scale(1) translate(-237 0)">
+              <path fill="#ffffff" fill-rule="evenodd"
+                d="M-298.3 180H-203.8L-181.8 110.7H-54L-32.7 180H64.4L-60 -180H-174.6ZM-160.1 42.8 -153.5 21.7C-141 -18.4 -129.4 -57.7 -117.1 -102C-105 -57.7 -93.4 -18.4 -81.5 21.7L-75 42.8ZM246.1 185.8C338.8 185.8 393.9 143 393.9 70.6C393.9 15 359.4 -16.7 279.6 -32.6L248 -38.9C206.9 -47.4 189.8 -58.2 189.8 -77.8C189.8 -100.3 212.7 -116 245.6 -116C279.9 -116 302.8 -97.6 305.3 -67.9H385.7C383.5 -141.6 330.6 -185.8 244.4 -185.8C159.8 -185.8 102.8 -140.6 102.8 -73.7C102.8 -21.3 138.8 13.5 209.1 28L246.1 35.5C289.3 44.5 307.9 56.3 307.9 76.8C307.9 100.5 283.5 116 246.8 116C205.2 116 179.9 95.7 178.7 61.1H95.8C95.8 140.6 150.1 185.8 246.1 185.8ZM609.7 185.8C697.6 185.8 761.4 131.9 772.3 49.3H684.8C677.1 87.5 649.8 109.9 611.1 109.9C555.6 109.9 524.1 68.6 524.1 0.2C524.1 -68.4 555.8 -109.9 611.1 -109.9C649.8 -109.9 677.3 -87.2 684.6 -48.8H772.3C761.6 -131.4 697.6 -185.8 609.7 -185.8C510.9 -185.8 436.7 -117.4 436.7 0.2C436.7 116.9 510.9 185.8 609.7 185.8Z" />
+            </g>
+          </mask>
+        </defs>
+
+        <!-- Foto Utama Statis Presisi (Pusat Segitiga Tangan Tepat di Tengah Huruf S) -->
+        <g id="ascPhotoG">
+          <image id="ascPhoto" x="-44" y="0" width="1688" height="1125" preserveAspectRatio="none"
+            mask="url(#ascM4Mask)" />
+        </g>
+
+        <!-- Garis Tepi Elegan Zamrud yang Mempertegas Huruf ASC -->
+        <g id="ascOutlineG" transform="translate(800 450) scale(1) translate(-237 0)" pointer-events="none" opacity="0">
+          <path fill="none" stroke="rgba(13, 92, 63, 0.24)" stroke-width="2.5"
+            d="M-298.3 180H-203.8L-181.8 110.7H-54L-32.7 180H64.4L-60 -180H-174.6ZM-160.1 42.8 -153.5 21.7C-141 -18.4 -129.4 -57.7 -117.1 -102C-105 -57.7 -93.4 -18.4 -81.5 21.7L-75 42.8ZM246.1 185.8C338.8 185.8 393.9 143 393.9 70.6C393.9 15 359.4 -16.7 279.6 -32.6L248 -38.9C206.9 -47.4 189.8 -58.2 189.8 -77.8C189.8 -100.3 212.7 -116 245.6 -116C279.9 -116 302.8 -97.6 305.3 -67.9H385.7C383.5 -141.6 330.6 -185.8 244.4 -185.8C159.8 -185.8 102.8 -140.6 102.8 -73.7C102.8 -21.3 138.8 13.5 209.1 28L246.1 35.5C289.3 44.5 307.9 56.3 307.9 76.8C307.9 100.5 283.5 116 246.8 116C205.2 116 179.9 95.7 178.7 61.1H95.8C95.8 140.6 150.1 185.8 246.1 185.8ZM609.7 185.8C697.6 185.8 761.4 131.9 772.3 49.3H684.8C677.1 87.5 649.8 109.9 611.1 109.9C555.6 109.9 524.1 68.6 524.1 0.2C524.1 -68.4 555.8 -109.9 611.1 -109.9C649.8 -109.9 677.3 -87.2 684.6 -48.8H772.3C761.6 -131.4 697.6 -185.8 609.7 -185.8C510.9 -185.8 436.7 -117.4 436.7 0.2C436.7 116.9 510.9 185.8 609.7 185.8Z" />
+        </g>
+      </svg>
+
+      <!-- Caption Penutup di Bagian Bawah -->
+      <div class="asc-caption-wrap" id="ascCaption">
+        <span class="asc-caption-kicker">man jadda wa jadda </span>
+        <h2 class="asc-caption-title">Berdiri Diatas dan Untuk Semua Golongan</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ASC CORE: Satu loader font & pembersih overflow WordPress (Idempoten / Aman digabung) -->
+<script>
+  (function (w, d) {
+    if (w.ASC && w.ASC.v && w.ASC.v >= 3) return;
+    var A = w.ASC = (w.ASC || {});
+    A.v = 3;
+
+    /* 1. Satu pemuat font untuk seluruh halaman */
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link'); l.id = 'asc-fonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Geist:wght@500..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap';
+      d.head.appendChild(l);
+    }
+
+    /* 2. Buka overflow milik container Divi/Elementor/tema WordPress yang memblokir position: sticky */
+    A.unlock = function (root) {
+      try {
+        var n = root;
+        while (n && n !== d) {
+          if (n.nodeType === 1) {
+            var cs = w.getComputedStyle(n);
+            if (/hidden|auto|scroll|clip/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+              n.style.setProperty('overflow', 'visible', 'important');
+              n.style.setProperty('overflow-x', 'visible', 'important');
+              n.style.setProperty('overflow-y', 'visible', 'important');
+            }
+          }
+          n = n.parentElement;
+        }
+        if (d.documentElement) {
+          d.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+        }
+        if (d.body) {
+          d.body.style.setProperty('overflow-x', 'visible', 'important');
+        }
+      } catch (e) { /* abaikan */ }
+    };
+  })(window, document);
+</script>
+
+<!-- SCROLL ENGINE APPLE M4 STYLE UNTUK HURUF ASC -->
+<script>
+  (function () {
+    'use strict';
+    var root = document.getElementById('asc-hero-profil');
+    if (!root || root.getAttribute('data-asc-ready') === '1') { return; }
+    root.setAttribute('data-asc-ready', '1');
+
+    /* Geometri kelompok huruf A S C:
+       Lebar total = 1070.6, Tinggi = 371.6.
+       Pusat optik horizontal cx = 237.0 (tepat di tengah-tengah huruf S). */
+    var GEO = { gw: 1070.6, gh: 371.6, cx: 237.0, cy: 0.0 };
+
+    var track = root.querySelector('.asc-track');
+    var stage = root.querySelector('.asc-stage');
+    var svg = root.querySelector('#ascSvg');
+    if (!track || !stage || !svg) { return; }
+
+    var maskBg = svg.querySelector('#ascMaskBg');
+    var maskAperture = svg.querySelector('#ascMaskAperture');
+    var lettersG = svg.querySelector('#ascLettersG');
+    var outlineG = svg.querySelector('#ascOutlineG');
+    var photo = svg.querySelector('#ascPhoto');
+    var maskEl = svg.querySelector('#ascM4Mask');
+    var caption = root.querySelector('#ascCaption');
+
+    var mqCompact = window.matchMedia ? window.matchMedia('(max-width: 768px)') : null;
+    var mqReduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+
+    var W = 1600, H = 900, sf = 1.0, s0 = 24.0;
+    var compact = false, staticMode = false, lastP = -1, queued = false;
+
+    function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
+    function range(v, a, b) { return b <= a ? (v >= b ? 1 : 0) : clamp((v - a) / (b - a), 0, 1); }
+    function ease(t) { return t * t * (3 - 2 * t); }
+
+    /* ---------- 1. Buka overflow milik container/tema WordPress (Penyebab Sticky Gagal) ----------
+       Browser mematikan position: sticky jika ada elemen leluhur (parent, body, html) yang
+       memiliki overflow: hidden/auto/scroll. Fungsi ini memeriksa dan membebaskan jalur sticky. */
+    function unlockAncestors() {
+      try {
+        if (track) track.style.setProperty('overflow', 'visible', 'important');
+        if (root) root.style.setProperty('overflow', 'visible', 'important');
+        var el = track || root;
+        var p = el.parentElement, n = 0;
+        while (p && p !== document.documentElement && n++ < 25) {
+          var cs = window.getComputedStyle(p);
+          if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+            p.style.setProperty('overflow', 'visible', 'important');
+          }
+          p = p.parentElement;
+        }
+        if (document.documentElement) {
+          document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+        }
+        if (document.body) {
+          document.body.style.setProperty('overflow-x', 'visible', 'important');
+        }
+      } catch (e) { /* abaikan jika dibatasi sandbox */ }
+    }
+
+    /* ---------- 2. Inisialisasi Gambar dengan Jalur Cadangan (Lokal & Remote Drive) ---------- */
+    function setImage() {
+      if (!photo) return;
+      var userSrc = window.ASC_HERO_IMAGE || root.getAttribute('data-image') || '';
+      var fallbacks = [
+        userSrc,
+        '../assets/asc-tangan.avif',
+        'assets/asc-tangan.avif',
+        'asc-tangan.avif',
+        '../asc-tangan.avif',
+        'https://lh3.googleusercontent.com/d/1EEuFk2JtS9PqgdI5ZO1s8DDv61cUi_Mk',
+        '../assets/hero-asc-cutout.webp'
+      ].filter(Boolean);
+
+      var fbIdx = 0;
+      function tryNext() {
+        if (fbIdx < fallbacks.length) {
+          var src = fallbacks[fbIdx++];
+          photo.setAttribute('href', src);
+          photo.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', src);
+        }
+      }
+
+      photo.addEventListener('error', tryNext);
+      tryNext();
+    }
+
+    /* ---------- 3. Ukuran Responsif & Penyelarasan Posisi Tangan Presisi ---------- */
+    function measure() {
+      var r = stage.getBoundingClientRect();
+      W = Math.max(1, Math.round(r.width));
+      H = Math.max(1, Math.round(r.height));
+      compact = !!(mqCompact && mqCompact.matches);
+
+      svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+      if (maskBg) { maskBg.setAttribute('width', W); maskBg.setAttribute('height', H); }
+      if (maskAperture) { maskAperture.setAttribute('width', W); maskAperture.setAttribute('height', H); }
+      if (maskEl) { maskEl.setAttribute('width', W); maskEl.setAttribute('height', H); }
+
+      /* Kalibrasi Gambar Presisi (Pusat Segitiga Tangan Tepat di Tengah Huruf S):
+         Foto memiliki aspect ratio 6000:4000 = 1.5.
+         Pusat segitiga tangan berada pada 40% dari atas foto.
+         Rumus imgH memastikan segitiga tangan selalu mendarat tepat di H * 0.50 (tengah huruf S). */
+      var imgH = Math.max(H * 1.25, W / 1.5);
+      var imgW = imgH * 1.5;
+      var imgX = (W - imgW) / 2;
+      var imgY = Math.min(0, (H * 0.50) - (imgH * 0.40));
+
+      if (photo) {
+        photo.setAttribute('x', imgX.toFixed(1));
+        photo.setAttribute('y', imgY.toFixed(1));
+        photo.setAttribute('width', imgW.toFixed(1));
+        photo.setAttribute('height', imgH.toFixed(1));
+      }
+
+      /* Lebar akhir kelompok huruf ASC:
+         Di desktop memenuhi ~75% layar, di mobile memenuhi ~88% layar */
+      var fitW = compact ? W * 0.88 : Math.min(W * 0.74, 1260);
+      sf = Math.min(fitW / GEO.gw, (H * 0.52) / GEO.gh);
+
+      /* Skala awal: zoom cukup besar agar huruf S menutup seluruh layar */
+      s0 = Math.max(sf * 18, (Math.sqrt(W * W + H * H) / 2) / 38);
+      lastP = -1;
+    }
+
+    /* ---------- 4. Render Frame Animasi Berdasarkan Progres Scroll (0..1) ---------- */
+    function render(p) {
+      /* Fase 1: Aperture bukaan penuh foto utuh (p=0 sampai ~0.24) */
+      var apFade = 1 - ease(range(p, 0.08, 0.24));
+      if (maskAperture) {
+        maskAperture.setAttribute('opacity', apFade.toFixed(3));
+        maskAperture.style.display = apFade <= 0 ? 'none' : '';
+      }
+
+      /* Fase 2: Zoom mengecil memusat ke huruf S (p=0.08 sampai 0.82) */
+      var zt = ease(range(p, 0.08, 0.80));
+      var s = s0 * Math.pow(sf / s0, zt);
+
+      /* Transform terpusat di tengah layar (W/2, H/2) dan poros tengah huruf S (GEO.cx) */
+      var transStr = 'translate(' + (W / 2).toFixed(1) + ' ' + (H / 2).toFixed(1) + ') scale(' + s.toFixed(5) + ') translate(' + (-GEO.cx).toFixed(2) + ' ' + (-GEO.cy).toFixed(2) + ')';
+
+      if (lettersG) {
+        lettersG.setAttribute('transform', transStr);
+      }
+      if (outlineG) {
+        outlineG.setAttribute('transform', transStr);
+        var oOp = range(p, 0.22, 0.58);
+        outlineG.setAttribute('opacity', oOp.toFixed(3));
+        outlineG.style.display = oOp <= 0 ? 'none' : '';
+      }
+
+      /* Fase 3: Caption editorial elegan muncul halus di bawah huruf (p=0.80 sampai 0.98) */
+      if (caption) {
+        var c = ease(range(p, 0.80, 0.97));
+        caption.style.opacity = c.toFixed(3);
+        caption.style.transform = 'translateY(' + ((1 - c) * 16).toFixed(1) + 'px)';
+      }
+    }
+
+    /* [KUNCI 5] Menghitung Nilai Progres Gulir (0.00 -> 1.00):
+       r.height = tinggi total track (380vh)
+       d = jarak sisa gulir saat stage sedang menempel di layar (380vh - 100vh = 280vh)
+       -r.top = posisi scroll saat ini relatif terhadap puncak viewport
+       Hasil: 0 saat pertama kali masuk layar, bergerak mulus hingga 1 saat track selesai */
+    function readProgress() {
+      var r = track.getBoundingClientRect();
+      var d = r.height - window.innerHeight;
+      return d > 0 ? clamp(-r.top / d, 0, 1) : 0;
+    }
+
+    function update(force) {
+      queued = false;
+      var p = staticMode ? 1 : readProgress();
+      if (!force && Math.abs(p - lastP) < 0.00005) {
+        return;
+      }
+      lastP = p;
+      render(p);
+    }
+
+    function schedule() {
+      if (queued) { return; }
+      queued = true;
+      if (window.requestAnimationFrame) { window.requestAnimationFrame(function () { update(false); }); }
+      else { update(false); }
+    }
+
+    function applyMode() {
+      staticMode = !!(mqReduce && mqReduce.matches);
+      if (staticMode) { root.classList.add('asc-static'); }
+      else { root.classList.remove('asc-static'); }
+      measure();
+      update(true);
+    }
+
+    /* ---------- 5. Inisialisasi & Safeguard WordPress ---------- */
+    try {
+      unlockAncestors();
+      setImage();
+      applyMode();
+
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', function () { unlockAncestors(); measure(); schedule(); });
+      window.addEventListener('orientationchange', function () { window.setTimeout(function () { unlockAncestors(); measure(); update(true); }, 250); });
+      window.addEventListener('load', function () { unlockAncestors(); measure(); update(true); });
+      window.addEventListener('pageshow', function () { unlockAncestors(); measure(); update(true); });
+
+      if (window.ResizeObserver) {
+        new ResizeObserver(function () { measure(); schedule(); }).observe(stage);
+      }
+
+      var unCount = 0, unTimer = setInterval(function () {
+        unlockAncestors();
+        measure();
+        if (++unCount >= 25) clearInterval(unTimer);
+      }, 150);
+
+      // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak bocor / tidak perlu zoom in/out
+      [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
+        setTimeout(function () {
+          unlockAncestors();
+          measure();
+          schedule();
+          try { window.dispatchEvent(new Event('resize')); } catch (e) { }
+        }, ms);
+      });
+
+      if (mqReduce) {
+        if (mqReduce.addEventListener) { mqReduce.addEventListener('change', applyMode); }
+        else if (mqReduce.addListener) { mqReduce.addListener(applyMode); }
+      }
+      if (mqCompact) {
+        var onCompact = function () { measure(); update(true); };
+        if (mqCompact.addEventListener) { mqCompact.addEventListener('change', onCompact); }
+        else if (mqCompact.addListener) { mqCompact.addListener(onCompact); }
+      }
+    } catch (err) {
+      if (window.console && console.warn) { console.warn('ASC hero: mode statis dipakai karena error', err); }
+    }
+  })();
+</script>

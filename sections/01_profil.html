@@ -1,0 +1,466 @@
+<style>
+  /* ==========================================================================
+     01. BOLD KINETIC POSTER HERO (AFAL TEXTURE-IN-TEXT + ROAM TILT + 19 UX PHYSICS)
+     ========================================================================== */
+  .hero-o3-shell {
+    background: #f6f5f0;
+    padding: 84px clamp(12px, 2vw, 28px) clamp(16px, 2.2vw, 28px);
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Plus Jakarta Sans', var(--font-ui, -apple-system, BlinkMacSystemFont, sans-serif);
+  }
+
+  .hero-o3-shell .o3-stage {
+    position: relative;
+    flex: 1;
+    min-height: calc(100svh - 112px);
+    border-radius: 16px;
+    border: 1px solid rgba(9, 19, 28, 0.10);
+    background: #ffffff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .hero-o3-shell .o3-top-meta {
+    position: relative;
+    z-index: 5;
+    padding: 20px clamp(20px, 3vw, 40px) 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #273545;
+  }
+
+  .hero-o3-shell .o3-top-meta span.muted {
+    color: #526173;
+    font-weight: 500;
+  }
+
+  .hero-o3-shell .o3-svg-wrap {
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(1320px, 96%);
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-o3-shell .o3-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+
+  /* Entrance Stagger & Origin Awareness (#2, #3, #9, #14) */
+  .hero-o3-shell .o3-letter-g {
+    opacity: 0;
+    transform: translateY(58px);
+    transition:
+      transform 0.78s cubic-bezier(0.22, 0.31, 0, 1),
+      opacity 0.56s cubic-bezier(0.22, 0.31, 0, 1);
+    transition-delay: var(--d, 0ms);
+    will-change: transform, opacity;
+  }
+
+  .hero-o3-shell.is-entered .o3-letter-g {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero-o3-shell .o3-anim-rise {
+    transform: translateY(20px);
+    opacity: 0;
+    transition:
+      transform 0.56s cubic-bezier(0.22, 0.31, 0, 1),
+      opacity 0.48s cubic-bezier(0.22, 0.31, 0, 1);
+    transition-delay: var(--d, 0ms);
+    will-change: transform, opacity;
+  }
+
+  .hero-o3-shell.is-entered .o3-anim-rise {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .hero-o3-shell .o3-anim-subject {
+    transform-origin: bottom center;
+    transform: translateY(34px) scale(0.985);
+    opacity: 0;
+    transition:
+      transform 0.68s cubic-bezier(0.22, 0.31, 0, 1),
+      opacity 0.52s cubic-bezier(0.22, 0.31, 0, 1);
+    transition-delay: var(--d, 150ms);
+    will-change: transform, opacity;
+  }
+
+  .hero-o3-shell.is-entered .o3-anim-subject {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  .hero-o3-shell .o3-anim-shadow {
+    opacity: 0;
+    transform: scaleX(0.92);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 0.31, 0, 1),
+      transform 0.7s cubic-bezier(0.22, 0.31, 0, 1);
+    transition-delay: 200ms;
+  }
+
+  .hero-o3-shell.is-entered .o3-anim-shadow {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  /* Physical contact shadow behind subject (#17 Solid Drawing / Rebound) */
+  .hero-o3-shell .o3-shadow {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(820px, 74vw);
+    height: 120px;
+    z-index: 2;
+    background: radial-gradient(50% 50% at 50% 82%, rgba(9, 19, 28, 0.28) 0%, rgba(9, 19, 28, 0.10) 55%, transparent 80%);
+    filter: blur(12px);
+    pointer-events: none;
+  }
+
+  .hero-o3-shell .o3-cutout-wrap {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    width: min(880px, 76vw);
+    height: min(80%, 630px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .hero-o3-shell .o3-cutout-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .hero-o3-shell .o3-cutout-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+    filter:
+      drop-shadow(-12px 18px 26px rgba(9, 19, 28, 0.22)) drop-shadow(0 6px 12px rgba(9, 19, 28, 0.12));
+  }
+
+  .hero-o3-shell .o3-bottom {
+    position: relative;
+    z-index: 5;
+    padding: 0 clamp(20px, 3vw, 40px) 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    pointer-events: none;
+  }
+
+  .hero-o3-shell .o3-desc-block {
+    pointer-events: auto;
+    max-width: 256px;
+  }
+
+  .hero-o3-shell .o3-desc-title {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink, #09131c);
+    margin-bottom: 6px;
+  }
+
+  .hero-o3-shell .o3-desc-text {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #273545;
+  }
+
+  .hero-o3-shell .o3-cta-block {
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .hero-o3-shell .o3-cta-note {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #526173;
+  }
+
+  /* One Main CTA — Fitts's Law (#8), Von Restorff (#13), Squash & Stretch (#4), Follow-through (#11) */
+  .hero-o3-shell .o3-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    height: 50px;
+    padding: 0 28px;
+    border-radius: 8px;
+    background: var(--emerald-700, #0d5c3f);
+    color: #ffffff;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    box-shadow: 0 8px 20px -6px rgba(13, 92, 63, 0.42), 0 1px 2px rgba(9, 19, 28, 0.12);
+    transition:
+      transform 0.18s cubic-bezier(0.22, 0.31, 0, 1),
+      background 0.16s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.22s cubic-bezier(0.22, 0.31, 0, 1);
+  }
+
+  .hero-o3-shell .o3-cta-btn .o3-cta-arrow {
+    display: inline-block;
+    transition: transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .hero-o3-shell .o3-cta-btn:hover {
+    background: var(--emerald-900, #063726);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px -8px rgba(13, 92, 63, 0.50), 0 2px 4px rgba(9, 19, 28, 0.12);
+  }
+
+  .hero-o3-shell .o3-cta-btn:hover .o3-cta-arrow {
+    transform: translateX(5px);
+  }
+
+  .hero-o3-shell .o3-cta-btn:active {
+    transform: translateY(0) scale(0.975, 0.955);
+    box-shadow: 0 4px 10px -4px rgba(13, 92, 63, 0.45);
+    transition-duration: 0.08s;
+  }
+
+  @media (max-width: 720px) {
+    .hero-o3-shell {
+      padding: 72px 12px 16px;
+    }
+
+    .hero-o3-shell .o3-stage {
+      min-height: calc(100svh - 88px);
+      justify-content: flex-start;
+    }
+
+    .hero-o3-shell .o3-top-meta {
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12.5px;
+    }
+
+    .hero-o3-shell .o3-svg-wrap {
+      top: 190px;
+    }
+
+    .hero-o3-shell .o3-shadow {
+      bottom: auto;
+      top: 390px;
+      height: 60px;
+    }
+
+    .hero-o3-shell .o3-cutout-wrap {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      transform: none;
+      width: 100%;
+      height: 350px;
+      margin-top: 44px;
+    }
+
+    .hero-o3-shell .o3-bottom {
+      position: relative;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 14px;
+      padding: 16px 20px 20px;
+      background: #ffffff;
+      border-top: 1px solid rgba(9, 19, 28, 0.10);
+    }
+
+    .hero-o3-shell .o3-desc-block {
+      max-width: 100%;
+    }
+
+    .hero-o3-shell .o3-cta-block {
+      align-items: stretch;
+    }
+
+    .hero-o3-shell .o3-cta-btn {
+      width: 100%;
+    }
+
+    .hero-o3-shell .o3-cta-note {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    .hero-o3-shell .o3-letter-g,
+    .hero-o3-shell .o3-anim-rise,
+    .hero-o3-shell .o3-anim-subject,
+    .hero-o3-shell .o3-anim-shadow {
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>
+
+<section class="hero-o3-shell" id="heroStage" aria-label="Beranda UKM Al-Qur'an Study Club UM">
+  <div class="o3-stage">
+    <div class="o3-top-meta o3-anim-rise" style="--d:80ms">
+      <span>Al-Qur'an Study Club · Universitas Negeri Malang</span>
+      <span class="muted">10 Bidang Pembinaan · Masjid Al-Hikmah</span>
+    </div>
+
+    <!-- Custom Tilted Lettering with Seamless Islamic Geometric Lattice Masked INSIDE the Letters -->
+    <div class="o3-svg-wrap" id="o3SvgWrap" data-parallax="-12" aria-hidden="true">
+      <svg class="o3-svg" viewBox="0 0 1200 460" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="o3IslamicFill" width="64" height="64" patternUnits="userSpaceOnUse">
+            <rect width="64" height="64" fill="#091f17" />
+            <g fill="none" stroke="rgba(229, 193, 102, 0.30)" stroke-width="1.15">
+              <rect x="16" y="16" width="32" height="32" />
+              <rect x="16" y="16" width="32" height="32" transform="rotate(45 32 32)" />
+              <circle cx="32" cy="32" r="8" stroke="rgba(16, 185, 129, 0.42)" />
+              <path d="M0 0 L12 12 M64 0 L52 12 M0 64 L12 52 M64 64 L52 52" stroke="rgba(229, 193, 102, 0.16)" />
+              <path d="M0 32 L10 32 M54 32 L64 32 M32 0 L32 10 M32 54 L32 64" stroke="rgba(255, 255, 255, 0.16)" />
+            </g>
+          </pattern>
+        </defs>
+
+        <g class="o3-letter-g" style="--d:0ms">
+          <text x="195" y="382" text-anchor="middle" transform="rotate(-3.4 195 250)"
+            font-family="'Geist', 'Arial Black', sans-serif" font-weight="900" font-size="430" letter-spacing="-14"
+            fill="url(#o3IslamicFill)" stroke="#09131c" stroke-width="2">A</text>
+        </g>
+        <g class="o3-letter-g" style="--d:75ms">
+          <text x="580" y="370" text-anchor="middle" transform="rotate(2.4 580 240)"
+            font-family="'Geist', 'Arial Black', sans-serif" font-weight="900" font-size="430" letter-spacing="-14"
+            fill="url(#o3IslamicFill)" stroke="#09131c" stroke-width="2">S</text>
+        </g>
+        <g class="o3-letter-g" style="--d:150ms">
+          <text x="975" y="388" text-anchor="middle" transform="rotate(-2.8 975 250)"
+            font-family="'Geist', 'Arial Black', sans-serif" font-weight="900" font-size="430" letter-spacing="-14"
+            fill="url(#o3IslamicFill)" stroke="#09131c" stroke-width="2">C</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="o3-shadow o3-anim-shadow" id="o3Shadow" data-parallax="-6" aria-hidden="true"></div>
+
+    <div class="o3-cutout-wrap">
+      <div class="o3-cutout-inner o3-anim-subject" data-parallax="8" style="--d:160ms">
+        <img id="cutoutPhoto" src="https://lh3.googleusercontent.com/d/1BSkITqQsDZMZJpsFc50hWwU6Hp9Z-YDQ"
+          onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='https://drive.google.com/uc?export=view&id=1BSkITqQsDZMZJpsFc50hWwU6Hp9Z-YDQ';}else if(this.dataset.fb==='1'){this.dataset.fb='2';this.src='../assets/hero-asc-cutout.webp';}else if(this.dataset.fb==='2'){this.dataset.fb='3';this.src='assets/hero-asc-cutout.webp';}"
+          alt="Pengurus UKM Al-Qur'an Study Club Universitas Negeri Malang" />
+      </div>
+    </div>
+
+    <div class="o3-bottom">
+      <div class="o3-desc-block o3-anim-rise" style="--d:250ms">
+        <h1 class="o3-desc-title">Wadah Qur'ani Mahasiswa UM.</h1>
+        <p class="o3-desc-text">
+          Terbuka untuk seluruh fakultas UM
+        </p>
+      </div>
+
+      <div class="o3-cta-block o3-anim-rise" style="--d:310ms">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScmXgmP4Xyo0js4uZOVF8x88N9kkl3oygjBSYIMYSmXGWmDvw/viewform
+" class="o3-cta-btn" data-cursor-hover>
+          <span>Persyaratan Media Partner UKM Al-Qur'an Study Club
+          </span>
+          <span class="o3-cta-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+      <div class="o3-cta-block o3-anim-rise" style="--d:310ms">
+        <a href="#gabung" class="o3-cta-btn" data-cursor-hover>
+          <span>Daftar Pembinaan</span>
+          <span class="o3-cta-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function initHeroOption3() {
+    'use strict';
+
+    const shell = document.getElementById('heroStage');
+    if (!shell) return;
+
+    requestAnimationFrame(() => {
+      shell.classList.add('is-entered');
+    });
+
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hoverCapable = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+    if (reduceMotion || !hoverCapable) return;
+
+    const parallaxEls = Array.from(shell.querySelectorAll('[data-parallax]'));
+    const pat = document.getElementById('o3IslamicFill');
+
+    let targetX = 0, targetY = 0, curX = 0, curY = 0;
+
+    shell.addEventListener('pointermove', (e) => {
+      const r = shell.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      targetX = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      targetY = ((e.clientY - r.top) / r.height - 0.5) * 2;
+    }, { passive: true });
+
+    shell.addEventListener('pointerleave', () => {
+      targetX = 0;
+      targetY = 0;
+    });
+
+    function tickParallax() {
+      curX += (targetX - curX) * 0.08;
+      curY += (targetY - curY) * 0.08;
+
+      if (Math.abs(curX) > 0.001 || Math.abs(curY) > 0.001 || Math.abs(targetX) > 0.001) {
+        parallaxEls.forEach((el) => {
+          const depth = parseFloat(el.getAttribute('data-parallax') || '0');
+          const dx = (curX * depth).toFixed(2);
+          const dy = (curY * depth * 0.45).toFixed(2);
+          if (el.classList.contains('o3-svg-wrap')) {
+            el.style.transform = 'translate(calc(-50% + ' + dx + 'px), calc(-50% + ' + dy + 'px))';
+          } else if (el.classList.contains('o3-shadow')) {
+            el.style.transform = 'translateX(calc(-50% + ' + dx + 'px))';
+          } else {
+            el.style.transform = 'translate3d(' + dx + 'px, ' + dy + 'px, 0)';
+          }
+        });
+
+        if (pat) {
+          pat.setAttribute('patternTransform', 'translate(' + (curX * 14).toFixed(1) + ' ' + (curY * 8).toFixed(1) + ')');
+        }
+      }
+      requestAnimationFrame(tickParallax);
+    }
+    requestAnimationFrame(tickParallax);
+  })();
+</script>

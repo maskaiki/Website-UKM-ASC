@@ -7,9 +7,17 @@
 ====================================================================== -->
 
 <style>
-  /* =========================================================================
-     FIX OVERFLOW UNTUK DIVI & ELEMENTOR WORDPRESS (AGAR POSITION:STICKY BERFUNGSI)
-     ========================================================================= */
+  /* ==========================================================================
+     KOMPONEN KUNCI UTAMA (STICKY PINNING ENGINE - STRUKTUR ORGANISASI)
+     Agar efek scroll mengunci ("diam di tempat"), ada 5 syarat mutlak:
+     1. Parent Track memiliki tinggi scroll panjang (height: 1000vh !important)
+     2. Pin Stage memiliki position: -webkit-sticky !important; position: sticky !important;
+     3. Pin Stage memiliki top: 0 !important; (titik kunci di viewport)
+     4. Pin Stage memiliki height: 100vh !important; height: 100svh !important; (1 layar penuh)
+     5. Seluruh wrapper induk WordPress memiliki overflow: visible !important;
+     ========================================================================== */
+
+  /* [KUNCI 1] Reset overflow WordPress/Divi/Elementor agar sticky tidak terpotong */
   .et_pb_section,
   .et_pb_fullwidth_section,
   .et_pb_row,
@@ -26,16 +34,21 @@
     overflow: visible !important;
   }
 
+  /* [KUNCI 2] Track Jalur Gulir: Memberikan jarak gulir panjang (1000vh) */
+  /* Elemen sticky di dalamnya akan terkunci selama pengguna menggulir sepanjang track ini */
   #asc-struktur {
     position: relative !important;
     width: 100% !important;
-    height: 1000vh !important;
-    overflow: visible !important;
+    height: 1000vh !important;   /* <--- Jarak lintasan gulir panjang */
+    overflow: visible !important; /* Wajib visible agar stage dapat menempel di layar */
     background: #091f17;
     color: #fff;
     --ice: #e8f0eb;
     --sky: #e5c166;
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
   #asc-struktur * {
@@ -44,18 +57,21 @@
     padding: 0;
   }
 
+  /* [KUNCI 3 & 4] Frame Panggung Sticky: Terkunci di top: 0 setinggi 100vh */
   #asc-struktur .st-pin {
-    position: sticky !important;
-    top: 0 !important;
+    position: -webkit-sticky !important;
+    position: sticky !important; /* <--- Perintah browser untuk mengunci elemen */
+    top: 0 !important;           /* <--- TITIK KUNCI: Menempel tepat di bibir atas layar */
     left: 0 !important;
     width: 100% !important;
-    height: 100vh !important;
-    height: 100svh !important;
-    overflow: hidden !important;
+    height: 100vh !important;    /* <--- Tinggi tepat 1 layar penuh */
+    height: 100svh !important;   /* Kompatibilitas browser mobile modern */
+    overflow: hidden !important; /* Konten bagan dibatasi di dalam layar, tidak tembus */
     display: flex;
     flex-direction: column;
-    padding: 3.5vh 4vw 3vh;
+    padding: calc(3.5vh + var(--asc-hh, 0px)) 4vw 3vh;
     background: #091f17;
+    box-sizing: border-box;
   }
 
   /* Kepala + penunjuk alur */
@@ -904,10 +920,33 @@
       scs.push({ el: s, i: i, it: [].slice.call(s.querySelectorAll('.st-it')), dt: s.querySelector('.st-dt'), items: items, nb: d.b.length, n: items.length, chips: chips, all: chips.concat(pills), cur: -1, act: -2, lb: i < 4 ? 'Bidang' : 'Lembaga' });
     });
 
-    layout();
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { root.classList.add('st-static'); window.addEventListener('resize', layout); return; }
+    /* [KUNCI 5] Buka overflow milik container/tema WordPress (Penyebab Sticky Gagal)
+       Browser mematikan position: sticky jika ada elemen leluhur (parent, body, html) yang
+       memiliki overflow: hidden/auto/scroll. Fungsi ini memeriksa dan membebaskan jalur sticky. */
+    function unlockAncestors() {
+      try {
+        if (root) root.style.setProperty('overflow', 'visible', 'important');
+        var p = root.parentElement, n = 0;
+        while (p && p !== document.documentElement && n++ < 25) {
+          var cs = window.getComputedStyle(p);
+          if (/hidden|auto|scroll|clip/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+            p.style.setProperty('overflow', 'visible', 'important');
+            p.style.setProperty('overflow-x', 'visible', 'important');
+            p.style.setProperty('overflow-y', 'visible', 'important');
+          }
+          p = p.parentElement;
+        }
+        if (document.documentElement) {
+          document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
+        }
+        if (document.body) {
+          document.body.style.setProperty('overflow-x', 'visible', 'important');
+        }
+      } catch (e) { /* abaikan jika dibatasi sandbox */ }
+    }
 
-    ASC.unlock(root);
+    unlockAncestors();
+    layout();
 
     /* Garis waktu scroll (satuan U = 1vh): bagan 170, tiap departemen = 20 masuk + 24 per butir + 12 keluar */
     var U = 0, CL = 0, total = 0;
@@ -917,12 +956,15 @@
       total = c;
       root.style.setProperty('height', Math.round(window.innerHeight + total) + 'px', 'important');
     }
+    geom();
+
     function card(s, a) {
       var it = s.items[a];
       s.dt.innerHTML = '<div class="st-dk"><span>' + (it.ev ? 'Event' : s.lb) + '</span><span>' + pad(a + 1) + ' / ' + pad(s.n) + '</span></div>' +
         (it.img ? '<div class="st-ph" style="background-image:url(\'' + it.img + '\')"></div>' : '') + '<h4>' + esc(it.n) + (it.s ? ' · ' + esc(it.s) : '') + '</h4>' + (it.d ? '<p>' + esc(it.d) + '</p>' : '') +
         (it.p ? '<div class="st-tg">' + it.p.map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('') + '</div>' : '');
     }
+
     var ticking = false;
     function render() {
       ticking = false;
@@ -948,6 +990,7 @@
       sbtn.forEach(function (b, k) { b.classList.toggle('on', k === idx); b.classList.toggle('done', k < idx); });
       fill.style.width = ((Math.min(pos, 5) + .5) / 6 * 100).toFixed(2) + '%';
     }
+
     function onScroll() {
       if (!ticking) { ticking = true; requestAnimationFrame(render); }
     }
@@ -962,49 +1005,36 @@
       });
     });
 
-    /* Perbaiki overflow parent WordPress (Divi/Elementor) agar position: sticky hidup */
-    function fixParents(el) {
-      if (!el) return;
-      var p = el.parentElement, n = 0;
-      while (p && p !== document.documentElement && n++ < 25) {
-        var cs = window.getComputedStyle(p);
-        if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
-          p.style.setProperty('overflow', 'visible', 'important');
-        }
-        p = p.parentElement;
-      }
-      if (document.documentElement) {
-        document.documentElement.style.setProperty('overflow-x', 'visible', 'important');
-      }
-      if (document.body) {
-        document.body.style.setProperty('overflow-x', 'visible', 'important');
-      }
-    }
-
     function init() {
       if (!root) return false;
       if (root.dataset.ready) return true;
       root.dataset.ready = '1';
-      fixParents(root);
+      unlockAncestors();
       layout();
       geom();
       render();
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', function () {
-        fixParents(root);
+        unlockAncestors();
         layout();
         geom();
         onScroll();
       }, { passive: true });
       window.addEventListener('load', function () {
-        fixParents(root);
+        unlockAncestors();
+        layout();
+        geom();
+        render();
+      });
+      window.addEventListener('pageshow', function () {
+        unlockAncestors();
         layout();
         geom();
         render();
       });
       if (window.ResizeObserver) {
         new ResizeObserver(function () {
-          fixParents(root);
+          unlockAncestors();
           layout();
           geom();
           render();
@@ -1013,7 +1043,7 @@
       // Auto-calibration: jalankan berkala otomatis saat load agar desktop tidak perlu zoom in/out
       [50, 150, 300, 600, 1200, 2000].forEach(function (ms) {
         setTimeout(function () {
-          fixParents(root);
+          unlockAncestors();
           layout();
           geom();
           render();

@@ -222,7 +222,7 @@
 
       <form id="joinForm">
         <input type="text" class="input-field" placeholder="Nama Lengkap &amp; Fakultas / Angkatan" required />
-        <input type="email" class="input-field" placeholder="Alamat Email atau Nomor WhatsApp" required />
+        <input type="text" class="input-field" placeholder="Alamat Email atau Nomor WhatsApp" required />
         <input type="text" class="input-field" placeholder="Bidang Pembinaan yang Diminati (Misal: Tahsin / DAQ / Tilawah)" />
         <textarea class="input-field" rows="3" placeholder="Pesan atau pertanyaan singkat..."></textarea>
         <button type="submit" class="btn-primary-pill" style="width:100%;">
@@ -230,7 +230,7 @@
           <span aria-hidden="true">→</span>
         </button>
         <p id="formSuccess" style="display:none;margin-top:14px;font-size:14px;font-weight:700;color:var(--emerald-700);">
-          Pesan berhasil tercatat. Tim Humas UKM ASC UM akan segera menghubungi kamu.
+          Pesan berhasil tercatat! Menghubungkan ke WhatsApp Tim Humas UKM ASC UM…
         </p>
       </form>
 
@@ -267,6 +267,20 @@
       joinForm.addEventListener('submit', (e) => {
         e.preventDefault();
         if (formSuccess) formSuccess.style.display = 'block';
+        const inputs = joinForm.querySelectorAll('.input-field');
+        const nama = inputs[0] ? inputs[0].value.trim() : '';
+        const kontak = inputs[1] ? inputs[1].value.trim() : '';
+        const bidang = inputs[2] ? inputs[2].value.trim() : '';
+        const pesan = inputs[3] ? inputs[3].value.trim() : '';
+        const text = "Assalamu'alaikum Humas UKM ASC UM, saya ingin mendaftar/bertanya:\n\n" +
+          "*Nama:* " + nama + "\n" +
+          "*Kontak:* " + kontak + "\n" +
+          (bidang ? "*Bidang Minat:* " + bidang + "\n" : "") +
+          (pesan ? "*Pesan:* " + pesan + "\n" : "");
+        const waUrl = 'https://wa.me/6281284129092?text=' + encodeURIComponent(text);
+        setTimeout(() => {
+          window.open(waUrl, '_blank');
+        }, 800);
         e.target.reset();
       });
     }
