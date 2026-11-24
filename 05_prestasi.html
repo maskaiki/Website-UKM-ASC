@@ -1173,7 +1173,9 @@
         <div>
           <p class="pr-lead">Capaian mahasiswa UKM Al-Qur’an Study Club di berbagai ajang, dari tingkat kampus hingga
             internasional: bukti bahwa khidmah pada Al-Qur’an melahirkan karya dan prestasi.</p>
-          <a class="pr-btn" id="prForm" href="#">Laporkan prestasimu <span aria-hidden="true">&rarr;</span></a>
+          <a class="pr-btn" id="prForm"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSf4TNKOnZc8XTmzZtCrO2zaiEJwTNFlrESx6H_JEuVI9YDo2A/viewform">Laporkan
+            prestasimu <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
       <div class="pr-note" id="prNote" hidden>Data contoh: ganti isi <b>DATA PRESTASI</b> pada script dengan data asli,
@@ -1822,7 +1824,7 @@
           setTimeout(function () {
             fixParents(root);
             render();
-            try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+            try { window.dispatchEvent(new Event('resize')); } catch (e) { }
           }, ms);
         });
         return true;

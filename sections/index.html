@@ -316,7 +316,8 @@
     <div class="asc-slot" data-src="00_header.html"></div>
 
     <main id="top">
-        <div class="asc-slot" data-src="01_hero.html"></div>
+        <div class="asc-slot" data-src="01_profil.html"></div>
+        <div class="asc-slot" data-src="02_scroll_asc.html"></div>
         <div class="asc-slot" data-src="02_visi_misi.html"></div>
         <div class="asc-slot" data-src="03_pembinaan.html"></div>
         <div class="asc-slot" data-src="04_struktur_organisasi.html"></div>
@@ -336,11 +337,19 @@
             const errorEl = document.getElementById('ascLoaderError');
             const slots = Array.from(document.querySelectorAll('.asc-slot[data-src]'));
 
+            let loaderHidden = false;
             function hideLoader() {
+                if (loaderHidden) return;
+                loaderHidden = true;
                 if (!loaderEl) return;
                 loaderEl.classList.add('is-hidden');
-                setTimeout(() => loaderEl.remove(), 400);
+                setTimeout(() => {
+                    try { loaderEl.remove(); } catch (_) {}
+                }, 400);
             }
+
+            // Batas maksimal: loader PASTI hilang maksimal 1.2 detik agar tidak pernah stuck di layar ASC.
+            const safetyTimer = setTimeout(hideLoader, 1200);
 
             function showLoadError(failedFiles) {
                 if (!errorEl) return;
@@ -351,6 +360,7 @@
                     '<br><br>Jika file dibuka langsung lewat <code>file://</code>, browser memblokir <code>fetch()</code> lokal karena aturan CORS. ' +
                     'Untuk melihatnya secara lokal, jalankan <code>python -m http.server 8000</code> di folder <code>Website-UKM-ASC</code> lalu buka ' +
                     '<code>http://localhost:8000/sections/index.html</code> (atau deploy langsung ke GitHub Pages).';
+                hideLoader();
             }
 
             function executeScriptsSequentially(scripts, done) {
@@ -371,8 +381,12 @@
                         newScript.onerror = next;
                         document.body.appendChild(newScript);
                     } else {
-                        newScript.text = oldScript.textContent;
-                        document.body.appendChild(newScript);
+                        try {
+                            newScript.text = oldScript.textContent;
+                            document.body.appendChild(newScript);
+                        } catch (err) {
+                            console.warn('[ASC Script Loader] Terjadi kendala pada skrip #' + idx + ':', err);
+                        }
                         next();
                     }
                 }

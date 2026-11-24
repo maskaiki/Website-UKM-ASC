@@ -30,14 +30,17 @@ BASE_DIR = Path(__file__).resolve().parent
 SECTIONS_DIR = BASE_DIR / "sections"
 
 SECTION_FILES = [
-    "00_navbar_drawer.html",
-    "01_home.html",
-    "02_transisi.html",
-    "03_visi_misi.html",
-    "04_pembinaan.html",
+    "00_header.html",
+    "01_profil.html",
+    "02_scroll_asc.html",
+    "02_visi_misi.html",
+    "03_pembinaan.html",
+    "04_struktur_organisasi.html",
     "05_prestasi.html",
     "06_kabinet.html",
-    "07_footer.html"
+    "07_faq_kontak.html",
+    "08_link_medsos.html",
+    "09_footer.html"
 ]
 
 def check_integrity():
@@ -183,47 +186,59 @@ def build_pages():
 </body>
 </html>
 """
-    out_file = BASE_DIR / "index.html"
-    out_file.write_text(master_html, encoding="utf-8")
-    print(f"✅ Selesai! File statis tersimpan di {out_file.name} ({out_file.stat().st_size:,} bytes)")
-
-    # Buat juga index.standalone.html
-    cutout = BASE_DIR / "assets" / "hero-asc-cutout.webp"
-    if not cutout.exists():
-        cutout = BASE_DIR / "hero-asc-cutout.webp"
-    if cutout.exists():
-        cutout_b64 = base64.b64encode(cutout.read_bytes()).decode("ascii")
-        standalone_html = master_html.replace('src="assets/hero-asc-cutout.webp"', f'src="data:image/webp;base64,{cutout_b64}"')
-        standalone_html = standalone_html.replace('src="hero-asc-cutout.webp"', f'src="data:image/webp;base64,{cutout_b64}"')
-        out_standalone = BASE_DIR / "index.standalone.html"
-        out_standalone.write_text(standalone_html, encoding="utf-8")
-        print(f"✅ Versi standalone tersimpan di {out_standalone.name} ({out_standalone.stat().st_size:,} bytes)")
+    out_standalone = BASE_DIR / "index.standalone.html"
+    out_standalone.write_text(master_html, encoding="utf-8")
+    print(f"✅ Selesai! Versi standalone tersimpan di {out_standalone.name} ({out_standalone.stat().st_size:,} bytes)")
 
 
-def serve_local(port=8000):
+def serve_local(start_port=8000):
     os.chdir(BASE_DIR)
-    handler = http.server.SimpleHTTPRequestHandler
-    with socketserver.TCPServer(("", port), handler) as httpd:
-        url = f"http://localhost:{port}/index.html"
-        print(f"\n🚀 Server lokal aktif di {url}")
-        print("Tekan Ctrl+C untuk menghentikan server.")
+    
+    # Gunakan ThreadingHTTPServer multi-thread agar request paralel (fetch) tidak saling memblokir
+    port = start_port
+    httpd = None
+    while port < start_port + 20:
         try:
-            webbrowser.open(url)
+            httpd = http.server.ThreadingHTTPServer(("", port), http.server.SimpleHTTPRequestHandler)
+            break
+        except OSError:
+            port += 1
+            
+    if not httpd:
+        print(f"❌ Gagal mengaktifkan server: Port {start_port}-{start_port+20} sedang terpakai.")
+        return
+
+    with httpd:
+        url_sections = f"http://localhost:{port}/sections/index.html"
+        url_standalone = f"http://localhost:{port}/index.standalone.html"
+        print("\n" + "=" * 65)
+        print(f"  🚀 SERVER LOKAL UKM ASC UM AKTIF!")
+        print(f"  🌐 Modular View  : {url_sections}")
+        print(f"  📄 Standalone View : {url_standalone}")
+        print("=" * 65)
+        print("  💡 Halaman website otomatis terbuka di browser.")
+        print("  🛑 Tekan Ctrl + C di terminal ini untuk menghentikan server.\n")
+        try:
+            webbrowser.open(url_sections)
         except Exception:
             pass
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
-            print("\n🛑 Server dihentikan.")
+            print("\n🛑 Server dihentikan dengan aman.")
 
 
 if __name__ == "__main__":
     if "--check" in sys.argv or "-c" in sys.argv:
         err = check_integrity()
         sys.exit(err)
+    elif "--build-only" in sys.argv or "-b" in sys.argv:
+        build_pages()
     elif "--serve" in sys.argv or "-s" in sys.argv:
+        build_pages()
         serve_local()
     else:
+        # Default: kompilasi lalu otomatis jalankan server lokal
         build_pages()
-"""
-"""
+        print("\n💡 Tips: Untuk hanya kompilasi tanpa server, gunakan: python build.py --build-only")
+        serve_local()
