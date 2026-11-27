@@ -1,53 +1,68 @@
 <!-- =====================================================================
-  UKM ASC UNIVERSITAS NEGERI MALANG — SECTION 00: HEADER (STANDALONE DIVI)
-  100% Mandiri dalam 1 file (HTML + CSS + JS opsional, tanpa file/Python lain).
-  Cara pakai di WordPress Divi Builder:
-  1. Buka modul "Code" / "Fullwidth Code" di section paling atas halaman.
-  2. Salin seluruh isi file ini (Ctrl+A -> Ctrl+C), lalu tempel (Ctrl+V).
-  Catatan Teknis:
-  - Normal flow (tanpa position: fixed / sticky) agar tidak tertutup di belakang
-    section lain di WordPress / Divi Builder.
-  - Tombol Menu / Titik 3 berjalan dengan Pure HTML + CSS checkbox (:checked),
-    membuka panel menu langsung di dalam aliran dokumen sehingga selalu tampil
-    utuh di depan tanpa terpotong overflow section.
+  UKM ASC UM - SECTION 00: HEADER FIXED EDITORIAL (STANDALONE DIVI)
+  100% Mandiri dalam 1 file, ringan, dan ramah firewall ModSecurity WordPress.
 ====================================================================== -->
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Geist:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-  /* Header bersifat statis/normal di atas, beri tahu section sticky lain bahwa offset fixed = 0 */
   :root {
-    --asc-hh: 0px !important;
+    --asc-hh: 76px;
   }
 
-  /* Smooth scroll murni HTML + CSS saat tautan menu diklik */
   html {
     scroll-behavior: smooth;
+    overflow-x: clip !important;
   }
 
-  /* Bersihkan padding & pembatas lebar bawaan Divi/Elementor khusus section header */
+  body {
+    overflow-x: clip !important;
+  }
+
+  /* Fix overflow Divi & Elementor agar fixed/sticky berjalan lancar */
+  .et_pb_section,
+  .et_pb_fullwidth_section,
+  .et_pb_row,
+  .et_pb_column,
+  .et_pb_module,
+  .et_pb_code,
+  .et_pb_fullwidth_code,
+  .et_pb_code_inner,
+  .elementor-section,
+  .elementor-column,
+  .elementor-widget-wrap,
+  .elementor-widget,
+  .elementor-element {
+    overflow: visible !important;
+  }
+
   .et_pb_section:has(#asc-hdr),
   .et_pb_section:has(#asc-hdr) .et_pb_row,
   .et_pb_section:has(#asc-hdr) .et_pb_column,
-  .et_pb_section:has(#asc-hdr) .et_pb_code,
-  .et_pb_section:has(#asc-hdr) .et_pb_code_inner,
-  .elementor-section:has(#asc-hdr),
-  .elementor-element:has(#asc-hdr) {
+  .et_pb_section:has(#asc-hdr) .et_pb_module,
+  .et_pb_section:has(#asc-hdr) .et_pb_code_inner {
     width: 100% !important;
     max-width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
-    overflow: visible !important;
     position: relative !important;
-    z-index: 50 !important;
+    z-index: 9000 !important;
+    transform: none !important;
   }
 
-  /* Karena header berada pada alur normal (tidak melayang fixed), rapikan jarak atas Hero */
   .hero-o3-shell {
-    padding-top: clamp(16px, 2.2vw, 28px) !important;
+    padding-top: clamp(14px, 2vw, 24px) !important;
+    min-height: calc(100svh - var(--asc-hh, 76px)) !important;
   }
 
-  /* Reset terisolasi agar kebal dari CSS bawaan tema WordPress / Divi */
+  .asc-hdr-spacer {
+    display: block !important;
+    width: 100% !important;
+    height: 76px !important;
+    background: #f6f5f0;
+    pointer-events: none;
+  }
+
   #asc-hdr,
   #asc-hdr *,
   #asc-hdr *::before,
@@ -59,36 +74,63 @@
   }
 
   #asc-hdr {
-    position: relative !important;
-    display: block !important;
+    position: fixed !important;
+    top: 0;
+    left: 0 !important;
+    right: 0 !important;
     width: 100% !important;
-    z-index: 50 !important;
-    background: #f6f5f0;
+    z-index: 9000 !important;
+    display: block !important;
+    background: rgba(246, 245, 240, 0.96);
     color: #09131c;
-    border-bottom: 1px solid rgba(9, 19, 28, 0.10);
+    border-bottom: 1px solid rgba(9, 19, 28, 0.09);
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    transition: background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  #asc-hdr.is-scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    border-bottom-color: rgba(9, 19, 28, 0.14);
+    box-shadow: 0 8px 28px -8px rgba(9, 19, 28, 0.10);
+  }
+
+  body.admin-bar #asc-hdr {
+    top: 32px;
+  }
+
+  @media screen and (max-width: 782px) {
+    body.admin-bar #asc-hdr {
+      top: 46px;
+    }
   }
 
   #asc-hdr a {
     color: inherit !important;
     text-decoration: none !important;
     box-shadow: none !important;
-    border-bottom-color: transparent;
   }
 
-  /* Baris utama header (Normal Flow, tanpa sticky/fixed) */
+  #asc-hdr .asc-scroll-line {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 2px;
+    width: 0%;
+    background: #0d5c3f;
+    pointer-events: none;
+  }
+
   #asc-hdr .asc-hdr-bar {
     max-width: 1440px;
     margin: 0 auto;
-    min-height: 76px;
-    padding: 12px clamp(20px, 4vw, 56px);
+    height: 76px;
+    padding: 0 clamp(20px, 4vw, 56px);
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     gap: 16px;
   }
 
-  /* Identitas Brand */
   #asc-hdr .asc-brand {
     display: inline-flex;
     align-items: center;
@@ -123,7 +165,6 @@
     color: #273545;
   }
 
-  /* Navigasi Desktop Tengah */
   #asc-hdr .asc-nav {
     display: flex;
     align-items: center;
@@ -155,15 +196,16 @@
     transition: transform 0.22s cubic-bezier(0.22, 0.31, 0, 1);
   }
 
-  #asc-hdr .asc-nav-link:hover {
-    color: #09131c !important;
+  #asc-hdr .asc-nav-link:hover,
+  #asc-hdr .asc-nav-link.is-active {
+    color: #0d5c3f !important;
   }
 
-  #asc-hdr .asc-nav-link:hover::after {
+  #asc-hdr .asc-nav-link:hover::after,
+  #asc-hdr .asc-nav-link.is-active::after {
     transform: scaleX(1);
   }
 
-  /* Tombol Menu / Titik 3 (Pure HTML + CSS Checkbox Trigger) */
   #asc-hdr .asc-hdr-right {
     justify-self: end;
     display: flex;
@@ -187,14 +229,13 @@
     border-radius: 8px;
     border: 1.5px solid rgba(9, 19, 28, 0.22);
     background: #ffffff;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 13.5px;
     font-weight: 700;
     color: #09131c;
     cursor: pointer;
     user-select: none;
     line-height: 1;
-    transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.12s ease;
+    transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease;
   }
 
   #asc-hdr .asc-menu-trigger:hover {
@@ -203,16 +244,6 @@
     color: #ffffff;
   }
 
-  #asc-hdr .asc-menu-trigger:active {
-    transform: scale(0.97);
-  }
-
-  #asc-hdr .asc-hdr-cb:focus-visible ~ .asc-hdr-bar .asc-menu-trigger {
-    outline: 2px solid #0d5c3f;
-    outline-offset: 2px;
-  }
-
-  /* Ikon Titik 3 */
   #asc-hdr .asc-dots-icon {
     display: inline-flex;
     align-items: center;
@@ -232,7 +263,6 @@
     display: none;
   }
 
-  /* Kondisi saat Titik 3 / Menu diklik (tercentang) */
   #asc-hdr .asc-hdr-cb:checked ~ .asc-hdr-bar .asc-menu-trigger {
     background: #09131c;
     border-color: #09131c;
@@ -250,11 +280,6 @@
     font-size: 14px;
   }
 
-  /* =====================================================================
-     PANEL MENU EKSPANSIF (PURE HTML + CSS IN-FLOW)
-     Mengembang rapi langsung di dalam header agar SELALU terlihat di depan
-     dan tidak akan pernah tertindih / tertutup oleh section di bawahnya.
-  ====================================================================== */
   #asc-hdr .asc-drawer {
     display: grid;
     grid-template-rows: 0fr;
@@ -262,7 +287,8 @@
     background: #09131c;
     color: #ffffff;
     border-top: 0 solid rgba(255, 255, 255, 0.12);
-    transition: grid-template-rows 0.32s cubic-bezier(0.22, 0.31, 0, 1), opacity 0.24s ease;
+    box-shadow: 0 24px 48px -12px rgba(9, 19, 28, 0.36);
+    transition: grid-template-rows 0.3s ease, opacity 0.22s ease;
   }
 
   #asc-hdr .asc-hdr-cb:checked ~ .asc-drawer {
@@ -273,6 +299,11 @@
 
   #asc-hdr .asc-drawer-clip {
     overflow: hidden;
+    max-height: calc(100svh - 76px);
+  }
+
+  #asc-hdr .asc-hdr-cb:checked ~ .asc-drawer .asc-drawer-clip {
+    overflow-y: auto;
   }
 
   #asc-hdr .asc-drawer-inner {
@@ -299,13 +330,13 @@
     font-weight: 700;
     letter-spacing: -0.025em;
     color: #ffffff !important;
-    transition: padding-left 0.22s cubic-bezier(0.22, 0.31, 0, 1), color 0.18s ease, border-color 0.18s ease;
+    transition: padding-left 0.2s ease, color 0.18s ease;
   }
 
-  #asc-hdr .asc-drawer-link:hover {
+  #asc-hdr .asc-drawer-link:hover,
+  #asc-hdr .asc-drawer-link.is-active {
     padding-left: 12px;
     color: #10b981 !important;
-    border-bottom-color: rgba(16, 185, 129, 0.5) !important;
   }
 
   #asc-hdr .asc-drawer-num {
@@ -313,8 +344,6 @@
     font-size: 13px;
     font-weight: 700;
     color: #10b981;
-    letter-spacing: 0.04em;
-    flex-shrink: 0;
   }
 
   #asc-hdr .asc-drawer-foot {
@@ -333,7 +362,6 @@
   #asc-hdr .asc-drawer-close-link {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
     padding: 6px 12px;
     border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.24);
@@ -341,12 +369,6 @@
     font-size: 12.5px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.16s, color 0.16s;
-  }
-
-  #asc-hdr .asc-drawer-close-link:hover {
-    background: #ffffff;
-    color: #09131c;
   }
 
   @media (max-width: 1024px) {
@@ -360,9 +382,17 @@
   }
 
   @media (max-width: 720px) {
+    :root {
+      --asc-hh: 64px;
+    }
+
+    .asc-hdr-spacer {
+      height: 64px !important;
+    }
+
     #asc-hdr .asc-hdr-bar {
-      min-height: 64px;
-      padding: 10px 16px;
+      height: 64px;
+      padding: 0 16px;
     }
 
     #asc-hdr .asc-brand-sep,
@@ -370,13 +400,12 @@
       display: none;
     }
 
-    #asc-hdr .asc-drawer-inner {
-      padding: 18px 16px 22px;
+    #asc-hdr .asc-drawer-clip {
+      max-height: calc(100svh - 64px);
     }
 
     #asc-hdr .asc-drawer-grid {
       grid-template-columns: 1fr;
-      gap: 2px;
     }
 
     #asc-hdr .asc-drawer-link {
@@ -386,9 +415,10 @@
   }
 </style>
 
-<!-- ======================== CLEAN STANDALONE EDITORIAL HEADER ======================== -->
+<div class="asc-hdr-spacer" id="ascHdrSpacer" aria-hidden="true"></div>
+
 <header id="asc-hdr" aria-label="Navigasi Utama UKM ASC">
-  <input type="checkbox" id="ascMenuCb" class="asc-hdr-cb" aria-label="Tampilkan atau sembunyikan menu navigasi" />
+  <input type="checkbox" id="ascMenuCb" class="asc-hdr-cb" aria-label="Buka menu navigasi" />
 
   <div class="asc-hdr-bar">
     <a href="#top" class="asc-brand">
@@ -415,7 +445,6 @@
     </div>
   </div>
 
-  <!-- Panel Menu Navigasi Lengkap (Mengembang langsung tanpa menutupi/tertutup section) -->
   <div class="asc-drawer" aria-label="Daftar Menu Navigasi">
     <div class="asc-drawer-clip">
       <div class="asc-drawer-inner">
@@ -435,23 +464,108 @@
       </div>
     </div>
   </div>
+
+  <div class="asc-scroll-line" id="ascScrollLine" aria-hidden="true"></div>
 </header>
 
 <script>
-  /* Penunjang opsional mandiri: tutup menu otomatis saat link diklik & kelancaran scroll Divi */
   (function () {
     'use strict';
 
-    try {
-      document.documentElement.style.setProperty('--asc-hh', '0px');
-    } catch (_) {}
-
     var hdr = document.getElementById('asc-hdr');
     if (!hdr) return;
+
     var cb = document.getElementById('ascMenuCb');
     var trigger = hdr.querySelector('.asc-menu-trigger');
+    var line = document.getElementById('ascScrollLine');
 
-    /* Dukungan keyboard Enter / Spasi untuk label checkbox */
+    function unlockAncestors() {
+      try {
+        var p = hdr.parentElement, n = 0;
+        while (p && p !== document.documentElement && n++ < 25) {
+          var cs = window.getComputedStyle(p);
+          if (/hidden|auto|scroll/.test(cs.overflow + cs.overflowX + cs.overflowY)) {
+            p.style.setProperty('overflow', 'visible', 'important');
+          }
+          if (cs.transform && cs.transform !== 'none') {
+            p.style.setProperty('transform', 'none', 'important');
+          }
+          if (p.classList && (p.classList.contains('et_pb_section') || p.classList.contains('et_pb_row') ||
+              p.classList.contains('et_pb_column') || p.classList.contains('et_pb_module') ||
+              p.classList.contains('elementor-section'))) {
+            p.style.setProperty('z-index', '9000', 'important');
+          }
+          p = p.parentElement;
+        }
+      } catch (_) {}
+    }
+
+    var TARGETS = [
+      { href: '#asc-visi-misi', sel: ['#asc-vm', '#asc-visi-misi'], sticky: true },
+      { href: '#asc-pembinaan', sel: ['#asc-pb', '#asc-pembinaan'], sticky: true },
+      { href: '#asc-struktur', sel: ['#asc-struktur'], sticky: true },
+      { href: '#prestasi', sel: ['#prestasi', '#asc-prestasi', '#galeri'], sticky: false },
+      { href: '#kabinet', sel: ['#kabinet'], sticky: false },
+      { href: '#gabung', sel: ['#gabung', '#faq', '#asc-kontak'], sticky: false }
+    ];
+
+    function findEl(sel) {
+      for (var i = 0; i < sel.length; i++) {
+        var el = document.querySelector(sel[i]);
+        if (el) return el;
+      }
+      return null;
+    }
+
+    var navLinks = [].slice.call(hdr.querySelectorAll('.asc-nav-link, .asc-drawer-link'));
+    var lastHh = -1, lastWpTop = -1, ticking = false;
+
+    function updateOnScroll() {
+      ticking = false;
+      var y = Math.max(0, window.pageYOffset || document.documentElement.scrollTop || 0);
+      hdr.classList.toggle('is-scrolled', y > 16);
+
+      var wpBar = document.getElementById('wpadminbar');
+      var wpTop = wpBar ? Math.max(0, Math.round(wpBar.getBoundingClientRect().bottom)) : 0;
+      if (wpTop !== lastWpTop) {
+        lastWpTop = wpTop;
+        hdr.style.setProperty('top', wpTop + 'px', 'important');
+      }
+
+      var barEl = hdr.querySelector('.asc-hdr-bar') || hdr;
+      var hh = Math.max(0, Math.round(barEl.getBoundingClientRect().bottom));
+      if (Math.abs(hh - lastHh) > 1) {
+        lastHh = hh;
+        document.documentElement.style.setProperty('--asc-hh', hh + 'px');
+      }
+
+      if (line) {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        line.style.width = max > 0 ? Math.min(100, Math.max(0, (y / max) * 100)).toFixed(2) + '%' : '0%';
+      }
+
+      var activeHref = null, bestTop = -1e9;
+      for (var i = 0; i < TARGETS.length; i++) {
+        var el = findEl(TARGETS[i].sel);
+        if (!el) continue;
+        var top = el.getBoundingClientRect().top;
+        if (top <= hh + 140 && top > bestTop) {
+          bestTop = top;
+          activeHref = TARGETS[i].href;
+        }
+      }
+      for (var j = 0; j < navLinks.length; j++) {
+        navLinks[j].classList.toggle('is-active', navLinks[j].getAttribute('href') === activeHref);
+      }
+    }
+
+    function schedule() {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateOnScroll);
+      }
+    }
+
     if (trigger && cb) {
       trigger.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -461,56 +575,48 @@
       });
     }
 
-    /* Tutup menu jika menekan Escape */
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && cb && cb.checked) {
-        cb.checked = false;
-      }
+      if (e.key === 'Escape' && cb && cb.checked) cb.checked = false;
     });
 
-    /* Pemetaan fallback ID target agar tautan tetap akurat di semua variasi embed Divi */
-    var FALLBACK_TARGETS = {
-      '#asc-visi-misi': ['#asc-visi-misi', '#asc-vm'],
-      '#asc-pembinaan': ['#asc-pb', '#asc-pembinaan'],
-      '#asc-struktur': ['#asc-struktur'],
-      '#prestasi': ['#prestasi', '#asc-prestasi', '#galeri'],
-      '#kabinet': ['#kabinet'],
-      '#gabung': ['#gabung', '#faq', '#asc-kontak']
-    };
+    document.addEventListener('click', function (e) {
+      if (cb && cb.checked && !hdr.contains(e.target)) cb.checked = false;
+    });
 
     hdr.addEventListener('click', function (e) {
       var link = e.target.closest ? e.target.closest('a[href^="#"]') : null;
       if (!link) return;
-
-      /* Selalu tutup panel menu titik 3 setelah memilih tujuan */
       if (cb) cb.checked = false;
 
       var href = link.getAttribute('href');
       if (!href) return;
-
       if (href === '#top') {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
 
-      var candidates = FALLBACK_TARGETS[href] || [href];
-      var targetEl = null;
-      for (var i = 0; i < candidates.length; i++) {
-        var found = document.querySelector(candidates[i]);
-        if (found) {
-          targetEl = found;
-          break;
-        }
+      var cfg = null;
+      for (var i = 0; i < TARGETS.length; i++) {
+        if (TARGETS[i].href === href) { cfg = TARGETS[i]; break; }
       }
-
-      if (targetEl) {
+      var el = cfg ? findEl(cfg.sel) : document.querySelector(href);
+      if (el) {
         e.preventDefault();
-        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        try {
-          history.replaceState(null, '', href);
-        } catch (_) {}
+        var barEl = hdr.querySelector('.asc-hdr-bar') || hdr;
+        var offset = (cfg && cfg.sticky) ? 0 : Math.round(barEl.getBoundingClientRect().bottom) + 8;
+        var targetTop = el.getBoundingClientRect().top + (window.pageYOffset || 0) - offset;
+        window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
       }
+    });
+
+    unlockAncestors();
+    updateOnScroll();
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', function () { unlockAncestors(); schedule(); }, { passive: true });
+    window.addEventListener('load', function () { unlockAncestors(); updateOnScroll(); });
+    [150, 500, 1200, 2200].forEach(function (ms) {
+      setTimeout(function () { unlockAncestors(); updateOnScroll(); }, ms);
     });
   })();
 </script>

@@ -1,0 +1,260 @@
+<!-- =====================================================================
+  UKM ASC UM - SECTION 05B: PRESTASI INPUT CTA (LAPORKAN PRESTASIMU)
+  Mandiri 1 file untuk Divi Builder (dipisahkan dari showcase prestasi).
+====================================================================== -->
+
+<style>
+  /* ==========================================================================
+     PART B: SCOPED CLOSING CTA (#asc-pr-cta)
+     ========================================================================== */
+  #asc-pr-cta {
+    --pr-ink: #09131c;
+    position: relative;
+    width: 100%;
+    background: #f6f5f0;
+    padding: 0 clamp(12px, 2vw, 28px) clamp(16px, 2.2vw, 28px);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  #asc-pr-cta * {
+    box-sizing: border-box;
+  }
+
+  #asc-pr-cta .pr-cta {
+    position: relative;
+    overflow: clip;
+    border-radius: 16px;
+    border: 1px solid rgba(9, 19, 28, 0.12);
+    min-height: 82vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 12vh 6vw;
+    color: #ffffff;
+    background: #091f17;
+  }
+
+  #asc-pr-cta .pr-px {
+    position: absolute;
+    z-index: 1;
+    will-change: transform;
+    pointer-events: none;
+  }
+
+  #asc-pr-cta .pr-md {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: grid;
+    place-items: center;
+    font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
+    font-size: 23px;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  #asc-pr-cta .pr-md.pr-disc {
+    width: var(--s);
+    height: var(--s);
+    font-size: calc(var(--s) * 0.46);
+  }
+
+  #asc-pr-cta .pr-md.r1 {
+    background: #e5c166;
+    color: #09131c;
+  }
+
+  #asc-pr-cta .pr-md.r2 {
+    background: #d9e8de;
+    color: #09131c;
+  }
+
+  #asc-pr-cta .pr-md.r3 {
+    background: #c78d56;
+    color: #09131c;
+  }
+
+  #asc-pr-cta .pr-cw {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    will-change: transform, opacity;
+  }
+
+  #asc-pr-cta .pr-eye {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #d9e8de;
+    margin-bottom: 18px;
+  }
+
+  #asc-pr-cta .pr-eye::before {
+    content: "";
+    width: 34px;
+    height: 2px;
+    background: #d9e8de;
+  }
+
+  #asc-pr-cta .pr-cta h3 {
+    margin: 0;
+    font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(38px, 6.4vw, 92px);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    color: #ffffff;
+  }
+
+  #asc-pr-cta .pr-cta h3 em {
+    font-style: normal;
+    color: #e5c166;
+  }
+
+  #asc-pr-cta .pr-cta p {
+    margin: 22px auto 0;
+    max-width: 520px;
+    font-size: clamp(14px, 1.15vw, 17px);
+    line-height: 1.75;
+    color: #d6d3c9;
+  }
+
+  #asc-pr-cta .pr-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 26px;
+    padding: 13px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.3s, background 0.3s, color 0.3s;
+  }
+
+  #asc-pr-cta .pr-btn.lt {
+    background: #ffffff;
+    color: var(--pr-ink);
+  }
+
+  #asc-pr-cta .pr-btn.lt:hover {
+    background: #e5c166;
+    color: #09131c;
+    transform: translateY(-2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #asc-pr-cta * {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+</style>
+
+<!-- PART B: CLOSING CTA DIRECTLY BELOW JEJAK PRESTASI -->
+<div id="asc-pr-cta" aria-label="Laporkan Prestasi UKM ASC">
+  <div class="pr-cta" id="prCta">
+    <div class="pr-px" data-sp="-.28" data-rt=".03" style="left:9%;top:18%">
+      <span class="pr-md pr-disc r1" style="--s:clamp(56px,6.4vw,92px)">1</span>
+    </div>
+    <div class="pr-px" data-sp="-.42" data-rt="-.04" style="right:10%;top:24%">
+      <span class="pr-md pr-disc r2" style="--s:clamp(44px,4.8vw,74px)">2</span>
+    </div>
+    <div class="pr-px" data-sp="-.22" data-rt=".04" style="left:16%;bottom:14%">
+      <span class="pr-md pr-disc r3" style="--s:clamp(40px,4.2vw,64px)">3</span>
+    </div>
+    <div class="pr-cw" id="prCw">
+      <span class="pr-eye">Giliran berikutnya</span>
+      <h3>Prestasi berikutnya<br>bisa jadi <em>milikmu.</em></h3>
+      <p>Punya capaian yang belum tercatat? Laporkan melalui form pendataan agar ikut dikenang di sini.</p>
+      <a class="pr-btn lt" id="prForm2"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSf4TNKOnZc8XTmzZtCrO2zaiEJwTNFlrESx6H_JEuVI9YDo2A/viewform"
+        target="_blank" rel="noopener noreferrer">Laporkan
+        prestasimu <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ASC CORE: Idempotent Fraunces & Plus Jakarta Sans loader -->
+<script>
+  (function (w, d) {
+    if (!d.getElementById('asc-fonts')) {
+      var l = d.createElement('link');
+      l.id = 'asc-fonts';
+      l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Geist:wght@500..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap';
+      d.head.appendChild(l);
+    }
+  })(window, document);
+</script>
+
+
+<script>
+  /* ==========================================================================
+     PART B: SCOPED ASYAM CLOSING CTA PARALLAX & ENTRANCE (#asc-pr-cta)
+     ========================================================================== */
+  (function initPrestasiCta() {
+    'use strict';
+    const LINK_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSf4TNKOnZc8XTmzZtCrO2zaiEJwTNFlrESx6H_JEuVI9YDo2A/viewform';
+    const formLinkEl = document.getElementById('prForm2');
+    if (formLinkEl) { formLinkEl.href = LINK_FORM; formLinkEl.target = '_blank'; formLinkEl.rel = 'noopener noreferrer'; }
+    const wrap = document.getElementById('asc-pr-cta');
+    const cta = document.getElementById('prCta');
+    const cw = document.getElementById('prCw');
+    if (!wrap || !cta || !cw) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      cw.style.opacity = '1';
+      cw.style.transform = 'none';
+      return;
+    }
+
+    const pxs = Array.from(cta.querySelectorAll('.pr-px')).map((el) => ({
+      el: el,
+      sp: parseFloat(el.dataset.sp || '0') || 0,
+      rt: parseFloat(el.dataset.rt || '0') || 0
+    }));
+
+    function clamp(x) { return Math.max(0, Math.min(1, x)); }
+    function ease(t) { return 1 - Math.pow(1 - t, 3); }
+
+    let ticking = false;
+    function renderCta() {
+      ticking = false;
+      const vh = window.innerHeight;
+      const rc = cta.getBoundingClientRect();
+      if (rc.bottom < -300 || rc.top > vh + 300) return;
+
+      const off = rc.top + rc.height / 2 - vh / 2;
+      pxs.forEach((p) => {
+        p.el.style.transform =
+          'translate3d(0,' + (off * p.sp).toFixed(1) + 'px,0) rotate(' + (off * p.rt).toFixed(2) + 'deg)';
+      });
+
+      if (rc.top < vh) {
+        const e = ease(clamp((vh - rc.top) / (vh * 0.65)));
+        cw.style.opacity = e.toFixed(3);
+        cw.style.transform =
+          'translate3d(0,' + ((1 - e) * 44).toFixed(1) + 'px,0) scale(' + (0.93 + 0.07 * e).toFixed(3) + ')';
+      }
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(renderCta);
+      }
+    }
+
+    renderCta();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+  })();
+</script>

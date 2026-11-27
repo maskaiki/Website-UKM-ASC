@@ -37,6 +37,7 @@ SECTION_FILES = [
     "03_pembinaan.html",
     "04_struktur_organisasi.html",
     "05_prestasi.html",
+    "05_prestasi_input.html",
     "06_kabinet.html",
     "07_faq_kontak.html",
     "08_link_medsos.html",
